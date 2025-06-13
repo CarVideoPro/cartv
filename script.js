@@ -22,6 +22,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectTrigger = customSelect.querySelector('.select-trigger');
     const selectedCategoryNameEl = document.getElementById('selectedCategoryName');
     const optionsContainer = customSelect.querySelector('.select-options');
+    const unmuteOverlayBtn = document.getElementById('unmuteOverlayBtn');
+
 
     // --- HLS.js Setup ---
     let hls;
@@ -80,9 +82,13 @@ document.addEventListener('DOMContentLoaded', () => {
             // Autoplay the first channel of the initial category
             const firstChannelToPlay = channels.find(ch => ch.type === selectedCategoryId);
             if (firstChannelToPlay) {
-                playChannel(firstChannelToPlay, true); // Pass true for autoplay
+                playChannel(firstChannelToPlay, true);
+                // After starting the video, check if it's muted. If so, show our unmute button.
+                if (videoPlayer.muted) {
+                    unmuteOverlayBtn.classList.remove('hidden');
+                }
             } else {
-                renderChannelList(); // If no channels, just render the empty list
+                renderChannelList();
             }
 
         } catch (error) {
@@ -149,6 +155,13 @@ document.addEventListener('DOMContentLoaded', () => {
                 hls.on(Hls.Events.MANIFEST_PARSED, () => {
                     videoPlayer.play().catch(e => console.error("Autoplay was prevented:", e));
                 });
+            }else {
+                // ADD THIS ELSE BLOCK:
+                // This is a user click, which counts as interaction.
+                // Unmute the player and hide the overlay button permanently.
+                videoPlayer.muted = false;
+                unmuteOverlayBtn.classList.add('hidden');
+                videoPlayer.play(); // Ensure playback starts on channel change
             }
         } else if (videoPlayer.canPlayType('application/vnd.apple.mpegurl')) {
             videoPlayer.src = channel.url;
@@ -169,6 +182,19 @@ document.addEventListener('DOMContentLoaded', () => {
     window.addEventListener('click', (e) => {
         if (!customSelect.contains(e.target)) {
             customSelect.classList.remove('open');
+        }
+    });
+
+    // ADD THESE TWO NEW LISTENERS:
+    unmuteOverlayBtn.addEventListener('click', () => {
+        videoPlayer.muted = false;
+        unmuteOverlayBtn.classList.add('hidden');
+    });
+
+    // Hide the unmute button if the user unmutes using the video player's native controls.
+    videoPlayer.addEventListener('volumechange', () => {
+        if (!videoPlayer.muted) {
+            unmuteOverlayBtn.classList.add('hidden');
         }
     });
 
