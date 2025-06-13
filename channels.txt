@@ -1,6 +1,5 @@
 TRT 1,https://tv-trt1.medya.trt.com.tr/master_720.m3u8,https://upload.wikimedia.org/wikipedia/commons/thumb/6/6d/TRT_logo_%282018-%29.svg/512px-TRT_logo_%282018-%29.svg.png,0
 KANAL D,https://demiroren-live.daioncdn.net/kanald/kanald_1080p.m3u8?app=kanald_web&ce=3,https://i.ibb.co/hf2mSz5/kanal-d.png,0
-KANAL D,http://89.187.191.41/Kanal-D-HD-TR/video.m3u8,https://i.ibb.co/hf2mSz5/kanal-d.png,0
 ATV,http://89.187.191.41/ATV-HD-TR/video.m3u8,https://i.ibb.co/DwFJ0vn/atv.png,0
 STAR TV,https://dogus-live.daioncdn.net/startv/startv_720p.m3u8,https://i.ibb.co/hY3Z8zx/star-tv.png,0
 SHOW TV,https://ciner-live.daioncdn.net/showtv/showtv_1080p.m3u8,https://i.ibb.co/Rv0rWhZ/show.png,0
