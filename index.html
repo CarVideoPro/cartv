@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>M3U Player</title>
+    <!-- Google Fonts: Inter -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    
+    <link rel="stylesheet" href="style.css">
+    <!-- HLS.js library is used to play m3u8 streams -->
+    <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+</head>
+<body>
+
+    <header class="header">
+        <img src="logo.png" alt="Logo" class="main-logo">
+        <span class="logo-text">Car Video Pro TV</span>
+    </header>
+
+    <main class="container">
+        <div class="left-panel">
+            <div class="player-container" id="playerContainer">
+                <!-- Added 'muted' to ensure autoplay on page load -->
+                <video id="videoPlayer" controls muted></video>
+            </div>
+            <div id="selectedChannelInfo" class="selected-channel-info">
+                <img id="selectedChannelLogo" src="placeholder.png" alt="Channel Logo">
+                <span id="selectedChannelName">No Channel Selected</span>
+            </div>
+        </div>
+
+        <div class="right-panel">
+            <!-- Custom Select Dropdown -->
+            <div class="custom-select-wrapper">
+                <div class="custom-select" id="customCategoryFilter">
+                    <div class="select-trigger">
+                        <span id="selectedCategoryName"></span>
+                        <div class="arrow"></div>
+                    </div>
+                    <div class="select-options">
+                        <!-- Options will be populated by JavaScript -->
+                    </div>
+                </div>
+            </div>
+            <div class="channel-list-header">Kanal Listesi</div>
+            <div id="channelList" class="channel-list">
+                <!-- Channel items will be dynamically inserted here -->
+            </div>
+        </div>
+    </main>
+
+    <script src="script.js"></script>
+</body>
+</html>
