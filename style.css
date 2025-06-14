@@ -1,13 +1,13 @@
 /* style.css */
 :root {
-    --bg-color: #ffffff;
-    --surface-container: #e5e8f5;
-    --primary-color: #4a55b1;
+    --bg-color: #101224;
+    --surface-container: #1b1e3a;
+    --primary-color: #2873ce;
     --on-primary-color: #ffffff;
-    --primary-container: #373e5a;
+    --primary-container: #303b6a;
     --on-primary-container: #ffffff;
-    --on-surface-color: #000000;
-    --on-surface-variant: #8d8aa7;
+    --on-surface-color: #ffffff;
+    --on-surface-variant: #6871ac;
     --outline-color: #79747e;
     --hover-overlay: rgba(74, 85, 177, 0.08);
     --panel-radius: 48px;
@@ -81,7 +81,7 @@ body {
     background-color: black;
     border-radius: var(--border-radius-l);
     overflow: hidden;
-    box-shadow: 0 10px 50px rgba(0,0,0,0.4);
+    box-shadow: 0 10px 50px rgba(44, 64, 194, 0.4);
     position: relative;
 }
 
@@ -103,7 +103,7 @@ body {
     width: 52px;
     height: 52px;
     border-radius: 50%;
-    object-fit: cover;
+    object-fit: contain;
     background-color: #e0e0e0;
 }
 
@@ -157,7 +157,7 @@ body {
     top: calc(100% + 8px);
     left: 0;
     right: 0;
-    background: #fff;
+    background: var(--primary-container);
     border-radius: 16px;
     overflow: hidden;
     z-index: 10;
@@ -183,7 +183,7 @@ body {
 }
 
 .select-option.selected {
-    background-color: var(--primary-container);
+    background-color: var(--primary-color);
     color: var(--on-primary-container);
     font-weight: 600;
 }
@@ -229,8 +229,8 @@ body {
     width: 40px;
     height: 40px;
     border-radius: 50%;
-    object-fit: cover;
-    background-color: #f0f0f0;
+    object-fit: contain;
+    background-color: #015a7e;
 }
 
 .channel-item span {
@@ -243,25 +243,6 @@ body {
 }
 
 
-/* --- Unmute Button --- */
-.unmute-btn {
-    display: flex; /* Controlled by .hidden class */
-    align-items: center;
-    justify-content: center;
-    gap: 12px;
-    align-self: flex-start;
-    padding: 16px 32px;
-    font-size: 20px;
-    font-weight: 600;
-    color: var(--on-primary-color);
-    background-color: var(--primary-color);
-    border: none;
-    border-radius: var(--border-radius-xl); /* Very rounded */
-    cursor: pointer;
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-    box-shadow: 0 4px 12px rgba(0,0,0,0.2);
-}
-
 .unmute-btn:hover {
     transform: scale(1.05);
     box-shadow: 0 6px 16px rgba(0,0,0,0.25);
@@ -269,5 +250,55 @@ body {
 
 /* Helper class to hide the button */
 .unmute-btn.hidden {
+    display: none;
+}
+
+
+/* --- Player Controls Bar & Fullscreen Button --- */
+.player-controls-bar {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+
+.fullscreen-btn:hover {
+    background-color: var(--hover-overlay);
+    border-color: var(--primary-color);
+    color: var(--primary-color);
+    transform: scale(1.1);
+}
+
+/* --- Player Action Buttons --- */
+.player-buttons-group {
+    display: flex;
+    align-items: center;
+    gap: 12px; /* Space between the buttons */
+}
+
+.action-btn {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    padding: 14px 24px;
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--on-primary-color);
+    background-color: var(--primary-color);
+    border: none;
+    border-radius: var(--border-radius-xl);
+    cursor: pointer;
+    transition: transform 0.2s ease, box-shadow 0.2s ease;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+}
+
+.action-btn:hover {
+    transform: scale(1.05);
+    box-shadow: 0 6px 16px rgba(0,0,0,0.2);
+}
+
+/* Helper class to hide the button */
+.action-btn.hidden {
     display: none;
 }
