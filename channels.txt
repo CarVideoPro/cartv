@@ -9,7 +9,7 @@ EURO D,https://thema-vivekanald-rakuten.amagi.tv/playlist.m3u8,https://i.ibb.co/
 TV 8 INT,https://tv8-live.daioncdn.net/tv8/tv8.m3u8,https://i.ibb.co/ykSLX8Q/tv8-int.png,0
 TRT 2,https://tv-trt2.medya.trt.com.tr/master_720.m3u8,https://i.ibb.co/m5T5bQxB/Ads-z-tasar-m-2.png,0
 TRT TURK,https://tv-trtturk.medya.trt.com.tr/master_720.m3u8,https://i.ibb.co/cSNfr17C/trturk.png,0
-TRT COCUK,https://tv-trtcocuk.medya.trt.com.tr/master_720.m3u8,https://i.ibb.co/mbvwYMB/trt-cocuk.png,6
+SHOW MAX HD,https://live-cdn-65984.varplaycdn.cfd/showmax/index.m3u8,https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Show_MAX_logo.svg/2048px-Show_MAX_logo.svg.png,0
 KANAL 7,https://kanal7-live.daioncdn.net/kanal7/kanal7_1080p.m3u8,https://i.ibb.co/DPVDgvqn/Ads-z-tasar-m-1.png,0
 KANAL 7 AVRUPA,https://livetv.radyotvonline.net/kanal7live/kanal7avr/chunklist.m3u8,https://i.ibb.co/xq3rRJV5/Ads-z-tasar-m-3.png,0
 BEYAZ TV,https://beyaztv-live.daioncdn.net/beyaztv/beyaztv.m3u8,https://i.ibb.co/JWMb2kcp/Ads-z-tasar-m-4.png,0
@@ -21,52 +21,68 @@ TIVI 6,https://live.artidijitalmedya.com/artidijital_tivi6/tivi6/playlist.m3u8,h
 BIR TV,https://edge1.socialsmart.tv/birtv/bant1/playlist.m3u8,https://i.ibb.co/dDdPMWq/birtv.png,0
 CINE1,https://live.artidijitalmedya.com/artidijital_cine1/cine1/playlist.m3u8,https://i.ibb.co/zhxTBMR/cine1.png,0
 LIFE TV,https://live.artidijitalmedya.com/artidijital_lifetv/lifetv/playlist.m3u8,https://i.ibb.co/9hCVNks/life-tv.png,0
+
+
 TRT SPOR,https://tv-trtspor1.medya.trt.com.tr/master_720.m3u8,https://i.ibb.co/WxD4PLG/trt-spor.png,2
-beIN SPORTS HABER,https://tgn.bozztv.com/dvrfl05/gin-beinsportshaber/tracks-v1a1/mono.m3u8,https://i.ibb.co/GdkQ5mY/bein-sports-haber.png,2
-TV 8.5,https://tv8-live.daioncdn.net/tv8bucuk/tv8bucuk_1080p.m3u8,https://i.ibb.co/6PRYHdW/tv85.png,2
-A SPOR,https://c.fulltvizle.com/aspor/index.m3u8,https://i.ibb.co/rwnrgFV/a-spor.png,2
 TRT SPOR YILDIZ,https://tv-trtspor2.medya.trt.com.tr/master_720.m3u8,https://i.ibb.co/YRgKcDn/trt-spor-yildiz.png,2
-SPORTS TV,https://sportstv.blutv.com/blutv_sportstv2/live_720p2000000kbps/index.m3u8,https://i.ibb.co/R3q43dk/sportstv.png,2
+BeIN Sports Haber HD,https://live-cdn-65984.varplaycdn.cfd/beinsportshaber/index.m3u8,https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/bc458b63-fe9e-40c2-b8a3-d56dc7189e0a.png,2
+TV 8.5,https://tv8-live.daioncdn.net/tv8bucuk/tv8bucuk_1080p.m3u8,https://i.ibb.co/6PRYHdW/tv85.png,2
+A SPOR,https://live-cdn-65984.varplaycdn.cfd/aspor/index.m3u8,https://i.ibb.co/rwnrgFV/a-spor.png,2
+S SPORTS TV,https://live.sportstv.com.tr/hls/low/sportstv_hd/index.m3u8,https://i.ibb.co/Q7qK4qQj/Ads-z-tasar-m-16.png,2
+NBA TV,https://live-cdn-65984.varplaycdn.cfd/nbatv/index.m3u8,https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/1af109dc-4dc7-4185-981b-ccc6f8d45e83.png,2
 FB TV,https://1hskrdto.rocketcdn.com/fenerbahcetv.smil/playlist.m3u8,https://i.ibb.co/315SYpK/fb-tv.png,2
-GS TV HD,https://owifavo5.rocketcdn.com/gstv/gstv.smil/chunklist_b1828000_sltur.m3u8,https://i.ibb.co/6RqMpGT/gs-tv.png,2
 TJK TV,https://tjktv-live.tjk.org/tjktv_1080p.m3u8,https://i.ibb.co/PrkXrRn/tjk-tv.png,2
 TJK TV YURT DISI,https://tjktv-live.tjk.org/tjktv2/tjktv2_1080p.m3u8,https://i.ibb.co/PrkXrRn/tjk-tv.png,2
+TNT HD,https://live-cdn-65984.varplaycdn.cfd/tnt/index.m3u8,https://upload.wikimedia.org/wikipedia/commons/4/46/TNT_Sports_Logo_Vertical_%282017%29.png,2
+
 TRT BELGESEL,https://tv-trtbelgesel.medya.trt.com.tr/master_720.m3u8,https://i.ibb.co/MkvY46q/trt-belgesel.png,5
 DMAX,https://dogus-live.daioncdn.net/dmax/dmax_720p.m3u8,https://i.ibb.co/1LH22gK/dmax.png,5
 TLC,https://dogus-live.daioncdn.net/tlc/tlc_720p.m3u8,https://i.ibb.co/Cm1nYZK/tlc.png,5
 TRT AVAZ,https://tv-trtavaz.medya.trt.com.tr/master_720.m3u8,https://i.ibb.co/Mnhmxsn/trt-avaz.png,5
-TGRT BELGESEL,https://tgn.bozztv.com/dvrfl05/gin-tgrtbelgesel/tracks-v1a1/mono.m3u8,https://i.ibb.co/DkBWyDB/tgrt-belgesel.png,5
+NATGEO HD,https://live-cdn-65984.varplaycdn.cfd/natgeo/index.m3u8,https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/500/500/channels/logos/38a2e51a-9f7f-4915-aa88-f78190f59411.png,5
+TRT AVAZ,https://tv-trtavaz.medya.trt.com.tr/master_720.m3u8,https://i.ibb.co/Mnhmxsn/trt-avaz.png,5
+TARİH TV HD,https://live-cdn-65984.varplaycdn.cfd/tarihtv/index.m3u8,https://upload.wikimedia.org/wikipedia/commons/5/5a/Tarih-tv-logo-siyah-1080x1080.png,5
+
+
 TRT HABER,https://tv-trthaber.medya.trt.com.tr/master_720.m3u8,https://i.ibb.co/LzcNGmm8/unnamed.png,1
-A HABER,blob:https://www.aspor.com.tr/30e9e30d-f738-4c9b-b2c4-af7fba1a4f95,https://i.ibb.co/LzcNGmm8/unnamed.png,1
 HABER GLOBAL,https://tv.ensonhaber.com/haberglobal/haberglobal_720p.m3u8,https://i.ibb.co/21zzHPgT/Ads-z-tasar-m-7.png,1
-BLOOMBERG HT,https://ciner-live.daioncdn.net/bloomberght/bloomberght_720p.m3u8,https://i.ibb.co/PTNvZkD/bloomberg-ht.png,1
-HABERTURK,https://ciner-live.daioncdn.net/haberturktv/haberturktv_1080p.m3u8,https://i.ibb.co/5GmcTH9/haberturk.png,1
+ÜLKE TV HD,https://live-cdn-65984.varplaycdn.cfd/ulke/index.m3u8,https://i.ibb.co/nN6j3jdR/Ads-z-tasar-m-10.png,1
+NTV HD,https://live-cdn-65984.varplaycdn.cfd/ntv/index.m3u8,https://i.ibb.co/6RLRBf5w/Ads-z-tasar-m-15.png,1
+BLOOMBERG HT,https://ciner-live.daioncdn.net/bloomberght/bloomberght_720p.m3u8,https://i.ibb.co/0RhF7QQB/Ads-z-tasar-m-8.png,1
+HABERTURK,https://ciner-live.daioncdn.net/haberturktv/haberturktv_1080p.m3u8,https://i.ibb.co/Q79Lh4Cb/Ads-z-tasar-m-9.png,1
 24,https://mn-nl.mncdn.com/kanal24/kanal24.smil/chunklist_b896000.m3u8,https://i.ibb.co/tHQpWvn/24.png,1
-ULUSAL TV,https://ythls.kekikakademi.org/youtube/channel/UC6T0L26KS1NHMPbTwI1L4Eg.m3u8,https://i.ibb.co/vvZss13/ulusal-tv.png,1
-TV 100,https://tv100.daioncdn.net/tv100/tv100_1080p.m3u8?app=web,https://i.ibb.co/zZnBCWt/tv100.png,1
-TELE 1,https://tele1dvr.blutv.com/blutv_tele1_dvr2/live_720p2000000kbps/index.m3u8,https://i.ibb.co/6yVTw6f/tele1.png,1
-KRT,https://krtdvr.blutv.com/blutv_krt_live_dvr/live_720p4350000kbps/index.m3u8,https://i.ibb.co/F8WT2QK/krt.png,1
-TVNET,https://mn-nl.mncdn.com/tvnet/tvnet/playlist.m3u8,https://i.ibb.co/2jtzN6F/tvnet.png,1
-EKOTURK,https://ythls.kekikakademi.org/youtube/channel/UCAGVKxpAKwXMWdmcHbrvcwQ.m3u8,https://i.ibb.co/F4csSTY/ekoturk.png,1
-AKIT TV,https://akittv-live.ercdn.net/akittv/akittv_720p.m3u8,https://i.ibb.co/MBwzD2b/akit-tv.png,1
+TVNET,https://mn-nl.mncdn.com/tvnet/tvnet/playlist.m3u8,https://i.ibb.co/RpyvJDrM/Ads-z-tasar-m-12.png,1
+AKIT TV,https://akittv-live.ercdn.net/akittv/akittv_720p.m3u8,https://i.ibb.co/3mPpV9kp/Ads-z-tasar-m-11.png,1
 BENGU TURK,https://tv.ensonhaber.com/benguturk/benguturk_720p.m3u8,https://i.ibb.co/CHWhMvQ/bengu-turk.png,1
-TGRT HABER HD,https://canli.tgrthaber.com/tgrt.m3u8,https://i.ibb.co/K5frjVY/tgrt-haber.png,1
-TURKHABER,https://edge1.socialsmart.tv/turkhaber/bant1/playlist.m3u8,https://i.ibb.co/ySv65wg/turk-haber.png,1
-FLASH HABER,https://ythls.kekikakademi.org/youtube/channel/UCNcjCb2RnA3eMMhTZSxZu3A.m3u8,https://i.ibb.co/8cP5NzX/flash-haber.png,1
-NR1,https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e17cd6360b_1/playlist.m3u8,https://i.ibb.co/sybLTBG/nr1.png,3
-MILYON TV,https://sosyoapp-live.cdnnew.com/sosyo/buraya-bir-isim-verin.m3u8,https://i.ibb.co/sQRhqCs/milyon-tv.png,3
-KRAL POP,http://dygvideo.dygdigital.com/live/hls/kralpop,https://i.ibb.co/vk0bKz0/kral-pop.png,3
-TATLISES TV,https://live.artidijitalmedya.com/artidijital_tatlisestv/tatlisestv/chunks.m3u8,https://i.ibb.co/yRy9zwt/tatlises-tv.png,3
+TGRT HABER HD,https://canli.tgrthaber.com/tgrt.m3u8,https://i.ibb.co/KYdPPbs/Ads-z-tasar-m-13.png,1
+TURKHABER,https://edge1.socialsmart.tv/turkhaber/bant1/playlist.m3u8,https://i.ibb.co/1JMFDj8X/Ads-z-tasar-m-14.png,1
+
+
+NR1,https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e17cd6360b_1/playlist.m3u8,https://i.ibb.co/YBqnDxdN/Ads-z-tasar-m-17.png,3
+KRAL POP,http://dygvideo.dygdigital.com/live/hls/kralpop,https://i.ibb.co/mr2j1zkJ/Ads-z-tasar-m-18.png,3
 NR1 ASK,https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e18f9cea15_1/playlist.m3u8,https://i.ibb.co/5cJ0KtQ/nr1-ask.png,3
 NR1 DAMAR,https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e198784bdc_1/playlist.m3u8,https://i.ibb.co/2yCF7ms/nr1-damar.png,3
 NR1 DANCE,https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e2aa8acf44_1/playlist.m3u8,https://i.ibb.co/kXFSFTN/nr1-dance.png,3
 NR1 FASHION ONE,http://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e2ee6997cb_1/playlist.m3u8,https://i.ibb.co/HV0x9JZ/fashion-one.png,3
 TRT MUZIK,https://tv-trtmuzik.medya.trt.com.tr/master_720.m3u8,https://i.ibb.co/4gbPpzC/trt-muzik.png,3
-DREAM TURK,https://live.duhnet.tv/S2/HLS_LIVE/dreamturknp/playlist.m3u8,https://i.ibb.co/fxRrKmB/dream-turk.png,3
-POWER TURK,https://livetv.powerapp.com.tr/powerturkTV/powerturkhd.smil/chunklist_b5250000_sltur.m3u8,https://i.ibb.co/xXcBD2C/powerturk.png,3
-POWER TV,https://livetv.powerapp.com.tr/powerTV/powerhd.smil/chunklist_b2650000_sltur.m3u8,https://i.ibb.co/JrXDQJy/power-tv.png,3
+POWER TURK,https://livetv.powerapp.com.tr/powerturkTV/powerturkhd.smil/playlist.m3u8,https://i.ibb.co/xXcBD2C/powerturk.png,3
+POWER TV,https://livetv.powerapp.com.tr/powerTV/powerhd.smil/playlist.m3u8,https://i.ibb.co/JrXDQJy/power-tv.png,3
 POWER TURK TAPTAZE,http://livetv.powerapp.com.tr/pturktaptaze/taptaze.smil/playlist.m3u8,https://i.ibb.co/F5K5xs9/powerturk-taptaze.png,3
-POWER DANCE,https://listen.powerapp.com.tr/dance/dance.smil/chunklist_b1028000_sltur.m3u8,https://i.ibb.co/5hwZ7xw/power-dance.png,3
-POWER LOVE,https://listen.powerapp.com.tr/plove/love.smil/chunklist_b1028000_sltur.m3u8,https://i.ibb.co/bJL1VnX/power-love.png,3
-POWER TURK AKUSTIK,https://listen.powerapp.com.tr/pturkakustik/akustik.smil/chunklist_b1028000_sltur.m3u8,https://i.ibb.co/XFY7dCW/powerturk-akustik.png,3
-POWER TURK SLOW,https://listen.powerapp.com.tr/pturkslow/slow.smil/chunklist_b1028000_sltur.m3u8,https://i.ibb.co/R4pcKqK/powerturk-slow.png,3
+POWER DANCE,https://listen.powerapp.com.tr/dance/dance.smil/playlist.m3u8,https://i.ibb.co/5hwZ7xw/power-dance.png,3
+POWER LOVE,https://listen.powerapp.com.tr/plove/love.smil/playlist.m3u8,https://i.ibb.co/bJL1VnX/power-love.png,3
+POWER TURK AKUSTIK,https://listen.powerapp.com.tr/pturkakustik/akustik.smil/playlist.m3u8,https://i.ibb.co/XFY7dCW/powerturk-akustik.png,3
+POWER TURK SLOW,https://listen.powerapp.com.tr/pturkslow/slow.smil/playlist.m3u8,https://i.ibb.co/R4pcKqK/powerturk-slow.png,3
+
+
+TRT ÇOCUK,https://tv-trtcocuk.medya.trt.com.tr/master_720.m3u8,https://i.ibb.co/mbvwYMB/trt-cocuk.png,6
+TRT Diyanet Çocuk,https://tv-trtdiyanetcocuk.medya.trt.com.tr/master.m3u8,https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNwBQtkeuk0a1Ofxhin7lGP_VtWNecIwOsSA&s,6
+MinikaGo,https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/minikago/minikago_720p.m3u8,https://i.ibb.co/2ZwxWr0/minika-go.png,6
+Minika Çocuk,https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/minikago_cocuk/minikago_cocuk_720p.m3u8,https://i.ibb.co/S794c6W/minika-cocuk.png,6
+Spacetoon,https://ottcdn.kablowebtv.net/live_turksat_sub3/spacetoon_stream/index.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ni8xNC8yMDI1IDk6MDc6MDIgUE0maGFzaF92YWx1ZT1CMnlxNmhkTFhQZG11NGllVkZuMWh3PT0mdmFsaWRtaW51dGVzPTI4ODAmaWQ9MDkzZDcyMGEtNTAyYy00MWVkLWE4MGYtMmI4MTY5ODRmYjk1LDg5NzQxZmVjLTFkMzMtNGMwMC1hZmNkLTNmZGFmZTBiNmEyZCwxNTJiZDUzOS02MjIwLTQ0MjctYTkxNS1iZjRiZDA2OGQ3ZTgsYTY5OWI4M2YtODI2Yi00ZDk5LTkzNjEtYzhhMzEzMjE4ZDQ2LDAsOjpmZmZmOjEwLjAuMC41,https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/1e92ccd2-d2f4-48e5-a886-164389511271.png,6
+Azoomee İngilizce Öğren,https://ottcdn.kablowebtv.net/live_turksat_sub3/gamescreen_stream/index.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ni8xNC8yMDI1IDk6MDc6MDIgUE0maGFzaF92YWx1ZT1CMnlxNmhkTFhQZG11NGllVkZuMWh3PT0mdmFsaWRtaW51dGVzPTI4ODAmaWQ9MDkzZDcyMGEtNTAyYy00MWVkLWE4MGYtMmI4MTY5ODRmYjk1LDg5NzQxZmVjLTFkMzMtNGMwMC1hZmNkLTNmZGFmZTBiNmEyZCwxNTJiZDUzOS02MjIwLTQ0MjctYTkxNS1iZjRiZDA2OGQ3ZTgsYTY5OWI4M2YtODI2Yi00ZDk5LTkzNjEtYzhhMzEzMjE4ZDQ2LDAsOjpmZmZmOjEwLjAuMC41,https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/1cc6ebf5-4e01-407d-8a88-94dcdf2d5ddd.png,6
+Disney JR HD,https://saran-live.ercdn.net/disneyjunior/index.m3u8,https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/2024_Disney_Jr._Logo.svg/1024px-2024_Disney_Jr._Logo.svg.png,6
+Baby Tv HD,https://ottcdn.kablowebtv.net/live_turksat_sub3/babytv_stream/index.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ni8xNC8yMDI1IDk6MDc6MDIgUE0maGFzaF92YWx1ZT1CMnlxNmhkTFhQZG11NGllVkZuMWh3PT0mdmFsaWRtaW51dGVzPTI4ODAmaWQ9MDkzZDcyMGEtNTAyYy00MWVkLWE4MGYtMmI4MTY5ODRmYjk1LDg5NzQxZmVjLTFkMzMtNGMwMC1hZmNkLTNmZGFmZTBiNmEyZCwxNTJiZDUzOS02MjIwLTQ0MjctYTkxNS1iZjRiZDA2OGQ3ZTgsYTY5OWI4M2YtODI2Yi00ZDk5LTkzNjEtYzhhMzEzMjE4ZDQ2LDAsOjpmZmZmOjEwLjAuMC41,https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/2442b7b7-04da-41c1-a7ca-03466853040e.png,6
+Disney JR HD,https://saran-live.ercdn.net/disneyjunior/index.m3u8,https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/2024_Disney_Jr._Logo.svg/1024px-2024_Disney_Jr._Logo.svg.png,6
+Disney JR HD,https://saran-live.ercdn.net/disneyjunior/index.m3u8,https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/2024_Disney_Jr._Logo.svg/1024px-2024_Disney_Jr._Logo.svg.png,6
+Disney JR HD,https://saran-live.ercdn.net/disneyjunior/index.m3u8,https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/2024_Disney_Jr._Logo.svg/1024px-2024_Disney_Jr._Logo.svg.png,6
+Disney JR HD,https://saran-live.ercdn.net/disneyjunior/index.m3u8,https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/2024_Disney_Jr._Logo.svg/1024px-2024_Disney_Jr._Logo.svg.png,6
