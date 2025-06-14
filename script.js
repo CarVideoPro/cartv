@@ -23,6 +23,8 @@ document.addEventListener('DOMContentLoaded', () => {
     const selectedCategoryNameEl = document.getElementById('selectedCategoryName');
     const optionsContainer = customSelect.querySelector('.select-options');
     const unmuteOverlayBtn = document.getElementById('unmuteOverlayBtn');
+    // ... after the unmuteOverlayBtn line
+    const fullscreenBtn = document.getElementById('fullscreenBtn');
 
 
     // --- HLS.js Setup ---
@@ -62,6 +64,17 @@ document.addEventListener('DOMContentLoaded', () => {
             optionsContainer.appendChild(option);
         });
     }
+
+    /** Toggles fullscreen mode for the player container */
+function toggleFullscreen() {
+    // This is the only change needed. We target the video player directly.
+    const videoPlayer = document.getElementById('videoPlayer'); 
+
+    // This button's only job is to REQUEST fullscreen.
+    videoPlayer.requestFullscreen().catch(err => {
+        alert(`Error attempting to enable full-screen mode: ${err.message} (${err.name})`);
+    });
+}
 
     /**
      * Fetches channels and autoplays the first one.
@@ -197,6 +210,8 @@ document.addEventListener('DOMContentLoaded', () => {
             unmuteOverlayBtn.classList.add('hidden');
         }
     });
+
+    fullscreenBtn.addEventListener('click', toggleFullscreen);
 
     // --- Initial Load ---
     setupCategoryFilter();
