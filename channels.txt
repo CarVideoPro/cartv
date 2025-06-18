@@ -29,7 +29,7 @@ BeIN Sports Haber HD,https://ottcdn.kablowebtv.net/live_turksat_sub3/beinsportsh
 TV 8.5,https://tv8-live.daioncdn.net/tv8bucuk/tv8bucuk_1080p.m3u8,https://i.ibb.co/6PRYHdW/tv85.png,2
 A SPOR,https://live-cdn-65984.varplaycdn.cfd/aspor/index.m3u8,https://i.ibb.co/rwnrgFV/a-spor.png,2
 S SPORTS TV,https://live.sportstv.com.tr/hls/low/sportstv_hd/index.m3u8,https://i.ibb.co/Q7qK4qQj/Ads-z-tasar-m-16.png,2
-NBA TV,https://live-cdn-65984.varplaycdn.cfd/nbatv/index.m3u8,https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/1af109dc-4dc7-4185-981b-ccc6f8d45e83.png,2
+NBA TV,https://ottcdn.kablowebtv.net/live_turksat_sub3/nbatv_stream/index.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ni8xOC8yMDI1IDY6MTI6NDYgUE0maGFzaF92YWx1ZT1HOW44YVYzSmNVZUFxQVdaUW5PNEx3PT0mdmFsaWRtaW51dGVzPTI4ODAmaWQ9MDkzZDcyMGEtNTAyYy00MWVkLWE4MGYtMmI4MTY5ODRmYjk1LDg5NzQxZmVjLTFkMzMtNGMwMC1hZmNkLTNmZGFmZTBiNmEyZCwxNTJiZDUzOS02MjIwLTQ0MjctYTkxNS1iZjRiZDA2OGQ3ZTgsYTY5OWI4M2YtODI2Yi00ZDk5LTkzNjEtYzhhMzEzMjE4ZDQ2LDAsOjpmZmZmOjEwLjAuMC42,https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/1af109dc-4dc7-4185-981b-ccc6f8d45e83.png,2
 FB TV,https://1hskrdto.rocketcdn.com/fenerbahcetv.smil/playlist.m3u8,https://i.ibb.co/315SYpK/fb-tv.png,2
 TJK TV,https://tjktv-live.tjk.org/tjktv_1080p.m3u8,https://i.ibb.co/PrkXrRn/tjk-tv.png,2
 TJK TV YURT DISI,https://tjktv-live.tjk.org/tjktv2/tjktv2_1080p.m3u8,https://i.ibb.co/PrkXrRn/tjk-tv.png,2
