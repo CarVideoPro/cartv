@@ -59,7 +59,8 @@ TVNET,https://mn-nl.mncdn.com/tvnet/tvnet/playlist.m3u8,https://i.ibb.co/RpyvJDr
 AKIT TV,https://akittv-live.ercdn.net/akittv/akittv_720p.m3u8,https://i.ibb.co/3mPpV9kp/Ads-z-tasar-m-11.png,1
 BENGU TURK,https://tv.ensonhaber.com/benguturk/benguturk_720p.m3u8,https://i.ibb.co/CHWhMvQ/bengu-turk.png,1
 TGRT HABER HD,https://canli.tgrthaber.com/tgrt.m3u8,https://i.ibb.co/KYdPPbs/Ads-z-tasar-m-13.png,1
-TURKHABER,https://edge1.socialsmart.tv/turkhaber/bant1/playlist.m3u8,https://i.ibb.co/1JMFDj8X/Ads-z-tasar-m-14.png,1
+TURKHABER,https://edge1.socialsmart.tv/turkhaber/bant1/playlist.m3u8,https://i.ibb.co/1JMFDj8X/Ads-z-tasar-m-14.png,1,,
+Gzt Tv,https://ottcdn.kablowebtv.net/live_turksat_sub3/gzttv_stream/index.m3u8?wmsAuthSign=c2VydmVyX3RpbWU9Ni8xOC8yMDI1IDY6MTI6NDcgUE0maGFzaF92YWx1ZT1FaVNpSEZoWmJ2SjJVbjdPQjhHaS9nPT0mdmFsaWRtaW51dGVzPTI4ODAmaWQ9MDkzZDcyMGEtNTAyYy00MWVkLWE4MGYtMmI4MTY5ODRmYjk1LDg5NzQxZmVjLTFkMzMtNGMwMC1hZmNkLTNmZGFmZTBiNmEyZCwxNTJiZDUzOS02MjIwLTQ0MjctYTkxNS1iZjRiZDA2OGQ3ZTgsYTY5OWI4M2YtODI2Yi00ZDk5LTkzNjEtYzhhMzEzMjE4ZDQ2LDAsOjpmZmZmOjEwLjAuMC42,https://feo.kablowebtv.com/resize/168A635D265A4328C2883FB4CD8FF/0/0/Vod/HLS/86c1a901-3b47-41e6-bf9b-b433ec170fdd.png,1
 
 
 NR1,https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e17cd6360b_1/playlist.m3u8,https://i.ibb.co/YBqnDxdN/Ads-z-tasar-m-17.png,3
