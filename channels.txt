@@ -64,7 +64,7 @@ Gzt Tv,https://ottcdn.kablowebtv.net/live_turksat_sub3/gzttv_stream/index.m3u8?w
 
 
 NR1,https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e17cd6360b_1/playlist.m3u8,https://i.ibb.co/YBqnDxdN/Ads-z-tasar-m-17.png,3
-KRAL POP,http://dygvideo.dygdigital.com/live/hls/kralpop,https://i.ibb.co/mr2j1zkJ/Ads-z-tasar-m-18.png,3
+KRAL POP,https://dogus-live.daioncdn.net/kralpoptv/playlist.m3u8,https://i.ibb.co/mr2j1zkJ/Ads-z-tasar-m-18.png,3
 NR1 ASK,https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e18f9cea15_1/playlist.m3u8,https://i.ibb.co/5cJ0KtQ/nr1-ask.png,3
 NR1 DAMAR,https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e198784bdc_1/playlist.m3u8,https://i.ibb.co/2yCF7ms/nr1-damar.png,3
 NR1 DANCE,https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e2aa8acf44_1/playlist.m3u8,https://i.ibb.co/kXFSFTN/nr1-dance.png,3
