@@ -302,3 +302,182 @@ body {
 .action-btn.hidden {
     display: none;
 }
+
+
+/* =========================================== */
+/* ==   RESPONSIVE OPTIMIZATIONS FOR MOBILE   == */
+/* =========================================== */
+
+/* Tablet ve altı için genel düzenlemeler (768px ve altı) */
+@media (max-width: 768px) {
+    body {
+        padding: 16px; /* Body padding'ini azalt */
+    }
+
+    .container {
+        flex-direction: column; /* Panelleri alt alta getir */
+        gap: 24px;
+    }
+
+    .left-panel, .right-panel {
+        flex: 1; /* Esnekliği sıfırla */
+        min-width: 100%; /* Tam genişlik kapla */
+    }
+    
+    .right-panel {
+        padding: 16px;
+        --panel-radius: 36px; /* Panel köşe yuvarlaklığını azalt */
+    }
+
+    .player-container {
+        --border-radius-l: 20px; /* Video oynatıcı köşe yuvarlaklığını azalt */
+    }
+
+    .logo-text {
+        font-size: 20px; /* Logo yazısını küçült */
+    }
+
+    .main-logo {
+        width: 48px;
+        height: 48px;
+    }
+
+    #selectedChannelName {
+        font-size: 18px; /* Seçili kanal adını küçült */
+    }
+
+    #selectedChannelLogo {
+        width: 44px;
+        height: 44px;
+    }
+
+    .select-trigger {
+        padding: 18px 20px; /* Kategori seçici padding'ini azalt */
+        --border-radius-xl: 28px;
+    }
+
+    .action-btn {
+        padding: 12px 18px; /* Aksiyon butonlarının padding'ini azalt */
+        font-size: 14px;
+        gap: 8px;
+        --border-radius-xl: 28px;
+    }
+
+    .action-btn svg {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+/* Sadece küçük mobil cihazlar için ek düzenlemeler (480px ve altı) */
+@media (max-width: 480px) {
+    body {
+        padding: 12px;
+    }
+
+    .header {
+        margin-bottom: 16px;
+    }
+
+    .player-controls-bar {
+        flex-direction: column; /* Kontrol çubuğunu dikey yap */
+        align-items: flex-start; /* Sola hizala */
+        gap: 16px;
+    }
+    
+    #selectedChannelName {
+        font-size: 16px; 
+    }
+
+    #selectedChannelLogo {
+        width: 40px;
+        height: 40px;
+    }
+    
+    .select-trigger {
+        padding: 16px 18px;
+        font-size: 15px;
+    }
+
+    .right-panel {
+        --panel-radius: 28px;
+    }
+    
+    .channel-list {
+       max-height: 45vh; /* Kanal listesinin yüksekliğini ayarla */
+    }
+}
+
+/* =================================================== */
+/* ==   YATAY EKRAN (LANDSCAPE) OPTIMIZASYONLARI    == */
+/* =================================================== */
+
+@media (orientation: landscape) and (max-height: 500px) {
+    body {
+        padding: 8px; /* Boşlukları minimuma indir */
+    }
+
+    .header {
+        display: none; /* Üst başlığı gizleyerek dikey alan kazan */
+    }
+
+    .container {
+        flex-direction: row; /* Panelleri tekrar yan yana getir */
+        flex-wrap: nowrap;
+        gap: 12px;
+        /* Tüm ekran yüksekliğini kapla */
+        height: calc(100vh - 16px);
+    }
+    
+    .left-panel {
+        flex: 3; /* Oynatıcıya daha fazla alan ver */
+        min-width: 0;
+        gap: 12px;
+    }
+
+    .right-panel {
+        flex: 2; /* Kanal listesine daha az alan ver */
+        min-width: 0;
+        padding: 12px;
+        --panel-radius: 24px;
+        /* Sağ panelin yüksekliği container'a uysun */
+        height: 100%; 
+        box-sizing: border-box;
+    }
+
+    .player-controls-bar {
+        flex-direction: row; /* Kontrolleri yatayda tut */
+        align-items: center;
+        gap: 12px;
+    }
+
+    .channel-list {
+        /* Kategori filtresi ve başlık için boşluk bırakarak kalan alanı doldur */
+        max-height: calc(100% - 110px); 
+    }
+
+    #selectedChannelName {
+        font-size: 14px;
+    }
+
+    #selectedChannelLogo {
+        width: 36px;
+        height: 36px;
+    }
+
+    .action-btn {
+        padding: 8px 12px;
+        font-size: 12px;
+    }
+
+    .action-btn svg {
+        width: 18px;
+        height: 18px;
+    }
+
+    /* Kategori seçicinin metnini ve okunu küçült */
+    .select-trigger {
+        padding: 12px 16px;
+        font-size: 14px;
+    }
+}
