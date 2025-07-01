@@ -334,12 +334,12 @@ body {
     }
 
     .logo-text {
-        font-size: 20px; /* Logo yazısını küçült */
+        font-size: 18px; /* Logo yazısını daha da küçült */
     }
 
     .main-logo {
-        width: 48px;
-        height: 48px;
+        width: 44px; /* Logo boyutunu daha da küçült */
+        height: 44px; /* Logo boyutunu daha da küçült */
     }
 
     #selectedChannelName {
@@ -357,15 +357,34 @@ body {
     }
 
     .action-btn {
-        padding: 12px 18px; /* Aksiyon butonlarının padding'ini azalt */
-        font-size: 14px;
-        gap: 8px;
-        --border-radius-xl: 28px;
+        padding: 10px 16px; /* Aksiyon butonlarının padding'ini daha da azalt */
+        font-size: 13px; /* Aksiyon butonlarının font boyutunu daha da azalt */
+        gap: 6px; /* Buton ikon ve yazı arasını daha da daralt */
+        --border-radius-xl: 24px; /* Buton köşe yuvarlaklığını daha da azalt */
     }
 
     .action-btn svg {
-        width: 20px;
-        height: 20px;
+        width: 18px; /* Buton ikon boyutunu daha da küçült */
+        height: 18px; /* Buton ikon boyutunu daha da küçült */
+    }
+
+    .channel-item { /* Yeni eklenen kısım */
+        padding: 8px 12px; /* Kanal öğelerinin padding'ini azalt */
+        gap: 12px; /* Kanal öğeleri içindeki boşluğu azalt */
+    }
+
+    .channel-item img { /* Yeni eklenen kısım */
+        width: 32px; /* Kanal logosu boyutunu küçült */
+        height: 32px; /* Kanal logosu boyutunu küçült */
+    }
+
+    .channel-item span { /* Yeni eklenen kısım */
+        font-size: 14px; /* Kanal adı yazı boyutunu küçült */
+    }
+
+    .channel-list-header { /* Yeni eklenen kısım */
+        font-size: 13px; /* Kanal listesi başlık font boyutunu küçült */
+        padding: 0 12px; /* Kanal listesi başlık padding'ini azalt */
     }
 }
 
@@ -386,17 +405,17 @@ body {
     }
     
     #selectedChannelName {
-        font-size: 16px; 
+        font-size: 15px; /* Seçili kanal adını daha da küçült */
     }
 
     #selectedChannelLogo {
-        width: 40px;
-        height: 40px;
+        width: 36px; /* Seçili kanal logo boyutunu daha da küçült */
+        height: 36px; /* Seçili kanal logo boyutunu daha da küçült */
     }
     
     .select-trigger {
-        padding: 16px 18px;
-        font-size: 15px;
+        padding: 14px 16px; /* Kategori seçici padding'ini daha da azalt */
+        font-size: 14px; /* Kategori seçici font boyutunu daha da azalt */
     }
 
     .right-panel {
@@ -405,6 +424,25 @@ body {
     
     .channel-list {
        max-height: 45vh; /* Kanal listesinin yüksekliğini ayarla */
+    }
+
+    .channel-item img {
+        width: 30px; /* Kanal listesi öğesi logo boyutunu daha da küçült */
+        height: 30px; /* Kanal listesi öğesi logo boyutunu daha da küçült */
+    }
+
+    .channel-item span {
+        font-size: 13px; /* Kanal listesi öğesi yazı boyutunu daha da küçült */
+    }
+
+    .channel-item { /* Yeni eklenen kısım */
+        padding: 6px 10px; /* Kanal öğelerinin padding'ini daha da azalt */
+        gap: 10px; /* Kanal öğeleri içindeki boşluğu daha da azalt */
+    }
+
+    .channel-list-header { /* Yeni eklenen kısım */
+        font-size: 12px; /* Kanal listesi başlık font boyutunu daha da küçült */
+        padding: 0 10px; /* Kanal listesi başlık padding'ini daha da azalt */
     }
 }
 
@@ -479,5 +517,24 @@ body {
     .select-trigger {
         padding: 12px 16px;
         font-size: 14px;
+    }
+
+    .channel-item { /* Yeni eklenen kısım */
+        padding: 6px 10px; /* Kanal öğelerinin padding'ini daha da azalt */
+        gap: 8px; /* Kanal öğeleri içindeki boşluğu daha da azalt */
+    }
+
+    .channel-item img { /* Yeni eklenen kısım */
+        width: 28px; /* Kanal logosu boyutunu daha da küçült */
+        height: 28px; /* Kanal logosu boyutunu daha da küçült */
+    }
+
+    .channel-item span { /* Yeni eklenen kısım */
+        font-size: 12px; /* Kanal adı yazı boyutunu daha da küçült */
+    }
+
+    .channel-list-header { /* Yeni eklenen kısım */
+        font-size: 11px; /* Kanal listesi başlık font boyutunu daha da küçült */
+        padding: 0 8px; /* Kanal listesi başlık padding'ini daha da azalt */
     }
 }
