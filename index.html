@@ -158,7 +158,7 @@
 
     #playerContainer {
       position: fixed; bottom: 0; left: 0; width: 100%; height: var(--player-height); background: var(--bg-secondary);
-      display: none; z-index: 999; align-items: center; padding: 0 15px;
+      display: flex; /* GÖRÜNÜR YAPILDI */ z-index: 999; align-items: center; padding: 0 15px;
       border-top: 2px solid var(--border-color);
       justify-content: space-between;
     }
@@ -172,6 +172,7 @@
       border-radius: 50%; cursor: pointer;
       width: 36px; height: 36px;
       display: flex; align-items: center; justify-content: center;
+      transition: visibility 0s;
     }
     .control-btn:hover { background: var(--accent-color); }
 
@@ -180,7 +181,6 @@
         display: flex;
         align-items: center;
         gap: 8px;
-        margin-left: 15px; /* Kontrol butonlarından biraz ayırmak için */
     }
     .theme-swatch {
         width: 20px;
@@ -229,10 +229,10 @@
       </div>
     </div>
     <div class="player-controls">
-      <div id="themeSelector"></div> 
       <button class="control-btn" onclick="changeChannel(-1)">&#9664;</button>
       <button class="control-btn" onclick="changeChannel(1)">&#9654;</button>
       <button class="control-btn" onclick="toggleFullscreen()">&#x26F6;</button>
+      <div id="themeSelector"></div> 
     </div>
   </div>
 
@@ -254,7 +254,9 @@
         },
         player: {
             container: document.getElementById("playerContainer"),
-            logo: document.getElementById("playerLogo")
+            logo: document.getElementById("playerLogo"),
+            // KONTROL BUTONLARI EKLENDİ
+            controls: document.querySelectorAll('#playerContainer .control-btn')
         },
         fullscreen: {
             container: document.getElementById("fullscreenVideoContainer"),
@@ -263,7 +265,6 @@
         themeSelector: document.getElementById("themeSelector")
     };
     
-    // TEMA TANIMLAMALARI
     const themes = {
         'default': { name: 'Varsayılan', color: '#3366cc' },
         'forest': { name: 'Orman', color: '#4CAF50' },
@@ -275,18 +276,15 @@
     let allChannels = [], epgData = {}, currentChannelList = [], hls, hlsFs;
     let currentChannelIndex = -1;
 
-    // YENİ: Tema değiştirme fonksiyonu
     function applyTheme(themeName) {
         document.body.dataset.theme = themeName;
-        localStorage.setItem('iptvTheme', themeName); // Temayı kaydet
+        localStorage.setItem('iptvTheme', themeName); 
 
-        // Aktif olan swatch'ı güncelle
         document.querySelectorAll('.theme-swatch').forEach(swatch => {
             swatch.classList.toggle('active', swatch.dataset.theme === themeName);
         });
     }
 
-    // YENİ: Tema seçici butonları oluşturan fonksiyon
     function createThemeSelector() {
         for (const [key, theme] of Object.entries(themes)) {
             const swatch = document.createElement('div');
@@ -353,7 +351,11 @@
     }
 
     function listGroups() {
-      const groups = [...new Set(allChannels.map(c => c.group))].sort();
+      // BİLGİLENDİRME KATEGORİSİ FİLİTRELENDİ
+      const groups = [...new Set(allChannels.map(c => c.group))]
+        .sort()
+        .filter(g => g !== 'Bilgilendirme'); 
+
       G_UI.groups.innerHTML = "";
       groups.forEach((g) => {
         const el = document.createElement("div");
@@ -396,10 +398,12 @@
         currentChannelIndex = idx;
         const channel = currentChannelList[idx];
         if (!channel) return;
+        
+        // KANAL SEÇİLİNCE LOGO VE BUTONLARI GÖRÜNÜR YAP
+        G_UI.player.logo.style.visibility = 'visible';
+        G_UI.player.controls.forEach(btn => btn.style.visibility = 'visible');
 
-        G_UI.player.container.style.display = "flex";
         G_UI.player.logo.src = channel.logo || '';
-
         G_UI.preview.placeholder.style.display = 'none';
         G_UI.preview.video.style.display = 'block';
 
@@ -479,7 +483,10 @@
     });
 
     window.addEventListener("load", async () => {
-      // YENİ: Tema seçiciyi ve kayıtlı temayı yükle
+      // AÇILIŞTA LOGO VE KONTROL BUTONLARINI GİZLE
+      G_UI.player.logo.style.visibility = 'hidden';
+      G_UI.player.controls.forEach(btn => btn.style.visibility = 'hidden');
+
       createThemeSelector();
       const savedTheme = localStorage.getItem('iptvTheme') || 'default';
       applyTheme(savedTheme);
