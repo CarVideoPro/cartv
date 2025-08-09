@@ -7,13 +7,15 @@
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <style>
     :root {
-        --player-height: 70px; /* Oynatıcı çubuğu yüksekliği küçültüldü */
-        --category-bar-height: 50px;
+        /* Boyutlar küçültüldü */
+        --player-height: 55px;
+        --category-bar-height: 40px;
     }
     * { box-sizing: border-box; }
     html, body {
       margin: 0; height: 100%; background: #000; font-family: sans-serif; overflow: hidden;
       color: white;
+      font-size: 14px; /* Ana font boyutu küçültüldü */
     }
     #app {
       display: flex; flex-direction: column; height: 100%;
@@ -23,19 +25,19 @@
       display: flex; flex: 1; overflow: hidden;
     }
     #channels {
-      flex: 0 0 320px;
+      flex: 0 0 260px; /* Kanal listesi genişliği azaltıldı */
       background: #121212;
       border-right: 2px solid #333;
       overflow-y: auto;
-      padding: 10px;
-      display: flex; flex-direction: column; gap: 8px;
+      padding: 8px; /* İç boşluk azaltıldı */
+      display: flex; flex-direction: column; gap: 6px; /* Aralık azaltıldı */
     }
     #previewArea {
         flex: 1;
         display: flex;
         flex-direction: column;
         justify-content: center;
-        background: #000; /* Video arkası için siyah */
+        background: #000;
     }
     #previewPlaceholder {
         padding: 20px;
@@ -44,16 +46,19 @@
         align-items: center;
         justify-content: center;
         text-align: center;
-        gap: 20px;
+        gap: 15px;
         color: #555;
         height: 100%;
     }
+    #previewPlaceholder h2 { font-size: 1.5em; }
+    #previewPlaceholder p { font-size: 1em; }
+
     #previewVideo {
         width: 100%;
         height: 100%;
         background: #000;
         object-fit: contain;
-        display: none; /* Başlangıçta gizli */
+        display: none;
     }
     
     /* Kategori Çubuğu */
@@ -71,12 +76,12 @@
         scrollbar-width: thin;
         scrollbar-color: #555 #101010;
     }
-    #groups::-webkit-scrollbar { height: 8px; }
+    #groups::-webkit-scrollbar { height: 6px; }
     #groups::-webkit-scrollbar-track { background: #101010; }
     #groups::-webkit-scrollbar-thumb { background-color: #555; border-radius: 10px; }
 
     .group {
-      padding: 0 25px;
+      padding: 0 18px; /* Boşluk azaltıldı */
       cursor: pointer;
       background: transparent;
       border-right: 1px solid #333;
@@ -90,32 +95,36 @@
     }
 
     .channel {
-      display: flex; align-items: center; gap: 10px; background: #1e1e1e;
-      border-radius: 8px; padding: 10px; cursor: pointer;
-      border: 2px solid transparent;
+      display: flex; align-items: center; gap: 8px; /* Aralık azaltıldı */
+      background: #1e1e1e;
+      border-radius: 6px; /* Kenar yuvarlaklığı azaltıldı */
+      padding: 8px; /* İç boşluk azaltıldı */
+      cursor: pointer;
+      border: 1px solid transparent;
       transition: all 0.2s;
     }
     .channel:hover { background: #2c2c2c; }
     .channel.active { border-color: #3366cc; background: #252a3a; }
-    .channel img { width: 45px; height: 45px; object-fit: contain; }
-    .epg-title { color: turquoise; font-size: 0.85em; }
+    .channel img { width: 38px; height: 38px; object-fit: contain; } /* Logo küçültüldü */
+    .epg-title { color: turquoise; font-size: 0.9em; } /* Yazı boyutu ayarlandı */
 
     /* Sabit Oynatıcı (Kontrol Çubuğu) */
     #playerContainer {
       position: fixed; bottom: 0; left: 0; width: 100%; height: var(--player-height); background: #1a1a1a;
-      display: none; z-index: 999; align-items: center; padding: 0 20px;
+      display: none; z-index: 999; align-items: center; padding: 0 15px;
       border-top: 2px solid #333;
-      justify-content: space-between; /* Önemli: içeriği iki yana yaslar */
+      justify-content: space-between;
     }
-    .player-info { display: flex; align-items: center; gap: 15px; }
-    .player-info img { width: 50px; height: 50px; object-fit: contain; border-radius: 5px; background-color: #000; }
-    .player-text .title { font-size: 1.1em; font-weight: bold; }
-    .player-text .telegram { font-size: 0.9em; color: #aaa; }
-    .player-controls { display: flex; align-items: center; gap: 15px; }
+    .player-info { display: flex; align-items: center; gap: 12px; } /* Aralık azaltıldı */
+    .player-info img { width: 40px; height: 40px; object-fit: contain; border-radius: 5px; background-color: #d8d8d8; } /* Logo küçültüldü */
+    .player-text .title { font-size: 1em; font-weight: bold; } /* Yazı boyutu küçültüldü */
+    .player-text .telegram { font-size: 0.85em; color: #aaa; } /* Yazı boyutu küçültüldü */
+    .player-controls { display: flex; align-items: center; gap: 12px; } /* Aralık azaltıldı */
     .control-btn {
-      background: #2a2a2a; color: white; border: none; font-size: 20px;
-      padding: 10px; border-radius: 50%; cursor: pointer;
-      width: 40px; height: 40px; display: flex; align-items: center; justify-content: center;
+      background: #2a2a2a; color: white; border: none; font-size: 16px; /* İkon boyutu küçültüldü */
+      border-radius: 50%; cursor: pointer;
+      width: 36px; height: 36px; /* Buton boyutu küçültüldü */
+      display: flex; align-items: center; justify-content: center;
     }
     .control-btn:hover { background: #3366cc; }
 
@@ -187,7 +196,6 @@
     let allChannels = [], epgData = {}, currentChannelList = [], hls, hlsFs;
     let currentChannelIndex = -1;
 
-    // fetchM3U, fetchEPG, parseEPGDate fonksiyonları değişmedi...
     async function fetchM3U() {
       const res = await fetch(m3uUrl);
       const text = await res.text();
@@ -239,7 +247,6 @@
       const utcDate = new Date(Date.UTC(y, m, d, h, min));
       return new Date(utcDate.getTime() - offset);
     }
-    // Değişmeyen fonksiyonlar sonu
 
     function listGroups() {
       const groups = [...new Set(allChannels.map(c => c.group))].sort();
@@ -260,7 +267,6 @@
 
     function listChannels(group) {
       G_UI.channels.innerHTML = "";
-      // Kategori değiştiğinde oynatmayı durdur ve yer tutucuyu göster
       stopStream(G_UI.preview.video, hls);
       hls = null;
       G_UI.preview.video.style.display = 'none';
@@ -287,15 +293,12 @@
         const channel = currentChannelList[idx];
         if (!channel) return;
 
-        // Kontrol çubuğunu göster ve logosunu güncelle
         G_UI.player.container.style.display = "flex";
         G_UI.player.logo.src = channel.logo || '';
 
-        // Önizleme alanında videoyu göster
         G_UI.preview.placeholder.style.display = 'none';
         G_UI.preview.video.style.display = 'block';
 
-        // Akışı önizleme video elementinde başlat (sesi açık)
         playStream(G_UI.preview.video, channel.url, true).then(instance => hls = instance);
     }
 
@@ -309,7 +312,7 @@
     }
 
     function toggleFullscreen() {
-        if (currentChannelIndex < 0) return; // Oynatılan bir kanal yoksa işlem yapma
+        if (currentChannelIndex < 0) return;
 
         const isFs = G_UI.fullscreen.container.style.display === 'block';
         if (isFs) {
@@ -320,7 +323,6 @@
             const channel = currentChannelList[currentChannelIndex];
             if (!channel) return;
             G_UI.fullscreen.container.style.display = 'block';
-            // Tam ekran oynatıcıda akışı başlat (sesi açık)
             playStream(G_UI.fullscreen.video, channel.url, true).then(instance => hlsFs = instance);
             if (G_UI.fullscreen.container.requestFullscreen) {
                 G_UI.fullscreen.container.requestFullscreen().catch(err => console.log(err));
@@ -329,7 +331,6 @@
     }
     
     async function playStream(videoElement, url, isUnmuted) {
-        // HLS nesnesini belirle (ana oynatıcı mı, tam ekran mı)
         let hlsInstance = (videoElement.id === 'previewVideo') ? hls : hlsFs;
         stopStream(videoElement, hlsInstance);
         
