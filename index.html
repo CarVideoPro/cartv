@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>IPTV Arayüz</title>
+  <title>Car Video Pro TV</title>
   <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
   <style>
     :root {
@@ -101,6 +101,7 @@
         flex-direction: column;
         justify-content: center;
         background: var(--bg-primary);
+        overflow: hidden;
     }
     #previewPlaceholder {
         padding: 20px;
@@ -112,6 +113,7 @@
         gap: 15px;
         color: #555;
         height: 100%;
+        cursor: default;
     }
     #previewPlaceholder h2 { font-size: 1.5em; }
     #previewPlaceholder p { font-size: 1em; }
@@ -119,6 +121,7 @@
     #previewVideo {
         width: 100%; height: 100%;
         background: #000; object-fit: contain; display: none;
+        cursor: pointer;
     }
     
     #groups {
@@ -158,25 +161,49 @@
 
     #playerContainer {
       position: fixed; bottom: 0; left: 0; width: 100%; height: var(--player-height); background: var(--bg-secondary);
-      display: flex; /* GÖRÜNÜR YAPILDI */ z-index: 999; align-items: center; padding: 0 15px;
+      display: flex; z-index: 999; align-items: center; padding: 0 15px;
       border-top: 2px solid var(--border-color);
       justify-content: space-between;
+      gap: 20px;
     }
     .player-info { display: flex; align-items: center; gap: 12px; }
     .player-info img { width: 40px; height: 40px; object-fit: contain; border-radius: 5px; background-color: #d8d8d8; }
     .player-text .title { font-size: 1em; font-weight: bold; }
     .player-text .telegram { font-size: 0.85em; color: var(--text-secondary); }
-    .player-controls { display: flex; align-items: center; gap: 12px; }
-    .control-btn {
-      background: var(--bg-tertiary); color: var(--text-primary); border: none; font-size: 16px;
-      border-radius: 50%; cursor: pointer;
-      width: 36px; height: 36px;
-      display: flex; align-items: center; justify-content: center;
-      transition: visibility 0s;
+    
+    .player-controls { 
+        display: flex; 
+        align-items: center; 
+        gap: 15px; 
+        flex-grow: 1; /* Ortalamak için eklendi */
+        justify-content: center; /* Ortalamak için eklendi */
     }
-    .control-btn:hover { background: var(--accent-color); }
 
-    /* Tema Seçici Stilleri */
+    .control-btn {
+      background: var(--bg-tertiary); color: var(--text-primary); 
+      border: 1px solid var(--border-color);
+      border-bottom: 3px solid var(--border-color);
+      font-size: 14px; font-weight: bold;
+      border-radius: 8px; cursor: pointer;
+      height: 38px;
+      display: flex; align-items: center; justify-content: center;
+      transition: all 0.1s ease-in-out;
+      padding: 0 20px;
+      box-shadow: 0 2px 4px rgba(0,0,0,0.2);
+      visibility: hidden; /* Başlangıçta gizli */
+    }
+    .control-btn:hover { 
+        background: var(--bg-hover); 
+        transform: translateY(-1px);
+        box-shadow: 0 3px 6px rgba(0,0,0,0.3);
+    }
+    .control-btn:active {
+        transform: translateY(1px);
+        border-bottom-width: 1px;
+        box-shadow: 0 1px 2px rgba(0,0,0,0.2);
+    }
+
+
     #themeSelector {
         display: flex;
         align-items: center;
@@ -190,30 +217,25 @@
         border: 2px solid var(--border-color);
         transition: transform 0.2s, border-color 0.2s;
     }
-    .theme-swatch:hover {
-        transform: scale(1.1);
-    }
+    .theme-swatch:hover { transform: scale(1.1); }
     .theme-swatch.active {
         border-color: var(--text-primary);
         box-shadow: 0 0 5px var(--text-primary);
     }
 
-    #fullscreenVideoContainer {
-      position: fixed; top: 0; left: 0; width: 100%; height: 100%; background: black;
-      display: none; z-index: 1001;
-    }
-    #fullscreenVideo { width: 100%; height: 100%; }
   </style>
 </head>
-<body data-theme="default"> <div id="app">
+<body data-theme="default">
+  <div id="app">
     <div id="main">
       <div id="channels"></div>
       <div id="previewArea">
         <div id="previewPlaceholder">
-          <h2>Kanal Önizleme</h2>
+          <h1>Car Video Pro TV</h1>
+          <h2>Tam Ekran için 2 kez Tıklayın</h2>
           <p>Lütfen bir kategori seçip kanala tıklayınız.</p>
         </div>
-        <video id="previewVideo" controls autoplay playsinline></video>
+        <video id="previewVideo" autoplay playsinline></video>
       </div>
     </div>
   </div>
@@ -222,24 +244,18 @@
 
   <div id="playerContainer">
     <div class="player-info">
-      <img id="playerLogo" src="" alt="logo">
+      <img id="playerLogo" src="" alt="logo" style="visibility: hidden;">
       <div class="player-text">
         <div class="title">Car Video Pro</div>
         <div class="telegram">Telegram : t.me/car_video_pro</div>
       </div>
     </div>
     <div class="player-controls">
-      <button class="control-btn" onclick="changeChannel(-1)">&#9664;</button>
-      <button class="control-btn" onclick="changeChannel(1)">&#9654;</button>
-      <button class="control-btn" onclick="toggleFullscreen()">&#x26F6;</button>
-      <div id="themeSelector"></div> 
+      <button class="control-btn" onclick="changeChannel(-1)">◄ Geri</button>
+      <button class="control-btn" onclick="changeChannel(1)">İleri ►</button>
     </div>
+    <div id="themeSelector"></div> 
   </div>
-
-  <div id="fullscreenVideoContainer">
-      <video id="fullscreenVideo" controls autoplay playsinline></video>
-  </div>
-
 
   <script>
     const m3uUrl = "https://raw.githubusercontent.com/atakan1983/tvepic/refs/heads/main/mehmet_guncel.m3u";
@@ -255,12 +271,7 @@
         player: {
             container: document.getElementById("playerContainer"),
             logo: document.getElementById("playerLogo"),
-            // KONTROL BUTONLARI EKLENDİ
-            controls: document.querySelectorAll('#playerContainer .control-btn')
-        },
-        fullscreen: {
-            container: document.getElementById("fullscreenVideoContainer"),
-            video: document.getElementById("fullscreenVideo")
+            controls: document.querySelectorAll('.control-btn')
         },
         themeSelector: document.getElementById("themeSelector")
     };
@@ -273,13 +284,12 @@
         'steel': { name: 'Çelik', color: '#757575' }
     };
 
-    let allChannels = [], epgData = {}, currentChannelList = [], hls, hlsFs;
+    let allChannels = [], epgData = {}, currentChannelList = [], hls;
     let currentChannelIndex = -1;
 
     function applyTheme(themeName) {
         document.body.dataset.theme = themeName;
-        localStorage.setItem('iptvTheme', themeName); 
-
+        localStorage.setItem('iptvTheme', themeName);
         document.querySelectorAll('.theme-swatch').forEach(swatch => {
             swatch.classList.toggle('active', swatch.dataset.theme === themeName);
         });
@@ -296,7 +306,6 @@
             G_UI.themeSelector.appendChild(swatch);
         }
     }
-
 
     async function fetchM3U() {
       const res = await fetch(m3uUrl);
@@ -317,6 +326,7 @@
         }
       }
     }
+
     async function fetchEPG() {
       try {
         const res = await fetch(epgUrl);
@@ -337,6 +347,7 @@
         console.error("EPG verisi alınamadı:", error);
       }
     }
+
     function parseEPGDate(str) {
       if (!str) return new Date(0);
       const datePart = str.slice(0, 14);
@@ -351,10 +362,25 @@
     }
 
     function listGroups() {
-      // BİLGİLENDİRME KATEGORİSİ FİLİTRELENDİ
-      const groups = [...new Set(allChannels.map(c => c.group))]
-        .sort()
-        .filter(g => g !== 'Bilgilendirme'); 
+      const desiredOrder = ['Ulusal', 'Spor', 'Çocuk & Eğitim', 'Belgesel', 'Müzik', 'Yaşam & Eğlence', 'Sinema ve Dizi', 'Ulusal Haber', 'Yabancı', 'Yabancı Haber'];
+      let groups = [...new Set(allChannels.map(c => c.group))]
+        .filter(g => g && g !== 'Bilgilendirme'); // 'null' ve 'Bilgilendirme' gruplarını filtrele
+
+      groups.sort((a, b) => {
+        const indexA = desiredOrder.indexOf(a);
+        const indexB = desiredOrder.indexOf(b);
+
+        if (indexA !== -1 && indexB !== -1) {
+          return indexA - indexB; // Her ikisi de istenen sırada varsa, sıralarına göre karşılaştır
+        }
+        if (indexA !== -1) {
+          return -1; // Sadece 'a' listede, 'a' öncelikli
+        }
+        if (indexB !== -1) {
+          return 1; // Sadece 'b' listede, 'b' öncelikli
+        }
+        return a.localeCompare(b); // İkisi de listede yoksa, alfabetik sırala
+      });
 
       G_UI.groups.innerHTML = "";
       groups.forEach((g) => {
@@ -368,6 +394,7 @@
         };
         G_UI.groups.appendChild(el);
       });
+
       if (G_UI.groups.firstChild) G_UI.groups.firstChild.click();
     }
 
@@ -377,7 +404,6 @@
       hls = null;
       G_UI.preview.video.style.display = 'none';
       G_UI.preview.placeholder.style.display = 'flex';
-
       currentChannelList = allChannels.filter(c => c.group === group);
       currentChannelList.forEach((c, idx) => {
         const epgTitle = epgData[c.epgId] || "";
@@ -399,7 +425,6 @@
         const channel = currentChannelList[idx];
         if (!channel) return;
         
-        // KANAL SEÇİLİNCE LOGO VE BUTONLARI GÖRÜNÜR YAP
         G_UI.player.logo.style.visibility = 'visible';
         G_UI.player.controls.forEach(btn => btn.style.visibility = 'visible');
 
@@ -415,6 +440,7 @@
         const newIndex = (currentChannelIndex + direction + currentChannelList.length) % currentChannelList.length;
         const channelElements = G_UI.channels.querySelectorAll('.channel');
         if(channelElements[newIndex]) {
+            channelElements[newIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
             channelElements[newIndex].click();
         }
     }
@@ -422,33 +448,24 @@
     function toggleFullscreen() {
         if (currentChannelIndex < 0) return;
 
-        const isFs = G_UI.fullscreen.container.style.display === 'block';
-        if (isFs) {
-            G_UI.fullscreen.container.style.display = 'none';
-            stopStream(G_UI.fullscreen.video, hlsFs);
-            if(document.fullscreenElement) document.exitFullscreen();
+        if (!document.fullscreenElement) {
+            G_UI.preview.video.requestFullscreen().catch(err => {
+                alert(`Tam ekran modu hatası: ${err.message} (${err.name})`);
+            });
         } else {
-            const channel = currentChannelList[currentChannelIndex];
-            if (!channel) return;
-            G_UI.fullscreen.container.style.display = 'block';
-            playStream(G_UI.fullscreen.video, channel.url, true).then(instance => hlsFs = instance);
-            if (G_UI.fullscreen.container.requestFullscreen) {
-                G_UI.fullscreen.container.requestFullscreen().catch(err => console.log(err));
-            }
+            document.exitFullscreen();
         }
     }
     
     async function playStream(videoElement, url, isUnmuted) {
-        let hlsInstance = (videoElement.id === 'previewVideo') ? hls : hlsFs;
-        stopStream(videoElement, hlsInstance);
+        stopStream(videoElement, hls);
         
-        const isIOS = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream;
-        if (isIOS && videoElement.canPlayType('application/vnd.apple.mpegurl')) {
+        if (Hls.isSupported()) {
+            hls = new Hls();
+            hls.loadSource(url);
+            hls.attachMedia(videoElement);
+        } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
             videoElement.src = url;
-        } else if (Hls.isSupported()) {
-            hlsInstance = new Hls();
-            hlsInstance.loadSource(url);
-            hlsInstance.attachMedia(videoElement);
         } else {
             alert("Bu tarayıcı video oynatmayı desteklemiyor.");
             return null;
@@ -458,11 +475,10 @@
         try {
             await videoElement.play();
         } catch (err) {
-            console.error("Video oynatma hatası (tarayıcı engellemiş olabilir):", err);
             videoElement.muted = true;
             videoElement.play();
         }
-        return hlsInstance;
+        return hls;
     }
 
     function stopStream(videoElement, hlsInstance) {
@@ -474,19 +490,7 @@
         }
     }
     
-    document.addEventListener('fullscreenchange', () => {
-      if (!document.fullscreenElement) {
-        if (G_UI.fullscreen.container.style.display === "block") {
-           toggleFullscreen();
-        }
-      }
-    });
-
     window.addEventListener("load", async () => {
-      // AÇILIŞTA LOGO VE KONTROL BUTONLARINI GİZLE
-      G_UI.player.logo.style.visibility = 'hidden';
-      G_UI.player.controls.forEach(btn => btn.style.visibility = 'hidden');
-
       createThemeSelector();
       const savedTheme = localStorage.getItem('iptvTheme') || 'default';
       applyTheme(savedTheme);
@@ -494,6 +498,8 @@
       await fetchM3U();
       await fetchEPG();
       listGroups();
+
+      G_UI.preview.video.addEventListener('dblclick', toggleFullscreen);
     });
   </script>
 </body>
