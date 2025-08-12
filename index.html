@@ -283,6 +283,23 @@
         'sunset': { name: 'Gün Batımı', color: '#FF5722' },
         'steel': { name: 'Çelik', color: '#757575' }
     };
+    
+    const extraMusicChannels = [
+        { name: "Number 1 TV", logo: "https://i.ibb.co/sybLTBG/nr1.png", group: "Müzik Ekstra", epgId: "Number1TV.tr", url: "https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e17cd6360b_1/playlist.m3u8" },
+        { name: "KRAL POP", logo: "https://i.ibb.co/vk0bKz0/kral-pop.png", group: "Müzik Ekstra", epgId: "Kral.Pop.Radyo.tr", url: "http://dygvideo.dygdigital.com/live/hls/kralpop" },
+        { name: "Number 1 Ask", logo: "https://i.ibb.co/5cJ0KtQ/nr1-ask.png", group: "Müzik Ekstra", epgId: "Number1Ask.tr", url: "https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e18f9cea15_1/playlist.m3u8" },
+        { name: "Number 1 Damar", logo: "https://i.ibb.co/2yCF7ms/nr1-damar.png", group: "Müzik Ekstra", epgId: "Number1Damar.tr", url: "https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e198784bdc_1/playlist.m3u8" },
+        { name: "Number 1 Dance", logo: "https://i.ibb.co/kXFSFTN/nr1-dance.png", group: "Müzik Ekstra", epgId: "Number1Dance.tr", url: "https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e2aa8acf44_1/playlist.m3u8" },
+        { name: "NR1 FASHION ONE", logo: "https://i.ibb.co/HV0x9JZ/fashion-one.png", group: "Müzik Ekstra", epgId: "", url: "http://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e2ee6997cb_1/playlist.m3u8" },
+        { name: "TRT Muzik", logo: "https://i.ibb.co/4gbPpzC/trt-muzik.png", group: "Müzik Ekstra", epgId: "TRTMuzik.tr", url: "https://tv-trtmuzik.medya.trt.com.tr/master_720.m3u8" },
+        { name: "PowerTurk TV", logo: "https://i.ibb.co/xXcBD2C/powerturk.png", group: "Müzik Ekstra", epgId: "PowerTurkTV.tr", url: "https://livetv.powerapp.com.tr/powerturkTV/powerturkhd.smil/chunks.m3u8" },
+        { name: "Power TV", logo: "https://i.ibb.co/JrXDQJy/power-tv.png", group: "Müzik Ekstra", epgId: "PowerTV.tr", url: "https://livetv.powerapp.com.tr/powerTV/powerhd.smil/chunks.m3u8" },
+        { name: "POWER TURK TAPTAZE", logo: "https://i.ibb.co/F5K5xs9/powerturk-taptaze.png", group: "Müzik Ekstra", epgId: "", url: "http://livetv.powerapp.com.tr/pturktaptaze/taptaze.smil/playlist.m3u8" },
+        { name: "POWER DANCE", logo: "https://i.ibb.co/5hwZ7xw/power-dance.png", group: "Müzik Ekstra", epgId: "", url: "https://listen.powerapp.com.tr/dance/dance.smil/chunks.m3u8" },
+        { name: "POWER LOVE", logo: "https://i.ibb.co/bJL1VnX/power-love.png", group: "Müzik Ekstra", epgId: "", url: "https://listen.powerapp.com.tr/plove/love.smil/chunks.m3u8" },
+        { name: "POWER TURK AKUSTIK", logo: "https://i.ibb.co/XFY7dCW/powerturk-akustik.png", group: "Müzik Ekstra", epgId: "", url: "https://listen.powerapp.com.tr/pturkakustik/akustik.smil/chunks.m3u8" },
+        { name: "POWER TURK SLOW", logo: "https://i.ibb.co/R4pcKqK/powerturk-slow.png", group: "Müzik Ekstra", epgId: "", url: "https://listen.powerapp.com.tr/pturkslow/slow.smil/chunks.m3u8" }
+    ];
 
     let allChannels = [], epgData = {}, currentChannelList = [], hls;
     let currentChannelIndex = -1;
@@ -362,24 +379,24 @@
     }
 
     function listGroups() {
-      const desiredOrder = ['Ulusal', 'Spor', 'Çocuk & Eğitim', 'Belgesel', 'Müzik', 'Yaşam & Eğlence', 'Sinema ve Dizi', 'Ulusal Haber', 'Yabancı', 'Yabancı Haber'];
+      const desiredOrder = ['Ulusal', 'Spor', 'Çocuk & Eğitim', 'Belgesel', 'Müzik', 'Müzik Ekstra', 'Yaşam & Eğlence', 'Sinema ve Dizi', 'Ulusal Haber', 'Yabancı', 'Yabancı Haber'];
       let groups = [...new Set(allChannels.map(c => c.group))]
-        .filter(g => g && g !== 'Bilgilendirme'); // 'null' ve 'Bilgilendirme' gruplarını filtrele
+        .filter(g => g && g !== 'Bilgilendirme'); 
 
       groups.sort((a, b) => {
         const indexA = desiredOrder.indexOf(a);
         const indexB = desiredOrder.indexOf(b);
 
         if (indexA !== -1 && indexB !== -1) {
-          return indexA - indexB; // Her ikisi de istenen sırada varsa, sıralarına göre karşılaştır
+          return indexA - indexB; 
         }
         if (indexA !== -1) {
-          return -1; // Sadece 'a' listede, 'a' öncelikli
+          return -1; 
         }
         if (indexB !== -1) {
-          return 1; // Sadece 'b' listede, 'b' öncelikli
+          return 1; 
         }
-        return a.localeCompare(b); // İkisi de listede yoksa, alfabetik sırala
+        return a.localeCompare(b); 
       });
 
       G_UI.groups.innerHTML = "";
@@ -457,6 +474,7 @@
         }
     }
     
+    // ---------- BU FONKSİYON GÜNCELLENDİ ----------
     async function playStream(videoElement, url, isUnmuted) {
         stopStream(videoElement, hls);
         
@@ -471,12 +489,16 @@
             return null;
         }
         
-        videoElement.muted = !isUnmuted;
+        // Sesin her zaman açık ve tam seviyede olmasını sağla
+        videoElement.muted = false;
+        videoElement.volume = 1.0;
+        
         try {
             await videoElement.play();
         } catch (err) {
-            videoElement.muted = true;
-            videoElement.play();
+            // Tarayıcı sesli otomatik oynatmayı engellerse, konsola bir not bırak.
+            // Kullanıcının oynatmak için videoya tıklaması gerekebilir.
+            console.error("Otomatik oynatma (sesli) tarayıcı tarafından engellendi:", err);
         }
         return hls;
     }
@@ -496,6 +518,8 @@
       applyTheme(savedTheme);
 
       await fetchM3U();
+      allChannels.push(...extraMusicChannels);
+      
       await fetchEPG();
       listGroups();
 
