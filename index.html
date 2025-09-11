@@ -258,6 +258,9 @@
   </div>
 
   <script>
+    const m3uUrl = "https://raw.githubusercontent.com/ghokun/tv/main/bin/playlist.m3u";
+    const epgUrl = "https://raw.githubusercontent.com/ghokun/tv/main/bin/guide.xml";
+
     const G_UI = {
         groups: document.getElementById("groups"),
         channels: document.getElementById("channels"),
@@ -281,95 +284,85 @@
         'steel': { name: 'Çelik', color: '#757575' }
     };
     
-    // --- YENİ KANAL LİSTESİ ---
-    const categoryMap = {
-        0: 'Ulusal',
-        1: 'Haber',
-        2: 'Spor',
-        3: 'Müzik',
-        5: 'Belgesel',
-        6: 'Çocuk'
-    };
-    
-    const newChannels = [
-        // Ulusal (0)
-        { name: 'TRT 1', url: 'https://tv-trt1.medya.trt.com.tr/master_720.m3u8', logo: 'https://upload.wikimedia.org/wikipedia/commons/4/4a/TRT1_Logo_2020-2021.jpg?20200512090317', group: categoryMap[0], epgId: '' },
-        { name: 'KANAL D', url: 'https://demiroren-live.daioncdn.net/kanald/kanald_1080p.m3u8?app=kanald_web&ce=3', logo: 'https://i.ibb.co/hf2mSz5/kanal-d.png', group: categoryMap[0], epgId: '' },
-        { name: 'STAR TV', url: 'https://dogus-live.daioncdn.net/startv/startv_720p.m3u8', logo: 'https://i.ibb.co/hY3Z8zx/star-tv.png', group: categoryMap[0], epgId: '' },
-        { name: 'SHOW TV', url: 'https://ciner-live.daioncdn.net/showtv/showtv_1080p.m3u8', logo: 'https://i.ibb.co/Rv0rWhZ/show.png', group: categoryMap[0], epgId: '' },
-        { name: 'NOW', url: 'https://raw.githubusercontent.com/exfair/tv/refs/heads/main/code/now.m3u8', logo: 'https://images.seeklogo.com/logo-png/51/1/now-tv-turkey-logo-png_seeklogo-519520.png', group: categoryMap[0], epgId: '' },
-        { name: 'TV 8', url: 'https://tv8-live.daioncdn.net/tv8/tv8_1080p.m3u8', logo: 'https://i.ibb.co/Kr5SFY1/tv8.png', group: categoryMap[0], epgId: '' },
-        { name: 'EURO D', url: 'https://thema-vivekanald-rakuten.amagi.tv/playlist.m3u8', logo: 'https://i.ibb.co/jMQTJmh/euro-d.png', group: categoryMap[0], epgId: '' },
-        { name: 'TV 8 INT', url: 'https://tv8-live.daioncdn.net/tv8/tv8.m3u8', logo: 'https://i.ibb.co/ykSLX8Q/tv8-int.png', group: categoryMap[0], epgId: '' },
-        { name: 'TRT 2', url: 'https://tv-trt2.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/m5T5bQxB/Ads-z-tasar-m-2.png', group: categoryMap[0], epgId: '' },
-        { name: 'TRT TURK', url: 'https://tv-trtturk.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/cSNfr17C/trturk.png', group: categoryMap[0], epgId: '' },
-        { name: 'SHOW MAX HD', url: 'https://live-cdn-65984.varplaycdn.cfd/showmax/index.m3u8', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Show_MAX_logo.svg/2048px-Show_MAX_logo.svg.png', group: categoryMap[0], epgId: '' },
-        { name: 'KANAL 7', url: 'https://kanal7-live.daioncdn.net/kanal7/kanal7_1080p.m3u8', logo: 'https://i.ibb.co/DPVDgvqn/Ads-z-tasar-m-1.png', group: categoryMap[0], epgId: '' },
-        { name: 'KANAL 7 AVRUPA', url: 'https://livetv.radyotvonline.net/kanal7live/kanal7avr/chunklist.m3u8', logo: 'https://i.ibb.co/xq3rRJV5/Ads-z-tasar-m-3.png', group: categoryMap[0], epgId: '' },
-        { name: 'BEYAZ TV', url: 'https://beyaztv-live.daioncdn.net/beyaztv/beyaztv.m3u8', logo: 'https://i.ibb.co/JWMb2kcp/Ads-z-tasar-m-4.png', group: categoryMap[0], epgId: '' },
-        { name: 'TEVE 2', url: 'https://demiroren-live.daioncdn.net/teve2/teve2.m3u8', logo: 'https://i.ibb.co/JRpJc2P/teve2.png', group: categoryMap[0], epgId: '' },
-        { name: '360', url: 'https://turkmedya-live.ercdn.net/tv360/tv360_720p.m3u8', logo: 'https://i.ibb.co/s3gJCGL/360.png', group: categoryMap[0], epgId: '' },
-        { name: 'TV 4', url: 'https://turkmedya-live.ercdn.net/tv4/tv4_720p.m3u8', logo: 'https://i.ibb.co/5XGy07B3/Ads-z-tasar-m-5.png', group: categoryMap[0], epgId: '' },
-        { name: 'WOMAN TV', url: 'https://s01.webcaster.cloud/wmtv/live_1080p.m3u8', logo: 'https://i.ibb.co/bHTjDyk/woman-tv.png', group: categoryMap[0], epgId: '' },
-        { name: 'TIVI 6', url: 'https://live.artidijitalmedya.com/artidijital_tivi6/tivi6/playlist.m3u8', logo: 'https://i.ibb.co/2Y3YGXg4/Ads-z-tasar-m-6.png', group: categoryMap[0], epgId: '' },
-        { name: 'BIR TV', url: 'https://edge1.socialsmart.tv/birtv/bant1/playlist.m3u8', logo: 'https://i.ibb.co/dDdPMWq/birtv.png', group: categoryMap[0], epgId: '' },
-        { name: 'CINE1', url: 'https://live.artidijitalmedya.com/artidijital_cine1/cine1/playlist.m3u8', logo: 'https://i.ibb.co/zhxTBMR/cine1.png', group: categoryMap[0], epgId: '' },
-        { name: 'LIFE TV', url: 'https://live.artidijitalmedya.com/artidijital_lifetv/lifetv/playlist.m3u8', logo: 'https://i.ibb.co/9hCVNks/life-tv.png', group: categoryMap[0], epgId: '' },
-
-        // Spor (2)
-        { name: 'TRT SPOR', url: 'https://tv-trtspor1.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/WxD4PLG/trt-spor.png', group: categoryMap[2], epgId: '' },
-        { name: 'TRT SPOR YILDIZ', url: 'https://tv-trtspor2.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/YRgKcDn/trt-spor-yildiz.png', group: categoryMap[2], epgId: '' },
-        { name: 'TV 8.5', url: 'https://tv8-live.daioncdn.net/tv8bucuk/tv8bucuk_1080p.m3u8', logo: 'https://i.ibb.co/6PRYHdW/tv85.png', group: categoryMap[2], epgId: '' },
-        { name: 'A SPOR', url: 'https://live-cdn-65984.varplaycdn.cfd/aspor/index.m3u8', logo: 'https://i.ibb.co/rwnrgFV/a-spor.png', group: categoryMap[2], epgId: '' },
-        { name: 'S SPORTS TV', url: 'https://live.sportstv.com.tr/hls/low/sportstv_hd/index.m3u8', logo: 'https://i.ibb.co/Q7qK4qQj/Ads-z-tasar-m-16.png', group: categoryMap[2], epgId: '' },
-        { name: 'FB TV', url: 'https://1hskrdto.rocketcdn.com/fenerbahcetv.smil/playlist.m3u8', logo: 'https://i.ibb.co/315SYpK/fb-tv.png', group: categoryMap[2], epgId: '' },
-        { name: 'TJK TV', url: 'https://tjktv-live.tjk.org/tjktv_1080p.m3u8', logo: 'https://i.ibb.co/PrkXrRn/tjk-tv.png', group: categoryMap[2], epgId: '' },
-        { name: 'TJK TV YURT DISI', url: 'https://tjktv-live.tjk.org/tjktv2/tjktv2_1080p.m3u8', logo: 'https://i.ibb.co/PrkXrRn/tjk-tv.png', group: categoryMap[2], epgId: '' },
-
-        // Belgesel (5)
-        { name: 'TRT BELGESEL', url: 'https://tv-trtbelgesel.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/MkvY46q/trt-belgesel.png', group: categoryMap[5], epgId: '' },
-        { name: 'DMAX', url: 'https://dogus-live.daioncdn.net/dmax/dmax_720p.m3u8', logo: 'https://i.ibb.co/1LH22gK/dmax.png', group: categoryMap[5], epgId: '' },
-        { name: 'TLC', url: 'https://dogus-live.daioncdn.net/tlc/tlc_720p.m3u8', logo: 'https://i.ibb.co/Cm1nYZK/tlc.png', group: categoryMap[5], epgId: '' },
-        { name: 'TRT AVAZ', url: 'https://tv-trtavaz.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/Mnhmxsn/trt-avaz.png', group: categoryMap[5], epgId: '' },
-        { name: 'TARİH TV HD', url: 'https://live-cdn-65984.varplaycdn.cfd/tarihtv/index.m3u8', logo: 'https://upload.wikimedia.org/wikipedia/commons/5/5a/Tarih-tv-logo-siyah-1080x1080.png', group: categoryMap[5], epgId: '' },
-        
-        // Haber (1)
-        { name: 'TRT HABER', url: 'https://tv-trthaber.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/LzcNGmm8/unnamed.png', group: categoryMap[1], epgId: '' },
-        { name: 'HABER GLOBAL', url: 'https://tv.ensonhaber.com/haberglobal/haberglobal_720p.m3u8', logo: 'https://i.ibb.co/21zzHPgT/Ads-z-tasar-m-7.png', group: categoryMap[1], epgId: '' },
-        { name: 'BLOOMBERG HT', url: 'https://ciner-live.daioncdn.net/bloomberght/bloomberght_720p.m3u8', logo: 'https://i.ibb.co/0RhF7QQB/Ads-z-tasar-m-8.png', group: categoryMap[1], epgId: '' },
-        { name: 'HABERTURK', url: 'https://ciner-live.daioncdn.net/haberturktv/haberturktv_1080p.m3u8', logo: 'https://i.ibb.co/Q79Lh4Cb/Ads-z-tasar-m-9.png', group: categoryMap[1], epgId: '' },
-        { name: '24', url: 'https://mn-nl.mncdn.com/kanal24/kanal24.smil/chunklist_b896000.m3u8', logo: 'https://i.ibb.co/tHQpWvn/24.png', group: categoryMap[1], epgId: '' },
-        { name: 'TVNET', url: 'https://mn-nl.mncdn.com/tvnet/tvnet/playlist.m3u8', logo: 'https://i.ibb.co/RpyvJDrM/Ads-z-tasar-m-12.png', group: categoryMap[1], epgId: '' },
-        { name: 'AKIT TV', url: 'https://akittv-live.ercdn.net/akittv/akittv_720p.m3u8', logo: 'https://i.ibb.co/3mPpV9kp/Ads-z-tasar-m-11.png', group: categoryMap[1], epgId: '' },
-        { name: 'BENGU TURK', url: 'https://tv.ensonhaber.com/benguturk/benguturk_720p.m3u8', logo: 'https://i.ibb.co/CHWhMvQ/bengu-turk.png', group: categoryMap[1], epgId: '' },
-        { name: 'TGRT HABER HD', url: 'https://canli.tgrthaber.com/tgrt.m3u8', logo: 'https://i.ibb.co/KYdPPbs/Ads-z-tasar-m-13.png', group: categoryMap[1], epgId: '' },
-        { name: 'TURKHABER', url: 'https://edge1.socialsmart.tv/turkhaber/bant1/playlist.m3u8', logo: 'https://i.ibb.co/1JMFDj8X/Ads-z-tasar-m-14.png', group: categoryMap[1], epgId: '' },
-
-        // Müzik (3)
-        { name: 'NR1', url: 'https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e17cd6360b_1/playlist.m3u8', logo: 'https://i.ibb.co/YBqnDxdN/Ads-z-tasar-m-17.png', group: categoryMap[3], epgId: '' },
-        { name: 'KRAL POP', url: 'https://dogus-live.daioncdn.net/kralpoptv/playlist.m3u8', logo: 'https://i.ibb.co/mr2j1zkJ/Ads-z-tasar-m-18.png', group: categoryMap[3], epgId: '' },
-        { name: 'NR1 ASK', url: 'https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e18f9cea15_1/playlist.m3u8', logo: 'https://i.ibb.co/5cJ0KtQ/nr1-ask.png', group: categoryMap[3], epgId: '' },
-        { name: 'NR1 DAMAR', url: 'https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e198784bdc_1/playlist.m3u8', logo: 'https://i.ibb.co/2yCF7ms/nr1-damar.png', group: categoryMap[3], epgId: '' },
-        { name: 'NR1 DANCE', url: 'https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e2aa8acf44_1/playlist.m3u8', logo: 'https://i.ibb.co/kXFSFTN/nr1-dance.png', group: categoryMap[3], epgId: '' },
-        { name: 'NR1 FASHION ONE', url: 'http://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e2ee6997cb_1/playlist.m3u8', logo: 'https://i.ibb.co/HV0x9JZ/fashion-one.png', group: categoryMap[3], epgId: '' },
-        { name: 'TRT MUZIK', url: 'https://tv-trtmuzik.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/4gbPpzC/trt-muzik.png', group: categoryMap[3], epgId: '' },
-        { name: 'POWER TURK', url: 'https://livetv.powerapp.com.tr/powerturkTV/powerturkhd.smil/playlist.m3u8', logo: 'https://i.ibb.co/xXcBD2C/powerturk.png', group: categoryMap[3], epgId: '' },
-        { name: 'POWER TV', url: 'https://livetv.powerapp.com.tr/powerTV/powerhd.smil/playlist.m3u8', logo: 'https://i.ibb.co/JrXDQJy/power-tv.png', group: categoryMap[3], epgId: '' },
-        { name: 'POWER TURK TAPTAZE', url: 'http://livetv.powerapp.com.tr/pturktaptaze/taptaze.smil/playlist.m3u8', logo: 'https://i.ibb.co/F5K5xs9/powerturk-taptaze.png', group: categoryMap[3], epgId: '' },
-        { name: 'POWER DANCE', url: 'https://listen.powerapp.com.tr/dance/dance.smil/playlist.m3u8', logo: 'https://i.ibb.co/5hwZ7xw/power-dance.png', group: categoryMap[3], epgId: '' },
-        { name: 'POWER LOVE', url: 'https://listen.powerapp.com.tr/plove/love.smil/playlist.m3u8', logo: 'https://i.ibb.co/bJL1VnX/power-love.png', group: categoryMap[3], epgId: '' },
-        { name: 'POWER TURK AKUSTIK', url: 'https://listen.powerapp.com.tr/pturkakustik/akustik.smil/playlist.m3u8', logo: 'https://i.ibb.co/XFY7dCW/powerturk-akustik.png', group: categoryMap[3], epgId: '' },
-        { name: 'POWER TURK SLOW', url: 'https://listen.powerapp.com.tr/pturkslow/slow.smil/playlist.m3u8', logo: 'https://i.ibb.co/R4pcKqK/powerturk-slow.png', group: categoryMap[3], epgId: '' },
-
-        // Çocuk (6)
-        { name: 'TRT ÇOCUK', url: 'https://tv-trtcocuk.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/mbvwYMB/trt-cocuk.png', group: categoryMap[6], epgId: '' },
-        { name: 'TRT Diyanet Çocuk', url: 'https://tv-trtdiyanetcocuk.medya.trt.com.tr/master.m3u8', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNwBQtkeuk0a1Ofxhin7lGP_VtWNecIwOsSA&s', group: categoryMap[6], epgId: '' },
-        { name: 'MinikaGo', url: 'https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/minikago/minikago_720p.m3u8', logo: 'https://i.ibb.co/2ZwxWr0/minika-go.png', group: categoryMap[6], epgId: '' },
-        { name: 'Minika Çocuk', url: 'https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/minikago_cocuk/minikago_cocuk_720p.m3u8', logo: 'https://i.ibb.co/S794c6W/minika-cocuk.png', group: categoryMap[6], epgId: '' },
-        { name: 'Disney JR HD', url: 'https://saran-live.ercdn.net/disneyjunior/index.m3u8', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/2024_Disney_Jr._Logo.svg/1024px-2024_Disney_Jr._Logo.svg.png', group: categoryMap[6], epgId: '' }
+    const extraMusicChannels = [
+        { name: "Number 1 TV", logo: "https://i.ibb.co/sybLTBG/nr1.png", group: "Müzik Ekstra", epgId: "Number1TV.tr", url: "https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e17cd6360b_1/playlist.m3u8" },
+        { name: "KRAL POP", logo: "https://i.ibb.co/vk0bKz0/kral-pop.png", group: "Müzik Ekstra", epgId: "Kral.Pop.Radyo.tr", url: "http://dygvideo.dygdigital.com/live/hls/kralpop" },
+        { name: "Number 1 Ask", logo: "https://i.ibb.co/5cJ0KtQ/nr1-ask.png", group: "Müzik Ekstra", epgId: "Number1Ask.tr", url: "https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e18f9cea15_1/playlist.m3u8" },
+        { name: "Number 1 Damar", logo: "https://i.ibb.co/2yCF7ms/nr1-damar.png", group: "Müzik Ekstra", epgId: "Number1Damar.tr", url: "https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e198784bdc_1/playlist.m3u8" },
+        { name: "Number 1 Dance", logo: "https://i.ibb.co/kXFSFTN/nr1-dance.png", group: "Müzik Ekstra", epgId: "Number1Dance.tr", url: "https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e2aa8acf44_1/playlist.m3u8" },
+        { name: "NR1 FASHION ONE", logo: "https://i.ibb.co/HV0x9JZ/fashion-one.png", group: "Müzik Ekstra", epgId: "", url: "http://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e2ee6997cb_1/playlist.m3u8" },
+        { name: "TRT Muzik", logo: "https://i.ibb.co/4gbPpzC/trt-muzik.png", group: "Müzik Ekstra", epgId: "TRTMuzik.tr", url: "https://tv-trtmuzik.medya.trt.com.tr/master_720.m3u8" },
+        { name: "PowerTurk TV", logo: "https://i.ibb.co/xXcBD2C/powerturk.png", group: "Müzik Ekstra", epgId: "PowerTurkTV.tr", url: "https://livetv.powerapp.com.tr/powerturkTV/powerturkhd.smil/chunks.m3u8" },
+        { name: "Power TV", logo: "https://i.ibb.co/JrXDQJy/power-tv.png", group: "Müzik Ekstra", epgId: "PowerTV.tr", url: "https://livetv.powerapp.com.tr/powerTV/powerhd.smil/chunks.m3u8" },
+        { name: "POWER TURK TAPTAZE", logo: "https://i.ibb.co/F5K5xs9/powerturk-taptaze.png", group: "Müzik Ekstra", epgId: "", url: "http://livetv.powerapp.com.tr/pturktaptaze/taptaze.smil/playlist.m3u8" },
+        { name: "POWER DANCE", logo: "https://i.ibb.co/5hwZ7xw/power-dance.png", group: "Müzik Ekstra", epgId: "", url: "https://listen.powerapp.com.tr/dance/dance.smil/chunks.m3u8" },
+        { name: "POWER LOVE", logo: "https://i.ibb.co/bJL1VnX/power-love.png", group: "Müzik Ekstra", epgId: "", url: "https://listen.powerapp.com.tr/plove/love.smil/chunks.m3u8" },
+        { name: "POWER TURK AKUSTIK", logo: "https://i.ibb.co/XFY7dCW/powerturk-akustik.png", group: "Müzik Ekstra", epgId: "", url: "https://listen.powerapp.com.tr/pturkakustik/akustik.smil/chunks.m3u8" },
+        { name: "POWER TURK SLOW", logo: "https://i.ibb.co/R4pcKqK/powerturk-slow.png", group: "Müzik Ekstra", epgId: "", url: "https://listen.powerapp.com.tr/pturkslow/slow.smil/chunks.m3u8" }
     ];
 
-    let allChannels = [], currentChannelList = [], hls;
+    const newChannels = [
+        // Ulusal
+        { name: 'TRT 1', url: 'https://tv-trt1.medya.trt.com.tr/master_720.m3u8', logo: 'https://upload.wikimedia.org/wikipedia/commons/4/4a/TRT1_Logo_2020-2021.jpg?20200512090317', group: 'Ulusal', epgId: '' },
+        { name: 'KANAL D', url: 'https://demiroren-live.daioncdn.net/kanald/kanald_1080p.m3u8?app=kanald_web&ce=3', logo: 'https://i.ibb.co/hf2mSz5/kanal-d.png', group: 'Ulusal', epgId: '' },
+        { name: 'STAR TV', url: 'https://dogus-live.daioncdn.net/startv/startv_720p.m3u8', logo: 'https://i.ibb.co/hY3Z8zx/star-tv.png', group: 'Ulusal', epgId: '' },
+        { name: 'SHOW TV', url: 'https://ciner-live.daioncdn.net/showtv/showtv_1080p.m3u8', logo: 'https://i.ibb.co/Rv0rWhZ/show.png', group: 'Ulusal', epgId: '' },
+        { name: 'NOW', url: 'https://raw.githubusercontent.com/exfair/tv/refs/heads/main/code/now.m3u8', logo: 'https://images.seeklogo.com/logo-png/51/1/now-tv-turkey-logo-png_seeklogo-519520.png', group: 'Ulusal', epgId: '' },
+        { name: 'TV 8', url: 'https://tv8-live.daioncdn.net/tv8/tv8_1080p.m3u8', logo: 'https://i.ibb.co/Kr5SFY1/tv8.png', group: 'Ulusal', epgId: '' },
+        { name: 'EURO D', url: 'https://thema-vivekanald-rakuten.amagi.tv/playlist.m3u8', logo: 'https://i.ibb.co/jMQTJmh/euro-d.png', group: 'Ulusal', epgId: '' },
+        { name: 'TV 8 INT', url: 'https://tv8-live.daioncdn.net/tv8/tv8.m3u8', logo: 'https://i.ibb.co/ykSLX8Q/tv8-int.png', group: 'Ulusal', epgId: '' },
+        { name: 'TRT 2', url: 'https://tv-trt2.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/m5T5bQxB/Ads-z-tasar-m-2.png', group: 'Ulusal', epgId: '' },
+        { name: 'TRT TURK', url: 'https://tv-trtturk.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/cSNfr17C/trturk.png', group: 'Ulusal', epgId: '' },
+        { name: 'SHOW MAX HD', url: 'https://live-cdn-65984.varplaycdn.cfd/showmax/index.m3u8', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Show_MAX_logo.svg/2048px-Show_MAX_logo.svg.png', group: 'Ulusal', epgId: '' },
+        { name: 'KANAL 7', url: 'https://kanal7-live.daioncdn.net/kanal7/kanal7_1080p.m3u8', logo: 'https://i.ibb.co/DPVDgvqn/Ads-z-tasar-m-1.png', group: 'Ulusal', epgId: '' },
+        { name: 'KANAL 7 AVRUPA', url: 'https://livetv.radyotvonline.net/kanal7live/kanal7avr/chunklist.m3u8', logo: 'https://i.ibb.co/xq3rRJV5/Ads-z-tasar-m-3.png', group: 'Ulusal', epgId: '' },
+        { name: 'BEYAZ TV', url: 'https://beyaztv-live.daioncdn.net/beyaztv/beyaztv.m3u8', logo: 'https://i.ibb.co/JWMb2kcp/Ads-z-tasar-m-4.png', group: 'Ulusal', epgId: '' },
+        { name: 'TEVE 2', url: 'https://demiroren-live.daioncdn.net/teve2/teve2.m3u8', logo: 'https://i.ibb.co/JRpJc2P/teve2.png', group: 'Ulusal', epgId: '' },
+        { name: '360', url: 'https://turkmedya-live.ercdn.net/tv360/tv360_720p.m3u8', logo: 'https://i.ibb.co/s3gJCGL/360.png', group: 'Ulusal', epgId: '' },
+        { name: 'TV 4', url: 'https://turkmedya-live.ercdn.net/tv4/tv4_720p.m3u8', logo: 'https://i.ibb.co/5XGy07B3/Ads-z-tasar-m-5.png', group: 'Ulusal', epgId: '' },
+        { name: 'WOMAN TV', url: 'https://s01.webcaster.cloud/wmtv/live_1080p.m3u8', logo: 'https://i.ibb.co/bHTjDyk/woman-tv.png', group: 'Ulusal', epgId: '' },
+        { name: 'TIVI 6', url: 'https://live.artidijitalmedya.com/artidijital_tivi6/tivi6/playlist.m3u8', logo: 'https://i.ibb.co/2Y3YGXg4/Ads-z-tasar-m-6.png', group: 'Ulusal', epgId: '' },
+        { name: 'BIR TV', url: 'https://edge1.socialsmart.tv/birtv/bant1/playlist.m3u8', logo: 'https://i.ibb.co/dDdPMWq/birtv.png', group: 'Ulusal', epgId: '' },
+        { name: 'CINE1', url: 'https://live.artidijitalmedya.com/artidijital_cine1/cine1/playlist.m3u8', logo: 'https://i.ibb.co/zhxTBMR/cine1.png', group: 'Ulusal', epgId: '' },
+        { name: 'LIFE TV', url: 'https://live.artidijitalmedya.com/artidijital_lifetv/lifetv/playlist.m3u8', logo: 'https://i.ibb.co/9hCVNks/life-tv.png', group: 'Ulusal', epgId: '' },
+        // Spor
+        { name: 'TRT SPOR', url: 'https://tv-trtspor1.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/WxD4PLG/trt-spor.png', group: 'Spor', epgId: '' },
+        { name: 'TRT SPOR YILDIZ', url: 'https://tv-trtspor2.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/YRgKcDn/trt-spor-yildiz.png', group: 'Spor', epgId: '' },
+        { name: 'TV 8.5', url: 'https://tv8-live.daioncdn.net/tv8bucuk/tv8bucuk_1080p.m3u8', logo: 'https://i.ibb.co/6PRYHdW/tv85.png', group: 'Spor', epgId: '' },
+        { name: 'A SPOR', url: 'https://live-cdn-65984.varplaycdn.cfd/aspor/index.m3u8', logo: 'https://i.ibb.co/rwnrgFV/a-spor.png', group: 'Spor', epgId: '' },
+        { name: 'S SPORTS TV', url: 'https://live.sportstv.com.tr/hls/low/sportstv_hd/index.m3u8', logo: 'https://i.ibb.co/Q7qK4qQj/Ads-z-tasar-m-16.png', group: 'Spor', epgId: '' },
+        { name: 'FB TV', url: 'https://1hskrdto.rocketcdn.com/fenerbahcetv.smil/playlist.m3u8', logo: 'https://i.ibb.co/315SYpK/fb-tv.png', group: 'Spor', epgId: '' },
+        { name: 'TJK TV', url: 'https://tjktv-live.tjk.org/tjktv_1080p.m3u8', logo: 'https://i.ibb.co/PrkXrRn/tjk-tv.png', group: 'Spor', epgId: '' },
+        { name: 'TJK TV YURT DISI', url: 'https://tjktv-live.tjk.org/tjktv2/tjktv2_1080p.m3u8', logo: 'https://i.ibb.co/PrkXrRn/tjk-tv.png', group: 'Spor', epgId: '' },
+        // Belgesel
+        { name: 'TRT BELGESEL', url: 'https://tv-trtbelgesel.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/MkvY46q/trt-belgesel.png', group: 'Belgesel', epgId: '' },
+        { name: 'DMAX', url: 'https://dogus-live.daioncdn.net/dmax/dmax_720p.m3u8', logo: 'https://i.ibb.co/1LH22gK/dmax.png', group: 'Belgesel', epgId: '' },
+        { name: 'TLC', url: 'https://dogus-live.daioncdn.net/tlc/tlc_720p.m3u8', logo: 'https://i.ibb.co/Cm1nYZK/tlc.png', group: 'Belgesel', epgId: '' },
+        { name: 'TRT AVAZ', url: 'https://tv-trtavaz.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/Mnhmxsn/trt-avaz.png', group: 'Belgesel', epgId: '' },
+        { name: 'TARİH TV HD', url: 'https://live-cdn-65984.varplaycdn.cfd/tarihtv/index.m3u8', logo: 'https://upload.wikimedia.org/wikipedia/commons/5/5a/Tarih-tv-logo-siyah-1080x1080.png', group: 'Belgesel', epgId: '' },
+        // Ulusal Haber
+        { name: 'TRT HABER', url: 'https://tv-trthaber.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/LzcNGmm8/unnamed.png', group: 'Ulusal Haber', epgId: '' },
+        { name: 'HABER GLOBAL', url: 'https://tv.ensonhaber.com/haberglobal/haberglobal_720p.m3u8', logo: 'https://i.ibb.co/21zzHPgT/Ads-z-tasar-m-7.png', group: 'Ulusal Haber', epgId: '' },
+        { name: 'BLOOMBERG HT', url: 'https://ciner-live.daioncdn.net/bloomberght/bloomberght_720p.m3u8', logo: 'https://i.ibb.co/0RhF7QQB/Ads-z-tasar-m-8.png', group: 'Ulusal Haber', epgId: '' },
+        { name: 'HABERTURK', url: 'https://ciner-live.daioncdn.net/haberturktv/haberturktv_1080p.m3u8', logo: 'https://i.ibb.co/Q79Lh4Cb/Ads-z-tasar-m-9.png', group: 'Ulusal Haber', epgId: '' },
+        { name: '24', url: 'https://mn-nl.mncdn.com/kanal24/kanal24.smil/chunklist_b896000.m3u8', logo: 'https://i.ibb.co/tHQpWvn/24.png', group: 'Ulusal Haber', epgId: '' },
+        { name: 'TVNET', url: 'https://mn-nl.mncdn.com/tvnet/tvnet/playlist.m3u8', logo: 'https://i.ibb.co/RpyvJDrM/Ads-z-tasar-m-12.png', group: 'Ulusal Haber', epgId: '' },
+        { name: 'AKIT TV', url: 'https://akittv-live.ercdn.net/akittv/akittv_720p.m3u8', logo: 'https://i.ibb.co/3mPpV9kp/Ads-z-tasar-m-11.png', group: 'Ulusal Haber', epgId: '' },
+        { name: 'BENGU TURK', url: 'https://tv.ensonhaber.com/benguturk/benguturk_720p.m3u8', logo: 'https://i.ibb.co/CHWhMvQ/bengu-turk.png', group: 'Ulusal Haber', epgId: '' },
+        { name: 'TGRT HABER HD', url: 'https://canli.tgrthaber.com/tgrt.m3u8', logo: 'https://i.ibb.co/KYdPPbs/Ads-z-tasar-m-13.png', group: 'Ulusal Haber', epgId: '' },
+        { name: 'TURKHABER', url: 'https://edge1.socialsmart.tv/turkhaber/bant1/playlist.m3u8', logo: 'https://i.ibb.co/1JMFDj8X/Ads-z-tasar-m-14.png', group: 'Ulusal Haber', epgId: '' },
+        // Müzik
+        { name: 'NR1', url: 'https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e17cd6360b_1/playlist.m3u8', logo: 'https://i.ibb.co/YBqnDxdN/Ads-z-tasar-m-17.png', group: 'Müzik', epgId: '' },
+        { name: 'POWER TURK', url: 'https://livetv.powerapp.com.tr/powerturkTV/powerturkhd.smil/playlist.m3u8', logo: 'https://i.ibb.co/xXcBD2C/powerturk.png', group: 'Müzik', epgId: '' },
+        // Çocuk & Eğitim
+        { name: 'TRT ÇOCUK', url: 'https://tv-trtcocuk.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/mbvwYMB/trt-cocuk.png', group: 'Çocuk & Eğitim', epgId: '' },
+        { name: 'TRT Diyanet Çocuk', url: 'https://tv-trtdiyanetcocuk.medya.trt.com.tr/master.m3u8', logo: 'https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNwBQtkeuk0a1Ofxhin7lGP_VtWNecIwOsSA&s', group: 'Çocuk & Eğitim', epgId: '' },
+        { name: 'MinikaGo', url: 'https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/minikago/minikago_720p.m3u8', logo: 'https://i.ibb.co/2ZwxWr0/minika-go.png', group: 'Çocuk & Eğitim', epgId: '' },
+        { name: 'Minika Çocuk', url: 'https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/minikago_cocuk/minikago_cocuk_720p.m3u8', logo: 'https://i.ibb.co/S794c6W/minika-cocuk.png', group: 'Çocuk & Eğitim', epgId: '' },
+        { name: 'Disney JR HD', url: 'https://saran-live.ercdn.net/disneyjunior/index.m3u8', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/2024_Disney_Jr._Logo.svg/1024px-2024_Disney_Jr._Logo.svg.png', group: 'Çocuk & Eğitim', epgId: '' }
+    ];
+
+    let allChannels = [], epgData = {}, currentChannelList = [], hls;
     let currentChannelIndex = -1;
 
     function applyTheme(themeName) {
@@ -392,9 +385,71 @@
         }
     }
 
+    async function fetchM3U() {
+      try {
+        const res = await fetch(m3uUrl);
+        const text = await res.text();
+        const lines = text.split(/\r?\n/);
+        let current = null;
+        const m3uChannels = [];
+        for (const line of lines) {
+          if (line.startsWith("#EXTINF")) {
+            const name = line.match(/,(.*)$/)?.[1].trim();
+            const logo = line.match(/tvg-logo="(.*?)"/)?.[1];
+            const group = line.match(/group-title="(.*?)"/)?.[1];
+            const id = line.match(/tvg-id="(.*?)"/)?.[1];
+            current = { name, logo, group: group || "Diğer", epgId: id };
+          } else if (current && line.startsWith("http")) {
+            current.url = line.trim();
+            m3uChannels.push(current);
+            current = null;
+          }
+        }
+        return m3uChannels;
+      } catch (error) {
+        console.error("M3U verisi alınamadı:", error);
+        return [];
+      }
+    }
+
+    async function fetchEPG() {
+      try {
+        const res = await fetch(epgUrl);
+        const xml = await res.text();
+        const parser = new DOMParser();
+        const doc = parser.parseFromString(xml, "text/xml");
+        const progs = doc.querySelectorAll("programme");
+        const now = new Date();
+        for (const p of progs) {
+          const chan = p.getAttribute("channel");
+          const start = parseEPGDate(p.getAttribute("start"));
+          const stop = parseEPGDate(p.getAttribute("stop"));
+          if (now >= start && now <= stop) {
+            epgData[chan] = p.querySelector("title")?.textContent || "";
+          }
+        }
+      } catch (error) {
+        console.error("EPG verisi alınamadı:", error);
+      }
+    }
+
+    function parseEPGDate(str) {
+      if (!str) return new Date(0);
+      const datePart = str.slice(0, 14);
+      const tzPart = str.slice(15, 20);
+      const y = +datePart.slice(0, 4), m = +datePart.slice(4, 6) - 1, d = +datePart.slice(6, 8);
+      const h = +datePart.slice(8, 10), min = +datePart.slice(10, 12);
+      const tzSign = tzPart[0] === '+' ? 1 : -1;
+      const tzHours = +tzPart.slice(1, 3), tzMins = +tzPart.slice(3, 5);
+      const offset = tzSign * (tzHours * 60 + tzMins) * 60000;
+      const utcDate = new Date(Date.UTC(y, m, d, h, min));
+      return new Date(utcDate.getTime() - offset);
+    }
+
     function listGroups() {
-      const desiredOrder = ['Ulusal', 'Haber', 'Spor', 'Belgesel', 'Çocuk', 'Müzik'];
-      let groups = [...new Set(allChannels.map(c => c.group))];
+      const desiredOrder = ['Tüm Kanallar', 'Ulusal', 'Spor', 'Çocuk & Eğitim', 'Belgesel', 'Müzik', 'Müzik Ekstra', 'Yaşam & Eğlence', 'Sinema ve Dizi', 'Ulusal Haber', 'Yabancı', 'Yabancı Haber'];
+      let groups = [...new Set(allChannels.map(c => c.group))]
+        .filter(g => g && g !== 'Bilgilendirme'); 
 
       groups.sort((a, b) => {
         const indexA = desiredOrder.indexOf(a);
@@ -427,24 +482,31 @@
       hls = null;
       G_UI.preview.video.style.display = 'none';
       G_UI.preview.placeholder.style.display = 'flex';
+      
       currentChannelList = allChannels.filter(c => c.group === group);
+      // Kanalları kendi içinde alfabetik sırala
+      currentChannelList.sort((a, b) => a.name.localeCompare(b.name));
+
       currentChannelList.forEach((c, idx) => {
+        const epgTitle = epgData[c.epgId] || "";
         const el = document.createElement("div");
         el.className = "channel";
         el.innerHTML = `<img src="${c.logo || ''}" onerror="this.style.display='none'" alt="logo">
-        <div><div>${c.name}</div><div class="epg-title"></div></div>`;
+        <div><div>${c.name}</div><div class="epg-title">${epgTitle}</div></div>`;
         el.onclick = () => {
             document.querySelectorAll(".channel.active").forEach(ch => ch.classList.remove("active"));
             el.classList.add("active");
-            playChannelInPreview(idx);
+            // idx'i global listedeki index ile eşleştir
+            const globalIndex = allChannels.findIndex(chan => chan.name === c.name && chan.group === c.group);
+            playChannelInPreview(globalIndex, idx); 
         };
         G_UI.channels.appendChild(el);
       });
     }
 
-    function playChannelInPreview(idx) {
-        currentChannelIndex = idx;
-        const channel = currentChannelList[idx];
+    function playChannelInPreview(globalIdx, localIdx) {
+        currentChannelIndex = localIdx; // Yönlendirme butonları için yerel indexi kullan
+        const channel = currentChannelList[localIdx];
         if (!channel) return;
         
         G_UI.player.logo.style.visibility = 'visible';
@@ -454,7 +516,7 @@
         G_UI.preview.placeholder.style.display = 'none';
         G_UI.preview.video.style.display = 'block';
 
-        playStream(G_UI.preview.video, channel.url).then(instance => hls = instance);
+        playStream(G_UI.preview.video, channel.url, true).then(instance => hls = instance);
     }
 
     function changeChannel(direction) {
@@ -479,7 +541,7 @@
         }
     }
     
-    async function playStream(videoElement, url) {
+    async function playStream(videoElement, url, isUnmuted) {
         stopStream(videoElement, hls);
         
         if (Hls.isSupported()) {
@@ -518,9 +580,30 @@
       const savedTheme = localStorage.getItem('iptvTheme') || 'default';
       applyTheme(savedTheme);
 
-      // Kanalları doğrudan ata
-      allChannels = newChannels;
+      // 1. Tüm kaynaklardan kanalları al
+      const m3uChannels = await fetchM3U();
       
+      // 2. Tüm kanalları birleştir ve tekrarları kaldır (orijinal kategoriler korunur)
+      const channelMap = new Map();
+      const combinedList = [...m3uChannels, ...extraMusicChannels, ...newChannels];
+      
+      combinedList.forEach(channel => {
+        const key = channel.name.trim().toLowerCase();
+        channelMap.set(key, channel);
+      });
+      
+      const uniqueCategorizedChannels = Array.from(channelMap.values());
+      
+      // 3. "Tüm Kanallar" kategorisi için kanalların bir kopyasını oluştur
+      const allChannelsGroup = JSON.parse(JSON.stringify(uniqueCategorizedChannels));
+      allChannelsGroup.forEach(channel => {
+        channel.group = 'Tüm Kanallar';
+      });
+      
+      // 4. "Tüm Kanallar" listesini ve kategorize edilmiş listeyi birleştir
+      allChannels = [...allChannelsGroup, ...uniqueCategorizedChannels];
+      
+      await fetchEPG();
       listGroups();
 
       G_UI.preview.video.addEventListener('dblclick', toggleFullscreen);
