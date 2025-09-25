@@ -387,9 +387,76 @@
         }
     }
 
+    // --- İnternet Kontrolü ve Service Worker Kaydı BAŞLANGIÇ ---
+
+    // Bağlantı Durumu Kontrolü için UI Fonksiyonu
+    function showConnectionWarning(isConnected) {
+        const warningId = 'connection-warning-banner';
+        let warningEl = document.getElementById(warningId);
+
+        if (isConnected) {
+            if (warningEl) {
+                warningEl.remove();
+            }
+        } else {
+            if (!warningEl) {
+                warningEl = document.createElement('div');
+                warningEl.id = warningId;
+                // Stil, uyarının ekranın en üstünde, kırmızı renkte görünmesini sağlar.
+                warningEl.style.cssText = `
+                    position: fixed; top: 0; left: 0; width: 100%; 
+                    background-color: #f44336; color: white; text-align: center; 
+                    padding: 10px 0; font-weight: bold; z-index: 10000;
+                `;
+                warningEl.textContent = 'UYARI: İnternet bağlantısı yok! Kanallar yüklenemeyebilir veya mevcut yayın durabilir.';
+                document.body.prepend(warningEl);
+            }
+        }
+    }
+    
+    // Service Worker Kaydı
+    if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+            // sw.js dosyasının ana dizinde olduğunu varsayarız
+            navigator.serviceWorker.register('/sw.js') 
+                .then(registration => {
+                    console.log('Service Worker başarıyla kaydedildi:', registration);
+                })
+                .catch(error => {
+                    console.error('Service Worker kaydı başarısız oldu:', error);
+                });
+        });
+    }
+
+    // Bağlantı durumu değiştiğinde ve başlangıçta kontrol
+    window.addEventListener('load', () => {
+        // Tarayıcının kendi bağlantı durumunu kontrol et
+        if (!navigator.onLine) {
+            showConnectionWarning(false);
+        }
+    });
+
+    window.addEventListener('online', () => {
+        showConnectionWarning(true);
+        // İsteğe bağlı: Bağlantı geri geldiğinde sayfayı yenileyebilirsiniz.
+        // window.location.reload(); 
+    });
+
+    window.addEventListener('offline', () => {
+        showConnectionWarning(false);
+    });
+
+    // --- İnternet Kontrolü ve Service Worker Kaydı BİTİŞ ---
+
+
     async function fetchM3U() {
       try {
         const res = await fetch(m3uUrl);
+        if (!res.ok) {
+            // HTTP 404 gibi bir hata alınırsa da uyarı veririz
+            throw new Error(`HTTP Hata: ${res.status}`); 
+        }
+        showConnectionWarning(true); // Başarılıysa uyarıyı kaldır (offline durumdan sonra tekrar bağlanmış olabilir)
         const text = await res.text();
         const lines = text.split(/\r?\n/);
         let current = null;
@@ -410,6 +477,8 @@
         return m3uChannels;
       } catch (error) {
         console.error("M3U verisi alınamadı:", error);
+        // fetch hatası (internetsizlik veya sunucu hatası) durumunda uyarı göster
+        showConnectionWarning(false);
         return [];
       }
     }
@@ -613,8 +682,3 @@
   </script>
 </body>
 </html>
-
-
-
-
-
