@@ -23,6 +23,7 @@
         --text-primary: #fff;
         --text-secondary: #aaa;
         --epg-color: turquoise;
+        --favorite-color: #ffd700; /* Altın Sarısı */
     }
     [data-theme='forest'] {
         --bg-primary: #0a0a0a;
@@ -35,6 +36,7 @@
         --text-primary: #e0e0e0;
         --text-secondary: #b0b0b0;
         --epg-color: #81C784;
+        --favorite-color: #ffeb3b; /* Sarı */
     }
     [data-theme='royal'] {
         --bg-primary: #0d0c1d;
@@ -47,6 +49,7 @@
         --text-primary: #f3e5f5;
         --text-secondary: #ce93d8;
         --epg-color: #ba68c8;
+        --favorite-color: #fdd835; /* Sarı */
     }
     [data-theme='sunset'] {
         --bg-primary: #1b120f;
@@ -59,6 +62,7 @@
         --text-primary: #fff3e0;
         --text-secondary: #ffccbc;
         --epg-color: #ff8a65;
+        --favorite-color: #ffc107; /* Kehribar */
     }
     [data-theme='steel'] {
         --bg-primary: #121212;
@@ -71,6 +75,7 @@
         --text-primary: #f5f5f5;
         --text-secondary: #bdbdbd;
         --epg-color: #9e9e9e;
+        --favorite-color: #f5f5f5; /* Beyaz */
     }
 
 
@@ -150,14 +155,38 @@
     .channel {
       display: flex; align-items: center; gap: 8px;
       background: var(--bg-tertiary);
-      border-radius: 6px; padding: 8px; cursor: pointer;
+      border-radius: 6px; padding: 8px;
       border: 1px solid transparent;
       transition: all 0.2s;
     }
+    .channel-info {
+        flex-grow: 1;
+        cursor: pointer;
+        display: flex;
+        align-items: center;
+        gap: 8px;
+    }
     .channel:hover { background: var(--bg-hover); }
     .channel.active { border-color: var(--accent-color); background: var(--accent-color-darker); }
-    .channel img { width: 38px; height: 38px; object-fit: contain; }
+    .channel img { width: 38px; height: 38px; object-fit: contain; flex-shrink: 0; }
     .epg-title { color: var(--epg-color); font-size: 0.9em; }
+
+    .fav-btn {
+        font-size: 22px;
+        cursor: pointer;
+        padding: 5px;
+        color: var(--text-secondary);
+        transition: color 0.2s, transform 0.2s;
+        -webkit-user-select: none; /* Safari */
+        -ms-user-select: none; /* IE 10+ */
+        user-select: none;
+    }
+    .fav-btn:hover {
+        transform: scale(1.2);
+    }
+    .fav-btn.favorited {
+        color: var(--favorite-color);
+    }
 
     #playerContainer {
       position: fixed; bottom: 0; left: 0; width: 100%; height: var(--player-height); background: var(--bg-secondary);
@@ -175,8 +204,8 @@
         display: flex; 
         align-items: center; 
         gap: 15px; 
-        flex-grow: 1; /* Ortalamak için eklendi */
-        justify-content: center; /* Ortalamak için eklendi */
+        flex-grow: 1;
+        justify-content: center;
     }
 
     .control-btn {
@@ -190,7 +219,7 @@
       transition: all 0.1s ease-in-out;
       padding: 0 20px;
       box-shadow: 0 2px 4px rgba(0,0,0,0.2);
-      visibility: hidden; /* Başlangıçta gizli */
+      visibility: hidden;
     }
     .control-btn:hover { 
         background: var(--bg-hover); 
@@ -202,7 +231,6 @@
         border-bottom-width: 1px;
         box-shadow: 0 1px 2px rgba(0,0,0,0.2);
     }
-
 
     #themeSelector {
         display: flex;
@@ -258,71 +286,140 @@
   </div>
 
   <script>
-    const m3uUrl = "https://raw.githubusercontent.com/ghokun/tv/main/bin/playlist.m3u";
-    const epgUrl = "https://raw.githubusercontent.com/ghokun/tv/main/bin/guide.xml";
+    // ####################################################################################
+    // # KULLANICI İÇİN M3U ALANI                                                         #
+    // # AŞAĞIDAKİ İKİ ` ARASINA, M3U LİSTENİZİN İÇERİĞİNİ OLDUĞU GİBİ YAPIŞTIRIN.         #
+    // # Örnek kaynak: https://raw.githubusercontent.com/ghokun/tv/main/bin/playlist.m3u #
+    // ####################################################################################
+    const m3uRawText = `
+#EXTM3U
+#EXTINF:-1 tvg-id="24TV.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/24TV.tr.png" group-title="Haber",24 TV
+https://turkmedya-live.ercdn.net/tv24/tv24.m3u8
+#EXTINF:-1 tvg-id="360.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/360.tr.png" group-title="Ulusal",360
+https://turkmedya-live.ercdn.net/tv360/tv360.m3u8
 
+
+#EXTINF:-1 tvg-id="BeyazTV.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/BeyazTV.tr.png" group-title="Ulusal",Beyaz TV
+https://beyaztv-live.daioncdn.net/beyaztv/beyaztv_1080p.m3u8
+#EXTINF:-1 tvg-id="Cine1.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/Cine1.tr.png" group-title="Belgesel",Cine1
+https://live.artidijitalmedya.com/artidijital_cine1/cine1/playlist.m3u8
+#EXTINF:-1 tvg-id="DMAX.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/DMAX.tr.png" group-title="Eğlence",DMAX
+https://dogus-live.daioncdn.net/dmax/dmax_720p.m3u8
+
+
+#EXTINF:-1 tvg-id="HaberturkTV.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/HaberturkTV.tr.png" group-title="Haber",Haber Türk
+https://ciner-live.daioncdn.net/haberturktv/haberturktv.m3u8
+#EXTINF:-1 tvg-id="HalkTV.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/HalkTV.tr.png" group-title="Haber",Halk TV
+https://halktv-live.daioncdn.net/halktv/halktv.m3u8
+#EXTINF:-1 tvg-id="Kanal7.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/Kanal7.tr.png" group-title="Ulusal",Kanal 7
+https://kanal7-live.daioncdn.net/kanal7/kanal7.m3u8
+#EXTINF:-1 tvg-id="KanalD.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/KanalD.tr.png" group-title="Ulusal",Kanal D
+https://demiroren-live.daioncdn.net/kanald/kanald.m3u8
+#EXTINF:-1 tvg-id="MinikaCocuk.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/MinikaCocuk.tr.png" group-title="Çocuk",Minika Çocuk
+https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/minikago_cocuk/minikago_cocuk_720p.m3u8
+#EXTINF:-1 tvg-id="MinikaGo.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/MinikaGo.tr.png" group-title="Çocuk",Minika GO
+https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/minikago/minikago_720p.m3u8
+#EXTINF:-1 tvg-id="NOWTV.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/NOWTV.tr.png" group-title="Ulusal",NOW
+https://uycyyuuzyh.turknet.ercdn.net/nphindgytw/nowtv/nowtv.m3u8
+#EXTINF:-1 tvg-id="NTV.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/NTV.tr.png" group-title="Ulusal",NTV
+https://dogus-live.daioncdn.net/ntv/ntv.m3u8
+#EXTINF:-1 tvg-id="Number1TV.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/Number1TV.tr.png" group-title="Müzik",Number 1 TV
+https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e17cd6360b_1/playlist.m3u8
+#EXTINF:-1 tvg-id="PowerTV.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/PowerTV.tr.png" group-title="Müzik",Power TV
+https://livetv.powerapp.com.tr/powerTV/powerhd.smil/playlist.m3u8
+
+
+#EXTINF:-1 tvg-id="ShowTV.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/ShowTV.tr.png" group-title="Ulusal",Show TV
+https://ciner-live.daioncdn.net/showtv/showtv.m3u8
+
+#EXTINF:-1 tvg-id="SportsTV.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/SportsTV.tr.png" group-title="Spor",Sports TV
+https://live.sportstv.com.tr/hls/low/sportstv.m3u8
+#EXTINF:-1 tvg-id="StarTV.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/StarTV.tr.png" group-title="Ulusal",Star
+https://dogus-live.daioncdn.net/startv/startv.m3u8
+#EXTINF:-1 tvg-id="Teve2.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/Teve2.tr.png" group-title="Ulusal",Teve2
+https://demiroren-live.daioncdn.net/teve2/teve2.m3u8
+#EXTINF:-1 tvg-id="TLC.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TLC.tr.png" group-title="Eğlence",TLC
+https://dogus-live.daioncdn.net/tlc/tlc.m3u8
+#EXTINF:-1 tvg-id="TRT1.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TRT1.tr.png" group-title="Ulusal",TRT 1
+https://tv-trt1.medya.trt.com.tr/master_720.m3u8
+
+#EXTINF:-1 tvg-id="TRT2.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TRT2.tr.png" group-title="Ulusal",TRT 2
+https://tv-trt2.medya.trt.com.tr/master.m3u8
+#EXTINF:-1 tvg-id="TRT3.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TRT3.tr.png" group-title="Spor",TRT 3
+https://tv-trtspor2.medya.trt.com.tr/master.m3u8
+#EXTINF:-1 tvg-id="TRTBelgesel.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TRTBelgesel.tr.png" group-title="Belgesel",TRT Belgesel
+https://tv-trtbelgesel.medya.trt.com.tr/master.m3u8
+#EXTINF:-1 tvg-id="TRTCocuk.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TRTCocuk.tr.png" group-title="Çocuk",TRT Çocuk
+https://tv-trtcocuk.medya.trt.com.tr/master.m3u8
+#EXTINF:-1 tvg-id="TRTHaber.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TRTHaber.tr.png" group-title="Haber",TRT Haber
+https://tv-trthaber.medya.trt.com.tr/master.m3u8
+#EXTINF:-1 tvg-id="TRTSpor.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TRTSpor.tr.png" group-title="Spor",TRT Spor
+https://tv-trtspor1.medya.trt.com.tr/master_720.m3u8
+#EXTINF:-1 tvg-id="TRTSporYildiz.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TRTSporYildiz.tr.png" group-title="Spor",TRT Spor Yıldız
+https://tv-trtspor2.medya.trt.com.tr/master.m3u8
+#EXTINF:-1 tvg-id="TRTTurk.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TRTTurk.tr.png" group-title="Belgesel",TRT Türk
+https://tv-trtturk.medya.trt.com.tr/master.m3u8
+#EXTINF:-1 tvg-id="TV8.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TV8.tr.png" group-title="Eğlence",TV 8
+https://tv8-live.daioncdn.net/tv8/tv8.m3u8
+#EXTINF:-1 tvg-id="TV85.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TV85.tr.png" group-title="Eğlence",TV 8.5
+https://tv8-live.daioncdn.net/tv8bucuk/tv8bucuk_1080p.m3u8
+#EXTINF:-1 tvg-id="TV100.tr" tvg-logo="https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TV100.tr.png" group-title="Haber",TV 100
+https://tv100-live.daioncdn.net/tv100/tv100_1080p.m3u8
+
+
+`; // <-- M3U İÇERİĞİNİ BU SATIRIN ÜSTÜNE YAPIŞTIRIN
+
+    const epgUrl = "https://raw.githubusercontent.com/ghokun/tv/main/bin/guide.xml";
     const G_UI = {
         groups: document.getElementById("groups"),
         channels: document.getElementById("channels"),
-        preview: {
-            placeholder: document.getElementById("previewPlaceholder"),
-            video: document.getElementById("previewVideo")
-        },
-        player: {
-            container: document.getElementById("playerContainer"),
-            logo: document.getElementById("playerLogo"),
-            controls: document.querySelectorAll('.control-btn')
-        },
+        preview: { placeholder: document.getElementById("previewPlaceholder"), video: document.getElementById("previewVideo") },
+        player: { container: document.getElementById("playerContainer"), logo: document.getElementById("playerLogo"), controls: document.querySelectorAll('.control-btn') },
         themeSelector: document.getElementById("themeSelector")
     };
-    
     const themes = {
-        'default': { name: 'Varsayılan', color: '#3366cc' },
-        'forest': { name: 'Orman', color: '#4CAF50' },
-        'royal': { name: 'Kraliyet', color: '#9C27B0' },
-        'sunset': { name: 'Gün Batımı', color: '#FF5722' },
-        'steel': { name: 'Çelik', color: '#757575' }
+        'default': { name: 'Varsayılan', color: '#3366cc' }, 'forest': { name: 'Orman', color: '#4CAF50' }, 'royal': { name: 'Kraliyet', color: '#9C27B0' },
+        'sunset': { name: 'Gün Batımı', color: '#FF5722' }, 'steel': { name: 'Çelik', color: '#757575' }
     };
-    
-    const extraMusicChannels = [
-        { name: "Number 1 TV", logo: "https://i.ibb.co/sybLTBG/nr1.png", group: "Müzik Ekstra", epgId: "Number1TV.tr", url: "https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e17cd6360b_1/playlist.m3u8" },
-        { name: "KRAL POP", logo: "https://i.ibb.co/vk0bKz0/kral-pop.png", group: "Müzik Ekstra", epgId: "Kral.Pop.Radyo.tr", url: "http://dygvideo.dygdigital.com/live/hls/kralpop" },
-        { name: "Number 1 Ask", logo: "https://i.ibb.co/5cJ0KtQ/nr1-ask.png", group: "Müzik Ekstra", epgId: "Number1Ask.tr", url: "https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e18f9cea15_1/playlist.m3u8" },
-        { name: "Number 1 Damar", logo: "https://i.ibb.co/2yCF7ms/nr1-damar.png", group: "Müzik Ekstra", epgId: "Number1Damar.tr", url: "https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e198784bdc_1/playlist.m3u8" },
-        { name: "Number 1 Dance", logo: "https://i.ibb.co/kXFSFTN/nr1-dance.png", group: "Müzik Ekstra", epgId: "Number1Dance.tr", url: "https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e2aa8acf44_1/playlist.m3u8" },
-        { name: "NR1 FASHION ONE", logo: "https://i.ibb.co/HV0x9JZ/fashion-one.png", group: "Müzik Ekstra", epgId: "", url: "http://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e2ee6997cb_1/playlist.m3u8" },
-        { name: "TRT Muzik", logo: "https://i.ibb.co/4gbPpzC/trt-muzik.png", group: "Müzik Ekstra", epgId: "TRTMuzik.tr", url: "https://tv-trtmuzik.medya.trt.com.tr/master_720.m3u8" },
-        { name: "PowerTurk TV", logo: "https://i.ibb.co/xXcBD2C/powerturk.png", group: "Müzik Ekstra", epgId: "PowerTurkTV.tr", url: "https://livetv.powerapp.com.tr/powerturkTV/powerturkhd.smil/chunks.m3u8" },
-        { name: "Power TV", logo: "https://i.ibb.co/JrXDQJy/power-tv.png", group: "Müzik Ekstra", epgId: "PowerTV.tr", url: "https://livetv.powerapp.com.tr/powerTV/powerhd.smil/chunks.m3u8" },
-        { name: "POWER TURK TAPTAZE", logo: "https://i.ibb.co/F5K5xs9/powerturk-taptaze.png", group: "Müzik Ekstra", epgId: "", url: "http://livetv.powerapp.com.tr/pturktaptaze/taptaze.smil/playlist.m3u8" },
-        { name: "POWER DANCE", logo: "https://i.ibb.co/5hwZ7xw/power-dance.png", group: "Müzik Ekstra", epgId: "", url: "https://listen.powerapp.com.tr/dance/dance.smil/chunks.m3u8" },
-        { name: "POWER LOVE", logo: "https://i.ibb.co/bJL1VnX/power-love.png", group: "Müzik Ekstra", epgId: "", url: "https://listen.powerapp.com.tr/plove/love.smil/chunks.m3u8" },
-        { name: "POWER TURK AKUSTIK", logo: "https://i.ibb.co/XFY7dCW/powerturk-akustik.png", group: "Müzik Ekstra", epgId: "", url: "https://listen.powerapp.com.tr/pturkakustik/akustik.smil/chunks.m3u8" },
-        { name: "POWER TURK SLOW", logo: "https://i.ibb.co/R4pcKqK/powerturk-slow.png", group: "Müzik Ekstra", epgId: "", url: "https://listen.powerapp.com.tr/pturkslow/slow.smil/chunks.m3u8" }
-    ];
 
+    // --- DÜZENLENDİ: Kanallar daha okunaklı olması için alt alta yazıldı ---
+    const extraMusicChannels = [
+        { name: "Number 1 TV", logo: "https://i.ibb.co/sybLTBG/nr1.png", group: "Müzik", epgId: "Number1TV.tr", url: "https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e17cd6360b_1/playlist.m3u8" },
+        { name: "KRAL POP", logo: "https://i.ibb.co/vk0bKz0/kral-pop.png", group: "Müzik", epgId: "Kral.Pop.Radyo.tr", url: "http://dygvideo.dygdigital.com/live/hls/kralpop" },
+        { name: "Number 1 Ask", logo: "https://i.ibb.co/5cJ0KtQ/nr1-ask.png", group: "Müzik", epgId: "Number1Ask.tr", url: "https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e18f9cea15_1/playlist.m3u8" },
+        { name: "Number 1 Damar", logo: "https://i.ibb.co/2yCF7ms/nr1-damar.png", group: "Müzik", epgId: "Number1Damar.tr", url: "https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e198784bdc_1/playlist.m3u8" },
+        { name: "Number 1 Dance", logo: "https://i.ibb.co/kXFSFTN/nr1-dance.png", group: "Müzik", epgId: "Number1Dance.tr", url: "https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e2aa8acf44_1/playlist.m3u8" },
+        { name: "NR1 FASHION ONE", logo: "https://i.ibb.co/HV0x9JZ/fashion-one.png", group: "Müzik", epgId: "", url: "http://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e2ee6997cb_1/playlist.m3u8" },
+        { name: "TRT Muzik", logo: "https://i.ibb.co/4gbPpzC/trt-muzik.png", group: "Müzik", epgId: "TRTMuzik.tr", url: "https://tv-trtmuzik.medya.trt.com.tr/master_720.m3u8" },
+        { name: "PowerTurk TV", logo: "https://i.ibb.co/xXcBD2C/powerturk.png", group: "Müzik", epgId: "PowerTurkTV.tr", url: "https://livetv.powerapp.com.tr/powerturkTV/powerturkhd.smil/chunks.m3u8" },
+        { name: "Power TV", logo: "https://i.ibb.co/JrXDQJy/power-tv.png", group: "Müzik", epgId: "PowerTV.tr", url: "https://livetv.powerapp.com.tr/powerTV/powerhd.smil/chunks.m3u8" },
+        { name: "POWER TURK TAPTAZE", logo: "https://i.ibb.co/F5K5xs9/powerturk-taptaze.png", group: "Müzik", epgId: "", url: "http://livetv.powerapp.com.tr/pturktaptaze/taptaze.smil/playlist.m3u8" },
+        { name: "POWER DANCE", logo: "https://i.ibb.co/5hwZ7xw/power-dance.png", group: "Müzik", epgId: "", url: "https://listen.powerapp.com.tr/dance/dance.smil/chunks.m3u8" },
+        { name: "POWER LOVE", logo: "https://i.ibb.co/bJL1VnX/power-love.png", group: "Müzik", epgId: "", url: "https://listen.powerapp.com.tr/plove/love.smil/chunks.m3u8" },
+        { name: "POWER TURK AKUSTIK", logo: "https://i.ibb.co/XFY7dCW/powerturk-akustik.png", group: "Müzik", epgId: "", url: "https://listen.powerapp.com.tr/pturkakustik/akustik.smil/chunks.m3u8" },
+        { name: "POWER TURK SLOW", logo: "https://i.ibb.co/R4pcKqK/powerturk-slow.png", group: "Müzik", epgId: "", url: "https://listen.powerapp.com.tr/pturkslow/slow.smil/chunks.m3u8" }
+    ];
+    
+    // --- DÜZENLENDİ: Kanallar daha okunaklı olması için alt alta yazıldı ---
     const newChannels = [
         // Ulusal
         { name: 'TRT 1', url: 'https://tv-trt1.medya.trt.com.tr/master_720.m3u8', logo: 'https://upload.wikimedia.org/wikipedia/commons/4/4a/TRT1_Logo_2020-2021.jpg?20200512090317', group: 'Ulusal', epgId: '' },
         { name: 'ATV HD', url: 'https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/atv/atv.m3u8', logo: 'https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/ATV.tr.png', group: 'Ulusal', epgId: '' },
-        { name: 'ATV HD 2', url: 'https://sultanweb.info/TurkSAT.php?ID=2401', logo: 'https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/ATV.tr.png', group: 'Ulusal', epgId: '' },
         { name: 'KANAL D', url: 'https://demiroren-live.daioncdn.net/kanald/kanald_1080p.m3u8?app=kanald_web&ce=3', logo: 'https://i.ibb.co/hf2mSz5/kanal-d.png', group: 'Ulusal', epgId: '' },
         { name: 'STAR TV', url: 'https://dogus-live.daioncdn.net/startv/startv_720p.m3u8', logo: 'https://i.ibb.co/hY3Z8zx/star-tv.png', group: 'Ulusal', epgId: '' },
         { name: 'SHOW TV', url: 'https://ciner-live.daioncdn.net/showtv/showtv_1080p.m3u8', logo: 'https://i.ibb.co/Rv0rWhZ/show.png', group: 'Ulusal', epgId: '' },
-        { name: 'NOW', url: 'https://raw.githubusercontent.com/exfair/tv/refs/heads/main/code/now.m3u8', logo: 'https://images.seeklogo.com/logo-png/51/1/now-tv-turkey-logo-png_seeklogo-519520.png', group: 'Ulusal', epgId: '' },
+        { name: 'NOW', url: 'http://116.202.238.88/FOXTV_TR/index.m3u8', logo: 'https://images.seeklogo.com/logo-png/51/1/now-tv-turkey-logo-png_seeklogo-519520.png', group: 'Ulusal', epgId: '' },
         { name: 'TV 8', url: 'https://tv8-live.daioncdn.net/tv8/tv8_1080p.m3u8', logo: 'https://i.ibb.co/Kr5SFY1/tv8.png', group: 'Ulusal', epgId: '' },
         { name: 'EURO D', url: 'https://thema-vivekanald-rakuten.amagi.tv/playlist.m3u8', logo: 'https://i.ibb.co/jMQTJmh/euro-d.png', group: 'Ulusal', epgId: '' },
         { name: 'TV 8 INT', url: 'https://tv8-live.daioncdn.net/tv8/tv8.m3u8', logo: 'https://i.ibb.co/ykSLX8Q/tv8-int.png', group: 'Ulusal', epgId: '' },
         { name: 'TRT 2', url: 'https://tv-trt2.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/m5T5bQxB/Ads-z-tasar-m-2.png', group: 'Ulusal', epgId: '' },
         { name: 'TRT TURK', url: 'https://tv-trtturk.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/cSNfr17C/trturk.png', group: 'Ulusal', epgId: '' },
-        { name: 'SHOW MAX HD', url: 'https://live-cdn-65984.varplaycdn.cfd/showmax/index.m3u8', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/3/31/Show_MAX_logo.svg/2048px-Show_MAX_logo.svg.png', group: 'Ulusal', epgId: '' },
         { name: 'KANAL 7', url: 'https://kanal7-live.daioncdn.net/kanal7/kanal7_1080p.m3u8', logo: 'https://i.ibb.co/DPVDgvqn/Ads-z-tasar-m-1.png', group: 'Ulusal', epgId: '' },
         { name: 'KANAL 7 AVRUPA', url: 'https://livetv.radyotvonline.net/kanal7live/kanal7avr/chunklist.m3u8', logo: 'https://i.ibb.co/xq3rRJV5/Ads-z-tasar-m-3.png', group: 'Ulusal', epgId: '' },
         { name: 'BEYAZ TV', url: 'https://beyaztv-live.daioncdn.net/beyaztv/beyaztv.m3u8', logo: 'https://i.ibb.co/JWMb2kcp/Ads-z-tasar-m-4.png', group: 'Ulusal', epgId: '' },
         { name: 'TEVE 2', url: 'https://demiroren-live.daioncdn.net/teve2/teve2.m3u8', logo: 'https://i.ibb.co/JRpJc2P/teve2.png', group: 'Ulusal', epgId: '' },
         { name: '360', url: 'https://turkmedya-live.ercdn.net/tv360/tv360_720p.m3u8', logo: 'https://i.ibb.co/s3gJCGL/360.png', group: 'Ulusal', epgId: '' },
         { name: 'TV 4', url: 'https://turkmedya-live.ercdn.net/tv4/tv4_720p.m3u8', logo: 'https://i.ibb.co/5XGy07B3/Ads-z-tasar-m-5.png', group: 'Ulusal', epgId: '' },
-        { name: 'WOMAN TV', url: 'https://s01.webcaster.cloud/wmtv/live_1080p.m3u8', logo: 'https://i.ibb.co/bHTjDyk/woman-tv.png', group: 'Ulusal', epgId: '' },
         { name: 'TIVI 6', url: 'https://live.artidijitalmedya.com/artidijital_tivi6/tivi6/playlist.m3u8', logo: 'https://i.ibb.co/2Y3YGXg4/Ads-z-tasar-m-6.png', group: 'Ulusal', epgId: '' },
         { name: 'BIR TV', url: 'https://edge1.socialsmart.tv/birtv/bant1/playlist.m3u8', logo: 'https://i.ibb.co/dDdPMWq/birtv.png', group: 'Ulusal', epgId: '' },
         { name: 'CINE1', url: 'https://live.artidijitalmedya.com/artidijital_cine1/cine1/playlist.m3u8', logo: 'https://i.ibb.co/zhxTBMR/cine1.png', group: 'Ulusal', epgId: '' },
@@ -331,9 +428,7 @@
         { name: 'TRT SPOR', url: 'https://tv-trtspor1.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/WxD4PLG/trt-spor.png', group: 'Spor', epgId: '' },
         { name: 'TRT SPOR YILDIZ', url: 'https://tv-trtspor2.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/YRgKcDn/trt-spor-yildiz.png', group: 'Spor', epgId: '' },
         { name: 'TV 8.5', url: 'https://tv8-live.daioncdn.net/tv8bucuk/tv8bucuk_1080p.m3u8', logo: 'https://i.ibb.co/6PRYHdW/tv85.png', group: 'Spor', epgId: '' },
-        { name: 'A SPOR', url: 'https://live-cdn-65984.varplaycdn.cfd/aspor/index.m3u8', logo: 'https://i.ibb.co/rwnrgFV/a-spor.png', group: 'Spor', epgId: '' },
         { name: 'S SPORTS TV', url: 'https://live.sportstv.com.tr/hls/low/sportstv_hd/index.m3u8', logo: 'https://i.ibb.co/Q7qK4qQj/Ads-z-tasar-m-16.png', group: 'Spor', epgId: '' },
-        { name: 'FB TV', url: 'https://1hskrdto.rocketcdn.com/fenerbahcetv.smil/playlist.m3u8', logo: 'https://i.ibb.co/315SYpK/fb-tv.png', group: 'Spor', epgId: '' },
         { name: 'TJK TV', url: 'https://tjktv-live.tjk.org/tjktv_1080p.m3u8', logo: 'https://i.ibb.co/PrkXrRn/tjk-tv.png', group: 'Spor', epgId: '' },
         { name: 'TJK TV YURT DISI', url: 'https://tjktv-live.tjk.org/tjktv2/tjktv2_1080p.m3u8', logo: 'https://i.ibb.co/PrkXrRn/tjk-tv.png', group: 'Spor', epgId: '' },
         // Belgesel
@@ -341,10 +436,8 @@
         { name: 'DMAX', url: 'https://dogus-live.daioncdn.net/dmax/dmax_720p.m3u8', logo: 'https://i.ibb.co/1LH22gK/dmax.png', group: 'Belgesel', epgId: '' },
         { name: 'TLC', url: 'https://dogus-live.daioncdn.net/tlc/tlc_720p.m3u8', logo: 'https://i.ibb.co/Cm1nYZK/tlc.png', group: 'Belgesel', epgId: '' },
         { name: 'TRT AVAZ', url: 'https://tv-trtavaz.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/Mnhmxsn/trt-avaz.png', group: 'Belgesel', epgId: '' },
-        { name: 'TARİH TV HD', url: 'https://live-cdn-65984.varplaycdn.cfd/tarihtv/index.m3u8', logo: 'https://upload.wikimedia.org/wikipedia/commons/5/5a/Tarih-tv-logo-siyah-1080x1080.png', group: 'Belgesel', epgId: '' },
         // Ulusal Haber
         { name: 'TRT HABER', url: 'https://tv-trthaber.medya.trt.com.tr/master_720.m3u8', logo: 'https://i.ibb.co/LzcNGmm8/unnamed.png', group: 'Ulusal Haber', epgId: '' },
-        { name: 'HABER GLOBAL', url: 'https://tv.ensonhaber.com/haberglobal/haberglobal_720p.m3u8', logo: 'https://i.ibb.co/21zzHPgT/Ads-z-tasar-m-7.png', group: 'Ulusal Haber', epgId: '' },
         { name: 'BLOOMBERG HT', url: 'https://ciner-live.daioncdn.net/bloomberght/bloomberght_720p.m3u8', logo: 'https://i.ibb.co/0RhF7QQB/Ads-z-tasar-m-8.png', group: 'Ulusal Haber', epgId: '' },
         { name: 'HABERTURK', url: 'https://ciner-live.daioncdn.net/haberturktv/haberturktv_1080p.m3u8', logo: 'https://i.ibb.co/Q79Lh4Cb/Ads-z-tasar-m-9.png', group: 'Ulusal Haber', epgId: '' },
         { name: '24 TV HD', url: 'https://turkmedya-live.ercdn.net/tv24/tv24.m3u8', logo: 'https://i.ibb.co/tHQpWvn/24.png', group: 'Ulusal Haber', epgId: '' },
@@ -364,322 +457,175 @@
         { name: 'Disney JR HD', url: 'https://saran-live.ercdn.net/disneyjunior/index.m3u8', logo: 'https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/2024_Disney_Jr._Logo.svg/1024px-2024_Disney_Jr._Logo.svg.png', group: 'Çocuk & Eğitim', epgId: '' }
     ];
 
-    let allChannels = [], epgData = {}, currentChannelList = [], hls;
-    let currentChannelIndex = -1;
+    let allChannels = [], epgData = {}, currentChannelList = [], hls, baseChannelList = [];
+    let currentChannelIndex = -1, activeGroupName = '';
 
-    function applyTheme(themeName) {
-        document.body.dataset.theme = themeName;
-        localStorage.setItem('iptvTheme', themeName);
-        document.querySelectorAll('.theme-swatch').forEach(swatch => {
-            swatch.classList.toggle('active', swatch.dataset.theme === themeName);
-        });
-    }
-
-    function createThemeSelector() {
-        for (const [key, theme] of Object.entries(themes)) {
-            const swatch = document.createElement('div');
-            swatch.className = 'theme-swatch';
-            swatch.dataset.theme = key;
-            swatch.title = theme.name;
-            swatch.style.backgroundColor = theme.color;
-            swatch.onclick = () => applyTheme(key);
-            G_UI.themeSelector.appendChild(swatch);
-        }
-    }
-
-    // --- İnternet Kontrolü ve Service Worker Kaydı BAŞLANGIÇ ---
-
-    // Bağlantı Durumu Kontrolü için UI Fonksiyonu
-    function showConnectionWarning(isConnected) {
-        const warningId = 'connection-warning-banner';
-        let warningEl = document.getElementById(warningId);
-
-        if (isConnected) {
-            if (warningEl) {
-                warningEl.remove();
-            }
-        } else {
-            if (!warningEl) {
-                warningEl = document.createElement('div');
-                warningEl.id = warningId;
-                // Stil, uyarının ekranın en üstünde, kırmızı renkte görünmesini sağlar.
-                warningEl.style.cssText = `
-                    position: fixed; top: 0; left: 0; width: 100%; 
-                    background-color: #f44336; color: white; text-align: center; 
-                    padding: 10px 0; font-weight: bold; z-index: 10000;
-                `;
-                warningEl.textContent = 'UYARI: İnternet bağlantısı yok! Kanallar yüklenemeyebilir veya mevcut yayın durabilir.';
-                document.body.prepend(warningEl);
-            }
-        }
-    }
-    
-    // Service Worker Kaydı
-    if ('serviceWorker' in navigator) {
-        window.addEventListener('load', () => {
-            // sw.js dosyasının ana dizinde olduğunu varsayarız
-            navigator.serviceWorker.register('/sw.js') 
-                .then(registration => {
-                    console.log('Service Worker başarıyla kaydedildi:', registration);
-                })
-                .catch(error => {
-                    console.error('Service Worker kaydı başarısız oldu:', error);
-                });
-        });
-    }
-
-    // Bağlantı durumu değiştiğinde ve başlangıçta kontrol
-    window.addEventListener('load', () => {
-        // Tarayıcının kendi bağlantı durumunu kontrol et
-        if (!navigator.onLine) {
-            showConnectionWarning(false);
-        }
-    });
-
-    window.addEventListener('online', () => {
-        showConnectionWarning(true);
-        // İsteğe bağlı: Bağlantı geri geldiğinde sayfayı yenileyebilirsiniz.
-        // window.location.reload(); 
-    });
-
-    window.addEventListener('offline', () => {
-        showConnectionWarning(false);
-    });
-
-    // --- İnternet Kontrolü ve Service Worker Kaydı BİTİŞ ---
-
-
-    async function fetchM3U() {
-      try {
-        const res = await fetch(m3uUrl);
-        if (!res.ok) {
-            // HTTP 404 gibi bir hata alınırsa da uyarı veririz
-            throw new Error(`HTTP Hata: ${res.status}`); 
-        }
-        showConnectionWarning(true); // Başarılıysa uyarıyı kaldır (offline durumdan sonra tekrar bağlanmış olabilir)
-        const text = await res.text();
+    // YENİ: Yapıştırılan M3U metnini analiz edip kanal listesine dönüştüren fonksiyon
+    function parseM3UText(text) {
         const lines = text.split(/\r?\n/);
         let current = null;
         const m3uChannels = [];
         for (const line of lines) {
-          if (line.startsWith("#EXTINF")) {
-            const name = line.match(/,(.*)$/)?.[1].trim();
-            const logo = line.match(/tvg-logo="(.*?)"/)?.[1];
-            const group = line.match(/group-title="(.*?)"/)?.[1];
-            const id = line.match(/tvg-id="(.*?)"/)?.[1];
-            current = { name, logo, group: group || "Diğer", epgId: id };
-          } else if (current && line.startsWith("http")) {
-            current.url = line.trim();
-            m3uChannels.push(current);
-            current = null;
-          }
+            if (line.startsWith("#EXTINF")) {
+                const name = line.match(/,(.*)$/)?.[1].trim();
+                const logo = line.match(/tvg-logo="(.*?)"/)?.[1];
+                const group = line.match(/group-title="(.*?)"/)?.[1];
+                const id = line.match(/tvg-id="(.*?)"/)?.[1];
+                if (name) { // Sadece geçerli bir ismi olanları ekle
+                   current = { name, logo, group: group || "Diğer", epgId: id };
+                }
+            } else if (current && line.trim().startsWith("http")) {
+                current.url = line.trim();
+                m3uChannels.push(current);
+                current = null;
+            }
         }
         return m3uChannels;
-      } catch (error) {
-        console.error("M3U verisi alınamadı:", error);
-        // fetch hatası (internetsizlik veya sunucu hatası) durumunda uyarı göster
-        showConnectionWarning(false);
-        return [];
-      }
     }
+
+    function getFavorites() { const favs = localStorage.getItem('iptvFavorites'); return favs ? JSON.parse(favs) : []; }
+    function saveFavorites(favs) { localStorage.setItem('iptvFavorites', JSON.stringify(favs)); }
+    function toggleFavorite(channelName, favButton) {
+        let favorites = getFavorites();
+        const index = favorites.indexOf(channelName);
+        const wasEmpty = favorites.length === 0;
+        if (index > -1) { favorites.splice(index, 1); favButton.classList.remove('favorited'); } 
+        else { favorites.push(channelName); favButton.classList.add('favorited'); }
+        saveFavorites(favorites);
+        const isEmptyNow = favorites.length === 0;
+        if (wasEmpty !== isEmptyNow) listGroups();
+        if (activeGroupName === 'Favorilerim') listChannels('Favorilerim');
+    }
+    function applyTheme(themeName) {
+        document.body.dataset.theme = themeName;
+        localStorage.setItem('iptvTheme', themeName);
+        document.querySelectorAll('.theme-swatch').forEach(swatch => swatch.classList.toggle('active', swatch.dataset.theme === themeName));
+    }
+    function createThemeSelector() {
+        for (const [key, theme] of Object.entries(themes)) {
+            const swatch = document.createElement('div');
+            swatch.className = 'theme-swatch'; swatch.dataset.theme = key; swatch.title = theme.name;
+            swatch.style.backgroundColor = theme.color; swatch.onclick = () => applyTheme(key);
+            G_UI.themeSelector.appendChild(swatch);
+        }
+    }
+    function showConnectionWarning(isConnected) {
+        const warningId = 'connection-warning-banner'; let warningEl = document.getElementById(warningId);
+        if (isConnected) { if (warningEl) warningEl.remove(); } 
+        else if (!warningEl) {
+            warningEl = document.createElement('div'); warningEl.id = warningId;
+            warningEl.style.cssText = `position: fixed; top: 0; left: 0; width: 100%; background-color: #f44336; color: white; text-align: center; padding: 10px 0; font-weight: bold; z-index: 10000;`;
+            warningEl.textContent = 'UYARI: İnternet bağlantısı yok! Kanallar yüklenemeyebilir veya mevcut yayın durabilir.';
+            document.body.prepend(warningEl);
+        }
+    }
+    if ('serviceWorker' in navigator) window.addEventListener('load', () => navigator.serviceWorker.register('/sw.js').catch(err => console.error('SW kaydı başarısız:', err)));
+    window.addEventListener('load', () => { if (!navigator.onLine) showConnectionWarning(false); });
+    window.addEventListener('online', () => showConnectionWarning(true));
+    window.addEventListener('offline', () => showConnectionWarning(false));
 
     async function fetchEPG() {
       try {
-        const res = await fetch(epgUrl);
-        const xml = await res.text();
-        const parser = new DOMParser();
-        const doc = parser.parseFromString(xml, "text/xml");
-        const progs = doc.querySelectorAll("programme");
-        const now = new Date();
+        const res = await fetch(epgUrl); if (!res.ok) throw new Error(`HTTP Hata: ${res.status}`); showConnectionWarning(true);
+        const xml = await res.text(), parser = new DOMParser(), doc = parser.parseFromString(xml, "text/xml"), progs = doc.querySelectorAll("programme"), now = new Date();
         for (const p of progs) {
-          const chan = p.getAttribute("channel");
-          const start = parseEPGDate(p.getAttribute("start"));
-          const stop = parseEPGDate(p.getAttribute("stop"));
-          if (now >= start && now <= stop) {
-            epgData[chan] = p.querySelector("title")?.textContent || "";
-          }
+          const chan = p.getAttribute("channel"), start = parseEPGDate(p.getAttribute("start")), stop = parseEPGDate(p.getAttribute("stop"));
+          if (now >= start && now <= stop) epgData[chan] = p.querySelector("title")?.textContent || "";
         }
-      } catch (error) {
-        console.error("EPG verisi alınamadı:", error);
-      }
+      } catch (error) { console.error("EPG verisi alınamadı:", error); showConnectionWarning(false); }
     }
-
     function parseEPGDate(str) {
       if (!str) return new Date(0);
-      const datePart = str.slice(0, 14);
-      const tzPart = str.slice(15, 20);
-      const y = +datePart.slice(0, 4), m = +datePart.slice(4, 6) - 1, d = +datePart.slice(6, 8);
-      const h = +datePart.slice(8, 10), min = +datePart.slice(10, 12);
-      const tzSign = tzPart[0] === '+' ? 1 : -1;
-      const tzHours = +tzPart.slice(1, 3), tzMins = +tzPart.slice(3, 5);
-      const offset = tzSign * (tzHours * 60 + tzMins) * 60000;
-      const utcDate = new Date(Date.UTC(y, m, d, h, min));
-      return new Date(utcDate.getTime() - offset);
+      const dp = str.slice(0, 14), tz = str.slice(15, 20), y = +dp.slice(0, 4), m = +dp.slice(4, 6) - 1, d = +dp.slice(6, 8), h = +dp.slice(8, 10), min = +dp.slice(10, 12);
+      const s = tz[0] === '+' ? 1 : -1, th = +tz.slice(1, 3), tm = +tz.slice(3, 5), offset = s * (th * 60 + tm) * 60000;
+      return new Date(new Date(Date.UTC(y, m, d, h, min)).getTime() - offset);
     }
-
     function listGroups() {
-      const desiredOrder = ['Tüm Kanallar', 'Ulusal', 'Spor', 'Çocuk & Eğitim', 'Belgesel', 'Müzik', 'Müzik Ekstra', 'Yaşam & Eğlence', 'Sinema ve Dizi', 'Ulusal Haber', 'Yabancı', 'Yabancı Haber'];
-      let groups = [...new Set(allChannels.map(c => c.group))]
-        .filter(g => g && g !== 'Bilgilendirme'); 
-
-      groups.sort((a, b) => {
-        const indexA = desiredOrder.indexOf(a);
-        const indexB = desiredOrder.indexOf(b);
-        if (indexA !== -1 && indexB !== -1) return indexA - indexB;
-        if (indexA !== -1) return -1;
-        if (indexB !== -1) return 1;
-        return a.localeCompare(b);
-      });
-
-      G_UI.groups.innerHTML = "";
+      const currentActiveGroup = document.querySelector('.group.active')?.textContent || 'Favorilerim';
+      const desiredOrder = ['Favorilerim', 'Tüm Kanallar', 'Ulusal', 'Spor', 'Çocuk & Eğitim', 'Belgesel', 'Müzik', 'Müzik Ekstra', 'Yaşam & Eğlence', 'Sinema ve Dizi', 'Ulusal Haber'];
+      let groups = [...new Set(allChannels.map(c => c.group))].filter(g => g && g !== 'Bilgilendirme'); 
+      groups.unshift('Favorilerim'); groups = [...new Set(groups)];
+      groups.sort((a, b) => { const iA = desiredOrder.indexOf(a), iB = desiredOrder.indexOf(b); if (iA !== -1 && iB !== -1) return iA - iB; if (iA !== -1) return -1; if (iB !== -1) return 1; return a.localeCompare(b); });
+      G_UI.groups.innerHTML = ""; let groupToActivate = null;
       groups.forEach((g) => {
-        const el = document.createElement("div");
-        el.className = "group";
-        el.textContent = g;
-        el.onclick = () => {
-          document.querySelectorAll(".group").forEach(e => e.classList.remove("active"));
-          el.classList.add("active");
-          listChannels(g);
-        };
-        G_UI.groups.appendChild(el);
+        if (g === 'Favorilerim' && getFavorites().length === 0) return;
+        const el = document.createElement("div"); el.className = "group"; el.textContent = g;
+        el.onclick = () => { document.querySelectorAll(".group.active").forEach(e => e.classList.remove("active")); el.classList.add("active"); activeGroupName = g; listChannels(g); };
+        G_UI.groups.appendChild(el); if (g === currentActiveGroup) groupToActivate = el;
       });
-
-      if (G_UI.groups.firstChild) G_UI.groups.firstChild.click();
+      if (groupToActivate) groupToActivate.click(); else if (G_UI.groups.firstChild) G_UI.groups.firstChild.click();
     }
-
     function listChannels(group) {
-      G_UI.channels.innerHTML = "";
-      stopStream(G_UI.preview.video, hls);
-      hls = null;
-      G_UI.preview.video.style.display = 'none';
-      G_UI.preview.placeholder.style.display = 'flex';
-      
-      currentChannelList = allChannels.filter(c => c.group === group);
-      // Kanalları kendi içinde alfabetik sırala
+      G_UI.channels.innerHTML = ""; stopStream(G_UI.preview.video, hls); hls = null;
+      G_UI.preview.video.style.display = 'none'; G_UI.preview.placeholder.style.display = 'flex';
+      const favorites = getFavorites();
+      if (group === 'Favorilerim') currentChannelList = baseChannelList.filter(c => favorites.includes(c.name));
+      else currentChannelList = allChannels.filter(c => c.group === group);
       currentChannelList.sort((a, b) => a.name.localeCompare(b.name));
-
       currentChannelList.forEach((c, idx) => {
-        const epgTitle = epgData[c.epgId] || "";
-        const el = document.createElement("div");
-        el.className = "channel";
-        el.innerHTML = `<img src="${c.logo || ''}" onerror="this.style.display='none'" alt="logo">
-        <div><div>${c.name}</div><div class="epg-title">${epgTitle}</div></div>`;
-        el.onclick = () => {
-            document.querySelectorAll(".channel.active").forEach(ch => ch.classList.remove("active"));
-            el.classList.add("active");
-            // idx'i global listedeki index ile eşleştir
-            const globalIndex = allChannels.findIndex(chan => chan.name === c.name && chan.group === c.group);
-            playChannelInPreview(globalIndex, idx); 
-        };
+        const epgTitle = epgData[c.epgId] || "", isFavorited = favorites.includes(c.name);
+        const el = document.createElement("div"); el.className = "channel";
+        el.innerHTML = `<div class="channel-info"><img src="${c.logo || ''}" onerror="this.style.display='none'" alt="logo"><div><div>${c.name}</div><div class="epg-title">${epgTitle}</div></div></div><span class="fav-btn ${isFavorited ? 'favorited' : ''}">★</span>`;
+        const channelInfo = el.querySelector('.channel-info'), favButton = el.querySelector('.fav-btn');
+        channelInfo.onclick = () => { document.querySelectorAll(".channel.active").forEach(ch => ch.classList.remove("active")); el.classList.add("active"); playChannelInPreview(idx); };
+        favButton.onclick = (e) => { e.stopPropagation(); toggleFavorite(c.name, favButton); };
         G_UI.channels.appendChild(el);
       });
     }
-
-    function playChannelInPreview(globalIdx, localIdx) {
-        currentChannelIndex = localIdx; // Yönlendirme butonları için yerel indexi kullan
-        const channel = currentChannelList[localIdx];
-        if (!channel) return;
-        
-        G_UI.player.logo.style.visibility = 'visible';
-        G_UI.player.controls.forEach(btn => btn.style.visibility = 'visible');
-
-        G_UI.player.logo.src = channel.logo || '';
-        G_UI.preview.placeholder.style.display = 'none';
-        G_UI.preview.video.style.display = 'block';
-
+    function playChannelInPreview(localIdx) {
+        currentChannelIndex = localIdx; const channel = currentChannelList[localIdx]; if (!channel) return;
+        G_UI.player.logo.style.visibility = 'visible'; G_UI.player.controls.forEach(btn => btn.style.visibility = 'visible');
+        G_UI.player.logo.src = channel.logo || ''; G_UI.preview.placeholder.style.display = 'none'; G_UI.preview.video.style.display = 'block';
         playStream(G_UI.preview.video, channel.url, true).then(instance => hls = instance);
     }
-
     function changeChannel(direction) {
         if (currentChannelList.length === 0 || currentChannelIndex < 0) return;
-        const newIndex = (currentChannelIndex + direction + currentChannelList.length) % currentChannelList.length;
-        const channelElements = G_UI.channels.querySelectorAll('.channel');
-        if(channelElements[newIndex]) {
-            channelElements[newIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
-            channelElements[newIndex].click();
-        }
+        const newIndex = (currentChannelIndex + direction + currentChannelList.length) % currentChannelList.length, channelElements = G_UI.channels.querySelectorAll('.channel');
+        if (channelElements[newIndex]) { channelElements[newIndex].scrollIntoView({ behavior: 'smooth', block: 'center' }); channelElements[newIndex].querySelector('.channel-info').click(); }
     }
-
     function toggleFullscreen() {
         if (currentChannelIndex < 0) return;
-
-        if (!document.fullscreenElement) {
-            G_UI.preview.video.requestFullscreen().catch(err => {
-                alert(`Tam ekran modu hatası: ${err.message} (${err.name})`);
-            });
-        } else {
-            document.exitFullscreen();
-        }
+        if (!document.fullscreenElement) G_UI.preview.video.requestFullscreen().catch(err => alert(`Tam ekran modu hatası: ${err.message}`));
+        else document.exitFullscreen();
     }
-    
-    async function playStream(videoElement, url, isUnmuted) {
+    async function playStream(videoElement, url) {
         stopStream(videoElement, hls);
-        
-        if (Hls.isSupported()) {
-            hls = new Hls();
-            hls.loadSource(url);
-            hls.attachMedia(videoElement);
-        } else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) {
-            videoElement.src = url;
-        } else {
-            alert("Bu tarayıcı video oynatmayı desteklemiyor.");
-            return null;
-        }
-        
-        videoElement.muted = false;
-        videoElement.volume = 1.0;
-        
-        try {
-            await videoElement.play();
-        } catch (err) {
-            console.error("Otomatik oynatma (sesli) tarayıcı tarafından engellendi:", err);
-        }
+        if (Hls.isSupported()) { hls = new Hls(); hls.loadSource(url); hls.attachMedia(videoElement); } 
+        else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) videoElement.src = url;
+        else { alert("Bu tarayıcı video oynatmayı desteklemiyor."); return null; }
+        videoElement.muted = false; videoElement.volume = 1.0;
+        try { await videoElement.play(); } catch (err) { console.error("Otomatik oynatma engellendi:", err); }
         return hls;
     }
-
     function stopStream(videoElement, hlsInstance) {
-        videoElement.pause();
-        videoElement.removeAttribute("src");
+        videoElement.pause(); videoElement.removeAttribute("src");
         try { videoElement.load(); } catch (e) {}
-        if (hlsInstance) {
-            hlsInstance.destroy();
-        }
+        if (hlsInstance) hlsInstance.destroy();
     }
     
     window.addEventListener("load", async () => {
-      createThemeSelector();
-      const savedTheme = localStorage.getItem('iptvTheme') || 'default';
-      applyTheme(savedTheme);
-
-      // 1. Tüm kaynaklardan kanalları al
-      const m3uChannels = await fetchM3U();
+      createThemeSelector(); applyTheme(localStorage.getItem('iptvTheme') || 'default');
       
-      // 2. Tüm kanalları birleştir ve tekrarları kaldır (orijinal kategoriler korunur)
-      const channelMap = new Map();
+      // 1. Yapıştırılan M3U metnini ayrıştırarak kanalları oluştur
+      const m3uChannels = parseM3UText(m3uRawText);
+      
+      // 2. Tüm kanal listelerini SİLME YAPMADAN birleştir
       const combinedList = [...m3uChannels, ...extraMusicChannels, ...newChannels];
       
-      combinedList.forEach(channel => {
-        const key = channel.name.trim().toLowerCase();
-        channelMap.set(key, channel);
-      });
+      // 3. Geçerli kanallardan oluşan temel bir liste oluştur
+      baseChannelList = combinedList.filter(c => c.url && c.name);
       
-      const uniqueCategorizedChannels = Array.from(channelMap.values());
+      // 4. "Tüm Kanallar" kategorisini oluştur
+      const allChannelsGroup = JSON.parse(JSON.stringify(baseChannelList));
+      allChannelsGroup.forEach(channel => { channel.group = 'Tüm Kanallar'; });
       
-      // 3. "Tüm Kanallar" kategorisi için kanalların bir kopyasını oluştur
-      const allChannelsGroup = JSON.parse(JSON.stringify(uniqueCategorizedChannels));
-      allChannelsGroup.forEach(channel => {
-        channel.group = 'Tüm Kanallar';
-      });
-      
-      // 4. "Tüm Kanallar" listesini ve kategorize edilmiş listeyi birleştir
-      allChannels = [...allChannelsGroup, ...uniqueCategorizedChannels];
+      // 5. Ana kanal listesini oluştur
+      allChannels = [...baseChannelList, ...allChannelsGroup];
       
       await fetchEPG();
       listGroups();
-
       G_UI.preview.video.addEventListener('dblclick', toggleFullscreen);
     });
   </script>
 </body>
-
 </html>
