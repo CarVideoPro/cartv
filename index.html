@@ -555,9 +555,14 @@ https://tv100-live.daioncdn.net/tv100/tv100_1080p.m3u8
       });
       if (groupToActivate) groupToActivate.click(); else if (G_UI.groups.firstChild) G_UI.groups.firstChild.click();
     }
+    
+    // ######################################################################
+    // # --- DÜZENLENMİŞ FONKSİYON ---
+    // # Kategori değiştirildiğinde videoyu durduran satırlar kaldırıldı.
+    // ######################################################################
     function listChannels(group) {
-      G_UI.channels.innerHTML = ""; stopStream(G_UI.preview.video, hls); hls = null;
-      G_UI.preview.video.style.display = 'none'; G_UI.preview.placeholder.style.display = 'flex';
+      G_UI.channels.innerHTML = "";
+      
       const favorites = getFavorites();
       if (group === 'Favorilerim') currentChannelList = baseChannelList.filter(c => favorites.includes(c.name));
       else currentChannelList = allChannels.filter(c => c.group === group);
@@ -572,6 +577,7 @@ https://tv100-live.daioncdn.net/tv100/tv100_1080p.m3u8
         G_UI.channels.appendChild(el);
       });
     }
+
     function playChannelInPreview(localIdx) {
         currentChannelIndex = localIdx; const channel = currentChannelList[localIdx]; if (!channel) return;
         G_UI.player.logo.style.visibility = 'visible'; G_UI.player.controls.forEach(btn => btn.style.visibility = 'visible');
