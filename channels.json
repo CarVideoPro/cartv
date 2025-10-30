@@ -94,16 +94,9 @@
     {
       "name": "Minika Çocuk",
       "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/MinikaCocuk.tr.png",
-      "group": "Çocuk",
+      "group": "Çocuk & Eğitim",
       "epgId": "MinikaCocuk.tr",
       "url": "https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/minikago_cocuk/minikago_cocuk_720p.m3u8"
-    },
-    {
-      "name": "Minika GO",
-      "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/MinikaGo.tr.png",
-      "group": "Çocuk",
-      "epgId": "MinikaGo.tr",
-      "url": "https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/minikago/minikago_720p.m3u8"
     },
     {
       "name": "NOW",
@@ -199,7 +192,7 @@
     {
       "name": "TRT Çocuk",
       "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TRTCocuk.tr.png",
-      "group": "Çocuk",
+      "group": "Çocuk & Eğitim",
       "epgId": "TRTCocuk.tr",
       "url": "https://tv-trtcocuk.medya.trt.com.tr/master.m3u8"
     },
@@ -645,13 +638,6 @@
       "epgId": ""
     },
     {
-      "name": "TRT ÇOCUK",
-      "url": "https://tv-trtcocuk.medya.trt.com.tr/master_720.m3u8",
-      "logo": "https://i.ibb.co/mbvwYMB/trt-cocuk.png",
-      "group": "Çocuk & Eğitim",
-      "epgId": ""
-    },
-    {
       "name": "TRT Diyanet Çocuk",
       "url": "https://tv-trtdiyanetcocuk.medya.trt.com.tr/master.m3u8",
       "logo": "https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTNwBQtkeuk0a1Ofxhin7lGP_VtWNecIwOsSA&s",
@@ -666,13 +652,6 @@
       "epgId": ""
     },
     {
-      "name": "Minika Çocuk",
-      "url": "https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/minikago_cocuk/minikago_cocuk_720p.m3u8",
-      "logo": "https://i.ibb.co/S794c6W/minika-cocuk.png",
-      "group": "Çocuk & Eğitim",
-      "epgId": ""
-    },
-    {
       "name": "Disney JR HD",
       "url": "https://saran-live.ercdn.net/disneyjunior/index.m3u8",
       "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/2024_Disney_Jr._Logo.svg/1024px-2024_Disney_Jr._Logo.svg.png",
@@ -680,31 +659,80 @@
       "epgId": ""
     },
     {
-      "name": "YouTube Örnek Video",
-      "youtubeId": "ysh-bPiD3Oo",
-      "logo": "https://i.ytimg.com/vi/ysh-bPiD3Oo/hqdefault.jpg",
-      "group": "YouTube",
+      "name": "Her An Kur'an",
+      "youtubeId": "TnskYqLfl0E",
+      "logo": "https://i.ytimg.com/vi/TnskYqLfl0E/hqdefault.jpg",
+      "group": "Dini",
       "epgId": ""
     },
     {
-      "name": "Lofi Girl (Canlı 7/24)",
-      "youtubeId": "jfKfPfyJRdk",
-      "logo": "https://i.ytimg.com/vi/jfKfPfyJRdk/hqdefault_live.jpg",
-      "group": "YouTube",
+      "name": "Lalegül TV",
+      "youtubeId": "36L9L7XUNUU",
+      "logo": "https://i.ytimg.com/vi/36L9L7XUNUU/sddefault.jpg",
+      "group": "Dini",
       "epgId": ""
     },
     {
-      "name": "A SPOR YT HD",
+      "name": "A SPOR HD",
       "youtubeId": "ysh-bPiD3Oo",
       "logo": "https://i.ytimg.com/vi/ysh-bPiD3Oo/sddefault.jpg",
       "group": "Spor",
       "epgId": ""
     },
     {
-      "name": "A HABER YT HD",
+      "name": "A HABER HD",
       "youtubeId": "nmY9i63t6qo",
       "logo": "https://i.ytimg.com/vi/nmY9i63t6qo/sddefault.jpg",
       "group": "Ulusal Haber",
+      "epgId": ""
+    },
+    {
+      "name": "A PARA HD",
+      "youtubeId": "6-Q8v_e-M2g",
+      "logo": "https://i.ytimg.com/vi/6-Q8v_e-M2g/sddefault.jpg",
+      "group": "Ulusal Haber",
+      "epgId": ""
+    },
+    {
+      "name": "Bein Sport Haber",
+      "youtubeId": "ovXYPBAzo-w",
+      "logo": "https://i.ytimg.com/vi/ovXYPBAzo-w/sddefault.jpg",
+      "group": "Spor",
+      "epgId": ""
+    },
+    {
+      "name": "Kral Şakir TV",
+      "youtubeId": "5Whk9MVTpI4",
+      "logo": "https://i.ytimg.com/vi/5Whk9MVTpI4/sddefault.jpg",
+      "group": "Çocuk & Eğitim",
+      "epgId": ""
+    },
+    {
+      "name": "Cartoonito Türkiye",
+      "youtubeId": "0BISPwH_qFM",
+      "logo": "https://i.ytimg.com/vi/0BISPwH_qFM/sddefault.jpg",
+      "group": "Çocuk & Eğitim",
+      "epgId": ""
+    },
+    {
+      "name": "CNN Türk",
+      "youtubeId": "6N8_r2uwLEc",
+      "logo": "https://i.ytimg.com/vi/6N8_r2uwLEc/sddefault.jpg",
+      "group": "Ulusal Haber",
+      "epgId": ""
+    },
+    {
+      "name": "Haber Global",
+      "youtubeId": "EqoCJ8BPxtE",
+      "logo": "https://i.ytimg.com/vi/EqoCJ8BPxtE/sddefault.jpg",
+      "group": "Ulusal Haber",
+      "epgId": ""
+    },
+    {
+      "name": "Aşk-ı Neva",
+      "youtubeId": "OyuqW7A4gmg",
+      "logo": "https://i.ytimg.com/vi/OyuqW7A4gmg/sddefault.jpg",
+      "group": "Dini",
       "epgId": ""
     }
   ]
