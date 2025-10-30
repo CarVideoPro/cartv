@@ -734,6 +734,34 @@
       "logo": "https://i.ytimg.com/vi/OyuqW7A4gmg/sddefault.jpg",
       "group": "Dini",
       "epgId": ""
+    },
+    {
+      "name": "Huzur Pınarı",
+      "youtubeId": "350Gej4vDOY",
+      "logo": "https://i.ytimg.com/vi/350Gej4vDOY/sddefault.jpg",
+      "group": "Dini",
+      "epgId": ""
+    },
+    {
+      "name": "Bibercik TV",
+      "youtubeId": "Sp6bxQx_z8U",
+      "logo": "https://i.ytimg.com/vi/Sp6bxQx_z8U/sddefault.jpg",
+      "group": "Dini",
+      "epgId": ""
+    },
+    {
+      "name": "Kur'an-ı Kerim",
+      "youtubeId": "9shisvrYqXM",
+      "logo": "https://i.ytimg.com/vi/9shisvrYqXM/sddefault.jpg",
+      "group": "Dini",
+      "epgId": ""
+    },
+    {
+      "name": "Karadeniz Akustik",
+      "youtubeId": "Fru_Ss-TqgY",
+      "logo": "https://i.ytimg.com/vi/Fru_Ss-TqgY/sddefault.jpg",
+      "group": "Müzik",
+      "epgId": ""
     }
   ]
 }
