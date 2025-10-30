@@ -10,7 +10,7 @@
   <script src="https://www.youtube.com/iframe_api"></script>
   
   <style>
-    /* CSS KODUNUZ BURADA */
+    /* CSS KODUNUZ BURADA (Değişiklik yok) */
     :root {
         --player-height: 55px;
         --category-bar-height: 40px;
@@ -214,14 +214,13 @@
         color: var(--favorite-color);
     }
 
-    /* --- GÜNCELLENMİŞ YOUTUBE İKON STİLİ --- */
+    /* --- YOUTUBE İKON STİLİ --- */
     .youtube-icon {
         width: 18px;
         height: 18px;
         flex-shrink: 0; /* Küçülmesini engeller */
-        /* margin-left ve margin-right kaldırıldı. Ana .channel'daki 'gap: 8px;' boşluğu yönetecek. */
     }
-    /* --- GÜNCELLEME SONU --- */
+    /* --- STİL SONU --- */
 
     #playerContainer {
       position: fixed; bottom: 0; left: 0; width: 100%; height: var(--player-height); background: var(--bg-secondary);
@@ -412,20 +411,46 @@
     }
     // --- YouTube API Entegrasyonu Bitişi ---
 
-    // (getFavorites, saveFavorites, toggleFavorite, applyTheme, createThemeSelector, showConnectionWarning, EPG fonksiyonları burada - Değişiklik yok)
+    // (getFavorites, saveFavorites)
     function getFavorites() { const favs = localStorage.getItem('iptvFavorites'); return favs ? JSON.parse(favs) : []; }
     function saveFavorites(favs) { localStorage.setItem('iptvFavorites', JSON.stringify(favs)); }
+    
+    // ######################################################################
+    // # --- 'toggleFavorite' FONKSİYONU (DÜZELTİLMİŞ HALİ) ---
+    // # Son favori silindiğinde "boş liste" hatasını önlemek için bu mantık doğrudur.
+    // ######################################################################
     function toggleFavorite(channelName, favButton) {
         let favorites = getFavorites();
         const index = favorites.indexOf(channelName);
         const wasEmpty = favorites.length === 0;
-        if (index > -1) { favorites.splice(index, 1); favButton.classList.remove('favorited'); } 
-        else { favorites.push(channelName); favButton.classList.add('favorited'); }
+        const wasOnFavoritesTab = (activeGroupName === 'Favorilerim'); // 1. Durumu *önceden* kaydet
+
+        if (index > -1) { 
+            favorites.splice(index, 1); 
+            favButton.classList.remove('favorited'); 
+        } else { 
+            favorites.push(channelName); 
+            favButton.classList.add('favorited'); 
+        }
+        
         saveFavorites(favorites);
+        
         const isEmptyNow = favorites.length === 0;
-        if (wasEmpty !== isEmptyNow) listGroups();
-        if (activeGroupName === 'Favorilerim') listChannels('Favorilerim');
+
+        // 2. Sekme listesini sadece gerekirse güncelle (boştan doluya veya doludan boşa geçtiyse)
+        if (wasEmpty !== isEmptyNow) {
+            listGroups();
+        }
+
+        // 3. Sol kanal listesini güncelle
+        if (wasOnFavoritesTab && !isEmptyNow) {
+            listChannels('Favorilerim');
+        }
     }
+    // --- GÜNCELLEME SONU ---
+
+
+    // (applyTheme, createThemeSelector, showConnectionWarning, EPG fonksiyonları burada - Değişiklik yok)
     function applyTheme(themeName) {
         document.body.dataset.theme = themeName;
         localStorage.setItem('iptvTheme', themeName);
@@ -469,6 +494,12 @@
       const s = tz[0] === '+' ? 1 : -1, th = +tz.slice(1, 3), tm = +tz.slice(3, 5), offset = s * (th * 60 + tm) * 60000;
       return new Date(new Date(Date.UTC(y, m, d, h, min)).getTime() - offset);
     }
+    
+    // ######################################################################
+    // # --- GÜNCELLENMİŞ FONKSİYON ---
+    // # 'listGroups' fonksiyonu, "Favorilerim" boşsa sekmeyi gizlemek 
+    // # için güncellendi.
+    // ######################################################################
     function listGroups() {
       const currentActiveGroup = document.querySelector('.group.active')?.textContent || 'Favorilerim';
       const desiredOrder = ['Favorilerim', 'Tüm Kanallar', 'Ulusal', 'Spor', 'Çocuk & Eğitim', 'Belgesel', 'Müzik', 'YouTube', 'Müzik Ekstra', 'Yaşam & EğLence', 'Sinema ve Dizi', 'Ulusal Haber'];
@@ -476,16 +507,30 @@
       groups.unshift('Favorilerim'); groups = [...new Set(groups)];
       groups.sort((a, b) => { const iA = desiredOrder.indexOf(a), iB = desiredOrder.indexOf(b); if (iA !== -1 && iB !== -1) return iA - iB; if (iA !== -1) return -1; if (iB !== -1) return 1; return a.localeCompare(b); });
       G_UI.groups.innerHTML = ""; let groupToActivate = null;
+      
       groups.forEach((g) => {
+        // --- BU SATIR EKLENDİ (DÜZELTME) ---
+        // Eğer kategori "Favorilerim" ise VE favori listesinin uzunluğu 0 ise,
+        // bu sekmeyi oluşturma ve döngüde bir sonrakine geç.
         if (g === 'Favorilerim' && getFavorites().length === 0) return;
+        // --- DÜZELTME SONU ---
+        
         const el = document.createElement("div"); el.className = "group"; el.textContent = g;
         el.onclick = () => { document.querySelectorAll(".group.active").forEach(e => e.classList.remove("active")); el.classList.add("active"); activeGroupName = g; listChannels(g); };
         G_UI.groups.appendChild(el); if (g === currentActiveGroup) groupToActivate = el;
       });
-      if (groupToActivate) groupToActivate.click(); else if (G_UI.groups.firstChild) G_UI.groups.firstChild.click();
+      
+      // Eğer 'groupToActivate' (genellikle 'Favorilerim') artık yoksa
+      // ve 'Tüm Kanallar' (firstChild) varsa, onu seç.
+      if (groupToActivate) {
+          groupToActivate.click();
+      } else if (G_UI.groups.firstChild) {
+          G_UI.groups.firstChild.click();
+      }
     }
+    // --- GÜNCELLEME SONU ---
 
-    // --- listChannels FONKSİYONU (Değişiklik yok, son hali) ---
+    // --- listChannels (Değişiklik yok, YouTube ikonu dahil) ---
     function listChannels(group) {
       G_UI.channels.innerHTML = "";
       
@@ -499,7 +544,6 @@
         const epgTitle = epgData[c.epgId] || "", isFavorited = favorites.includes(c.name);
         const el = document.createElement("div"); el.className = "channel";
         
-        // Kanalın 'youtubeId'si varsa ikonu ekle
         el.innerHTML = `
             <div class="channel-info">
                 <img src="${c.logo || ''}" onerror="this.style.display='none'" alt="logo">
@@ -518,8 +562,6 @@
         G_UI.channels.appendChild(el);
       });
     }
-    // --- GÜNCELLEME SONU ---
-
 
     // (playChannelInPreview, changeChannel, toggleFullscreen, playStream, stopStream fonksiyonları burada - Değişiklik yok)
     function playChannelInPreview(localIdx) {
