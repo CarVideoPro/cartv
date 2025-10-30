@@ -45,7 +45,7 @@
     {
       "name": "Haber Türk",
       "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/HaberturkTV.tr.png",
-      "group": "Haber",
+      "group": "Ulusal Haber",
       "epgId": "HaberturkTV.tr",
       "url": "https://api.codetabs.com/v1/proxy/?quest=https://vizi.vizi.workers.dev/?ID=13"
     },
@@ -66,7 +66,7 @@
     {
       "name": "Halk TV",
       "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/HalkTV.tr.png",
-      "group": "Haber",
+      "group": "Ulusal Haber",
       "epgId": "HalkTV.tr",
       "url": "https://halktv-live.daioncdn.net/halktv/halktv.m3u8"
     },
@@ -206,7 +206,7 @@
     {
       "name": "TRT Haber",
       "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TRTHaber.tr.png",
-      "group": "Haber",
+      "group": "Ulusal Haber",
       "epgId": "TRTHaber.tr",
       "url": "https://tv-trthaber.medya.trt.com.tr/master.m3u8"
     },
@@ -248,7 +248,7 @@
     {
       "name": "TV 100",
       "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TV100.tr.png",
-      "group": "Haber",
+      "group": "Ulusal Haber",
       "epgId": "TV100.tr",
       "url": "https://tv100-live.daioncdn.net/tv100/tv100_1080p.m3u8"
     },
@@ -696,8 +696,15 @@
     {
       "name": "A SPOR YT HD",
       "youtubeId": "ysh-bPiD3Oo",
-      "logo": "https://upload.wikimedia.org/wikipedia/tr/archive/e/e9/20140920094552%21A_Spor_logosu.png",
+      "logo": "https://i.ytimg.com/vi/ysh-bPiD3Oo/sddefault.jpg",
       "group": "Spor",
+      "epgId": ""
+    },
+    {
+      "name": "A HABER YT HD",
+      "youtubeId": "nmY9i63t6qo",
+      "logo": "https://i.ytimg.com/vi/nmY9i63t6qo/sddefault.jpg",
+      "group": "Ulusal Haber",
       "epgId": ""
     }
   ]
