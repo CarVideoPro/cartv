@@ -29,13 +29,6 @@
       "url": "https://live.artidijitalmedya.com/artidijital_cine1/cine1/playlist.m3u8"
     },
     {
-      "name": "DMAX",
-      "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/DMAX.tr.png",
-      "group": "Eğlence",
-      "epgId": "DMAX.tr",
-      "url": "https://dogus-live.daioncdn.net/dmax/dmax_720p.m3u8"
-    },
-    {
       "name": "A SPOR",
       "logo": "https://upload.wikimedia.org/wikipedia/tr/archive/e/e9/20140920094552%21A_Spor_logosu.png",
       "group": "Spor",
@@ -155,13 +148,6 @@
       "url": "https://demiroren-live.daioncdn.net/teve2/teve2.m3u8"
     },
     {
-      "name": "TLC",
-      "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TLC.tr.png",
-      "group": "Eğlence",
-      "epgId": "TLC.tr",
-      "url": "https://dogus-live.daioncdn.net/tlc/tlc.m3u8"
-    },
-    {
       "name": "TRT 1",
       "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TRT1.tr.png",
       "group": "Ulusal",
@@ -181,13 +167,6 @@
       "group": "Spor",
       "epgId": "TRT3.tr",
       "url": "https://tv-trtspor2.medya.trt.com.tr/master.m3u8"
-    },
-    {
-      "name": "TRT Belgesel",
-      "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TRTBelgesel.tr.png",
-      "group": "Belgesel",
-      "epgId": "TRTBelgesel.tr",
-      "url": "https://tv-trtbelgesel.medya.trt.com.tr/master.m3u8"
     },
     {
       "name": "TRT Çocuk",
@@ -540,20 +519,6 @@
       "epgId": ""
     },
     {
-      "name": "DMAX",
-      "url": "http://78.128.125.60:9980/play/a01w/index.m3u8",
-      "logo": "https://i.ibb.co/1LH22gK/dmax.png",
-      "group": "Belgesel",
-      "epgId": ""
-    },
-    {
-      "name": "TLC",
-      "url": "https://dogus-live.daioncdn.net/tlc/tlc_720p.m3u8",
-      "logo": "https://i.ibb.co/Cm1nYZK/tlc.png",
-      "group": "Belgesel",
-      "epgId": ""
-    },
-    {
       "name": "TRT AVAZ",
       "url": "https://tv-trtavaz.medya.trt.com.tr/master_720.m3u8",
       "logo": "https://i.ibb.co/Mnhmxsn/trt-avaz.png",
@@ -695,8 +660,8 @@
     },
     {
       "name": "Bein Sport Haber",
-      "youtubeId": "ovXYPBAzo-w",
-      "logo": "https://i.ytimg.com/vi/ovXYPBAzo-w/sddefault.jpg",
+      "youtubeId": "9xVXWLwT0vA",
+      "logo": "https://i.ytimg.com/vi/9xVXWLwT0vA/sddefault.jpg",
       "group": "Spor",
       "epgId": ""
     },
@@ -761,6 +726,76 @@
       "youtubeId": "Fru_Ss-TqgY",
       "logo": "https://i.ytimg.com/vi/Fru_Ss-TqgY/sddefault.jpg",
       "group": "Müzik",
+      "epgId": ""
+    },
+    {
+      "name": "DMAX",
+      "youtubeId": "t1TaNys7xd8",
+      "logo": "https://i.ytimg.com/vi/t1TaNys7xd8/sddefault.jpg",
+      "group": "Belgesel",
+      "epgId": ""
+    },
+    {
+      "name": "TLC",
+      "youtubeId": "ZZaW33xTChU",
+      "logo": "https://i.ytimg.com/vi/ZZaW33xTChU/sddefault.jpg",
+      "group": "Belgesel",
+      "epgId": ""
+    },
+    {
+      "name": "NatureTime",
+      "youtubeId": "gC_YZh_OHRc",
+      "logo": "https://i.ytimg.com/vi/gC_YZh_OHRc/sddefault.jpg",
+      "group": "Belgesel",
+      "epgId": ""
+    },
+    {
+      "name": "TGRT Belgesel",
+      "youtubeId": "Osui-3YWo6k",
+      "logo": "https://i.ytimg.com/vi/Osui-3YWo6k/sddefault.jpg",
+      "group": "Belgesel",
+      "epgId": ""
+    },
+    {
+      "name": "Rhythm Emotion",
+      "youtubeId": "q9iTGiUtYik",
+      "logo": "https://i.ytimg.com/vi/q9iTGiUtYik/sddefault.jpg",
+      "group": "Belgesel",
+      "epgId": ""
+    },
+    {
+      "name": "Yardımcı Arabalar",
+      "youtubeId": "GS1qaoWGQcY",
+      "logo": "https://i.ytimg.com/vi/GS1qaoWGQcY/sddefault.jpg",
+      "group": "Çocuk & Eğitim",
+      "epgId": ""
+    },
+    {
+      "name": "Kamyon Leo",
+      "youtubeId": "DWwxjGtKbqg",
+      "logo": "https://i.ytimg.com/vi/DWwxjGtKbqg/sddefault.jpg",
+      "group": "Çocuk & Eğitim",
+      "epgId": ""
+    },
+    {
+      "name": "Diyanet Çocuk",
+      "youtubeId": "KURUlpJkY-I",
+      "logo": "https://i.ytimg.com/vi/KURUlpJkY-I/sddefault.jpg",
+      "group": "Çocuk & Eğitim",
+      "epgId": ""
+    },
+    {
+      "name": "Mucize Uğurböceği",
+      "youtubeId": "UwTSNrt6GJc",
+      "logo": "https://i.ytimg.com/vi/UwTSNrt6GJc/sddefault.jpg",
+      "group": "Çocuk & Eğitim",
+      "epgId": ""
+    },
+    {
+      "name": "Robocar Poli",
+      "youtubeId": "l0Fx4-AHkuk",
+      "logo": "https://i.ytimg.com/vi/l0Fx4-AHkuk/sddefault.jpg",
+      "group": "Çocuk & Eğitim",
       "epgId": ""
     }
   ]
