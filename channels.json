@@ -148,22 +148,8 @@
       "url": "https://demiroren-live.daioncdn.net/teve2/teve2.m3u8"
     },
     {
-      "name": "TRT 1",
-      "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TRT1.tr.png",
-      "group": "Ulusal",
-      "epgId": "TRT1.tr",
-      "url": "https://trt.daioncdn.net/trt-1/master.m3u8?app=clean"
-    },
-    {
-      "name": "TRT 2",
-      "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TRT2.tr.png",
-      "group": "Ulusal",
-      "epgId": "TRT2.tr",
-      "url": "https://tv-trt2.medya.trt.com.tr/master.m3u8"
-    },
-    {
       "name": "TRT 3",
-      "logo": "httpss://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TRT3.tr.png",
+      "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TRT3.tr.png",
       "group": "Spor",
       "epgId": "TRT3.tr",
       "url": "https://tv-trtspor2.medya.trt.com.tr/master.m3u8"
@@ -174,27 +160,6 @@
       "group": "Çocuk & Eğitim",
       "epgId": "TRTCocuk.tr",
       "url": "https://tv-trtcocuk.medya.trt.com.tr/master.m3u8"
-    },
-    {
-      "name": "TRT Haber",
-      "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TRTHaber.tr.png",
-      "group": "Ulusal Haber",
-      "epgId": "TRTHaber.tr",
-      "url": "https://tv-trthaber.medya.trt.com.tr/master.m3u8"
-    },
-    {
-      "name": "TRT Spor",
-      "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TRTSpor.tr.png",
-      "group": "Spor",
-      "epgId": "TRTSpor.tr",
-      "url": "https://trt.daioncdn.net/trtspor/master_1080p.m3u8?platform=trtspor&sid=7uu9as0en9j6&app=9b65474e-8197-4899-aabb-321fcf6dd9eb&ce=2"
-    },
-    {
-      "name": "TRT Spor Yıldız",
-      "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TRTSporYildiz.tr.png",
-      "group": "Spor",
-      "epgId": "TRTSporYildiz.tr",
-      "url": "https://trt.daioncdn.net/trtspor-yildiz/master_1080p.m3u8?platform=trtspor&sid=7uu9tzy38ipb&app=6d14425d-4281-477b-8b74-49c40e4aa8b8&ce=2"
     },
     {
       "name": "TRT Türk",
@@ -803,6 +768,76 @@
       "youtubeId": "PqgXRrGlPRg",
       "logo": "https://i.ytimg.com/vi/PqgXRrGlPRg/sddefault.jpg",
       "group": "Çocuk & Eğitim",
+      "epgId": ""
+    },
+    {
+      "name": "Kaçma Birader",
+      "youtubeId": "FA2JSvssf1c",
+      "logo": "https://i.ytimg.com/vi/FA2JSvssf1c/sddefault.jpg",
+      "group": "Film-Dizi",
+      "epgId": ""
+    },
+    {
+      "name": "Efsane",
+      "youtubeId": "mUz8sufdR-U",
+      "logo": "https://i.ytimg.com/vi/mUz8sufdR-U/sddefault.jpg",
+      "group": "Film-Dizi",
+      "epgId": ""
+    },
+    {
+      "name": "Dedemin İnsanları",
+      "youtubeId": "z69SHpp3Fhw",
+      "logo": "https://i.ytimg.com/vi/z69SHpp3Fhw/sddefault.jpg",
+      "group": "Film-Dizi",
+      "epgId": ""
+    },
+    {
+      "name": "Dilberay",
+      "youtubeId": "hhvVyOiuqcM",
+      "logo": "https://i.ytimg.com/vi/hhvVyOiuqcM/sddefault.jpg",
+      "group": "Film-Dizi",
+      "epgId": ""
+    },
+    {
+      "name": "Aydede",
+      "youtubeId": "tsGKwx_0zMo",
+      "logo": "https://i.ytimg.com/vi/tsGKwx_0zMo/sddefault.jpg",
+      "group": "Film-Dizi",
+      "epgId": ""
+    },
+    {
+      "name": "İllegal Hayatlar 2",
+      "youtubeId": "QdUF9dXvjaU",
+      "logo": "https://i.ytimg.com/vi/QdUF9dXvjaU/sddefault.jpg",
+      "group": "Film-Dizi",
+      "epgId": ""
+    },
+    {
+      "name": "Taşıyıcı: Son Hız",
+      "youtubeId": "AMGYzgODEdw",
+      "logo": "https://i.ytimg.com/vi/AMGYzgODEdw/sddefault.jpg",
+      "group": "Film-Dizi",
+      "epgId": ""
+    },
+    {
+      "name": "Tut Yüreğimden Anne",
+      "youtubeId": "VrZ4gpx6Kh0",
+      "logo": "https://i.ytimg.com/vi/VrZ4gpx6Kh0/sddefault.jpg",
+      "group": "Film-Dizi",
+      "epgId": ""
+    },
+    {
+      "name": "Hasret Bitti",
+      "youtubeId": "-tIFieN5iow",
+      "logo": "https://i.ytimg.com/vi/-tIFieN5iow/sddefault.jpg",
+      "group": "Film-Dizi",
+      "epgId": ""
+    },
+    {
+      "name": "Van Gölü Canavarı",
+      "youtubeId": "wkz9zWiY07Q",
+      "logo": "https://i.ytimg.com/vi/wkz9zWiY07Q/sddefault.jpg",
+      "group": "Film-Dizi",
       "epgId": ""
     }
   ]
