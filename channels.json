@@ -769,76 +769,8 @@
       "logo": "https://i.ytimg.com/vi/PqgXRrGlPRg/sddefault.jpg",
       "group": "Çocuk & Eğitim",
       "epgId": ""
-    },
-    {
-      "name": "Kaçma Birader",
-      "youtubeId": "FA2JSvssf1c",
-      "logo": "https://i.ytimg.com/vi/FA2JSvssf1c/sddefault.jpg",
-      "group": "Film-Dizi",
-      "epgId": ""
-    },
-    {
-      "name": "Efsane",
-      "youtubeId": "mUz8sufdR-U",
-      "logo": "https://i.ytimg.com/vi/mUz8sufdR-U/sddefault.jpg",
-      "group": "Film-Dizi",
-      "epgId": ""
-    },
-    {
-      "name": "Dedemin İnsanları",
-      "youtubeId": "z69SHpp3Fhw",
-      "logo": "https://i.ytimg.com/vi/z69SHpp3Fhw/sddefault.jpg",
-      "group": "Film-Dizi",
-      "epgId": ""
-    },
-    {
-      "name": "Dilberay",
-      "youtubeId": "hhvVyOiuqcM",
-      "logo": "https://i.ytimg.com/vi/hhvVyOiuqcM/sddefault.jpg",
-      "group": "Film-Dizi",
-      "epgId": ""
-    },
-    {
-      "name": "Aydede",
-      "youtubeId": "tsGKwx_0zMo",
-      "logo": "https://i.ytimg.com/vi/tsGKwx_0zMo/sddefault.jpg",
-      "group": "Film-Dizi",
-      "epgId": ""
-    },
-    {
-      "name": "İllegal Hayatlar 2",
-      "youtubeId": "QdUF9dXvjaU",
-      "logo": "https://i.ytimg.com/vi/QdUF9dXvjaU/sddefault.jpg",
-      "group": "Film-Dizi",
-      "epgId": ""
-    },
-    {
-      "name": "Taşıyıcı: Son Hız",
-      "youtubeId": "AMGYzgODEdw",
-      "logo": "https://i.ytimg.com/vi/AMGYzgODEdw/sddefault.jpg",
-      "group": "Film-Dizi",
-      "epgId": ""
-    },
-    {
-      "name": "Tut Yüreğimden Anne",
-      "youtubeId": "VrZ4gpx6Kh0",
-      "logo": "https://i.ytimg.com/vi/VrZ4gpx6Kh0/sddefault.jpg",
-      "group": "Film-Dizi",
-      "epgId": ""
-    },
-    {
-      "name": "Hasret Bitti",
-      "youtubeId": "-tIFieN5iow",
-      "logo": "https://i.ytimg.com/vi/-tIFieN5iow/sddefault.jpg",
-      "group": "Film-Dizi",
-      "epgId": ""
-    },
-    {
-      "name": "Van Gölü Canavarı",
-      "youtubeId": "wkz9zWiY07Q",
-      "logo": "https://i.ytimg.com/vi/wkz9zWiY07Q/sddefault.jpg",
-      "group": "Film-Dizi",
-      "epgId": ""
+    }    
     }
   ]
 }
+
