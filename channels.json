@@ -40,7 +40,7 @@
       "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/HaberturkTV.tr.png",
       "group": "Ulusal Haber",
       "epgId": "HaberturkTV.tr",
-      "url": "https://api.codetabs.com/v1/proxy/?quest=https://vizi.vizi.workers.dev/?ID=13"
+      "url": "https://tv.ensonhaber.com/haberturk/haberturk.m3u8"
     },
     {
       "name": "ATV HD 2",
@@ -506,7 +506,7 @@
     },
     {
       "name": "HABERTURK",
-      "url": "https://ciner-live.daioncdn.net/haberturktv/haberturktv_1080p.m3u8",
+      "url": "https://rmtftbjlne.turknet.ercdn.net/bpeytmnqyp/haberturktv/haberturktv.m3u8",
       "logo": "https://i.ibb.co/Q79Lh4Cb/Ads-z-tasar-m-9.png",
       "group": "Ulusal Haber",
       "epgId": ""
@@ -590,8 +590,8 @@
     },
     {
       "name": "Her An Kur'an",
-      "youtubeId": "E69YfeoW0Pg",
-      "logo": "https://i.ytimg.com/vi/E69YfeoW0Pg/hqdefault.jpg",
+      "youtubeId": "TnskYqLfl0E",
+      "logo": "https://i.ytimg.com/vi/TnskYqLfl0E/hqdefault.jpg",
       "group": "Dini",
       "epgId": ""
     },
@@ -770,8 +770,5 @@
       "group": "Çocuk & Eğitim",
       "epgId": ""
     }
-  ]
+      ]
 }
-
-
-
