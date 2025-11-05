@@ -50,13 +50,6 @@
       "url": "https://rnttwmjcin.turknet.ercdn.net/lcpmvefbyo/atv/atv_480p.m3u8"
     },
     {
-      "name": "HT SPOR",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/0/01/Ht-spor-buyuk.webp/275px-Ht-spor-buyuk.webp.png",
-      "group": "Spor",
-      "epgId": "HT SPOR",
-      "url": "https://ciner-live.daioncdn.net/ht-spor/ht-spor_1080p.m3u8"
-    },
-    {
       "name": "Halk TV",
       "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/HalkTV.tr.png",
       "group": "Ulusal Haber",
@@ -113,13 +106,6 @@
       "url": "https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e17cd6360b_1/playlist.m3u8"
     },
     {
-      "name": "Power TV",
-      "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/PowerTV.tr.png",
-      "group": "Müzik",
-      "epgId": "PowerTV.tr",
-      "url": "https://livetv.powerapp.com.tr/powerTV/powerhd.smil/playlist.m3u8"
-    },
-    {
       "name": "Show TV",
       "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/ShowTV.tr.png",
       "group": "Ulusal",
@@ -139,13 +125,6 @@
       "group": "Ulusal",
       "epgId": "StarTV.tr",
       "url": "https://raw.githubusercontent.com/ipstreet312/freeiptv/refs/heads/master/ressources/tur/star.m3u8"
-    },
-    {
-      "name": "Teve2",
-      "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/Teve2.tr.png",
-      "group": "Ulusal",
-      "epgId": "Teve2.tr",
-      "url": "https://demiroren-live.daioncdn.net/teve2/teve2.m3u8"
     },
     {
       "name": "TRT 3",
@@ -169,32 +148,11 @@
       "url": "https://tv-trtturk.medya.trt.com.tr/master.m3u8"
     },
     {
-      "name": "TV 8",
-      "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TV8.tr.png",
-      "group": "Eğlence",
-      "epgId": "TV8.tr",
-      "url": "https://tv8.daioncdn.net/tv8/tv8.m3u8?app=7ddc255a-ef47-4e81-ab14-c0e5f2949788&ce=3"
-    },
-    {
-      "name": "TV 8.5",
-      "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TV85.tr.png",
-      "group": "Eğlence",
-      "epgId": "TV85.tr",
-      "url": "https://tv8-live.daioncdn.net/tv8bucuk/tv8bucuk_1080p.m3u8"
-    },
-    {
       "name": "TV 100",
       "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/TV100.tr.png",
       "group": "Ulusal Haber",
       "epgId": "TV100.tr",
       "url": "https://tv100-live.daioncdn.net/tv100/tv100_1080p.m3u8"
-    },
-    {
-      "name": "Number 1 TV",
-      "logo": "https://i.ibb.co/sybLTBG/nr1.png",
-      "group": "Müzik",
-      "epgId": "Number1TV.tr",
-      "url": "https://b01c02nl.mediatriple.net/videoonlylive/mtkgeuihrlfwlive/u_stream_5c9e17cd6360b_1/playlist.m3u8"
     },
     {
       "name": "KRAL POP",
@@ -323,30 +281,9 @@
       "epgId": ""
     },
     {
-      "name": "NOW",
-      "url": "http://116.202.238.88/FOXTV_TR/index.m3u8",
-      "logo": "https://images.seeklogo.com/logo-png/51/1/now-tv-turkey-logo-png_seeklogo-519520.png",
-      "group": "Ulusal",
-      "epgId": ""
-    },
-    {
-      "name": "TV 8",
-      "url": "https://tv8-live.daioncdn.net/tv8/tv8_1080p.m3u8",
-      "logo": "https://i.ibb.co/Kr5SFY1/tv8.png",
-      "group": "Ulusal",
-      "epgId": ""
-    },
-    {
       "name": "EURO D",
       "url": "https://thema-vivekanald-rakuten.amagi.tv/playlist.m3u8",
       "logo": "https://i.ibb.co/jMQTJmh/euro-d.png",
-      "group": "Ulusal",
-      "epgId": ""
-    },
-    {
-      "name": "TV 8 INT",
-      "url": "https://tv8-live.daioncdn.net/tv8/tv8.m3u8",
-      "logo": "https://i.ibb.co/ykSLX8Q/tv8-int.png",
       "group": "Ulusal",
       "epgId": ""
     },
@@ -386,13 +323,6 @@
       "epgId": ""
     },
     {
-      "name": "TEVE 2",
-      "url": "https://demiroren-live.daioncdn.net/teve2/teve2.m3u8",
-      "logo": "https://i.ibb.co/JRpJc2P/teve2.png",
-      "group": "Ulusal",
-      "epgId": ""
-    },
-    {
       "name": "360",
       "url": "https://turkmedya-live.ercdn.net/tv360/tv360_720p.m3u8",
       "logo": "https://i.ibb.co/s3gJCGL/360.png",
@@ -421,13 +351,6 @@
       "epgId": ""
     },
     {
-      "name": "CINE1",
-      "url": "https://live.artidijitalmedya.com/artidijital_cine1/cine1/playlist.m3u8",
-      "logo": "https://i.ibb.co/zhxTBMR/cine1.png",
-      "group": "Ulusal",
-      "epgId": ""
-    },
-    {
       "name": "LIFE TV",
       "url": "https://live.artidijitalmedya.com/artidijital_lifetv/lifetv/playlist.m3u8",
       "logo": "https://i.ibb.co/9hCVNks/life-tv.png",
@@ -445,13 +368,6 @@
       "name": "TRT SPOR YILDIZ",
       "url": "https://tv-trtspor2.medya.trt.com.tr/master_720.m3u8",
       "logo": "https://i.ibb.co/YRgKcDn/trt-spor-yildiz.png",
-      "group": "Spor",
-      "epgId": ""
-    },
-    {
-      "name": "TV 8.5",
-      "url": "https://tv8-live.daioncdn.net/tv8bucuk/tv8bucuk_1080p.m3u8",
-      "logo": "https://i.ibb.co/6PRYHdW/tv85.png",
       "group": "Spor",
       "epgId": ""
     },
@@ -590,8 +506,8 @@
     },
     {
       "name": "Her An Kur'an",
-      "youtubeId": "TnskYqLfl0E",
-      "logo": "https://i.ytimg.com/vi/TnskYqLfl0E/hqdefault.jpg",
+      "youtubeId": "7-Qf3g-0xEI",
+      "logo": "https://i.ytimg.com/vi/7-Qf3g-0xEI/hqdefault.jpg",
       "group": "Dini",
       "epgId": ""
     },
@@ -769,6 +685,14 @@
       "logo": "https://i.ytimg.com/vi/PqgXRrGlPRg/sddefault.jpg",
       "group": "Çocuk & Eğitim",
       "epgId": ""
+    },
+    {
+      "name": "Rahatlatıcı Müzikler",
+      "youtubeId": "EmdtE7sRMSY",
+      "logo": "https://i.ytimg.com/vi/EmdtE7sRMSY/sddefault.jpg",
+      "group": "Belgesel",
+      "epgId": ""
     }
+    
       ]
 }
