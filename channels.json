@@ -513,8 +513,8 @@
     },
     {
       "name": "Lalegül TV",
-      "youtubeId": "36L9L7XUNUU",
-      "logo": "https://i.ytimg.com/vi/36L9L7XUNUU/sddefault.jpg",
+      "youtubeId": "Ok9XoKYAgCA",
+      "logo": "https://i.ytimg.com/vi/Ok9XoKYAgCA/sddefault.jpg",
       "group": "Dini",
       "epgId": ""
     },
@@ -692,7 +692,92 @@
       "logo": "https://i.ytimg.com/vi/EmdtE7sRMSY/sddefault.jpg",
       "group": "Belgesel",
       "epgId": ""
+    },
+    {
+      "name": "Sonbahar Cazı",
+      "youtubeId": "C6XRT-sPdW0",
+      "logo": "https://i.ytimg.com/vi/C6XRT-sPdW0/sddefault.jpg",
+      "group": "Rahatlatıcı Müzikler",
+      "epgId": ""
+    },
+    {
+      "name": "Dinlendirici Müzik",
+      "youtubeId": "R6l5KihLiac",
+      "logo": "https://i.ytimg.com/vi/R6l5KihLiac/sddefault.jpg",
+      "group": "Rahatlatıcı Müzikler",
+      "epgId": ""
+    },
+    {
+      "name": "Uzay",
+      "youtubeId": "QOzC_AbsPlw",
+      "logo": "https://i.ytimg.com/vi/QOzC_AbsPlw/sddefault.jpg",
+      "group": "Rahatlatıcı Müzikler",
+      "epgId": ""
+    },
+    {
+      "name": "Relaxing Music",
+      "youtubeId": "wwya7JCD5_0",
+      "logo": "https://i.ytimg.com/vi/wwya7JCD5_0/sddefault.jpg",
+      "group": "Rahatlatıcı Müzikler",
+      "epgId": ""
+    },
+    {
+      "name": "Relaxing Jazz Music",
+      "youtubeId": "fTb6yJ7AlT8",
+      "logo": "https://i.ytimg.com/vi/fTb6yJ7AlT8/sddefault.jpg",
+      "group": "Rahatlatıcı Müzikler",
+      "epgId": ""
+    },
+    {
+      "name": "The Nature Within",
+      "youtubeId": "7jO43SFWhH8",
+      "logo": "https://i.ytimg.com/vi/7jO43SFWhH8/sddefault.jpg",
+      "group": "Rahatlatıcı Müzikler",
+      "epgId": ""
+    },
+    {
+      "name": "Deep Focus 7/24",
+      "youtubeId": "_bLX5WfDQfM",
+      "logo": "https://i.ytimg.com/vi/_bLX5WfDQfM/sddefault.jpg",
+      "group": "Rahatlatıcı Müzikler",
+      "epgId": ""
+    },
+    {
+      "name": "Relaxing Music 24/7",
+      "youtubeId": "CkchxBUtXu4",
+      "logo": "https://i.ytimg.com/vi/CkchxBUtXu4/sddefault.jpg",
+      "group": "Rahatlatıcı Müzikler",
+      "epgId": ""
+    },
+    {
+      "name": "Meditation Radio",
+      "youtubeId": "i9Yjozs750c",
+      "logo": "https://i.ytimg.com/vi/i9Yjozs750c/sddefault.jpg",
+      "group": "Rahatlatıcı Müzikler",
+      "epgId": ""
+    },
+    {
+      "name": "Enstrümantal",
+      "youtubeId": "EmdtE7sRMSY",
+      "logo": "https://i.ytimg.com/vi/EmdtE7sRMSY/sddefault.jpg",
+      "group": "Rahatlatıcı Müzikler",
+      "epgId": ""
+    },
+    {
+      "name": "Ibiza Summer Mix",
+      "youtubeId": "UoXPNB7zmxk",
+      "logo": "https://i.ytimg.com/vi/UoXPNB7zmxk/sddefault.jpg",
+      "group": "Rahatlatıcı Müzikler",
+      "epgId": ""
+    },
+    {
+      "name": "Akustik Türküler",
+      "youtubeId": "_qm_JqY-6OI",
+      "logo": "https://i.ytimg.com/vi/_qm_JqY-6OI/sddefault.jpg",
+      "group": "Müzik",
+      "epgId": ""
     }
+    
     
       ]
 }
