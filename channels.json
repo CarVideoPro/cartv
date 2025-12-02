@@ -344,13 +344,6 @@
       "epgId": ""
     },
     {
-      "name": "BIR TV",
-      "url": "https://edge1.socialsmart.tv/birtv/bant1/playlist.m3u8",
-      "logo": "https://i.ibb.co/dDdPMWq/birtv.png",
-      "group": "Ulusal",
-      "epgId": ""
-    },
-    {
       "name": "LIFE TV",
       "url": "https://live.artidijitalmedya.com/artidijital_lifetv/lifetv/playlist.m3u8",
       "logo": "https://i.ibb.co/9hCVNks/life-tv.png",
@@ -575,9 +568,9 @@
       "epgId": ""
     },
     {
-      "name": "Aşk-ı Neva",
-      "youtubeId": "OyuqW7A4gmg",
-      "logo": "https://i.ytimg.com/vi/OyuqW7A4gmg/sddefault.jpg",
+      "name": "Hz. Yusuf",
+      "youtubeId": "FYtCOZ7S_ls",
+      "logo": "https://i.ytimg.com/vi/FYtCOZ7S_ls/sddefault.jpg",
       "group": "Dini",
       "epgId": ""
     },
@@ -681,8 +674,8 @@
     },
     {
       "name": "Gumball",
-      "youtubeId": "PqgXRrGlPRg",
-      "logo": "https://i.ytimg.com/vi/PqgXRrGlPRg/sddefault.jpg",
+      "youtubeId": "nIyaCRNwxhU",
+      "logo": "https://i.ytimg.com/vi/nIyaCRNwxhU/sddefault.jpg",
       "group": "Çocuk & Eğitim",
       "epgId": ""
     },
