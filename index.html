@@ -315,12 +315,12 @@
     let isYouTubeApiReady = false;
     let isPlaying = false; 
     
-    // *** YENİ EKLENDİ: OYNATILAN KANALI OBJEY OLARAK TUTMA ***
-    let currentlyPlayingChannel = null; // Sadece index değil, kanalın kendisini tutar
+    let currentlyPlayingChannel = null;
     
-    // --- ZOOM KAYIT SİSTEMİ ---
+    // --- ZOOM KAYIT SİSTEMİ (GÜNCELLENDİ) ---
     const ZOOM_KEY = 'carVideoProZoom'; 
-    let currentZoom = 1.0;
+    // GÜNCELLEME: Varsayılan değer tekrar %70 (0.7) yapıldı
+    let currentZoom = 0.7;
 
     function loadSavedZoom() {
         const saved = localStorage.getItem(ZOOM_KEY);
@@ -328,8 +328,9 @@
             currentZoom = parseFloat(saved);
             if (currentZoom < 0.5) currentZoom = 0.5;
             if (currentZoom > 1.5) currentZoom = 1.5;
-            document.documentElement.style.zoom = currentZoom;
         }
+        // Kayıt olsun veya olmasın, belirlenen zoom değerini uygula
+        document.documentElement.style.zoom = currentZoom;
     }
 
     function updateZoom(change) {
@@ -339,6 +340,7 @@
         document.documentElement.style.zoom = currentZoom;
         localStorage.setItem(ZOOM_KEY, currentZoom);
     }
+    // --- ZOOM SON ---
 
     function onYouTubeIframeAPIReady() { isYouTubeApiReady = true; }
 
@@ -370,7 +372,7 @@
         G_UI.preview.video.style.display = 'none';
         G_UI.preview.placeholder.style.display = 'flex';
         isPlaying = false;
-        currentlyPlayingChannel = null; // Çalan kanalı sıfırla
+        currentlyPlayingChannel = null; 
         updateActiveChannelVisuals(); 
     }
 
@@ -480,7 +482,6 @@
         `;
         
         el.querySelector('.channel-info').onclick = () => { 
-            // Tıklama kontrolü artık OBJE üzerinden (isime göre) yapılıyor
             const isCurrentlyPlayingThis = isPlaying && currentlyPlayingChannel && currentlyPlayingChannel.name === c.name;
             
             if (isCurrentlyPlayingThis) {
@@ -498,13 +499,11 @@
       updateActiveChannelVisuals(); 
     }
 
-    // *** DÜZELTİLDİ: Sadece sıra numarasına değil, kanal ismine bakıyoruz ***
     function updateActiveChannelVisuals() {
         const channelElements = document.querySelectorAll('#channels .channel');
         
         channelElements.forEach((el, idx) => {
             const channelData = currentChannelList[idx];
-            // Şuan çalan kanal, listedeki bu kanala eşit mi?
             const isThisChannelPlaying = isPlaying && currentlyPlayingChannel && (currentlyPlayingChannel.name === channelData.name);
 
             if (isThisChannelPlaying) {
@@ -512,12 +511,7 @@
                 el.classList.add('active');
             } else {
                 el.classList.remove('playing-active');
-                // Seçili kalma durumunu korumak için 'active' sınıfını hemen silmiyoruz, 
-                // sadece oynatma görselini kaldırıyoruz.
-                // İsteğe bağlı: Oynatılmıyorsa 'active' silinebilir ama kullanıcı son seçtiğini görmek isteyebilir.
-                // Biz burada sadece 'playing-active' ile oynuyoruz.
                 if (!isThisChannelPlaying) {
-                   // Eğer bu kanal çalmıyorsa ve oynatma devam ediyorsa (başka kanal çalıyorsa), bunun active'ini sil.
                    if(isPlaying) el.classList.remove('active');
                 }
             }
@@ -527,7 +521,7 @@
     function playChannelInPreview(localIdx) {
         const channel = currentChannelList[localIdx]; if (!channel) return;
         currentChannelIndex = localIdx; 
-        currentlyPlayingChannel = channel; // *** ÇALAN KANALI KAYDET ***
+        currentlyPlayingChannel = channel;
         
         G_UI.preview.placeholder.style.display = 'none';
         isPlaying = true; 
@@ -552,14 +546,11 @@
     function changeChannel(direction) {
         if (currentChannelList.length === 0) return;
         
-        // Eğer şu an çalan bir kanal varsa, onun listedeki indeksini bul
-        // (Çünkü kategori değişmiş olabilir, currentChannelIndex eski listede kalmış olabilir)
         let baseIndex = -1;
         if (currentlyPlayingChannel) {
             baseIndex = currentChannelList.findIndex(c => c.name === currentlyPlayingChannel.name);
         }
         
-        // Eğer listede yoksa veya çalan yoksa baştan başla
         if (baseIndex === -1) baseIndex = 0;
 
         const newIndex = (baseIndex + direction + currentChannelList.length) % currentChannelList.length;
@@ -572,7 +563,7 @@
     }
 
     function toggleFullscreen() {
-        if (!currentlyPlayingChannel) return; // Çalan yoksa yapma
+        if (!currentlyPlayingChannel) return;
         
         let playerElement;
         if (currentlyPlayingChannel.youtubeId) {
@@ -609,7 +600,7 @@
     window.addEventListener("load", async () => {
       createThemeSelector(); 
       applyTheme(localStorage.getItem('iptvTheme') || 'default');
-      loadSavedZoom(); // Kayıtlı zoom ayarını yükle
+      loadSavedZoom(); // Kayıtlı zoom ayarını yükle veya varsayılan (0.7) uygula
       
       try {
         const response = await fetch('channels.json?v=' + new Date().getTime());
