@@ -15,22 +15,41 @@
         --video-controls-height: 70px;
     }
 
-    /* --- TEMALAR --- */
-    [data-theme='default'] { --bg-primary: #000000; --bg-secondary: #181818; --bg-tertiary: #252525; --bg-hover: #3a3a3a; --border-color: #444; --accent-color: #3366cc; --accent-color-darker: #254a9e; --text-primary: #ffffff; --text-secondary: #bbbbbb; --epg-color: #4dd0e1; --favorite-color: #ffd700; }
-    [data-theme='forest'] { --bg-primary: #0d1b12; --bg-secondary: #162b1f; --bg-tertiary: #20382b; --bg-hover: #2d4d3b; --border-color: #444; --accent-color: #4CAF50; --accent-color-darker: #2e7d32; --text-primary: #e8f5e9; --text-secondary: #a5d6a7; --epg-color: #81c784; --favorite-color: #ffeb3b; }
-    [data-theme='royal'] { --bg-primary: #120a1f; --bg-secondary: #1e1233; --bg-tertiary: #2d1b4e; --bg-hover: #40276b; --border-color: #4a477a; --accent-color: #ab47bc; --accent-color-darker: #7b1fa2; --text-primary: #f3e5f5; --text-secondary: #e1bee7; --epg-color: #ce93d8; --favorite-color: #fdd835; }
-    [data-theme='sunset'] { --bg-primary: #1f120a; --bg-secondary: #331d10; --bg-tertiary: #4a2b18; --bg-hover: #633a20; --border-color: #5d4037; --accent-color: #ff5722; --accent-color-darker: #d84315; --text-primary: #fbe9e7; --text-secondary: #ffccbc; --epg-color: #ffab91; --favorite-color: #ffc107; }
-    [data-theme='steel'] { --bg-primary: #121212; --bg-secondary: #1e1e1e; --bg-tertiary: #2c2c2c; --bg-hover: #424242; --border-color: #616161; --accent-color: #90a4ae; --accent-color-darker: #546e7a; --text-primary: #eceff1; --text-secondary: #b0bec5; --epg-color: #cfd8dc; --favorite-color: #ffffff; }
-    [data-theme='ocean'] { --bg-primary: #01121e; --bg-secondary: #022035; --bg-tertiary: #033152; --bg-hover: #054875; --border-color: #065a8f; --accent-color: #00b0ff; --accent-color-darker: #0081cb; --text-primary: #e1f5fe; --text-secondary: #81d4fa; --epg-color: #4fc3f7; --favorite-color: #ffeb3b; }
-    [data-theme='magma'] { --bg-primary: #1a0505; --bg-secondary: #2b0b0b; --bg-tertiary: #421212; --bg-hover: #5e1b1b; --border-color: #7f2a2a; --accent-color: #ff5252; --accent-color-darker: #c62828; --text-primary: #ffebee; --text-secondary: #ffcdd2; --epg-color: #ef5350; --favorite-color: #ffff00; }
-    [data-theme='lavender'] { --bg-primary: #15121c; --bg-secondary: #231e2e; --bg-tertiary: #322b42; --bg-hover: #453b59; --border-color: #574b6e; --accent-color: #b39ddb; --accent-color-darker: #7e57c2; --text-primary: #ede7f6; --text-secondary: #d1c4e9; --epg-color: #9575cd; --favorite-color: #ffd700; }
+    /* --- YENİLENMİŞ PREMİUM ARAÇ TEMALARI --- */
+    
+    /* 1. Varsayılan (Piano Black - Klasik) */
+    [data-theme='default'] { --bg-primary: #000000; --bg-secondary: #141414; --bg-tertiary: #1f1f1f; --bg-hover: #333333; --border-color: #333; --accent-color: #007AFF; --accent-color-darker: #0056b3; --text-primary: #ffffff; --text-secondary: #a1a1a1; --epg-color: #64b5f6; --favorite-color: #ffd700; }
+    
+    /* 2. Kutup Beyazı (Açık Tema - Beğendiğin) */
+    [data-theme='polar']   { --bg-primary: #f2f4f8; --bg-secondary: #ffffff; --bg-tertiary: #e6e9f0; --bg-hover: #d1d9e6; --border-color: #cdd5e0; --accent-color: #2c3e50; --accent-color-darker: #1a252f; --text-primary: #1a1a1a; --text-secondary: #5e6b7c; --epg-color: #2980b9; --favorite-color: #f39c12; }
+
+    /* 3. Yarış Yeşili (Racing Green - Neon Vurgulu) */
+    [data-theme='forest']  { --bg-primary: #05140a; --bg-secondary: #0b1f12; --bg-tertiary: #12291b; --bg-hover: #1e3d2b; --border-color: #1e3d2b; --accent-color: #00E676; --accent-color-darker: #00C853; --text-primary: #e8f5e9; --text-secondary: #a5d6a7; --epg-color: #69f0ae; --favorite-color: #ffeb3b; }
+    
+    /* 4. Gece Moru (Cyberpunk - Neon Mor) */
+    [data-theme='royal']   { --bg-primary: #0f0518; --bg-secondary: #1a0b29; --bg-tertiary: #27123d; --bg-hover: #3e1e61; --border-color: #3e1e61; --accent-color: #E040FB; --accent-color-darker: #AA00FF; --text-primary: #f3e5f5; --text-secondary: #e1bee7; --epg-color: #ea80fc; --favorite-color: #fdd835; }
+    
+    /* 5. Güneş Turuncusu (Sportif - Karbon Fiber Hissi) */
+    [data-theme='sunset']  { --bg-primary: #1a0a00; --bg-secondary: #2e1200; --bg-tertiary: #421c02; --bg-hover: #5e2a05; --border-color: #5e2a05; --accent-color: #FF6D00; --accent-color-darker: #E65100; --text-primary: #fff3e0; --text-secondary: #ffccbc; --epg-color: #ff9e80; --favorite-color: #ffc107; }
+    
+    /* 6. Titanyum Gri (Metalik - Soğuk ve Teknolojik) */
+    [data-theme='steel']   { --bg-primary: #101113; --bg-secondary: #1c1e21; --bg-tertiary: #25282c; --bg-hover: #3a3f45; --border-color: #3a3f45; --accent-color: #00BCD4; --accent-color-darker: #0097A7; --text-primary: #eceff1; --text-secondary: #b0bec5; --epg-color: #80deea; --favorite-color: #ffffff; }
+    
+    /* 7. Derin Mavi (Okyanus - MBUX Tarzı) */
+    [data-theme='ocean']   { --bg-primary: #000a12; --bg-secondary: #01121e; --bg-tertiary: #041d30; --bg-hover: #08304f; --border-color: #08304f; --accent-color: #00B0FF; --accent-color-darker: #0091EA; --text-primary: #e1f5fe; --text-secondary: #81d4fa; --epg-color: #40c4ff; --favorite-color: #ffeb3b; }
+    
+    /* 8. Ferrari Kırmızı (Magma - Agresif Spor Modu) */
+    [data-theme='magma']   { --bg-primary: #1a0000; --bg-secondary: #2b0303; --bg-tertiary: #400505; --bg-hover: #610a0a; --border-color: #610a0a; --accent-color: #FF1744; --accent-color-darker: #D50000; --text-primary: #ffebee; --text-secondary: #ffcdd2; --epg-color: #ff5252; --favorite-color: #ffff00; }
+    
+    /* 9. Lavanta (Soft - Modern Elektrikli Araç Modu) */
+    [data-theme='lavender'] { --bg-primary: #12101a; --bg-secondary: #1e1b29; --bg-tertiary: #2a263b; --bg-hover: #403a59; --border-color: #403a59; --accent-color: #7C4DFF; --accent-color-darker: #651FFF; --text-primary: #ede7f6; --text-secondary: #d1c4e9; --epg-color: #b388ff; --favorite-color: #ffd700; }
 
     * { box-sizing: border-box; }
     html, body {
       margin: 0; height: 100%; background: var(--bg-primary); font-family: 'Segoe UI', Arial, sans-serif; overflow: hidden;
       color: var(--text-primary);
       font-size: 15px;
-      transition: transform 0.2s ease;
+      transition: transform 0.2s ease, background-color 0.4s ease, color 0.4s ease; 
       transform-origin: top left;
     }
     #app {
@@ -63,6 +82,9 @@
     .channel.active { background: var(--bg-hover); border-left-color: var(--accent-color); }
     .channel.playing-active { background: var(--accent-color-darker); border-left-color: #fff; }
     
+    [data-theme='polar'] .channel.playing-active { color: #fff; }
+    [data-theme='polar'] .channel.playing-active .channel-name-text { color: #fff; }
+
     .channel img { width: 45px; height: 45px; object-fit: contain; flex-shrink: 0; }
     .channel-info { flex-grow: 1; cursor: pointer; display: flex; align-items: center; gap: 10px; min-width: 0; }
     .channel-info > div { display: flex; flex-direction: column; justify-content: center; min-width: 0; }
@@ -107,7 +129,7 @@
     #youtubePlayer { display: none; }
     
     #previewPlaceholder {
-        padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 20px; color: #777;
+        padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 20px; color: var(--text-secondary);
         width: 100%; height: 100%; position: absolute; top:0; left:0; z-index: 10; background: var(--bg-primary);
     }
     #previewPlaceholder h1 { font-size: 2.2em; color: var(--text-primary); margin-bottom: 10px; }
@@ -139,19 +161,36 @@
         font-size: 16px;
         display: flex; align-items: center; gap: 10px;
         transition: all 0.2s;
-        box-shadow: 0 4px 6px rgba(0,0,0,0.3);
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
     }
     .player-nav-btn:hover {
-        background: var(--accent-color);
-        color: #fff;
-        border-color: var(--accent-color);
+        background: var(--bg-hover);
+        color: var(--text-primary);
+        border-color: var(--border-color);
         transform: translateY(-2px);
-        box-shadow: 0 6px 12px rgba(0,0,0,0.4);
     }
     .player-nav-btn:active { transform: translateY(1px); }
     
-    #fullscreenBtn { background: var(--bg-hover); border-color: var(--accent-color); color: var(--accent-color); }
-    #fullscreenBtn:hover { background: var(--accent-color); color: #fff; }
+    /* --- PROFESYONEL TAM EKRAN BUTONU --- */
+    #fullscreenBtn { 
+        background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-color-darker) 100%);
+        border: 1px solid rgba(255,255,255,0.2); 
+        color: #fff; 
+        padding: 14px 40px;
+        font-size: 17px;
+        letter-spacing: 0.5px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    #fullscreenBtn:hover { 
+        background: linear-gradient(135deg, var(--accent-color-darker) 0%, var(--accent-color) 100%);
+        box-shadow: 0 0 25px rgba(var(--accent-color), 0.6);
+        transform: scale(1.05) translateY(-2px);
+        color: #fff;
+    }
+    [data-theme='polar'] #fullscreenBtn {
+        color: #fff;
+    }
 
     /* --- KATEGORİLER --- */
     #groups {
@@ -296,15 +335,17 @@
         themeSelector: document.getElementById("themeSelector")
     };
     
+    /* GÜNCELLENMİŞ TEMA LİSTESİ */
     const themes = {
-        'default': { name: 'Varsayılan', color: '#3366cc' },
-        'forest': { name: 'Orman', color: '#4CAF50' },
-        'royal': { name: 'Kraliyet', color: '#9C27B0' },
-        'sunset': { name: 'Gün Batımı', color: '#FF5722' },
-        'steel': { name: 'Çelik', color: '#757575' },
-        'ocean': { name: 'Okyanus', color: '#0074D9' },
-        'magma': { name: 'Volkan', color: '#ff4136' },
-        'lavender': { name: 'Lavanta', color: '#b19cd9' }
+        'default': { name: 'Piano Black', color: '#000000' },
+        'polar':   { name: 'Kutup Beyazı', color: '#ffffff' },
+        'forest':  { name: 'Yarış Yeşili', color: '#00E676' },
+        'royal':   { name: 'Gece Moru',    color: '#E040FB' },
+        'sunset':  { name: 'Güneş Turuncusu', color: '#FF6D00' },
+        'steel':   { name: 'Titanyum Gri', color: '#607D8B' },
+        'ocean':   { name: 'Derin Mavi',   color: '#00B0FF' },
+        'magma':   { name: 'Ferrari Kırmızı', color: '#FF1744' },
+        'lavender': { name: 'Lavanta', color: '#7C4DFF' }
     };
 
     const YOUTUBE_ICON_SVG = `<svg class="youtube-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#FF0000" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`;
@@ -314,12 +355,9 @@
     let ytPlayer;
     let isYouTubeApiReady = false;
     let isPlaying = false; 
-    
     let currentlyPlayingChannel = null;
     
-    // --- ZOOM KAYIT SİSTEMİ (GÜNCELLENDİ) ---
     const ZOOM_KEY = 'carVideoProZoom'; 
-    // GÜNCELLEME: Varsayılan değer tekrar %70 (0.7) yapıldı
     let currentZoom = 0.7;
 
     function loadSavedZoom() {
@@ -329,7 +367,6 @@
             if (currentZoom < 0.5) currentZoom = 0.5;
             if (currentZoom > 1.5) currentZoom = 1.5;
         }
-        // Kayıt olsun veya olmasın, belirlenen zoom değerini uygula
         document.documentElement.style.zoom = currentZoom;
     }
 
@@ -340,7 +377,6 @@
         document.documentElement.style.zoom = currentZoom;
         localStorage.setItem(ZOOM_KEY, currentZoom);
     }
-    // --- ZOOM SON ---
 
     function onYouTubeIframeAPIReady() { isYouTubeApiReady = true; }
 
@@ -600,7 +636,7 @@
     window.addEventListener("load", async () => {
       createThemeSelector(); 
       applyTheme(localStorage.getItem('iptvTheme') || 'default');
-      loadSavedZoom(); // Kayıtlı zoom ayarını yükle veya varsayılan (0.7) uygula
+      loadSavedZoom(); 
       
       try {
         const response = await fetch('channels.json?v=' + new Date().getTime());
