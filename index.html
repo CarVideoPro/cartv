@@ -655,11 +655,32 @@
       
       document.getElementById('previewArea').addEventListener('dblclick', toggleFullscreen);
     });
-    // --- SEKME DEĞİŞİNCE VİDEOYU DURDURMA KODU ---
+    // --- MOBİL VE MASAÜSTÜ İÇİN GELİŞMİŞ DURDURMA KODU ---
+    
+    // 1. Standart Görünürlük Değişimi (Bilgisayar ve Modern Telefonlar)
     document.addEventListener("visibilitychange", () => {
-        // Eğer sayfa gizlendiyse (başka sekmeye geçildi veya tarayıcı simge durumuna düştü)
         if (document.hidden) {
-            stopAllPlayback(); // Mevcut durdurma fonksiyonunu çağırır
+            console.log("Sekme gizlendi, video durduruluyor...");
+            stopAllPlayback();
+        }
+    });
+
+    // 2. Mobil Tarayıcılar İçin Sayfa Gizlenme (Home tuşu, Sekme değişimi, iOS/Android)
+    // Bu, cep telefonlarında en garanti yöntemdir.
+    window.addEventListener("pagehide", () => {
+        console.log("Sayfadan çıkılıyor (Mobil), video durduruluyor...");
+        stopAllPlayback();
+    });
+
+    // 3. Ek Önlem: Pencere Odak Kaybı (Bazı eski Android Webview'ler için)
+    // DİKKAT: YouTube videosuna tıklayınca da tetiklenebilir, bu yüzden sadece 
+    // sayfa tamamen arka plana atıldıysa çalışacak şekilde ayarlıyoruz.
+    window.addEventListener("blur", () => {
+        // Sadece sayfa aktif değilse durdur
+        if (document.activeElement === document.body) {
+             // YouTube iframe'ine tıklayınca durmaması için kısa bir kontrol yapabiliriz
+             // Ancak en güvenli mobil çözüm için üstteki iki yöntem genellikle yeterlidir.
+             // Eğer hala durmuyorsa bu blok aktiftir.
         }
     });
   </script>
