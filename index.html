@@ -655,6 +655,13 @@
       
       document.getElementById('previewArea').addEventListener('dblclick', toggleFullscreen);
     });
+    // --- SEKME DEĞİŞİNCE VİDEOYU DURDURMA KODU ---
+    document.addEventListener("visibilitychange", () => {
+        // Eğer sayfa gizlendiyse (başka sekmeye geçildi veya tarayıcı simge durumuna düştü)
+        if (document.hidden) {
+            stopAllPlayback(); // Mevcut durdurma fonksiyonunu çağırır
+        }
+    });
   </script>
 </body>
 </html>
