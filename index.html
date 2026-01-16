@@ -1,87 +1,688 @@
 <!DOCTYPE html>
 <html lang="tr">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yapım Aşamasında</title>
-    <style>
-        /* Temel Sayfa Ayarları */
-        body {
-            margin: 0;
-            padding: 0;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            background: linear-gradient(135deg, #f5f7fa 0%, #c3cfe2 100%);
-            height: 100vh;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            color: #333;
-        }
+  <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Car Video Pro TV</title>
+  <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
+  <script src="https://www.youtube.com/iframe_api"></script>
+  
+  <style>
+    :root {
+        --player-height: 65px; 
+        --category-bar-height: 50px; 
+        --video-controls-height: 70px;
+    }
 
-        /* İçerik Kutusu Tasarımı */
-        .container {
-            text-align: center;
-            background: white;
-            padding: 40px;
-            border-radius: 15px;
-            box-shadow: 0 10px 25px rgba(0,0,0,0.1);
-            max-width: 500px;
-            width: 90%;
-        }
+    /* --- YENİLENMİŞ PREMİUM ARAÇ TEMALARI --- */
+    
+    /* 1. Varsayılan (Piano Black - Klasik) */
+    [data-theme='default'] { --bg-primary: #000000; --bg-secondary: #141414; --bg-tertiary: #1f1f1f; --bg-hover: #333333; --border-color: #333; --accent-color: #007AFF; --accent-color-darker: #0056b3; --text-primary: #ffffff; --text-secondary: #a1a1a1; --epg-color: #64b5f6; --favorite-color: #ffd700; }
+    
+    /* 2. Kutup Beyazı (Açık Tema - Beğendiğin) */
+    [data-theme='polar']   { --bg-primary: #f2f4f8; --bg-secondary: #ffffff; --bg-tertiary: #e6e9f0; --bg-hover: #d1d9e6; --border-color: #cdd5e0; --accent-color: #2c3e50; --accent-color-darker: #1a252f; --text-primary: #1a1a1a; --text-secondary: #5e6b7c; --epg-color: #2980b9; --favorite-color: #f39c12; }
 
-        /* Başlık ve Metin Stilleri */
-        h1 {
-            color: #2c3e50;
-            margin-bottom: 10px;
-            font-size: 2em;
-        }
+    /* 3. Yarış Yeşili (Racing Green - Neon Vurgulu) */
+    [data-theme='forest']  { --bg-primary: #05140a; --bg-secondary: #0b1f12; --bg-tertiary: #12291b; --bg-hover: #1e3d2b; --border-color: #1e3d2b; --accent-color: #00E676; --accent-color-darker: #00C853; --text-primary: #e8f5e9; --text-secondary: #a5d6a7; --epg-color: #69f0ae; --favorite-color: #ffeb3b; }
+    
+    /* 4. Gece Moru (Cyberpunk - Neon Mor) */
+    [data-theme='royal']   { --bg-primary: #0f0518; --bg-secondary: #1a0b29; --bg-tertiary: #27123d; --bg-hover: #3e1e61; --border-color: #3e1e61; --accent-color: #E040FB; --accent-color-darker: #AA00FF; --text-primary: #f3e5f5; --text-secondary: #e1bee7; --epg-color: #ea80fc; --favorite-color: #fdd835; }
+    
+    /* 5. Güneş Turuncusu (Sportif - Karbon Fiber Hissi) */
+    [data-theme='sunset']  { --bg-primary: #1a0a00; --bg-secondary: #2e1200; --bg-tertiary: #421c02; --bg-hover: #5e2a05; --border-color: #5e2a05; --accent-color: #FF6D00; --accent-color-darker: #E65100; --text-primary: #fff3e0; --text-secondary: #ffccbc; --epg-color: #ff9e80; --favorite-color: #ffc107; }
+    
+    /* 6. Titanyum Gri (Metalik - Soğuk ve Teknolojik) */
+    [data-theme='steel']   { --bg-primary: #101113; --bg-secondary: #1c1e21; --bg-tertiary: #25282c; --bg-hover: #3a3f45; --border-color: #3a3f45; --accent-color: #00BCD4; --accent-color-darker: #0097A7; --text-primary: #eceff1; --text-secondary: #b0bec5; --epg-color: #80deea; --favorite-color: #ffffff; }
+    
+    /* 7. Derin Mavi (Okyanus - MBUX Tarzı) */
+    [data-theme='ocean']   { --bg-primary: #000a12; --bg-secondary: #01121e; --bg-tertiary: #041d30; --bg-hover: #08304f; --border-color: #08304f; --accent-color: #00B0FF; --accent-color-darker: #0091EA; --text-primary: #e1f5fe; --text-secondary: #81d4fa; --epg-color: #40c4ff; --favorite-color: #ffeb3b; }
+    
+    /* 8. Ferrari Kırmızı (Magma - Agresif Spor Modu) */
+    [data-theme='magma']   { --bg-primary: #1a0000; --bg-secondary: #2b0303; --bg-tertiary: #400505; --bg-hover: #610a0a; --border-color: #610a0a; --accent-color: #FF1744; --accent-color-darker: #D50000; --text-primary: #ffebee; --text-secondary: #ffcdd2; --epg-color: #ff5252; --favorite-color: #ffff00; }
+    
+    /* 9. Lavanta (Soft - Modern Elektrikli Araç Modu) */
+    [data-theme='lavender'] { --bg-primary: #12101a; --bg-secondary: #1e1b29; --bg-tertiary: #2a263b; --bg-hover: #403a59; --border-color: #403a59; --accent-color: #7C4DFF; --accent-color-darker: #651FFF; --text-primary: #ede7f6; --text-secondary: #d1c4e9; --epg-color: #b388ff; --favorite-color: #ffd700; }
 
-        p {
-            color: #7f8c8d;
-            font-size: 1.1em;
-            line-height: 1.6;
-            margin-bottom: 30px;
-        }
+    * { box-sizing: border-box; }
+    html, body {
+      margin: 0; height: 100%; background: var(--bg-primary); font-family: 'Segoe UI', Arial, sans-serif; overflow: hidden;
+      color: var(--text-primary);
+      font-size: 15px;
+      transition: transform 0.2s ease, background-color 0.4s ease, color 0.4s ease; 
+      transform-origin: top left;
+    }
+    #app {
+      display: flex; flex-direction: column; height: 100%;
+      padding-bottom: calc(var(--player-height) + var(--category-bar-height));
+    }
+    #main { display: flex; flex: 1; overflow: hidden; }
+    
+    /* --- KANAL LİSTESİ --- */
+    #channels {
+      flex: 0 0 300px;
+      background: var(--bg-secondary);
+      border-right: 1px solid var(--border-color);
+      overflow-y: auto;
+      padding: 12px;
+      display: flex; flex-direction: column; gap: 10px;
+      z-index: 50;
+    }
 
-        /* Simge (Emoji) Boyutu */
-        .icon {
-            font-size: 60px;
-            margin-bottom: 20px;
-            display: inline-block;
-            animation: bounce 2s infinite;
-        }
+    .channel {
+      display: flex; align-items: center; gap: 15px;
+      background: var(--bg-tertiary);
+      border-radius: 8px; 
+      padding: 12px 15px;
+      border: none;
+      border-left: 5px solid transparent;
+      transition: background-color 0.2s, transform 0.1s;
+    }
+    .channel:hover { background: var(--bg-hover); transform: translateX(2px); }
+    .channel.active { background: var(--bg-hover); border-left-color: var(--accent-color); }
+    .channel.playing-active { background: var(--accent-color-darker); border-left-color: #fff; }
+    
+    [data-theme='polar'] .channel.playing-active { color: #fff; }
+    [data-theme='polar'] .channel.playing-active .channel-name-text { color: #fff; }
 
-        /* Buton Tasarımı */
-        .contact-btn {
-            background-color: #3498db;
-            color: white;
-            padding: 12px 25px;
-            text-decoration: none;
-            border-radius: 25px;
-            font-weight: bold;
-            transition: background-color 0.3s;
-        }
+    .channel img { width: 45px; height: 45px; object-fit: contain; flex-shrink: 0; }
+    .channel-info { flex-grow: 1; cursor: pointer; display: flex; align-items: center; gap: 10px; min-width: 0; }
+    .channel-info > div { display: flex; flex-direction: column; justify-content: center; min-width: 0; }
+    
+    .channel-name-text { font-weight: 600; font-size: 1.1em; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; color: var(--text-primary); }
+    .channel-stop-text { display: none; color: #fff; font-weight: bold; font-size: 1.1em; letter-spacing: 0.5px; }
+    
+    .channel.playing-active .channel-name-text { display: none; }
+    .channel.playing-active .channel-stop-text { display: flex; align-items: center; gap: 5px; }
+    .channel.playing-active .epg-title { display: none; } 
 
-        .contact-btn:hover {
-            background-color: #2980b9;
-        }
+    .epg-title { color: var(--epg-color); font-size: 0.9em; margin-top: 4px; opacity: 0.9; }
+    .fav-btn { font-size: 24px; cursor: pointer; padding: 5px; color: var(--text-secondary); transition: 0.2s; }
+    .fav-btn:hover { transform: scale(1.2); color: var(--favorite-color); }
+    .fav-btn.favorited { color: var(--favorite-color); }
+    .youtube-icon { width: 22px; height: 22px; flex-shrink: 0; margin-left: 5px; }
 
-        /* Basit bir animasyon */
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% {transform: translateY(0);}
-            40% {transform: translateY(-10px);}
-            60% {transform: translateY(-5px);}
-        }
-    </style>
+    /* --- VİDEO ALANI --- */
+    #previewArea { 
+        flex: 1; 
+        display: flex; 
+        flex-direction: column; 
+        background: var(--bg-primary); 
+        position: relative; 
+        overflow: hidden; 
+    }
+    
+    #videoContainer { 
+        flex: 1; 
+        position: relative; 
+        background: #000; 
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        width: 100%; 
+        height: 100%; 
+        overflow: hidden;
+        z-index: 10;
+    }
+    
+    #previewVideo, #youtubePlayer { width: 100%; height: 100%; object-fit: contain; }
+    #youtubePlayer { display: none; }
+    
+    #previewPlaceholder {
+        padding: 20px; display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; gap: 20px; color: var(--text-secondary);
+        width: 100%; height: 100%; position: absolute; top:0; left:0; z-index: 10; background: var(--bg-primary);
+    }
+    #previewPlaceholder h1 { font-size: 2.2em; color: var(--text-primary); margin-bottom: 10px; }
+    #previewPlaceholder p { font-size: 1.1em; }
+
+    /* --- SABİT KONTROL BARI --- */
+    #videoControlsBar {
+        height: var(--video-controls-height);
+        background: var(--bg-secondary);
+        border-top: 1px solid var(--border-color);
+        display: flex; 
+        align-items: center; 
+        justify-content: center; 
+        gap: 30px;
+        padding: 0 15px; 
+        flex-shrink: 0; 
+        z-index: 20; 
+        box-shadow: 0 -5px 20px rgba(0,0,0,0.3);
+    }
+
+    .player-nav-btn {
+        background: var(--bg-tertiary);
+        color: var(--text-primary);
+        border: 1px solid var(--border-color);
+        padding: 12px 30px;
+        border-radius: 8px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 16px;
+        display: flex; align-items: center; gap: 10px;
+        transition: all 0.2s;
+        box-shadow: 0 4px 6px rgba(0,0,0,0.1);
+    }
+    .player-nav-btn:hover {
+        background: var(--bg-hover);
+        color: var(--text-primary);
+        border-color: var(--border-color);
+        transform: translateY(-2px);
+    }
+    .player-nav-btn:active { transform: translateY(1px); }
+    
+    /* --- PROFESYONEL TAM EKRAN BUTONU --- */
+    #fullscreenBtn { 
+        background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-color-darker) 100%);
+        border: 1px solid rgba(255,255,255,0.2); 
+        color: #fff; 
+        padding: 14px 40px;
+        font-size: 17px;
+        letter-spacing: 0.5px;
+        box-shadow: 0 0 15px rgba(0,0,0,0.3);
+        text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+    }
+    #fullscreenBtn:hover { 
+        background: linear-gradient(135deg, var(--accent-color-darker) 0%, var(--accent-color) 100%);
+        box-shadow: 0 0 25px rgba(var(--accent-color), 0.6);
+        transform: scale(1.05) translateY(-2px);
+        color: #fff;
+    }
+    [data-theme='polar'] #fullscreenBtn {
+        color: #fff;
+    }
+
+    /* --- KATEGORİLER --- */
+    #groups {
+        position: fixed; bottom: var(--player-height); left: 0; width: 100%; height: var(--category-bar-height);
+        background: var(--bg-secondary); border-top: 1px solid var(--border-color);
+        display: flex; overflow-x: auto; z-index: 1000;
+        scrollbar-width: thin; scrollbar-color: var(--accent-color) var(--bg-secondary);
+    }
+    .group {
+        padding: 0 25px; cursor: pointer; background: transparent;
+        border-right: 1px solid var(--border-color);
+        line-height: var(--category-bar-height); white-space: nowrap; flex-shrink: 0;
+        transition: 0.2s; font-weight: 600; font-size: 15px; color: var(--text-secondary);
+    }
+    .group:hover { background: var(--bg-hover); color: var(--text-primary); }
+    .group.active { background: var(--accent-color); color: #fff; }
+
+    /* --- FOOTER --- */
+    #playerContainer {
+      position: fixed; bottom: 0; left: 0; width: 100%; height: var(--player-height); background: var(--bg-secondary);
+      display: flex; z-index: 999; align-items: center;
+      border-top: 1px solid rgba(255,255,255,0.1);
+      justify-content: space-between; padding-right: 15px;
+    }
+
+    .marquee-container {
+        flex-grow: 1; 
+        overflow: hidden; 
+        position: relative; 
+        height: 100%;
+        display: flex; align-items: center;
+        margin-right: 15px;
+        background: linear-gradient(to bottom, rgba(0,0,0,0.1), rgba(0,0,0,0.3)); 
+        border-top: 2px solid var(--accent-color); 
+        border-bottom: 2px solid var(--accent-color);
+    }
+    
+    .marquee-text {
+        position: absolute;
+        white-space: nowrap;
+        will-change: transform;
+        animation: marquee 25s linear infinite;
+        font-size: 1.5em;
+        font-weight: 700;
+        color: rgba(255, 255, 255, 0.9);
+        text-shadow: 
+            0 1px 2px rgba(0,0,0,0.8), 
+            0 0 6px var(--accent-color); 
+    }
+    
+    @keyframes marquee {
+        from { left: 100%; transform: translateX(0); }
+        to { left: 0; transform: translateX(-100%); }
+    }
+
+    .footer-controls { display: flex; align-items: center; gap: 15px; }
+    .zoom-controls { display: flex; align-items: center; gap: 10px; background: var(--bg-primary); padding: 5px 10px; border-radius: 5px; border: 1px solid var(--border-color); }
+    .zoom-btn {
+        background: var(--bg-tertiary); color: var(--text-primary); border: 1px solid var(--border-color);
+        width: 32px; height: 32px; border-radius: 4px;
+        display: flex; align-items: center; justify-content: center;
+        cursor: pointer; font-weight: bold; transition: 0.2s; font-size: 18px;
+    }
+    .zoom-btn:hover { background: var(--accent-color); border-color: var(--accent-color); color: #fff; }
+    
+    #themeSelector { display: flex; align-items: center; gap: 8px; padding-left: 10px; border-left: 1px solid var(--border-color); }
+    .theme-swatch {
+        width: 22px; height: 22px; border-radius: 50%; cursor: pointer;
+        border: 2px solid var(--border-color); transition: 0.2s;
+    }
+    .theme-swatch:hover { transform: scale(1.2); border-color: #fff; }
+    .theme-swatch.active { border-color: #fff; box-shadow: 0 0 0 2px var(--accent-color); transform: scale(1.1); }
+
+    @media (max-width: 600px) {
+        #channels { flex: 0 0 220px; }
+        .player-nav-btn { padding: 10px 15px; font-size: 13px; }
+        .marquee-text { font-size: 1.2em; }
+    }
+  </style>
 </head>
-<body>
+<body data-theme="default">
+  <div id="app">
+    <div id="main">
+      <div id="channels"></div>
+      
+      <div id="previewArea">
+        <div id="videoContainer">
+            <div id="previewPlaceholder">
+              <h1> 📺 Car Video Pro TV 📺</h1>
+              <h2> 📞 İletişim : Telegram : t.me/car_video_pro 📞</h2>
+              <p>✔️ Lütfen bir kategori seçip kanala tıklayınız. ✔️</p>
+            </div>
+            <video id="previewVideo" autoplay playsinline style="display:none;"></video>
+            <div id="youtubePlayer"></div>
+        </div>
 
-    <div class="container">
-        <div class="icon">🚧</div>
-        <h1>Sitemiz Yapım Aşamasındadır</h1>
-        <p>Sizlere daha iyi hizmet verebilmek için yenileniyoruz. Çok yakında buradayız!</p>
+        <div id="videoControlsBar">
+            <button class="player-nav-btn" onclick="changeChannel(-1)">
+                <span>⏮</span> Geri
+            </button>
+            
+            <button class="player-nav-btn" id="fullscreenBtn" onclick="toggleFullscreen()">
+                <span>⛶</span> Tam Ekran
+            </button>
+            
+            <button class="player-nav-btn" onclick="changeChannel(1)">
+                İleri <span>⏭</span>
+            </button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div id="groups"></div>
+
+  <div id="playerContainer">
+    <div class="marquee-container">
+        <div class="marquee-text">Car Video Pro - Eğlencenin Adresi -  📞 Telegram: t.me/car_video_pro 📞</div>
+    </div>
+
+    <div class="footer-controls">
+        <div class="zoom-controls">
+            <span style="font-size:18px">🔍</span>
+            <button class="zoom-btn" onclick="updateZoom(-0.1)">-</button>
+            <button class="zoom-btn" onclick="updateZoom(0.1)">+</button>
+        </div>
+        <div id="themeSelector"></div> 
+    </div>
+  </div>
+
+  <script>
+    const epgUrl = "https://raw.githubusercontent.com/ghokun/tv/main/bin/guide.xml";
+    
+    const G_UI = {
+        groups: document.getElementById("groups"),
+        channels: document.getElementById("channels"),
+        preview: {
+            placeholder: document.getElementById("previewPlaceholder"),
+            video: document.getElementById("previewVideo"),
+            youtube: document.getElementById("youtubePlayer")
+        },
+        themeSelector: document.getElementById("themeSelector")
+    };
+    
+    /* GÜNCELLENMİŞ TEMA LİSTESİ */
+    const themes = {
+        'default': { name: 'Piano Black', color: '#000000' },
+        'polar':   { name: 'Kutup Beyazı', color: '#ffffff' },
+        'forest':  { name: 'Yarış Yeşili', color: '#00E676' },
+        'royal':   { name: 'Gece Moru',    color: '#E040FB' },
+        'sunset':  { name: 'Güneş Turuncusu', color: '#FF6D00' },
+        'steel':   { name: 'Titanyum Gri', color: '#607D8B' },
+        'ocean':   { name: 'Derin Mavi',   color: '#00B0FF' },
+        'magma':   { name: 'Ferrari Kırmızı', color: '#FF1744' },
+        'lavender': { name: 'Lavanta', color: '#7C4DFF' }
+    };
+
+    const YOUTUBE_ICON_SVG = `<svg class="youtube-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#FF0000" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`;
+    
+    let allChannels = [], epgData = {}, currentChannelList = [], hls, baseChannelList = [];
+    let currentChannelIndex = -1, activeGroupName = '';
+    let ytPlayer;
+    let isYouTubeApiReady = false;
+    let isPlaying = false; 
+    let currentlyPlayingChannel = null;
+    
+    const ZOOM_KEY = 'carVideoProZoom'; 
+    let currentZoom = 0.7;
+
+    function loadSavedZoom() {
+        const saved = localStorage.getItem(ZOOM_KEY);
+        if (saved) {
+            currentZoom = parseFloat(saved);
+            if (currentZoom < 0.5) currentZoom = 0.5;
+            if (currentZoom > 1.5) currentZoom = 1.5;
+        }
+        document.documentElement.style.zoom = currentZoom;
+    }
+
+    function updateZoom(change) {
+        currentZoom += change;
+        if(currentZoom < 0.5) currentZoom = 0.5;
+        if(currentZoom > 1.5) currentZoom = 1.5;
+        document.documentElement.style.zoom = currentZoom;
+        localStorage.setItem(ZOOM_KEY, currentZoom);
+    }
+
+    function onYouTubeIframeAPIReady() { isYouTubeApiReady = true; }
+
+    function playYouTubeStream(videoId) {
+        if (!isYouTubeApiReady) return;
+        if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
+             ytPlayer.loadVideoById({ videoId: videoId });
+        } else {
+            if (ytPlayer && typeof ytPlayer.destroy === 'function') ytPlayer.destroy();
+            ytPlayer = new YT.Player('youtubePlayer', { 
+                height: '100%', width: '100%', videoId: videoId,
+                playerVars: { 'playsinline': 1, 'autoplay': 1, 'mute': 0, 'controls': 1, 'rel': 0, 'modestbranding': 1 },
+                events: { 'onReady': (event) => { event.target.playVideo(); isPlaying = true; updateActiveChannelVisuals(); } }
+            });
+        }
+        isPlaying = true;
+        updateActiveChannelVisuals();
+    }
+
+    function stopYouTubeStream() {
+        if (ytPlayer && typeof ytPlayer.stopVideo === 'function') ytPlayer.stopVideo();
+        const ytElement = document.getElementById('youtubePlayer');
+        if (ytElement) ytElement.style.display = 'none';
+    }
+
+    function stopAllPlayback() {
+        stopYouTubeStream();
+        stopStream(G_UI.preview.video, hls);
+        G_UI.preview.video.style.display = 'none';
+        G_UI.preview.placeholder.style.display = 'flex';
+        isPlaying = false;
+        currentlyPlayingChannel = null; 
+        updateActiveChannelVisuals(); 
+    }
+
+    function getFavorites() { const favs = localStorage.getItem('iptvFavorites'); return favs ? JSON.parse(favs) : []; }
+    function saveFavorites(favs) { localStorage.setItem('iptvFavorites', JSON.stringify(favs)); }
+    
+    function toggleFavorite(channelName, favButton) {
+        let favorites = getFavorites();
+        const index = favorites.indexOf(channelName);
+        const wasEmpty = favorites.length === 0;
+        const wasOnFavoritesTab = (activeGroupName === 'Favorilerim');
+
+        if (index > -1) { favorites.splice(index, 1); favButton.classList.remove('favorited'); } 
+        else { favorites.push(channelName); favButton.classList.add('favorited'); }
         
-   </div>
+        saveFavorites(favorites);
+        const isEmptyNow = favorites.length === 0;
+        if (wasEmpty !== isEmptyNow) listGroups();
+        if (wasOnFavoritesTab && !isEmptyNow) listChannels('Favorilerim');
+    }
 
+    function applyTheme(themeName) {
+        document.body.dataset.theme = themeName;
+        localStorage.setItem('iptvTheme', themeName);
+        document.querySelectorAll('.theme-swatch').forEach(swatch => swatch.classList.toggle('active', swatch.dataset.theme === themeName));
+    }
+    function createThemeSelector() {
+        G_UI.themeSelector.innerHTML = "";
+        for (const [key, theme] of Object.entries(themes)) {
+            const swatch = document.createElement('div');
+            swatch.className = 'theme-swatch'; swatch.dataset.theme = key; swatch.title = theme.name;
+            swatch.style.backgroundColor = theme.color; swatch.onclick = () => applyTheme(key);
+            G_UI.themeSelector.appendChild(swatch);
+        }
+    }
+    function showConnectionWarning(isConnected) {
+        const warningId = 'connection-warning-banner'; let warningEl = document.getElementById(warningId);
+        if (isConnected) { if (warningEl) warningEl.remove(); } 
+        else if (!warningEl) {
+            warningEl = document.createElement('div'); warningEl.id = warningId;
+            warningEl.style.cssText = `position: fixed; top: 0; left: 0; width: 100%; background-color: #f44336; color: white; text-align: center; padding: 10px 0; font-weight: bold; z-index: 10000;`;
+            warningEl.textContent = 'UYARI: İnternet bağlantısı yok! Kanallar yüklenemeyebilir veya mevcut yayın durabilir.';
+            document.body.prepend(warningEl);
+        }
+    }
+    
+    window.addEventListener('online', () => showConnectionWarning(true));
+    window.addEventListener('offline', () => showConnectionWarning(false));
+    
+    async function fetchEPG() {
+      try {
+        const res = await fetch(epgUrl); if (!res.ok) throw new Error(); showConnectionWarning(true);
+        const xml = await res.text(), parser = new DOMParser(), doc = parser.parseFromString(xml, "text/xml"), progs = doc.querySelectorAll("programme"), now = new Date();
+        for (const p of progs) {
+          const chan = p.getAttribute("channel"), start = parseEPGDate(p.getAttribute("start")), stop = parseEPGDate(p.getAttribute("stop"));
+          if (now >= start && now <= stop) epgData[chan] = p.querySelector("title")?.textContent || "";
+        }
+      } catch (error) { console.error("EPG Hata"); showConnectionWarning(false); }
+    }
+    function parseEPGDate(str) {
+      if (!str) return new Date(0);
+      const dp = str.slice(0, 14), tz = str.slice(15, 20), y = +dp.slice(0, 4), m = +dp.slice(4, 6) - 1, d = +dp.slice(6, 8), h = +dp.slice(8, 10), min = +dp.slice(10, 12);
+      const s = tz[0] === '+' ? 1 : -1, th = +tz.slice(1, 3), tm = +tz.slice(3, 5), offset = s * (th * 60 + tm) * 60000;
+      return new Date(new Date(Date.UTC(y, m, d, h, min)).getTime() - offset);
+    }
+
+    function listGroups() {
+      const currentActiveGroup = document.querySelector('.group.active')?.textContent || 'Favorilerim';
+      const desiredOrder = ['Favorilerim', 'Tüm Kanallar', 'Ulusal', 'Spor', 'Çocuk & Eğitim', 'Belgesel', 'Müzik', 'YouTube', 'Müzik Ekstra', 'Yaşam & EğLence', 'Sinema ve Dizi', 'Ulusal Haber'];
+      let groups = [...new Set(allChannels.map(c => c.group))].filter(g => g && g !== 'Bilgilendirme'); 
+      groups.unshift('Favorilerim'); groups = [...new Set(groups)];
+      groups.sort((a, b) => { const iA = desiredOrder.indexOf(a), iB = desiredOrder.indexOf(b); if (iA !== -1 && iB !== -1) return iA - iB; if (iA !== -1) return -1; if (iB !== -1) return 1; return a.localeCompare(b); });
+      G_UI.groups.innerHTML = ""; let groupToActivate = null;
+      
+      groups.forEach((g) => {
+        if (g === 'Favorilerim' && getFavorites().length === 0) return;
+        const el = document.createElement("div"); el.className = "group"; el.textContent = g;
+        el.onclick = () => { document.querySelectorAll(".group.active").forEach(e => e.classList.remove("active")); el.classList.add("active"); activeGroupName = g; listChannels(g); };
+        G_UI.groups.appendChild(el); if (g === currentActiveGroup) groupToActivate = el;
+      });
+      if (groupToActivate) groupToActivate.click(); else if (G_UI.groups.firstChild) G_UI.groups.firstChild.click();
+    }
+
+    function listChannels(group) {
+      G_UI.channels.innerHTML = "";
+      const favorites = getFavorites();
+      if (group === 'Favorilerim') currentChannelList = baseChannelList.filter(c => favorites.includes(c.name));
+      else currentChannelList = allChannels.filter(c => c.group === group);
+      
+      currentChannelList.sort((a, b) => (a.name || "").localeCompare(b.name || ""));
+      
+      currentChannelList.forEach((c, idx) => {
+        const epgTitle = epgData[c.epgId] || "", isFavorited = favorites.includes(c.name);
+        const el = document.createElement("div"); el.className = "channel";
+        
+        el.innerHTML = `
+            <div class="channel-info">
+                <img src="${c.logo || ''}" onerror="this.style.display='none'" alt="logo">
+                <div>
+                    <div class="channel-name-text">${c.name}</div>
+                    <div class="channel-stop-text"><span>⏹</span>DURDUR</div>
+                    <div class="epg-title">${epgTitle}</div>
+                </div>
+            </div>
+            ${c.youtubeId ? YOUTUBE_ICON_SVG : ''}
+            <span class="fav-btn ${isFavorited ? 'favorited' : ''}">★</span>
+        `;
+        
+        el.querySelector('.channel-info').onclick = () => { 
+            const isCurrentlyPlayingThis = isPlaying && currentlyPlayingChannel && currentlyPlayingChannel.name === c.name;
+            
+            if (isCurrentlyPlayingThis) {
+                stopAllPlayback();
+            } else {
+                document.querySelectorAll(".channel.active").forEach(ch => ch.classList.remove("active")); 
+                el.classList.add("active"); 
+                playChannelInPreview(idx); 
+            }
+        };
+        
+        el.querySelector('.fav-btn').onclick = (e) => { e.stopPropagation(); toggleFavorite(c.name, el.querySelector('.fav-btn')); };
+        G_UI.channels.appendChild(el);
+      });
+      updateActiveChannelVisuals(); 
+    }
+
+    function updateActiveChannelVisuals() {
+        const channelElements = document.querySelectorAll('#channels .channel');
+        
+        channelElements.forEach((el, idx) => {
+            const channelData = currentChannelList[idx];
+            const isThisChannelPlaying = isPlaying && currentlyPlayingChannel && (currentlyPlayingChannel.name === channelData.name);
+
+            if (isThisChannelPlaying) {
+                el.classList.add('playing-active');
+                el.classList.add('active');
+            } else {
+                el.classList.remove('playing-active');
+                if (!isThisChannelPlaying) {
+                   if(isPlaying) el.classList.remove('active');
+                }
+            }
+        });
+    }
+
+    function playChannelInPreview(localIdx) {
+        const channel = currentChannelList[localIdx]; if (!channel) return;
+        currentChannelIndex = localIdx; 
+        currentlyPlayingChannel = channel;
+        
+        G_UI.preview.placeholder.style.display = 'none';
+        isPlaying = true; 
+
+        if (channel.youtubeId) {
+            stopStream(G_UI.preview.video, hls);
+            G_UI.preview.video.style.display = 'none';
+            const ytElement = document.getElementById('youtubePlayer');
+            if (ytElement) ytElement.style.display = 'block';
+            playYouTubeStream(channel.youtubeId);
+        } else if (channel.url) {
+            stopYouTubeStream(); 
+            G_UI.preview.video.style.display = 'block';
+            playStream(G_UI.preview.video, channel.url, true).then(instance => {
+                hls = instance;
+                updateActiveChannelVisuals(); 
+            });
+        }
+        updateActiveChannelVisuals();
+    }
+
+    function changeChannel(direction) {
+        if (currentChannelList.length === 0) return;
+        
+        let baseIndex = -1;
+        if (currentlyPlayingChannel) {
+            baseIndex = currentChannelList.findIndex(c => c.name === currentlyPlayingChannel.name);
+        }
+        
+        if (baseIndex === -1) baseIndex = 0;
+
+        const newIndex = (baseIndex + direction + currentChannelList.length) % currentChannelList.length;
+        const channelElements = G_UI.channels.querySelectorAll('.channel');
+        
+        if (channelElements[newIndex]) { 
+            channelElements[newIndex].scrollIntoView({ behavior: 'smooth', block: 'center' }); 
+            channelElements[newIndex].querySelector('.channel-info').click(); 
+        }
+    }
+
+    function toggleFullscreen() {
+        if (!currentlyPlayingChannel) return;
+        
+        let playerElement;
+        if (currentlyPlayingChannel.youtubeId) {
+             playerElement = document.getElementById('youtubePlayer'); 
+        } else {
+            playerElement = G_UI.preview.video;
+        }
+
+        if (!playerElement) return;
+
+        if (!document.fullscreenElement) {
+            if (playerElement.requestFullscreen) playerElement.requestFullscreen().catch(e => console.log(e));
+            else if (playerElement.webkitRequestFullscreen) playerElement.webkitRequestFullscreen();
+        } else {
+            if (document.exitFullscreen) document.exitFullscreen();
+            else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+        }
+    }
+
+    async function playStream(videoElement, url) {
+        stopStream(videoElement, hls);
+        if (Hls.isSupported()) { hls = new Hls(); hls.loadSource(url); hls.attachMedia(videoElement); } 
+        else if (videoElement.canPlayType('application/vnd.apple.mpegurl')) videoElement.src = url;
+        videoElement.muted = false; videoElement.volume = 1.0;
+        try { await videoElement.play(); } catch (err) { console.error(err); }
+        return hls;
+    }
+    function stopStream(videoElement, hlsInstance) {
+        videoElement.pause(); videoElement.removeAttribute("src");
+        try { videoElement.load(); } catch (e) {}
+        if (hlsInstance) hlsInstance.destroy();
+    }
+    
+    window.addEventListener("load", async () => {
+      createThemeSelector(); 
+      applyTheme(localStorage.getItem('iptvTheme') || 'default');
+      loadSavedZoom(); 
+      
+      try {
+        const response = await fetch('channels.json?v=' + new Date().getTime());
+        if (!response.ok) throw new Error();
+        const channelData = await response.json();
+        baseChannelList = channelData.channels.filter(c => (c.url || c.youtubeId) && c.name);
+        const allChannelsGroup = JSON.parse(JSON.stringify(baseChannelList));
+        allChannelsGroup.forEach(channel => { channel.group = 'Tüm Kanallar'; });
+        allChannels = [...baseChannelList, ...allChannelsGroup];
+        await fetchEPG();
+        listGroups();
+      } catch (error) {
+        console.error('Kanal listesi yüklenemedi:', error);
+        G_UI.channels.innerHTML = '<p style="padding:10px;color:#aaa;">Kanal listesi (channels.json) yüklenemedi.</p>';
+      }
+      
+      document.getElementById('previewArea').addEventListener('dblclick', toggleFullscreen);
+    });
+    // --- MOBİL VE MASAÜSTÜ İÇİN GELİŞMİŞ DURDURMA KODU ---
+    
+    // 1. Standart Görünürlük Değişimi (Bilgisayar ve Modern Telefonlar)
+    document.addEventListener("visibilitychange", () => {
+        if (document.hidden) {
+            console.log("Sekme gizlendi, video durduruluyor...");
+            stopAllPlayback();
+        }
+    });
+
+    // 2. Mobil Tarayıcılar İçin Sayfa Gizlenme (Home tuşu, Sekme değişimi, iOS/Android)
+    // Bu, cep telefonlarında en garanti yöntemdir.
+    window.addEventListener("pagehide", () => {
+        console.log("Sayfadan çıkılıyor (Mobil), video durduruluyor...");
+        stopAllPlayback();
+    });
+
+    // 3. Ek Önlem: Pencere Odak Kaybı (Bazı eski Android Webview'ler için)
+    // DİKKAT: YouTube videosuna tıklayınca da tetiklenebilir, bu yüzden sadece 
+    // sayfa tamamen arka plana atıldıysa çalışacak şekilde ayarlıyoruz.
+    window.addEventListener("blur", () => {
+        // Sadece sayfa aktif değilse durdur
+        if (document.activeElement === document.body) {
+             // YouTube iframe'ine tıklayınca durmaması için kısa bir kontrol yapabiliriz
+             // Ancak en güvenli mobil çözüm için üstteki iki yöntem genellikle yeterlidir.
+             // Eğer hala durmuyorsa bu blok aktiftir.
+        }
+    });
+  </script>
 </body>
 </html>
