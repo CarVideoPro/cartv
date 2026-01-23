@@ -9,6 +9,25 @@
   <script src="https://www.youtube.com/iframe_api"></script>
   
   <style>
+    /* --- INTERNET YOK EKRANI STİLİ --- */
+        #offline-overlay {
+            position: fixed; top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0, 0, 0, 0.92); z-index: 10001;
+            display: none; flex-direction: column; justify-content: center; align-items: center;
+            color: var(--text-primary); text-align: center; backdrop-filter: blur(15px);
+            transition: opacity 0.3s;
+        }
+        #offline-overlay h2 { font-size: 2.5em; margin: 20px 0 10px 0; color: var(--accent-color); font-weight: 900; letter-spacing: 1px; }
+        #offline-overlay p { font-size: 1.1em; color: var(--text-secondary); margin-bottom: 30px; max-width: 80%; }
+        #offline-retry-btn {
+            padding: 15px 40px; font-size: 1.1em; font-weight: bold;
+            background: var(--accent-color); color: #000; border: none; border-radius: 50px;
+            cursor: pointer; transition: all 0.3s; box-shadow: 0 0 20px rgba(0,0,0,0.5);
+            text-transform: uppercase; letter-spacing: 1px;
+        }
+        #offline-retry-btn:hover { transform: scale(1.1); box-shadow: 0 0 40px var(--accent-color); color: #fff; }
+        .offline-icon { font-size: 80px; animation: pulse-offline 3s infinite ease-in-out; filter: drop-shadow(0 0 20px var(--accent-color)); }
+        @keyframes pulse-offline { 0% { opacity: 0.6; transform: scale(0.9); } 50% { opacity: 1; transform: scale(1.1); } 100% { opacity: 0.6; transform: scale(0.9); } }
     :root {
         --player-height: 65px; 
         --category-bar-height: 50px; 
@@ -683,6 +702,35 @@
              // Eğer hala durmuyorsa bu blok aktiftir.
         }
     });
+    /* --- INTERNET BAĞLANTI KONTROLÜ --- */
+    window.addEventListener('load', () => {
+        const offlineOverlay = document.getElementById('offline-overlay');
+        
+        const updateOnlineStatus = () => {
+            if (navigator.onLine) {
+                offlineOverlay.style.display = 'none';
+                // Bağlantı geri gelirse oynatmaya çalış (opsiyonel)
+            } else {
+                offlineOverlay.style.display = 'flex';
+                // İnternet gidince yayını durdur ki hata vermesin
+                if(typeof G_UI !== 'undefined' && G_UI.audioPlayer) {
+                    G_UI.audioPlayer.pause();
+                }
+            }
+        };
+
+        window.addEventListener('online', updateOnlineStatus);
+        window.addEventListener('offline', updateOnlineStatus);
+        
+        // Sayfa ilk açıldığında kontrol et
+        updateOnlineStatus();
+    });
   </script>
+  <div id="offline-overlay">
+        <div class="offline-icon">📡</div>
+        <h2>BAĞLANTI YOK</h2>
+        <p>TV yayınına devam etmek için lütfen internet bağlantınızı kontrol edin.</p>
+        <button id="offline-retry-btn" onclick="window.location.reload()">TEKRAR DENE</button>
+    </div>
 </body>
 </html>
