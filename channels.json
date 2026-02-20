@@ -499,8 +499,8 @@
     },
     {
       "name": "Her An Kur'an",
-      "youtubeId": "7-Qf3g-0xEI",
-      "logo": "https://i.ytimg.com/vi/7-Qf3g-0xEI/hqdefault.jpg",
+      "youtubeId": "9shisvrYqXM",
+      "logo": "https://i.ytimg.com/vi/9shisvrYqXM/hqdefault.jpg",
       "group": "Dini",
       "epgId": ""
     },
@@ -569,15 +569,8 @@
     },
     {
       "name": "Hz. Yusuf",
-      "youtubeId": "RhcWaWk0-W0",
-      "logo": "https://i.ytimg.com/vi/RhcWaWk0-W0/sddefault.jpg",
-      "group": "Dini",
-      "epgId": ""
-    },
-    {
-      "name": "Huzur Pınarı",
-      "youtubeId": "KJmMpO7DKok",
-      "logo": "https://i.ytimg.com/vi/KJmMpO7DKok/sddefault.jpg",
+      "youtubeId": "3f2OXzi5sFw",
+      "logo": "https://i.ytimg.com/vi/3f2OXzi5sFw/sddefault.jpg",
       "group": "Dini",
       "epgId": ""
     },
@@ -653,8 +646,8 @@
     },
     {
       "name": "Diyanet Çocuk",
-      "youtubeId": "KURUlpJkY-I",
-      "logo": "https://i.ytimg.com/vi/KURUlpJkY-I/sddefault.jpg",
+      "youtubeId": "nJj2jjIU2go",
+      "logo": "https://i.ytimg.com/vi/nJj2jjIU2go/sddefault.jpg",
       "group": "Çocuk & Eğitim",
       "epgId": ""
     },
@@ -702,8 +695,8 @@
     },
     {
       "name": "Uzay",
-      "youtubeId": "QOzC_AbsPlw",
-      "logo": "https://i.ytimg.com/vi/QOzC_AbsPlw/sddefault.jpg",
+      "youtubeId": "fO9e9jnhYK8",
+      "logo": "https://i.ytimg.com/vi/fO9e9jnhYK8/sddefault.jpg",
       "group": "Rahatlatıcı Müzikler",
       "epgId": ""
     },
@@ -776,8 +769,7 @@
       "logo": "https://upload.wikimedia.org/wikipedia/tr/thumb/6/68/Tv8_Yeni_Logo.png/250px-Tv8_Yeni_Logo.png",
       "group": "Ulusal",
       "epgId": ""
-    }
-    
+    }  
     
       ]
 }
