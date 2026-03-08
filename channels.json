@@ -22,13 +22,6 @@
       "url": "https://beyaztv-live.daioncdn.net/beyaztv/beyaztv_1080p.m3u8"
     },
     {
-      "name": "Cine1",
-      "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/Cine1.tr.png",
-      "group": "Belgesel",
-      "epgId": "Cine1.tr",
-      "url": "https://live.artidijitalmedya.com/artidijital_cine1/cine1/playlist.m3u8"
-    },
-    {
       "name": "A SPOR",
       "logo": "https://upload.wikimedia.org/wikipedia/tr/archive/e/e9/20140920094552%21A_Spor_logosu.png",
       "group": "Spor",
@@ -96,7 +89,7 @@
       "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/NTV.tr.png",
       "group": "Ulusal",
       "epgId": "NTV.tr",
-      "url": "https://raw.githubusercontent.com/ipstreet312/freeiptv/master/ressources/tur/ntv.m3u8"
+      "url": "http://87.121.104.29:1796/ntvyt/stream.m3u8"
     },
     {
       "name": "Number 1 TV",
@@ -493,7 +486,7 @@
     {
       "name": "Disney JR HD",
       "url": "https://saran-live.ercdn.net/disneyjunior/index.m3u8",
-      "logo": "https://upload.wikimedia.org/wikipedia/commons/thumb/e/e3/2024_Disney_Jr._Logo.svg/1024px-2024_Disney_Jr._Logo.svg.png",
+      "logo": "https://www.citypng.com/public/uploads/preview/hd-disney-junior-logo-transparent-png-701751694774905qihesgpohf.png",
       "group": "Çocuk & Eğitim",
       "epgId": ""
     },
@@ -769,7 +762,35 @@
       "logo": "https://upload.wikimedia.org/wikipedia/tr/thumb/6/68/Tv8_Yeni_Logo.png/250px-Tv8_Yeni_Logo.png",
       "group": "Ulusal",
       "epgId": ""
-    }  
+    },
+    {
+      "name": "Kemal Sunal TV",
+      "youtubeId": "_pRHXDSK8sA",
+      "logo": "https://i.ytimg.com/vi/_pRHXDSK8sA/sddefault.jpg",
+      "group": "Filmler",
+      "epgId": ""
+    },
+    {
+      "name": "Sıfır Bir",
+      "youtubeId": "DftbeRzgYaw",
+      "logo": "https://i.ytimg.com/vi/DftbeRzgYaw/sddefault.jpg",
+      "group": "Filmler",
+      "epgId": ""
+    },
+    {
+      "name": "Aşk-ı Memnu",
+      "youtubeId": "JpP13Wp1ke0",
+      "logo": "https://i.ytimg.com/vi/JpP13Wp1ke0/sddefault.jpg",
+      "group": "Filmler",
+      "epgId": ""
+    },
+    {
+      "name": "Türk Filmleri",
+      "youtubeId": "5oBspbl9TWE",
+      "logo": "https://i.ytimg.com/vi/5oBspbl9TWE/sddefault.jpg",
+      "group": "Filmler",
+      "epgId": ""
+    }      
     
       ]
 }
