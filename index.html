@@ -876,11 +876,11 @@
                 ytPlayer = new YT.Player('youtubePlayer', {
                     height: '100%', width: '100%', videoId: videoId,
                     playerVars: { 'playsinline': 1, 'autoplay': 1, 'mute': 0, 'controls': 1, 'rel': 0, 'modestbranding': 1 },
-                    events: { 
-                        'onReady': (event) => { 
-                            event.target.playVideo(); 
-                            isPlaying = true; 
-                            updateActiveChannelVisuals(); 
+                    events: {
+                        'onReady': (event) => {
+                            event.target.playVideo();
+                            isPlaying = true;
+                            updateActiveChannelVisuals();
                             setTimeout(adjustYouTubeSize, 100);
                         },
                         'onStateChange': (event) => {
@@ -1076,6 +1076,7 @@
                 });
             }
             updateActiveChannelVisuals();
+            enterFullscreen();
         }
 
         function changeChannel(direction) {
@@ -1094,6 +1095,18 @@
             if (channelElements[newIndex]) {
                 channelElements[newIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
                 channelElements[newIndex].click();
+            }
+        }
+
+        function enterFullscreen() {
+            const containerElement = document.getElementById('videoContainer');
+            if (!containerElement) return;
+
+            if (!document.fullscreenElement) {
+                if (containerElement.requestFullscreen) containerElement.requestFullscreen().catch(e => console.log(e));
+                else if (containerElement.webkitRequestFullscreen) containerElement.webkitRequestFullscreen();
+                else if (containerElement.mozRequestFullScreen) containerElement.mozRequestFullScreen();
+                else if (containerElement.msRequestFullscreen) containerElement.msRequestFullscreen();
             }
         }
 
