@@ -436,9 +436,7 @@
         }
 
         #videoContainer:fullscreen #previewVideo,
-        #videoContainer:fullscreen #youtubePlayer,
-        #videoContainer:-webkit-full-screen #previewVideo,
-        #videoContainer:-webkit-full-screen #youtubePlayer {
+        #videoContainer:-webkit-full-screen #previewVideo {
             width: 100% !important;
             height: 100% !important;
             object-fit: fill;
@@ -823,30 +821,84 @@
             if (currentZoom > 1.5) currentZoom = 1.5;
             document.documentElement.style.zoom = currentZoom;
             localStorage.setItem(ZOOM_KEY, currentZoom);
+            adjustYouTubeSize();
         }
 
         function onYouTubeIframeAPIReady() { isYouTubeApiReady = true; }
+
+        function adjustYouTubeSize() {
+            const player = document.getElementById('youtubePlayer');
+            const container = document.getElementById('videoContainer');
+            if (!player || !container || !currentlyPlayingChannel || !currentlyPlayingChannel.youtubeId) {
+                if (player) {
+                    player.style.width = '';
+                    player.style.height = '';
+                    player.style.transform = '';
+                    player.style.transformOrigin = '';
+                    player.style.position = '';
+                    player.style.top = '';
+                    player.style.left = '';
+                    player.style.border = '';
+                }
+                return;
+            }
+
+            const containerWidth = container.clientWidth;
+            const containerHeight = container.clientHeight;
+
+            if (containerWidth === 0 || containerHeight === 0) return;
+
+            // En-boy oranı olarak her zaman 16:9 baz alıyoruz (YouTube standartı)
+            const targetWidth = containerWidth;
+            const targetHeight = containerWidth * (9 / 16);
+
+            player.style.position = 'absolute';
+            player.style.width = targetWidth + 'px';
+            player.style.height = targetHeight + 'px';
+            player.style.left = '0px';
+            player.style.top = '50%';
+            player.style.border = 'none';
+
+            // Dikey eksende videoyu tüm ekrana esnetmek için scale oranını hesaplıyoruz
+            const scaleY = containerHeight / targetHeight;
+
+            player.style.transform = `translateY(-50%) scaleY(${scaleY})`;
+            player.style.transformOrigin = 'center center';
+        }
 
         function playYouTubeStream(videoId) {
             if (!isYouTubeApiReady) return;
             if (ytPlayer && typeof ytPlayer.loadVideoById === 'function') {
                 ytPlayer.loadVideoById({ videoId: videoId });
+                setTimeout(adjustYouTubeSize, 100);
             } else {
                 if (ytPlayer && typeof ytPlayer.destroy === 'function') ytPlayer.destroy();
                 ytPlayer = new YT.Player('youtubePlayer', {
                     height: '100%', width: '100%', videoId: videoId,
                     playerVars: { 'playsinline': 1, 'autoplay': 1, 'mute': 0, 'controls': 1, 'rel': 0, 'modestbranding': 1 },
-                    events: { 'onReady': (event) => { event.target.playVideo(); isPlaying = true; updateActiveChannelVisuals(); } }
+                    events: { 
+                        'onReady': (event) => { 
+                            event.target.playVideo(); 
+                            isPlaying = true; 
+                            updateActiveChannelVisuals(); 
+                            setTimeout(adjustYouTubeSize, 100);
+                        },
+                        'onStateChange': (event) => {
+                            adjustYouTubeSize();
+                        }
+                    }
                 });
             }
             isPlaying = true;
             updateActiveChannelVisuals();
+            setTimeout(adjustYouTubeSize, 100);
         }
 
         function stopYouTubeStream() {
             if (ytPlayer && typeof ytPlayer.stopVideo === 'function') ytPlayer.stopVideo();
             const ytElement = document.getElementById('youtubePlayer');
             if (ytElement) ytElement.style.display = 'none';
+            adjustYouTubeSize();
         }
 
         function stopAllPlayback() {
@@ -1100,6 +1152,21 @@
             }
 
             document.getElementById('previewArea').addEventListener('dblclick', toggleFullscreen);
+
+            // ResizeObserver ile videoContainer boyut değişimlerini izleme (Tam ekran ve yön değişimleri için)
+            const videoContainer = document.getElementById('videoContainer');
+            if (videoContainer) {
+                const resizeObserver = new ResizeObserver(() => {
+                    adjustYouTubeSize();
+                });
+                resizeObserver.observe(videoContainer);
+            }
+
+            // Ekstra garanti için fullscreen olaylarını dinleme
+            document.addEventListener('fullscreenchange', adjustYouTubeSize);
+            document.addEventListener('webkitfullscreenchange', adjustYouTubeSize);
+            document.addEventListener('mozfullscreenchange', adjustYouTubeSize);
+            document.addEventListener('MSFullscreenChange', adjustYouTubeSize);
         });
         // --- MOBİL VE MASAÜSTÜ İÇİN GELİŞMİŞ DURDURMA KODU ---
 
