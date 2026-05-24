@@ -713,6 +713,15 @@
                 font-size: 1.2em;
             }
         }
+
+        .virtual-fullscreen {
+            position: fixed !important;
+            top: 0 !important;
+            left: 0 !important;
+            width: 100vw !important;
+            height: 100vh !important;
+            z-index: 99999 !important;
+        }
     </style>
 </head>
 
@@ -801,6 +810,8 @@
         let isYouTubeApiReady = false;
         let isPlaying = false;
         let currentlyPlayingChannel = null;
+        let fullscreenTimeout;
+        let isNativeFullscreenActive = false;
 
         const ZOOM_KEY = 'carVideoProZoom';
         let currentZoom = 0.7;
@@ -902,6 +913,7 @@
         }
 
         function stopAllPlayback() {
+            if (fullscreenTimeout) clearTimeout(fullscreenTimeout);
             stopYouTubeStream();
             stopStream(G_UI.preview.video, hls);
             G_UI.preview.video.style.display = 'none';
@@ -909,6 +921,18 @@
             isPlaying = false;
             currentlyPlayingChannel = null;
             updateActiveChannelVisuals();
+
+            // Oynatma durdurulduğunda tam ekrandan çık
+            const containerElement = document.getElementById('videoContainer');
+            if (containerElement && containerElement.classList.contains('virtual-fullscreen')) {
+                containerElement.classList.remove('virtual-fullscreen');
+            }
+            if (document.fullscreenElement || document.webkitFullscreenElement) {
+                if (document.exitFullscreen) document.exitFullscreen();
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+                else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+                else if (document.msExitFullscreen) document.msExitFullscreen();
+            }
         }
 
         function getFavorites() { const favs = localStorage.getItem('iptvFavorites'); return favs ? JSON.parse(favs) : []; }
@@ -1054,6 +1078,8 @@
         }
 
         function playChannelInPreview(localIdx) {
+            if (fullscreenTimeout) clearTimeout(fullscreenTimeout);
+
             const channel = currentChannelList[localIdx]; if (!channel) return;
             currentChannelIndex = localIdx;
             currentlyPlayingChannel = channel;
@@ -1076,7 +1102,13 @@
                 });
             }
             updateActiveChannelVisuals();
-            enterFullscreen();
+
+            // Yayın açıldıktan 2 saniye sonra otomatik tam ekran olsun
+            fullscreenTimeout = setTimeout(() => {
+                if (isPlaying && currentlyPlayingChannel) {
+                    enterFullscreen();
+                }
+            }, 2000);
         }
 
         function changeChannel(direction) {
@@ -1098,11 +1130,29 @@
             }
         }
 
+        function handleFullscreenChange() {
+            const containerElement = document.getElementById('videoContainer');
+            if (containerElement) {
+                const isNativeFS = document.fullscreenElement || document.webkitFullscreenElement || document.mozFullScreenElement || document.msFullscreenElement;
+                if (!isNativeFS && isNativeFullscreenActive) {
+                    containerElement.classList.remove('virtual-fullscreen');
+                    isNativeFullscreenActive = false;
+                } else if (isNativeFS) {
+                    isNativeFullscreenActive = true;
+                }
+            }
+            adjustYouTubeSize();
+        }
+
         function enterFullscreen() {
             const containerElement = document.getElementById('videoContainer');
             if (!containerElement) return;
 
-            if (!document.fullscreenElement) {
+            // Android WebView ve normal tarayıcı uyumluluğu için sanal tam ekran sınıfını ekle
+            containerElement.classList.add('virtual-fullscreen');
+
+            // Tarayıcı destekliyorsa yerel tam ekranı da tetikle
+            if (!document.fullscreenElement && !document.webkitFullscreenElement) {
                 if (containerElement.requestFullscreen) containerElement.requestFullscreen().catch(e => console.log(e));
                 else if (containerElement.webkitRequestFullscreen) containerElement.webkitRequestFullscreen();
                 else if (containerElement.mozRequestFullScreen) containerElement.mozRequestFullScreen();
@@ -1113,20 +1163,23 @@
         function toggleFullscreen() {
             if (!currentlyPlayingChannel) return;
 
-            // Tüm videoContainer'ı tam ekrana al - siyah kenarlık olmaz
             const containerElement = document.getElementById('videoContainer');
             if (!containerElement) return;
 
-            if (!document.fullscreenElement) {
-                if (containerElement.requestFullscreen) containerElement.requestFullscreen().catch(e => console.log(e));
-                else if (containerElement.webkitRequestFullscreen) containerElement.webkitRequestFullscreen();
-                else if (containerElement.mozRequestFullScreen) containerElement.mozRequestFullScreen();
-                else if (containerElement.msRequestFullscreen) containerElement.msRequestFullscreen();
+            const isVirtual = containerElement.classList.contains('virtual-fullscreen');
+
+            if (!document.fullscreenElement && !document.webkitFullscreenElement && !isVirtual) {
+                enterFullscreen();
             } else {
-                if (document.exitFullscreen) document.exitFullscreen();
-                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-                else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
-                else if (document.msExitFullscreen) document.msExitFullscreen();
+                // Tam ekrandan çık
+                containerElement.classList.remove('virtual-fullscreen');
+                isNativeFullscreenActive = false;
+                if (document.fullscreenElement || document.webkitFullscreenElement) {
+                    if (document.exitFullscreen) document.exitFullscreen();
+                    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+                    else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+                    else if (document.msExitFullscreen) document.msExitFullscreen();
+                }
             }
         }
 
@@ -1176,10 +1229,10 @@
             }
 
             // Ekstra garanti için fullscreen olaylarını dinleme
-            document.addEventListener('fullscreenchange', adjustYouTubeSize);
-            document.addEventListener('webkitfullscreenchange', adjustYouTubeSize);
-            document.addEventListener('mozfullscreenchange', adjustYouTubeSize);
-            document.addEventListener('MSFullscreenChange', adjustYouTubeSize);
+            document.addEventListener('fullscreenchange', handleFullscreenChange);
+            document.addEventListener('webkitfullscreenchange', handleFullscreenChange);
+            document.addEventListener('mozfullscreenchange', handleFullscreenChange);
+            document.addEventListener('MSFullscreenChange', handleFullscreenChange);
         });
         // --- MOBİL VE MASAÜSTÜ İÇİN GELİŞMİŞ DURDURMA KODU ---
 
