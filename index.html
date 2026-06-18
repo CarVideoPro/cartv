@@ -91,7 +91,7 @@
         :root {
             --player-height: 65px;
             --category-bar-height: 50px;
-            --video-controls-height: 70px;
+            --video-controls-height: 90px;
         }
 
         /* --- YENİLENMİŞ PREMİUM ARAÇ TEMALARI --- */
@@ -482,27 +482,30 @@
             display: flex;
             align-items: center;
             justify-content: center;
-            gap: 30px;
-            padding: 0 15px;
+            gap: 12px;
+            padding: 0 10px;
             flex-shrink: 0;
             z-index: 20;
             box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
+            overflow: visible;
         }
 
         .player-nav-btn {
             background: var(--bg-tertiary);
             color: var(--text-primary);
             border: 1px solid var(--border-color);
-            padding: 12px 30px;
+            padding: 8px 18px;
             border-radius: 8px;
             cursor: pointer;
             font-weight: bold;
-            font-size: 16px;
+            font-size: 14px;
             display: flex;
             align-items: center;
-            gap: 10px;
+            gap: 7px;
             transition: all 0.2s;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            white-space: nowrap;
+            flex-shrink: 0;
         }
 
         .player-nav-btn:hover {
@@ -516,27 +519,242 @@
             transform: translateY(1px);
         }
 
-        /* --- PROFESYONEL TAM EKRAN BUTONU --- */
+        /* --- ZOOM NAV BUTONLARI (Yeşil Cam) --- */
+        .zoom-nav-btn {
+            padding: 8px 12px;
+            font-size: 16px;
+            min-width: 44px;
+            justify-content: center;
+            background: rgba(0, 210, 150, 0.18);
+            border: 1px solid rgba(0, 210, 150, 0.45);
+            color: #00e6a0;
+            box-shadow: 0 4px 16px rgba(0, 210, 150, 0.15), inset 0 1px 0 rgba(255,255,255,0.1);
+            backdrop-filter: blur(8px);
+            text-shadow: 0 0 8px rgba(0, 230, 160, 0.6);
+        }
+        .zoom-nav-btn:hover {
+            background: rgba(0, 210, 150, 0.32);
+            border-color: rgba(0, 210, 150, 0.7);
+            box-shadow: 0 4px 24px rgba(0, 210, 150, 0.4);
+            transform: scale(1.08) translateY(-2px);
+            color: #00ffbb;
+        }
+
+        /* --- PROFESYONEL TAM EKRAN BUTONU (Mavi Cam) --- */
         #fullscreenBtn {
-            background: linear-gradient(135deg, var(--accent-color) 0%, var(--accent-color-darker) 100%);
-            border: 1px solid rgba(255, 255, 255, 0.2);
-            color: #fff;
-            padding: 14px 40px;
-            font-size: 17px;
+            background: rgba(30, 120, 255, 0.2);
+            border: 1px solid rgba(80, 160, 255, 0.5);
+            color: #70b8ff;
+            padding: 10px 24px;
+            font-size: 15px;
             letter-spacing: 0.5px;
-            box-shadow: 0 0 15px rgba(0, 0, 0, 0.3);
-            text-shadow: 0 1px 2px rgba(0, 0, 0, 0.3);
+            box-shadow: 0 4px 18px rgba(30, 120, 255, 0.2), inset 0 1px 0 rgba(255,255,255,0.1);
+            backdrop-filter: blur(8px);
+            text-shadow: 0 0 10px rgba(100, 180, 255, 0.7);
         }
 
         #fullscreenBtn:hover {
-            background: linear-gradient(135deg, var(--accent-color-darker) 0%, var(--accent-color) 100%);
-            box-shadow: 0 0 25px rgba(var(--accent-color), 0.6);
+            background: rgba(30, 120, 255, 0.38);
+            border-color: rgba(80, 160, 255, 0.8);
+            box-shadow: 0 4px 28px rgba(30, 120, 255, 0.5);
             transform: scale(1.05) translateY(-2px);
-            color: #fff;
+            color: #a8d4ff;
         }
 
         [data-theme='polar'] #fullscreenBtn {
+            color: #1e78ff;
+        }
+
+        /* --- OTOMATİK TAM EKRAN TOGGLE BUTONU (Mor Cam) --- */
+        #autoFullscreenBtn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            padding: 6px 12px;
+            font-size: 11px;
+            min-width: 72px;
+            background: rgba(150, 60, 255, 0.18);
+            border: 1px solid rgba(180, 100, 255, 0.45);
+            color: #c488ff;
+            box-shadow: 0 4px 16px rgba(150, 60, 255, 0.18), inset 0 1px 0 rgba(255,255,255,0.08);
+            backdrop-filter: blur(8px);
+            text-shadow: 0 0 8px rgba(180, 100, 255, 0.6);
+        }
+
+        #autoFullscreenBtn:hover {
+            background: rgba(150, 60, 255, 0.32);
+            border-color: rgba(180, 100, 255, 0.75);
+            box-shadow: 0 4px 24px rgba(150, 60, 255, 0.4);
+            transform: scale(1.05) translateY(-2px);
+            color: #da9fff;
+        }
+
+        #autoFullscreenBtn .auto-fs-label {
+            font-size: 10px;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #c488ff;
+        }
+
+        .toggle-switch {
+            width: 44px;
+            height: 22px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 11px;
+            position: relative;
+            transition: background 0.3s;
+            border: 1px solid rgba(180, 100, 255, 0.4);
+            cursor: pointer;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            width: 16px;
+            height: 16px;
+            background: rgba(196, 136, 255, 0.7);
+            border-radius: 50%;
+            top: 2px;
+            left: 3px;
+            transition: all 0.3s;
+        }
+
+        .toggle-switch.active {
+            background: rgba(180, 100, 255, 0.5);
+            border-color: rgba(220, 160, 255, 0.8);
+        }
+
+        .toggle-switch.active::after {
+            left: 24px;
+            background: #fff;
+            box-shadow: 0 0 8px rgba(200, 130, 255, 0.8);
+        }
+
+        #autoFullscreenBtn .toggle-status {
+            font-size: 10px;
+            font-weight: bold;
+            color: var(--text-secondary);
+            transition: color 0.3s;
+        }
+
+        #autoFullscreenBtn.enabled .toggle-status {
+            color: var(--accent-color);
+        }
+
+        /* --- VİDEO ÖLÇEK BUTONU VE PANELİ (Turuncu Cam) --- */
+        #videoScaleWrapper {
+            position: relative;
+        }
+
+        #videoScaleBtn {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 3px;
+            padding: 6px 12px;
+            font-size: 11px;
+            min-width: 72px;
+            background: rgba(255, 140, 0, 0.18);
+            border: 1px solid rgba(255, 170, 50, 0.45);
+            color: #ffb347;
+            box-shadow: 0 4px 16px rgba(255, 140, 0, 0.18), inset 0 1px 0 rgba(255,255,255,0.08);
+            backdrop-filter: blur(8px);
+            text-shadow: 0 0 8px rgba(255, 160, 30, 0.6);
+        }
+
+        #videoScaleBtn:hover {
+            background: rgba(255, 140, 0, 0.32);
+            border-color: rgba(255, 170, 50, 0.75);
+            box-shadow: 0 4px 24px rgba(255, 140, 0, 0.4);
+            transform: scale(1.05) translateY(-2px);
+            color: #ffd580;
+        }
+
+        #videoScaleBtn .scale-label {
+            font-size: 9px;
+            opacity: 0.9;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            color: #ffb347;
+        }
+
+        #videoScaleBtn .scale-current {
+            font-size: 11px;
+            font-weight: bold;
+            color: #ffd580;
+            max-width: 70px;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        #videoScalePanel {
+            display: none;
+            position: absolute;
+            bottom: calc(100% + 10px);
+            left: 50%;
+            transform: translateX(-50%);
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            padding: 8px;
+            z-index: 9999;
+            min-width: 160px;
+            box-shadow: 0 -8px 30px rgba(0,0,0,0.5);
+            backdrop-filter: blur(10px);
+            animation: scalePopIn 0.2s ease;
+        }
+
+        @keyframes scalePopIn {
+            from { opacity: 0; transform: translateX(-50%) translateY(8px); }
+            to   { opacity: 1; transform: translateX(-50%) translateY(0); }
+        }
+
+        #videoScalePanel.open {
+            display: block;
+        }
+
+        #videoScalePanel::after {
+            content: '';
+            position: absolute;
+            bottom: -7px;
+            left: 50%;
+            transform: translateX(-50%);
+            border-width: 7px 7px 0;
+            border-style: solid;
+            border-color: var(--border-color) transparent transparent;
+        }
+
+        .scale-option {
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            padding: 9px 14px;
+            border-radius: 7px;
+            cursor: pointer;
+            transition: background 0.18s, color 0.18s;
+            font-size: 13px;
+            font-weight: 500;
+            color: var(--text-primary);
+            white-space: nowrap;
+        }
+
+        .scale-option:hover {
+            background: var(--bg-hover);
+        }
+
+        .scale-option.active {
+            background: var(--accent-color);
             color: #fff;
+        }
+
+        .scale-option .scale-icon {
+            font-size: 16px;
+            width: 22px;
+            text-align: center;
+            flex-shrink: 0;
         }
 
         /* --- KATEGORİLER --- */
@@ -742,6 +960,10 @@
                 </div>
 
                 <div id="videoControlsBar">
+                    <button class="player-nav-btn zoom-nav-btn" onclick="updateZoom(-0.1)" title="Sayfayı Küçült">
+                        🔍⁻
+                    </button>
+
                     <button class="player-nav-btn" onclick="changeChannel(-1)">
                         <span>⏮</span> Geri
                     </button>
@@ -750,8 +972,42 @@
                         <span>⛶</span> Tam Ekran
                     </button>
 
+                    <button class="player-nav-btn" id="autoFullscreenBtn" onclick="toggleAutoFullscreen()" title="Otomatik Tam Ekran">
+                        <div class="toggle-switch" id="autoFsToggle"></div>
+                        <span class="auto-fs-label">Oto Tam Ekran</span>
+                    </button>
+
+                    <div id="videoScaleWrapper">
+                        <button class="player-nav-btn" id="videoScaleBtn" onclick="toggleScalePanel()" title="Video Ölçeği">
+                            <span style="font-size:16px">📐</span>
+                            <span class="scale-current" id="scaleCurrentLabel">Dolu</span>
+                            <span class="scale-label">Ölçek</span>
+                        </button>
+                        <div id="videoScalePanel">
+                            <div class="scale-option" data-fit="fill" onclick="applyVideoScale('fill')">
+                                <span class="scale-icon">⬛</span> Dolu Doldur
+                            </div>
+                            <div class="scale-option" data-fit="contain" onclick="applyVideoScale('contain')">
+                                <span class="scale-icon">🔲</span> Sığdır (16:9)
+                            </div>
+                            <div class="scale-option" data-fit="cover" onclick="applyVideoScale('cover')">
+                                <span class="scale-icon">🔳</span> Kırp & Kap
+                            </div>
+                            <div class="scale-option" data-fit="none" onclick="applyVideoScale('none')">
+                                <span class="scale-icon">📏</span> Gerçek Boyut
+                            </div>
+                            <div class="scale-option" data-fit="scale-down" onclick="applyVideoScale('scale-down')">
+                                <span class="scale-icon">🔽</span> Küçük Tut
+                            </div>
+                        </div>
+                    </div>
+
                     <button class="player-nav-btn" onclick="changeChannel(1)">
                         İleri <span>⏭</span>
+                    </button>
+
+                    <button class="player-nav-btn zoom-nav-btn" onclick="updateZoom(0.1)" title="Sayfayı Büyüt">
+                        🔍⁺
                     </button>
                 </div>
             </div>
@@ -766,11 +1022,6 @@
         </div>
 
         <div class="footer-controls">
-            <div class="zoom-controls">
-                <span style="font-size:18px">🔍</span>
-                <button class="zoom-btn" onclick="updateZoom(-0.1)">-</button>
-                <button class="zoom-btn" onclick="updateZoom(0.1)">+</button>
-            </div>
             <div id="themeSelector"></div>
         </div>
     </div>
@@ -812,6 +1063,17 @@
         let currentlyPlayingChannel = null;
         let fullscreenTimeout;
         let isNativeFullscreenActive = false;
+        let autoFullscreenEnabled = true; // Varsayılan: açık
+
+        // Video ölçek seçeneklerinin etiketleri
+        const SCALE_LABELS = {
+            'fill': 'Dolu',
+            'contain': 'Sığdır',
+            'cover': 'Kırp',
+            'none': 'Gerçek',
+            'scale-down': 'Küçük'
+        };
+        let currentVideoScale = 'fill';
 
         const ZOOM_KEY = 'carVideoProZoom';
         let currentZoom = 0.7;
@@ -854,27 +1116,78 @@
                 return;
             }
 
-            const containerWidth = container.clientWidth;
-            const containerHeight = container.clientHeight;
+            const cW = container.clientWidth;
+            const cH = container.clientHeight;
+            if (cW === 0 || cH === 0) return;
 
-            if (containerWidth === 0 || containerHeight === 0) return;
-
-            // En-boy oranı olarak her zaman 16:9 baz alıyoruz (YouTube standartı)
-            const targetWidth = containerWidth;
-            const targetHeight = containerWidth * (9 / 16);
+            const ratio = 16 / 9; // YouTube 16:9 standard
+            const naturalH = cW / ratio;
 
             player.style.position = 'absolute';
-            player.style.width = targetWidth + 'px';
-            player.style.height = targetHeight + 'px';
-            player.style.left = '0px';
-            player.style.top = '50%';
             player.style.border = 'none';
-
-            // Dikey eksende videoyu tüm ekrana esnetmek için scale oranını hesaplıyoruz
-            const scaleY = containerHeight / targetHeight;
-
-            player.style.transform = `translateY(-50%) scaleY(${scaleY})`;
             player.style.transformOrigin = 'center center';
+            player.style.overflow = 'hidden';
+
+            const mode = currentVideoScale || 'fill';
+
+            if (mode === 'fill') {
+                // Tam doldur: genişliği koru, dikey yönde esnet
+                player.style.width  = cW + 'px';
+                player.style.height = naturalH + 'px';
+                player.style.left   = '0px';
+                player.style.top    = '50%';
+                const scaleY = cH / naturalH;
+                player.style.transform = `translateY(-50%) scaleY(${scaleY})`;
+
+            } else if (mode === 'contain') {
+                // Sığdır: oran korunur, siyah bantlar görünür
+                let w, h;
+                if (cW / cH > ratio) { h = cH; w = h * ratio; }
+                else                 { w = cW; h = w / ratio; }
+                player.style.width  = w + 'px';
+                player.style.height = h + 'px';
+                player.style.left   = ((cW - w) / 2) + 'px';
+                player.style.top    = ((cH - h) / 2) + 'px';
+                player.style.transform = 'none';
+
+            } else if (mode === 'cover') {
+                // Kırp & Kap: oran korunur, container tamamen dolar (taşan kısım kesilir)
+                let w, h;
+                if (cW / cH < ratio) { h = cH; w = h * ratio; }
+                else                  { w = cW; h = w / ratio; }
+                player.style.width  = w + 'px';
+                player.style.height = h + 'px';
+                player.style.left   = ((cW - w) / 2) + 'px';
+                player.style.top    = ((cH - h) / 2) + 'px';
+                player.style.transform = 'none';
+
+            } else if (mode === 'none') {
+                // Gerçek boyut: iframe 16:9 orijinal boyutta ortada
+                player.style.width  = cW + 'px';
+                player.style.height = naturalH + 'px';
+                player.style.left   = '0px';
+                player.style.top    = ((cH - naturalH) / 2) + 'px';
+                player.style.transform = 'none';
+
+            } else if (mode === 'scale-down') {
+                // Küçük tut: contain gibi ama büyütme yok
+                let w = cW, h = w / ratio;
+                if (h > cH) { h = cH; w = h * ratio; }
+                player.style.width  = w + 'px';
+                player.style.height = h + 'px';
+                player.style.left   = ((cW - w) / 2) + 'px';
+                player.style.top    = ((cH - h) / 2) + 'px';
+                player.style.transform = 'none';
+
+            } else {
+                // Bilinmeyen mod → fill
+                player.style.width  = cW + 'px';
+                player.style.height = naturalH + 'px';
+                player.style.left   = '0px';
+                player.style.top    = '50%';
+                const scaleY = cH / naturalH;
+                player.style.transform = `translateY(-50%) scaleY(${scaleY})`;
+            }
         }
 
         function playYouTubeStream(videoId) {
@@ -1096,6 +1409,8 @@
             } else if (channel.url) {
                 stopYouTubeStream();
                 G_UI.preview.video.style.display = 'block';
+                // Kayıtlı video ölçeğini uygula
+                G_UI.preview.video.style.objectFit = currentVideoScale;
                 playStream(G_UI.preview.video, channel.url, true).then(instance => {
                     hls = instance;
                     updateActiveChannelVisuals();
@@ -1103,12 +1418,14 @@
             }
             updateActiveChannelVisuals();
 
-            // Yayın açıldıktan 2 saniye sonra otomatik tam ekran olsun
-            fullscreenTimeout = setTimeout(() => {
-                if (isPlaying && currentlyPlayingChannel) {
-                    enterFullscreen();
-                }
-            }, 2000);
+            // Otomatik tam ekran açıksa yayın açıldıktan 2 saniye sonra tam ekran yap
+            if (autoFullscreenEnabled) {
+                fullscreenTimeout = setTimeout(() => {
+                    if (isPlaying && currentlyPlayingChannel) {
+                        enterFullscreen();
+                    }
+                }, 2000);
+            }
         }
 
         function changeChannel(direction) {
@@ -1183,6 +1500,86 @@
             }
         }
 
+        /* --- OTOMATİK TAM EKRAN TOGGLE --- */
+        function toggleAutoFullscreen() {
+            autoFullscreenEnabled = !autoFullscreenEnabled;
+            localStorage.setItem('autoFullscreen', autoFullscreenEnabled ? '1' : '0');
+            updateAutoFullscreenUI();
+        }
+
+        function updateAutoFullscreenUI() {
+            const btn = document.getElementById('autoFullscreenBtn');
+            const toggle = document.getElementById('autoFsToggle');
+            if (!btn || !toggle) return;
+            if (autoFullscreenEnabled) {
+                toggle.classList.add('active');
+                btn.classList.add('enabled');
+                btn.title = 'Otomatik Tam Ekran: AÇIK';
+            } else {
+                toggle.classList.remove('active');
+                btn.classList.remove('enabled');
+                btn.title = 'Otomatik Tam Ekran: KAPALI';
+            }
+        }
+
+        /* --- VİDEO ÖLÇEK SEÇİCİ --- */
+        function toggleScalePanel() {
+            const panel = document.getElementById('videoScalePanel');
+            if (!panel) return;
+            panel.classList.toggle('open');
+        }
+
+        function applyVideoScale(fit) {
+            currentVideoScale = fit;
+            localStorage.setItem('videoScale', fit);
+
+            // Sadece HLS/normal video elementine objectFit uygula
+            // YouTube player div'e objectFit uygulanmaz — adjustYouTubeSize() transform kullanır
+            const video = document.getElementById('previewVideo');
+            if (video) video.style.objectFit = fit;
+
+            // YouTube player konumunu guncelle
+            adjustYouTubeSize();
+
+            // Etiket güncelle
+            const label = document.getElementById('scaleCurrentLabel');
+            if (label) label.textContent = SCALE_LABELS[fit] || fit;
+
+            // Aktif seçeneği işaretle
+            document.querySelectorAll('.scale-option').forEach(opt => {
+                opt.classList.toggle('active', opt.dataset.fit === fit);
+            });
+
+            // Paneli kapat
+            const panel = document.getElementById('videoScalePanel');
+            if (panel) panel.classList.remove('open');
+        }
+
+        function loadSavedScale() {
+            const saved = localStorage.getItem('videoScale');
+            if (saved && SCALE_LABELS[saved]) {
+                applyVideoScale(saved);
+            } else {
+                applyVideoScale('fill');
+            }
+        }
+
+        function loadSavedAutoFullscreen() {
+            const saved = localStorage.getItem('autoFullscreen');
+            // Varsayılan: açık (saved === null veya '1')
+            autoFullscreenEnabled = saved !== '0';
+            updateAutoFullscreenUI();
+        }
+
+        // Panel dışına tıklanınca kapat
+        document.addEventListener('click', function(e) {
+            const wrapper = document.getElementById('videoScaleWrapper');
+            const panel = document.getElementById('videoScalePanel');
+            if (wrapper && panel && !wrapper.contains(e.target)) {
+                panel.classList.remove('open');
+            }
+        });
+
         async function playStream(videoElement, url) {
             stopStream(videoElement, hls);
             if (Hls.isSupported()) { hls = new Hls(); hls.loadSource(url); hls.attachMedia(videoElement); }
@@ -1201,6 +1598,8 @@
             createThemeSelector();
             applyTheme(localStorage.getItem('iptvTheme') || 'default');
             loadSavedZoom();
+            loadSavedScale();
+            loadSavedAutoFullscreen();
 
             try {
                 const response = await fetch('channels.json?v=' + new Date().getTime());

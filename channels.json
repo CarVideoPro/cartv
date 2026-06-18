@@ -1,6 +1,6 @@
 {
   "channels": [
-            {
+    {
       "name": "FB TV",
       "logo": "https://dsmart-static-v2.ercdn.net/content/g/fi/13391/Thumbnail.png",
       "group": "Spor",
@@ -85,13 +85,6 @@
       "url": "https://uycyyuuzyh.turknet.ercdn.net/nphindgytw/nowtv/nowtv.m3u8"
     },
     {
-      "name": "NTV",
-      "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/NTV.tr.png",
-      "group": "Ulusal",
-      "epgId": "NTV.tr",
-      "url": "http://87.121.104.29:1796/ntvyt/stream.m3u8"
-    },
-    {
       "name": "Number 1 TV",
       "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/Number1TV.tr.png",
       "group": "Müzik",
@@ -104,13 +97,6 @@
       "group": "Ulusal",
       "epgId": "ShowTV.tr",
       "url": "https://rmtftbjlne.turknet.ercdn.net/bpeytmnqyp/showtv/showtv.m3u8"
-    },
-    {
-      "name": "Sports TV",
-      "logo": "https://raw.githubusercontent.com/ghokun/tv/main/bin/logo/SportsTV.tr.png",
-      "group": "Spor",
-      "epgId": "SportsTV.tr",
-      "url": "https://live.sportstv.com.tr/hls/low/sportstv.m3u8"
     },
     {
       "name": "Star",
@@ -302,13 +288,6 @@
       "epgId": ""
     },
     {
-      "name": "KANAL 7 AVRUPA",
-      "url": "https://livetv.radyotvonline.net/kanal7live/kanal7avr/chunklist.m3u8",
-      "logo": "https://i.ibb.co/xq3rRJV5/Ads-z-tasar-m-3.png",
-      "group": "Ulusal",
-      "epgId": ""
-    },
-    {
       "name": "BEYAZ TV",
       "url": "https://beyaztv-live.daioncdn.net/beyaztv/beyaztv.m3u8",
       "logo": "https://i.ibb.co/JWMb2kcp/Ads-z-tasar-m-4.png",
@@ -354,13 +333,6 @@
       "name": "TRT SPOR YILDIZ",
       "url": "https://tv-trtspor2.medya.trt.com.tr/master_720.m3u8",
       "logo": "https://i.ibb.co/YRgKcDn/trt-spor-yildiz.png",
-      "group": "Spor",
-      "epgId": ""
-    },
-    {
-      "name": "S SPORTS TV",
-      "url": "https://live.sportstv.com.tr/hls/low/sportstv_hd/index.m3u8",
-      "logo": "https://i.ibb.co/Q7qK4qQj/Ads-z-tasar-m-16.png",
       "group": "Spor",
       "epgId": ""
     },
@@ -424,13 +396,6 @@
       "name": "TVNET",
       "url": "https://mn-nl.mncdn.com/tvnet/tvnet/playlist.m3u8",
       "logo": "https://i.ibb.co/RpyvJDrM/Ads-z-tasar-m-12.png",
-      "group": "Ulusal Haber",
-      "epgId": ""
-    },
-    {
-      "name": "AKIT TV",
-      "url": "https://akittv-live.ercdn.net/akittv/akittv_720p.m3u8",
-      "logo": "https://i.ibb.co/3mPpV9kp/Ads-z-tasar-m-11.png",
       "group": "Ulusal Haber",
       "epgId": ""
     },
@@ -499,22 +464,22 @@
     },
     {
       "name": "Lalegül TV",
-      "youtubeId": "V7BRVvXZCzs",
-      "logo": "https://i.ytimg.com/vi/V7BRVvXZCzs/sddefault.jpg",
+      "youtubeId": "dh0NmNqfLhc",
+      "logo": "https://i.ytimg.com/vi/dh0NmNqfLhc/sddefault.jpg",
       "group": "Dini",
       "epgId": ""
     },
     {
       "name": "A SPOR HD",
-      "youtubeId": "mgeW8Qm8-SY",
-      "logo": "https://i.ytimg.com/vi/mgeW8Qm8-SY/sddefault.jpg",
+      "youtubeId": "XkeBRoF1GMk",
+      "logo": "https://i.ytimg.com/vi/XkeBRoF1GMk/sddefault.jpg",
       "group": "Spor",
       "epgId": ""
     },
     {
       "name": "A HABER HD",
-      "youtubeId": "nmY9i63t6qo",
-      "logo": "https://i.ytimg.com/vi/nmY9i63t6qo/sddefault.jpg",
+      "youtubeId": "v1Eww2tZwb4",
+      "logo": "https://i.ytimg.com/vi/v1Eww2tZwb4/sddefault.jpg",
       "group": "Ulusal Haber",
       "epgId": ""
     },
@@ -527,8 +492,8 @@
     },
     {
       "name": "Bein Sport Haber",
-      "youtubeId": "9xVXWLwT0vA",
-      "logo": "https://i.ytimg.com/vi/9xVXWLwT0vA/sddefault.jpg",
+      "youtubeId": "i7UpPgxfZZ8",
+      "logo": "https://i.ytimg.com/vi/i7UpPgxfZZ8/sddefault.jpg",
       "group": "Spor",
       "epgId": ""
     },
@@ -562,8 +527,8 @@
     },
     {
       "name": "Hz. Yusuf",
-      "youtubeId": "cC2IkMR4Vqs",
-      "logo": "https://i.ytimg.com/vi/cC2IkMR4Vqs/sddefault.jpg",
+      "youtubeId": "rWu8i6PcjFU",
+      "logo": "https://i.ytimg.com/vi/rWu8i6PcjFU/sddefault.jpg",
       "group": "Dini",
       "epgId": ""
     },
@@ -583,8 +548,8 @@
     },
     {
       "name": "Karadeniz Akustik",
-      "youtubeId": "Fru_Ss-TqgY",
-      "logo": "https://i.ytimg.com/vi/Fru_Ss-TqgY/sddefault.jpg",
+      "youtubeId": "PV1kDalcvVE",
+      "logo": "https://i.ytimg.com/vi/PV1kDalcvVE/sddefault.jpg",
       "group": "Müzik",
       "epgId": ""
     },
@@ -632,22 +597,15 @@
     },
     {
       "name": "Kamyon Leo",
-      "youtubeId": "zgfG4VFFjsk",
-      "logo": "https://i.ytimg.com/vi/zgfG4VFFjsk/sddefault.jpg",
+      "youtubeId": "-64HFwxqyUs",
+      "logo": "https://i.ytimg.com/vi/-64HFwxqyUs/sddefault.jpg",
       "group": "Çocuk & Eğitim",
       "epgId": ""
     },
     {
       "name": "Diyanet Çocuk",
-      "youtubeId": "nJj2jjIU2go",
-      "logo": "https://i.ytimg.com/vi/nJj2jjIU2go/sddefault.jpg",
-      "group": "Çocuk & Eğitim",
-      "epgId": ""
-    },
-    {
-      "name": "Mucize Uğurböceği",
-      "youtubeId": "-MNPBH_YF5M",
-      "logo": "https://i.ytimg.com/vi/-MNPBH_YF5M/sddefault.jpg",
+      "youtubeId": "_VsMIRdOtXI",
+      "logo": "https://i.ytimg.com/vi/_VsMIRdOtXI/sddefault.jpg",
       "group": "Çocuk & Eğitim",
       "epgId": ""
     },
@@ -695,8 +653,8 @@
     },
     {
       "name": "Relaxing Music",
-      "youtubeId": "wwya7JCD5_0",
-      "logo": "https://i.ytimg.com/vi/wwya7JCD5_0/sddefault.jpg",
+      "youtubeId": "I3OJUwILelU",
+      "logo": "https://i.ytimg.com/vi/I3OJUwILelU/sddefault.jpg",
       "group": "Rahatlatıcı Müzikler",
       "epgId": ""
     },
@@ -730,8 +688,8 @@
     },
     {
       "name": "Meditation Radio",
-      "youtubeId": "i9Yjozs750c",
-      "logo": "https://i.ytimg.com/vi/i9Yjozs750c/sddefault.jpg",
+      "youtubeId": "QEDg9d02vT8",
+      "logo": "https://i.ytimg.com/vi/QEDg9d02vT8/sddefault.jpg",
       "group": "Rahatlatıcı Müzikler",
       "epgId": ""
     },
@@ -765,15 +723,15 @@
     },
     {
       "name": "Kemal Sunal TV",
-      "youtubeId": "_pRHXDSK8sA",
-      "logo": "https://i.ytimg.com/vi/_pRHXDSK8sA/sddefault.jpg",
+      "youtubeId": "VkXvDzJyUQs",
+      "logo": "https://i.ytimg.com/vi/VkXvDzJyUQs/sddefault.jpg",
       "group": "Filmler",
       "epgId": ""
     },
     {
       "name": "Sıfır Bir",
-      "youtubeId": "DftbeRzgYaw",
-      "logo": "https://i.ytimg.com/vi/DftbeRzgYaw/sddefault.jpg",
+      "youtubeId": "cwNs1yfqKRo",
+      "logo": "https://i.ytimg.com/vi/cwNs1yfqKRo/sddefault.jpg",
       "group": "Filmler",
       "epgId": ""
     },
@@ -790,7 +748,13 @@
       "logo": "https://i.ytimg.com/vi/5oBspbl9TWE/sddefault.jpg",
       "group": "Filmler",
       "epgId": ""
-    }      
-    
-      ]
+    },
+    {
+      "name": "Akit TV",
+      "youtubeId": "ds7aS4H1fbs",
+      "logo": "https://img.youtube.com/vi/ds7aS4H1fbs/hqdefault.jpg",
+      "group": "Ulusal Haber",
+      "epgId": ""
+    }
+  ]
 }
