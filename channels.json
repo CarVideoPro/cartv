@@ -471,22 +471,22 @@
     },
     {
       "name": "A SPOR HD",
-      "youtubeId": "-zSaswVrQ_M",
-      "logo": "https://i.ytimg.com/vi/-zSaswVrQ_M/sddefault.jpg",
+      "youtubeId": "vPIo3mMxS_M",
+      "logo": "https://i.ytimg.com/vi/vPIo3mMxS_M/sddefault.jpg",
       "group": "Spor",
       "epgId": ""
     },
     {
       "name": "A HABER HD",
-      "youtubeId": "9pGruMw_21g",
-      "logo": "https://i.ytimg.com/vi/9pGruMw_21g/sddefault.jpg",
+      "youtubeId": "rsb4zSQGwUY",
+      "logo": "https://i.ytimg.com/vi/rsb4zSQGwUY/sddefault.jpg",
       "group": "Ulusal Haber",
       "epgId": ""
     },
     {
       "name": "A PARA HD",
-      "youtubeId": "Fas1VhgP8Uk",
-      "logo": "https://i.ytimg.com/vi/Fas1VhgP8Uk/sddefault.jpg",
+      "youtubeId": "joHdBJd_jQA",
+      "logo": "https://i.ytimg.com/vi/joHdBJd_jQA/sddefault.jpg",
       "group": "Ulusal Haber",
       "epgId": ""
     },
@@ -499,8 +499,8 @@
     },
     {
       "name": "Kral Şakir TV",
-      "youtubeId": "5Whk9MVTpI4",
-      "logo": "https://i.ytimg.com/vi/5Whk9MVTpI4/sddefault.jpg",
+      "youtubeId": "vUNydkil1i8",
+      "logo": "https://i.ytimg.com/vi/vUNydkil1i8/sddefault.jpg",
       "group": "Çocuk & Eğitim",
       "epgId": ""
     },
@@ -555,15 +555,15 @@
     },
     {
       "name": "DMAX",
-      "youtubeId": "meuiljrJ5Zk",
-      "logo": "https://i.ytimg.com/vi/meuiljrJ5Zk/sddefault.jpg",
+      "youtubeId": "eJsNExhn-AU",
+      "logo": "https://i.ytimg.com/vi/eJsNExhn-AU/sddefault.jpg",
       "group": "Belgesel",
       "epgId": ""
     },
     {
       "name": "TLC",
-      "youtubeId": "H5YISHwij4Y",
-      "logo": "https://i.ytimg.com/vi/H5YISHwij4Y/sddefault.jpg",
+      "youtubeId": "f9bWpQfnh2A",
+      "logo": "https://i.ytimg.com/vi/f9bWpQfnh2A/sddefault.jpg",
       "group": "Belgesel",
       "epgId": ""
     },
@@ -597,8 +597,8 @@
     },
     {
       "name": "Kamyon Leo",
-      "youtubeId": "uRsPqP2muAQ",
-      "logo": "https://i.ytimg.com/vi/uRsPqP2muAQ/sddefault.jpg",
+      "youtubeId": "gVBQTP_VEZU",
+      "logo": "https://i.ytimg.com/vi/gVBQTP_VEZU/sddefault.jpg",
       "group": "Çocuk & Eğitim",
       "epgId": ""
     },
@@ -723,15 +723,15 @@
     },
     {
       "name": "Yeşilçam TV",
-      "youtubeId": "NqbUZyS58u8",
-      "logo": "https://i.ytimg.com/vi/NqbUZyS58u8/sddefault.jpg",
+      "youtubeId": "O1QUyK8Nu8c",
+      "logo": "https://i.ytimg.com/vi/O1QUyK8Nu8c/sddefault.jpg",
       "group": "Filmler",
       "epgId": ""
     },
     {
       "name": "Sıfır Bir",
-      "youtubeId": "ofw2CpH0aw0",
-      "logo": "https://i.ytimg.com/vi/ofw2CpH0aw0/sddefault.jpg",
+      "youtubeId": "cT6yeUjX6gc",
+      "logo": "https://i.ytimg.com/vi/cT6yeUjX6gc/sddefault.jpg",
       "group": "Filmler",
       "epgId": ""
     },
@@ -743,16 +743,9 @@
       "epgId": ""
     },
     {
-      "name": "Türk Filmleri",
-      "youtubeId": "EnQQj4yUhhA",
-      "logo": "https://i.ytimg.com/vi/EnQQj4yUhhA/sddefault.jpg",
-      "group": "Filmler",
-      "epgId": ""
-    },
-    {
       "name": "Akit TV",
-      "youtubeId": "80rktkDWcSY",
-      "logo": "https://img.youtube.com/vi/80rktkDWcSY/hqdefault.jpg",
+      "youtubeId": "bqQ86zWjZ2M",
+      "logo": "https://img.youtube.com/vi/bqQ86zWjZ2M/hqdefault.jpg",
       "group": "Ulusal Haber",
       "epgId": ""
     }
