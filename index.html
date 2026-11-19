@@ -391,6 +391,21 @@
             z-index: 99999 !important;
         }
 
+        #fsTapOverlay {
+            display: none;
+            position: absolute;
+            inset: 0;
+            z-index: 50;
+            background: transparent;
+            cursor: pointer;
+        }
+
+        #videoContainer.virtual-fullscreen #fsTapOverlay,
+        #videoContainer:fullscreen #fsTapOverlay,
+        #videoContainer:-webkit-full-screen #fsTapOverlay {
+            display: block;
+        }
+
         /* ================= ÜST: şu an oynatılan + ayarlar ================= */
         #topScrim {
             position: fixed;
@@ -1298,6 +1313,7 @@
                     </div>
                     <video id="previewVideo" autoplay playsinline style="display:none;"></video>
                     <div id="youtubePlayer"></div>
+                    <div id="fsTapOverlay" onclick="exitFullscreen(event)" title="Menüleri göster"></div>
                 </div>
             </div>
 
@@ -1912,6 +1928,21 @@
             }
         }
 
+        function exitFullscreen(e) {
+            if (e) e.stopPropagation();
+            const containerElement = document.getElementById('videoContainer');
+            if (containerElement) containerElement.classList.remove('virtual-fullscreen');
+            isNativeFullscreenActive = false;
+            requestAnimationFrame(adjustYouTubeSize);
+            setTimeout(adjustYouTubeSize, 100);
+            if (document.fullscreenElement || document.webkitFullscreenElement) {
+                if (document.exitFullscreen) document.exitFullscreen();
+                else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
+                else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
+                else if (document.msExitFullscreen) document.msExitFullscreen();
+            }
+        }
+
         function toggleFullscreen() {
             if (!currentlyPlayingChannel) return;
 
@@ -1923,16 +1954,7 @@
             if (!document.fullscreenElement && !document.webkitFullscreenElement && !isVirtual) {
                 enterFullscreen();
             } else {
-                // Tam ekrandan çık
-                containerElement.classList.remove('virtual-fullscreen');
-                isNativeFullscreenActive = false;
-                requestAnimationFrame(adjustYouTubeSize);
-                if (document.fullscreenElement || document.webkitFullscreenElement) {
-                    if (document.exitFullscreen) document.exitFullscreen();
-                    else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
-                    else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
-                    else if (document.msExitFullscreen) document.msExitFullscreen();
-                }
+                exitFullscreen();
             }
         }
 
@@ -1940,9 +1962,7 @@
             if (e.key === 'Escape') {
                 const containerElement = document.getElementById('videoContainer');
                 if (containerElement && containerElement.classList.contains('virtual-fullscreen')) {
-                    containerElement.classList.remove('virtual-fullscreen');
-                    isNativeFullscreenActive = false;
-                    requestAnimationFrame(adjustYouTubeSize);
+                    exitFullscreen();
                 }
             }
         });
