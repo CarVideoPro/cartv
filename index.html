@@ -917,7 +917,6 @@
         .channel {
             position: relative;
             overflow: hidden;
-            contain: layout style;
             touch-action: none;
             -webkit-user-drag: none;
             flex: 0 0 184px;
@@ -2118,10 +2117,11 @@
             if (!el || el.dataset.dragInit) return;
             el.dataset.dragInit = '1';
 
-            let active = false;
+            let activeType = null; // 'touch' | 'pointer' | 'mouse'
             let hasDragged = false;
             let currentAxis = 'x';
             let startPos = 0;
+            let startScroll = 0;
             let lastPos = 0;
             let lastTime = 0;
             let velocity = 0;
@@ -2152,14 +2152,17 @@
 
             const startMomentum = () => {
                 stopMomentum();
+                let momentumPos = getScroll();
                 const step = () => {
                     if (Math.abs(velocity) < 0.4) {
                         rafId = null;
                         return;
                     }
-                    const prev = getScroll();
-                    setScroll(prev + velocity);
-                    if (getScroll() === prev) {
+                    const prevScroll = getScroll();
+                    momentumPos += velocity;
+                    const nextScroll = Math.round(momentumPos);
+                    setScroll(nextScroll);
+                    if (nextScroll !== prevScroll && getScroll() === prevScroll) {
                         rafId = null;
                         return;
                     }
@@ -2169,20 +2172,21 @@
                 rafId = requestAnimationFrame(step);
             };
 
-            const beginDrag = (pt) => {
+            const beginDrag = (type, pt) => {
                 stopMomentum();
                 currentAxis = resolveAxis();
                 const pos = getPoint(pt);
-                active = true;
+                activeType = type;
                 hasDragged = false;
                 startPos = pos;
+                startScroll = getScroll();
                 lastPos = pos;
                 lastTime = performance.now();
                 velocity = 0;
             };
 
             const moveDrag = (pt, e) => {
-                if (!active) return;
+                if (!activeType) return;
                 const pos = getPoint(pt);
                 const zoom = currentZoom || 1;
                 const totalDelta = Math.abs(pos - startPos);
@@ -2194,17 +2198,17 @@
                     if (e && e.cancelable) e.preventDefault();
                     const now = performance.now();
                     const dt = Math.max(now - lastTime, 1);
-                    const delta = (lastPos - pos) / zoom;
-                    setScroll(getScroll() + delta);
-                    velocity = (delta / dt) * 16;
+                    const targetScroll = startScroll + (startPos - pos) / zoom;
+                    setScroll(Math.round(targetScroll));
+                    velocity = ((lastPos - pos) / zoom / dt) * 16;
                     lastPos = pos;
                     lastTime = now;
                 }
             };
 
             const endDrag = () => {
-                if (!active) return;
-                active = false;
+                if (!activeType) return;
+                activeType = null;
                 el.classList.remove('is-dragging');
                 if (hasDragged) {
                     suppressClickUntil = Date.now() + 300;
@@ -2212,48 +2216,73 @@
                 }
             };
 
-            // Dokunmatik (araç ekranı / Android WebView / mobil)
+            // 1. Dokunmatik olaylar (araç ekranı / Android WebView / mobil)
             el.addEventListener('touchstart', (e) => {
                 if (e.touches.length !== 1) return;
                 lastTouchTime = Date.now();
-                beginDrag(e.touches[0]);
+                beginDrag('touch', e.touches[0]);
             }, { passive: true });
 
-            el.addEventListener('touchmove', (e) => {
-                if (!active || e.touches.length !== 1) return;
+            document.addEventListener('touchmove', (e) => {
+                if (activeType !== 'touch' || e.touches.length !== 1) return;
                 lastTouchTime = Date.now();
                 moveDrag(e.touches[0], e);
             }, { passive: false });
 
-            el.addEventListener('touchend', () => {
+            document.addEventListener('touchend', () => {
+                if (activeType !== 'touch') return;
                 lastTouchTime = Date.now();
                 endDrag();
             }, { passive: true });
 
-            el.addEventListener('touchcancel', () => {
+            document.addEventListener('touchcancel', () => {
+                if (activeType !== 'touch') return;
                 lastTouchTime = Date.now();
                 endDrag();
             }, { passive: true });
 
-            // Fare / dokunmatiği fare gibi gönderen araç ekranları
+            // 2. Pointer olayları (fare/kalem veya pointer gönderen araç ekranları)
+            if (window.PointerEvent) {
+                el.addEventListener('pointerdown', (e) => {
+                    if (e.pointerType === 'touch' || e.button !== 0) return;
+                    if (activeType || Date.now() - lastTouchTime < 600) return;
+                    beginDrag('pointer', e);
+                });
+
+                document.addEventListener('pointermove', (e) => {
+                    if (activeType !== 'pointer') return;
+                    moveDrag(e, e);
+                }, { passive: false });
+
+                document.addEventListener('pointerup', () => {
+                    if (activeType !== 'pointer') return;
+                    endDrag();
+                });
+
+                document.addEventListener('pointercancel', () => {
+                    if (activeType !== 'pointer') return;
+                    endDrag();
+                });
+            }
+
+            // 3. Klasik fare olayları (eski WebView veya fare emülasyonu yapan araç ekranları)
             el.addEventListener('mousedown', (e) => {
-                if (e.button !== 0) return;
+                if (e.button !== 0 || activeType) return;
                 if (Date.now() - lastTouchTime < 600) return;
-                beginDrag(e);
+                beginDrag('mouse', e);
             });
 
-            window.addEventListener('mousemove', (e) => {
-                if (!active) return;
-                if (Date.now() - lastTouchTime < 600) return;
+            document.addEventListener('mousemove', (e) => {
+                if (activeType !== 'mouse') return;
                 moveDrag(e, e);
             });
 
-            window.addEventListener('mouseup', () => {
-                if (Date.now() - lastTouchTime < 600) return;
+            document.addEventListener('mouseup', () => {
+                if (activeType !== 'mouse') return;
                 endDrag();
             });
 
-            // Tekerlek / döner kumanda desteği
+            // 4. Tekerlek / döner kumanda desteği
             el.addEventListener('wheel', (e) => {
                 currentAxis = resolveAxis();
                 const delta = currentAxis === 'x'
@@ -2266,7 +2295,7 @@
                 }
             }, { passive: false });
 
-            // Sürükleme sonrası yanlışlıkla öğe seçilmesini engelle
+            // 5. Sürükleme sonrası yanlışlıkla öğe seçilmesini engelle
             el.addEventListener('click', (e) => {
                 if (Date.now() < suppressClickUntil) {
                     e.preventDefault();
