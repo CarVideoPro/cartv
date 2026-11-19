@@ -749,8 +749,6 @@
             overflow-y: auto;
             overflow-x: hidden;
             -webkit-overflow-scrolling: touch;
-            overscroll-behavior-y: contain;
-            touch-action: none;
             cursor: grab;
             background: var(--bg-secondary);
             border-right: 1px solid var(--border-color);
@@ -778,7 +776,6 @@
             min-height: 76px;
             padding: 10px 6px;
             border-radius: 16px;
-            touch-action: none;
             -webkit-user-drag: none;
             display: flex;
             flex-direction: column;
@@ -893,8 +890,6 @@
             overflow-x: auto;
             overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
-            overscroll-behavior-x: contain;
-            touch-action: none;
             cursor: grab;
             scrollbar-width: none;
         }
@@ -917,7 +912,6 @@
         .channel {
             position: relative;
             overflow: hidden;
-            touch-action: none;
             -webkit-user-drag: none;
             flex: 0 0 184px;
             height: 124px;
@@ -1112,15 +1106,10 @@
         /* ================= DOKUNMATİK ================= */
         html {
             -webkit-tap-highlight-color: transparent;
-            touch-action: manipulation;          /* çift dokunma yakınlaştırmasını ve 300ms gecikmeyi kaldırır */
-            overscroll-behavior: none;           /* aşağı çekince sayfa yenilenmesin */
             -webkit-text-size-adjust: 100%;
         }
 
         body {
-            overscroll-behavior: none;
-            -webkit-user-select: none;
-            user-select: none;
             -webkit-touch-callout: none;
         }
 
@@ -1129,18 +1118,11 @@
         #lookPanel,
         #videoScalePanel {
             -webkit-overflow-scrolling: touch;
-            overscroll-behavior: contain;        /* iç kaydırma sayfayı sürüklemesin */
-        }
-
-        #channels {
-            touch-action: none;
         }
 
         .channel img {
             -webkit-user-drag: none;
         }
-
-        #groups { touch-action: none; }
 
         .group:active,
         .scale-option:active,
@@ -1297,7 +1279,6 @@
                 overflow-x: auto;
                 overflow-y: hidden;
                 -webkit-overflow-scrolling: touch;
-                touch-action: none;
             }
             .channel { flex: 0 0 156px; height: 112px; padding: 10px; border-radius: 18px; }
             .channel img { width: 40px; height: 40px; border-radius: 8px; }
@@ -1320,7 +1301,6 @@
                 overflow-y: hidden;
                 border-right: 0;
                 border-top: 1px solid var(--border-color);
-                touch-action: none;
             }
             #groups::before { display: none; }
             .group { flex: 0 0 72px; width: 72px; min-height: 58px; font-size: 11px; }
@@ -2112,12 +2092,12 @@
             if (hlsInstance) hlsInstance.destroy();
         }
 
-        /* --- ARAÇ EKRANI / DOKUNMATİK / FARE İÇİN SÜRÜKLEME (İVMELİ, YATAY & DİKEY) --- */
+        /* --- MASAÜSTÜ FARE SÜRÜKLEME & TEKERLEK (DOKUNMATİK TAMAMEN YEREL KAYDIRMAYA BIRAKILIR) --- */
         function enableDragScroll(el, axisMode = 'x') {
             if (!el || el.dataset.dragInit) return;
             el.dataset.dragInit = '1';
 
-            let activeType = null; // 'touch' | 'pointer' | 'mouse'
+            let active = false;
             let hasDragged = false;
             let currentAxis = 'x';
             let startPos = 0;
@@ -2172,117 +2152,57 @@
                 rafId = requestAnimationFrame(step);
             };
 
-            const beginDrag = (type, pt) => {
+            // Dokunmatik olaylara kesinlikle müdahale etme (Android Auto / WebView yerel kaydırması için)
+            el.addEventListener('touchstart', () => {
+                lastTouchTime = Date.now();
+                stopMomentum();
+            }, { passive: true });
+
+            // Sadece fare ile sürükleme
+            el.addEventListener('mousedown', (e) => {
+                if (e.button !== 0 || Date.now() - lastTouchTime < 800) return;
                 stopMomentum();
                 currentAxis = resolveAxis();
-                const pos = getPoint(pt);
-                activeType = type;
+                const pos = getPoint(e);
+                active = true;
                 hasDragged = false;
                 startPos = pos;
                 startScroll = getScroll();
                 lastPos = pos;
                 lastTime = performance.now();
                 velocity = 0;
-            };
+            });
 
-            const moveDrag = (pt, e) => {
-                if (!activeType) return;
-                const pos = getPoint(pt);
+            document.addEventListener('mousemove', (e) => {
+                if (!active) return;
+                const pos = getPoint(e);
                 const zoom = currentZoom || 1;
-                const totalDelta = Math.abs(pos - startPos);
-                if (!hasDragged && totalDelta > 6) {
+                if (!hasDragged && Math.abs(pos - startPos) > 6) {
                     hasDragged = true;
                     el.classList.add('is-dragging');
                 }
                 if (hasDragged) {
-                    if (e && e.cancelable) e.preventDefault();
+                    e.preventDefault();
                     const now = performance.now();
                     const dt = Math.max(now - lastTime, 1);
-                    const targetScroll = startScroll + (startPos - pos) / zoom;
-                    setScroll(Math.round(targetScroll));
+                    setScroll(Math.round(startScroll + (startPos - pos) / zoom));
                     velocity = ((lastPos - pos) / zoom / dt) * 16;
                     lastPos = pos;
                     lastTime = now;
                 }
-            };
+            });
 
-            const endDrag = () => {
-                if (!activeType) return;
-                activeType = null;
+            document.addEventListener('mouseup', () => {
+                if (!active) return;
+                active = false;
                 el.classList.remove('is-dragging');
                 if (hasDragged) {
                     suppressClickUntil = Date.now() + 300;
                     if (Math.abs(velocity) > 1.2) startMomentum();
                 }
-            };
-
-            // 1. Dokunmatik olaylar (araç ekranı / Android WebView / mobil)
-            el.addEventListener('touchstart', (e) => {
-                if (e.touches.length !== 1) return;
-                lastTouchTime = Date.now();
-                beginDrag('touch', e.touches[0]);
-            }, { passive: true });
-
-            document.addEventListener('touchmove', (e) => {
-                if (activeType !== 'touch' || e.touches.length !== 1) return;
-                lastTouchTime = Date.now();
-                moveDrag(e.touches[0], e);
-            }, { passive: false });
-
-            document.addEventListener('touchend', () => {
-                if (activeType !== 'touch') return;
-                lastTouchTime = Date.now();
-                endDrag();
-            }, { passive: true });
-
-            document.addEventListener('touchcancel', () => {
-                if (activeType !== 'touch') return;
-                lastTouchTime = Date.now();
-                endDrag();
-            }, { passive: true });
-
-            // 2. Pointer olayları (fare/kalem veya pointer gönderen araç ekranları)
-            if (window.PointerEvent) {
-                el.addEventListener('pointerdown', (e) => {
-                    if (e.pointerType === 'touch' || e.button !== 0) return;
-                    if (activeType || Date.now() - lastTouchTime < 600) return;
-                    beginDrag('pointer', e);
-                });
-
-                document.addEventListener('pointermove', (e) => {
-                    if (activeType !== 'pointer') return;
-                    moveDrag(e, e);
-                }, { passive: false });
-
-                document.addEventListener('pointerup', () => {
-                    if (activeType !== 'pointer') return;
-                    endDrag();
-                });
-
-                document.addEventListener('pointercancel', () => {
-                    if (activeType !== 'pointer') return;
-                    endDrag();
-                });
-            }
-
-            // 3. Klasik fare olayları (eski WebView veya fare emülasyonu yapan araç ekranları)
-            el.addEventListener('mousedown', (e) => {
-                if (e.button !== 0 || activeType) return;
-                if (Date.now() - lastTouchTime < 600) return;
-                beginDrag('mouse', e);
             });
 
-            document.addEventListener('mousemove', (e) => {
-                if (activeType !== 'mouse') return;
-                moveDrag(e, e);
-            });
-
-            document.addEventListener('mouseup', () => {
-                if (activeType !== 'mouse') return;
-                endDrag();
-            });
-
-            // 4. Tekerlek / döner kumanda desteği
+            // Tekerlek / döner kumanda desteği
             el.addEventListener('wheel', (e) => {
                 currentAxis = resolveAxis();
                 const delta = currentAxis === 'x'
@@ -2295,7 +2215,7 @@
                 }
             }, { passive: false });
 
-            // 5. Sürükleme sonrası yanlışlıkla öğe seçilmesini engelle
+            // Fare sürüklemesi sonrası yanlışlıkla öğe seçilmesini engelle
             el.addEventListener('click', (e) => {
                 if (Date.now() < suppressClickUntil) {
                     e.preventDefault();
