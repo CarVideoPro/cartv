@@ -768,21 +768,40 @@
             flex-direction: column;
             align-items: center;
             gap: 6px;
-            padding: 12px 8px;
+            padding: 8px;
             overflow-y: auto;
             overflow-x: hidden;
             -webkit-overflow-scrolling: touch;
-            cursor: grab;
             background: var(--bg-secondary);
             scrollbar-width: thin;
             scrollbar-color: rgba(255, 255, 255, 0.22) transparent;
             transition: background-color 0.35s ease, border-color 0.35s ease;
         }
 
-        #groups.is-dragging { cursor: grabbing; }
         #groups::-webkit-scrollbar { width: 4px; }
         #groups::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.22); border-radius: 4px; }
         #groups::-webkit-scrollbar-track { background: transparent; }
+
+        .rail-scroll-btn {
+            flex-shrink: 0;
+            width: calc(100% - 16px);
+            height: 30px;
+            margin: 4px 8px;
+            padding: 0;
+            border: 1px solid var(--border-color);
+            border-radius: 10px;
+            background: var(--bg-tertiary);
+            color: var(--text-primary);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: background 0.2s var(--ease-spring), transform 0.15s var(--ease-spring), opacity 0.2s;
+        }
+
+        .rail-scroll-btn:hover { background: var(--bg-hover); }
+        .rail-scroll-btn:active { transform: scale(0.95); }
+        .rail-scroll-btn .ico { width: 18px; height: 18px; }
 
         #groups::before {
             content: '';
@@ -904,6 +923,25 @@
         .dock-nav .ico { width: 24px; height: 24px; position: relative; z-index: 1; }
         .dock-nav .ico .fillp { fill: currentColor; }
 
+        .dock-scroll-btn {
+            position: relative;
+            overflow: hidden;
+            width: 44px;
+            height: 124px;
+            padding: 0;
+            justify-content: center;
+            border-radius: 18px;
+            background: var(--card-glass);
+            border: 1px solid var(--card-glass-border);
+            color: var(--text-primary);
+            -webkit-backdrop-filter: blur(16px) saturate(185%) brightness(1.06);
+            backdrop-filter: blur(16px) saturate(185%) brightness(1.06);
+            box-shadow: inset 0 1px 1px var(--card-glass-highlight), inset 0 -1px 0 rgba(255, 255, 255, 0.08), 0 10px 28px rgba(0, 0, 0, 0.28);
+        }
+
+        .dock-scroll-btn:hover { background: var(--card-glass-hover); border-color: var(--card-glass-highlight); }
+        .dock-scroll-btn .ico { width: 24px; height: 24px; position: relative; z-index: 1; }
+
         #channels {
             flex: 1;
             min-width: 0;
@@ -914,12 +952,10 @@
             overflow-x: auto;
             overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
-            cursor: grab;
             scrollbar-width: thin;
             scrollbar-color: rgba(255, 255, 255, 0.28) transparent;
         }
 
-        #channels.is-dragging { cursor: grabbing; }
         #channels::-webkit-scrollbar { height: 5px; }
         #channels::-webkit-scrollbar-thumb { background: rgba(255, 255, 255, 0.28); border-radius: 4px; }
         #channels::-webkit-scrollbar-track { background: transparent; }
@@ -1193,6 +1229,7 @@
             .channel { height: 96px; padding: 10px; border-radius: 18px; flex-basis: 140px; }
             .channel img { width: 38px; height: 38px; border-radius: 8px; }
             .dock-nav { height: 96px; width: 56px; border-radius: 18px; }
+            .dock-scroll-btn { height: 96px; width: 38px; border-radius: 16px; }
             #dockScrim { height: 240px; }
             .group { min-height: 60px; flex: 1 0 60px; }
             #lookPanel, #videoScalePanel { max-height: calc(100vh - 28px); overflow-y: auto; }
@@ -1318,6 +1355,8 @@
             .channel img { width: 40px; height: 40px; border-radius: 8px; }
             .dock-nav { width: 48px; height: 112px; flex-direction: column; font-size: 11px; border-radius: 18px; }
             .dock-nav .ico { width: 20px; height: 20px; }
+            .dock-scroll-btn { width: 34px; height: 112px; border-radius: 14px; }
+            .rail-scroll-btn { display: none; }
 
             /* Kategoriler: altta yatay kaydırılan şerit */
             #groups {
@@ -1355,7 +1394,13 @@
     <div id="app">
         <!-- SOL KOLON: kategoriler + görünüm -->
         <div id="leftRail">
+            <button class="rail-scroll-btn" onclick="scrollGroups(-1)" title="Kategorileri yukarı kaydır" aria-label="Yukarı kaydır">
+                <svg class="ico" viewBox="0 0 24 24"><path d="M18 15l-6-6-6 6"></path></svg>
+            </button>
             <div id="groups"></div>
+            <button class="rail-scroll-btn" onclick="scrollGroups(1)" title="Kategorileri aşağı kaydır" aria-label="Aşağı kaydır">
+                <svg class="ico" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
+            </button>
 
             <div id="lookWrapper">
                 <button class="player-nav-btn" id="lookBtn" onclick="toggleLookPanel()" title="Görünüm" aria-label="Görünüm ayarları">
@@ -1440,7 +1485,13 @@
                         <svg class="ico" viewBox="0 0 24 24"><path class="fillp" d="M19 20L9 12l10-8z"></path><path d="M5 19V5"></path></svg>
                         Geri
                     </button>
+                    <button class="player-nav-btn dock-scroll-btn" onclick="scrollChannels(-1)" title="Listeyi sola kaydır" aria-label="Listeyi sola kaydır">
+                        <svg class="ico" viewBox="0 0 24 24"><path d="M15 18l-6-6 6-6"></path></svg>
+                    </button>
                     <div id="channels"></div>
+                    <button class="player-nav-btn dock-scroll-btn" onclick="scrollChannels(1)" title="Listeyi sağa kaydır" aria-label="Listeyi sağa kaydır">
+                        <svg class="ico" viewBox="0 0 24 24"><path d="M9 18l6-6-6-6"></path></svg>
+                    </button>
                     <button class="player-nav-btn dock-nav" onclick="changeChannel(1)" aria-label="Sonraki kanal">
                         <svg class="ico" viewBox="0 0 24 24"><path class="fillp" d="M5 4l10 8-10 8z"></path><path d="M19 5v14"></path></svg>
                         İleri
@@ -2121,136 +2172,30 @@
             if (hlsInstance) hlsInstance.destroy();
         }
 
-        /* --- MASAÜSTÜ FARE SÜRÜKLEME & TEKERLEK (DOKUNMATİK TAMAMEN YEREL KAYDIRMAYA BIRAKILIR) --- */
-        function enableDragScroll(el, axisMode = 'x') {
-            if (!el || el.dataset.dragInit) return;
-            el.dataset.dragInit = '1';
+        /* --- LİSTE KAYDIRMA BUTONLARI VE TEKERLEK DESTEĞİ (DOKUNMATİĞE HİÇ MÜDAHALE YOK) --- */
+        function smoothScrollBy(el, axis, delta) {
+            if (!el) return;
+            try {
+                if (axis === 'x') el.scrollBy({ left: delta, behavior: 'smooth' });
+                else el.scrollBy({ top: delta, behavior: 'smooth' });
+            } catch (e) {
+                if (axis === 'x') el.scrollLeft += delta;
+                else el.scrollTop += delta;
+            }
+        }
 
-            let active = false;
-            let hasDragged = false;
-            let currentAxis = 'x';
-            let startPos = 0;
-            let startScroll = 0;
-            let lastPos = 0;
-            let lastTime = 0;
-            let velocity = 0;
-            let rafId = null;
-            let suppressClickUntil = 0;
-            let lastTouchTime = 0;
+        function scrollChannels(direction) {
+            const el = G_UI.channels;
+            if (!el) return;
+            const step = Math.max(Math.round(el.clientWidth * 0.75), 380);
+            smoothScrollBy(el, 'x', direction * step);
+        }
 
-            const resolveAxis = () => {
-                if (axisMode === 'auto') {
-                    return getComputedStyle(el).flexDirection === 'row' ? 'x' : 'y';
-                }
-                return axisMode;
-            };
-
-            const getScroll = () => (currentAxis === 'x' ? el.scrollLeft : el.scrollTop);
-            const setScroll = (val) => {
-                if (currentAxis === 'x') el.scrollLeft = val;
-                else el.scrollTop = val;
-            };
-            const getPoint = (pt) => (currentAxis === 'x' ? pt.clientX : pt.clientY);
-
-            const stopMomentum = () => {
-                if (rafId) {
-                    cancelAnimationFrame(rafId);
-                    rafId = null;
-                }
-            };
-
-            const startMomentum = () => {
-                stopMomentum();
-                let momentumPos = getScroll();
-                const step = () => {
-                    if (Math.abs(velocity) < 0.4) {
-                        rafId = null;
-                        return;
-                    }
-                    const prevScroll = getScroll();
-                    momentumPos += velocity;
-                    const nextScroll = Math.round(momentumPos);
-                    setScroll(nextScroll);
-                    if (nextScroll !== prevScroll && getScroll() === prevScroll) {
-                        rafId = null;
-                        return;
-                    }
-                    velocity *= 0.92;
-                    rafId = requestAnimationFrame(step);
-                };
-                rafId = requestAnimationFrame(step);
-            };
-
-            // Dokunmatik olaylara kesinlikle müdahale etme (Android Auto / WebView yerel kaydırması için)
-            el.addEventListener('touchstart', () => {
-                lastTouchTime = Date.now();
-                stopMomentum();
-            }, { passive: true });
-
-            // Sadece fare ile sürükleme
-            el.addEventListener('mousedown', (e) => {
-                if (e.button !== 0 || Date.now() - lastTouchTime < 800) return;
-                stopMomentum();
-                currentAxis = resolveAxis();
-                const pos = getPoint(e);
-                active = true;
-                hasDragged = false;
-                startPos = pos;
-                startScroll = getScroll();
-                lastPos = pos;
-                lastTime = performance.now();
-                velocity = 0;
-            });
-
-            document.addEventListener('mousemove', (e) => {
-                if (!active) return;
-                const pos = getPoint(e);
-                const zoom = currentZoom || 1;
-                if (!hasDragged && Math.abs(pos - startPos) > 6) {
-                    hasDragged = true;
-                    el.classList.add('is-dragging');
-                }
-                if (hasDragged) {
-                    e.preventDefault();
-                    const now = performance.now();
-                    const dt = Math.max(now - lastTime, 1);
-                    setScroll(Math.round(startScroll + (startPos - pos) / zoom));
-                    velocity = ((lastPos - pos) / zoom / dt) * 16;
-                    lastPos = pos;
-                    lastTime = now;
-                }
-            });
-
-            document.addEventListener('mouseup', () => {
-                if (!active) return;
-                active = false;
-                el.classList.remove('is-dragging');
-                if (hasDragged) {
-                    suppressClickUntil = Date.now() + 300;
-                    if (Math.abs(velocity) > 1.2) startMomentum();
-                }
-            });
-
-            // Tekerlek / döner kumanda desteği
-            el.addEventListener('wheel', (e) => {
-                currentAxis = resolveAxis();
-                const delta = currentAxis === 'x'
-                    ? (Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY)
-                    : e.deltaY;
-                if (delta !== 0) {
-                    stopMomentum();
-                    setScroll(getScroll() + delta);
-                    e.preventDefault();
-                }
-            }, { passive: false });
-
-            // Fare sürüklemesi sonrası yanlışlıkla öğe seçilmesini engelle
-            el.addEventListener('click', (e) => {
-                if (Date.now() < suppressClickUntil) {
-                    e.preventDefault();
-                    e.stopPropagation();
-                }
-            }, true);
+        function scrollGroups(direction) {
+            const el = G_UI.groups;
+            if (!el) return;
+            const step = Math.max(Math.round(el.clientHeight * 0.65), 220);
+            smoothScrollBy(el, 'y', direction * step);
         }
 
         window.addEventListener("load", async () => {
@@ -2259,8 +2204,17 @@
             loadSavedZoom();
             loadSavedScale();
             loadSavedAutoFullscreen();
-            enableDragScroll(G_UI.channels, 'x');
-            enableDragScroll(G_UI.groups, 'auto');
+
+            // Masaüstü fare tekerleği / araç döner kumandası ile kanal listesini kaydır
+            if (G_UI.channels) {
+                G_UI.channels.addEventListener('wheel', (e) => {
+                    const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+                    if (delta !== 0) {
+                        G_UI.channels.scrollLeft += delta;
+                        e.preventDefault();
+                    }
+                }, { passive: false });
+            }
 
             try {
                 const response = await fetch('channels.json?v=' + new Date().getTime());
