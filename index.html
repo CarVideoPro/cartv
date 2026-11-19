@@ -1313,7 +1313,7 @@
                     </div>
                     <video id="previewVideo" autoplay playsinline style="display:none;"></video>
                     <div id="youtubePlayer"></div>
-                    <div id="fsTapOverlay" onclick="exitFullscreen(event)" title="Menüleri göster"></div>
+                    <div id="fsTapOverlay" onclick="exitFullscreenMode(event)" title="Menüleri göster"></div>
                 </div>
             </div>
 
@@ -1867,13 +1867,14 @@
             }
             updateActiveChannelVisuals();
 
-            // Otomatik tam ekran açıksa yayın açıldıktan 5 saniye sonra tam ekran yap
+            // Otomatik tam ekran açıksa yayın açıldıktan 4.5 saniye sonra gerçek tam ekran yap
+            // (Chrome/Edge kullanıcı etkileşim penceresi 5 saniye olduğu için 4500ms içinde tetiklenir)
             if (autoFullscreenEnabled) {
                 fullscreenTimeout = setTimeout(() => {
                     if (isPlaying && currentlyPlayingChannel) {
                         enterFullscreen();
                     }
-                }, 5000);
+                }, 4500);
             }
         }
 
@@ -1907,7 +1908,8 @@
                     isNativeFullscreenActive = true;
                 }
             }
-            adjustYouTubeSize();
+            requestAnimationFrame(adjustYouTubeSize);
+            setTimeout(adjustYouTubeSize, 150);
         }
 
         function enterFullscreen() {
@@ -1919,7 +1921,7 @@
             requestAnimationFrame(adjustYouTubeSize);
             setTimeout(adjustYouTubeSize, 100);
 
-            // Tarayıcı destekliyorsa yerel tam ekranı da tetikle
+            // Tarayıcı destekliyorsa yerel (gerçek) tam ekranı tetikle
             if (!document.fullscreenElement && !document.webkitFullscreenElement) {
                 if (containerElement.requestFullscreen) containerElement.requestFullscreen().catch(e => console.log(e));
                 else if (containerElement.webkitRequestFullscreen) containerElement.webkitRequestFullscreen();
@@ -1928,7 +1930,7 @@
             }
         }
 
-        function exitFullscreen(e) {
+        function exitFullscreenMode(e) {
             if (e) e.stopPropagation();
             const containerElement = document.getElementById('videoContainer');
             if (containerElement) containerElement.classList.remove('virtual-fullscreen');
@@ -1936,7 +1938,7 @@
             requestAnimationFrame(adjustYouTubeSize);
             setTimeout(adjustYouTubeSize, 100);
             if (document.fullscreenElement || document.webkitFullscreenElement) {
-                if (document.exitFullscreen) document.exitFullscreen();
+                if (document.exitFullscreen) document.exitFullscreen().catch(() => {});
                 else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
                 else if (document.mozCancelFullScreen) document.mozCancelFullScreen();
                 else if (document.msExitFullscreen) document.msExitFullscreen();
@@ -1954,7 +1956,7 @@
             if (!document.fullscreenElement && !document.webkitFullscreenElement && !isVirtual) {
                 enterFullscreen();
             } else {
-                exitFullscreen();
+                exitFullscreenMode();
             }
         }
 
@@ -1962,7 +1964,7 @@
             if (e.key === 'Escape') {
                 const containerElement = document.getElementById('videoContainer');
                 if (containerElement && containerElement.classList.contains('virtual-fullscreen')) {
-                    exitFullscreen();
+                    exitFullscreenMode();
                 }
             }
         });
