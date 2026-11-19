@@ -287,8 +287,8 @@
         [data-theme='ocean'] { --accent-contrast: #001424; }
 
         :root {
-            --rail-width: clamp(86px, 7.2vw, 112px);
-            --rail-footer-h: clamp(66px, 9vh, 84px);
+            --rail-width: clamp(114px, 10vw, 148px);
+            --rail-footer-h: clamp(78px, 11vh, 96px);
             --ticker-height: 30px;
             --glass: rgba(14, 16, 20, 0.72);
             --glass-hover: rgba(30, 34, 42, 0.88);
@@ -615,15 +615,15 @@
         #lookBtn {
             width: 100%;
             height: 100%;
-            padding: 6px 4px;
-            border-radius: 14px;
+            padding: 8px 6px;
+            border-radius: 16px;
             border: 1px solid transparent;
             background: transparent;
             color: var(--text-secondary);
             flex-direction: column;
             justify-content: center;
-            gap: 4px;
-            font-size: clamp(11px, 1.05vw, 13px);
+            gap: 6px;
+            font-size: clamp(13px, 1.25vw, 15px);
             font-weight: 600;
             line-height: 1.15;
             -webkit-backdrop-filter: none;
@@ -631,7 +631,7 @@
             transition: background 0.22s var(--ease-spring), color 0.22s var(--ease-spring), transform 0.18s var(--ease-spring);
         }
 
-        #lookBtn .ico { width: clamp(20px, 1.8vw, 24px); height: clamp(20px, 1.8vw, 24px); }
+        #lookBtn .ico { width: clamp(26px, 2.4vw, 32px); height: clamp(26px, 2.4vw, 32px); }
 
         #lookBtn:hover { background: var(--bg-hover); color: var(--text-primary); border-color: transparent; }
         #lookBtn:active { transform: scale(0.94); }
@@ -744,49 +744,57 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 4px;
-            padding: 10px 6px;
+            gap: 6px;
+            padding: 12px 8px;
             overflow-y: auto;
+            overflow-x: hidden;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-y: contain;
+            touch-action: none;
+            cursor: grab;
             background: var(--bg-secondary);
             border-right: 1px solid var(--border-color);
             scrollbar-width: none;
             transition: background-color 0.35s ease, border-color 0.35s ease;
         }
 
+        #groups.is-dragging { cursor: grabbing; }
         #groups::-webkit-scrollbar { display: none; }
 
         #groups::before {
             content: '';
             flex-shrink: 0;
-            width: clamp(42px, 4vw, 52px);
-            height: clamp(42px, 4vw, 52px);
-            margin-bottom: 6px;
-            border-radius: 14px;
-            background: var(--accent-color) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'%3E%3Crect x='2' y='5' width='20' height='14' rx='3'/%3E%3Cpath d='M10 9.5l4.5 2.5-4.5 2.5z' fill='white'/%3E%3C/svg%3E") center / 55% no-repeat;
+            width: clamp(50px, 4.6vw, 62px);
+            height: clamp(50px, 4.6vw, 62px);
+            margin-bottom: 8px;
+            border-radius: 16px;
+            background: var(--accent-color) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'%3E%3Crect x='2' y='5' width='20' height='14' rx='3'/%3E%3Cpath d='M10 9.5l4.5 2.5-4.5 2.5z' fill='white'/%3E%3C/svg%3E") center / 56% no-repeat;
             transition: background-color 0.35s ease;
         }
 
         .group {
-            flex: 1 0 48px;
+            flex: 1 0 76px;
             width: 100%;
-            min-height: 48px;
-            padding: 6px 4px;
-            border-radius: 14px;
+            min-height: 76px;
+            padding: 10px 6px;
+            border-radius: 16px;
+            touch-action: none;
+            -webkit-user-drag: none;
             display: flex;
             flex-direction: column;
             align-items: center;
             justify-content: center;
-            gap: 4px;
+            gap: 6px;
             cursor: pointer;
             color: var(--text-secondary);
-            font-size: clamp(11px, 1.05vw, 13px);
+            font-size: clamp(13px, 1.25vw, 15px);
             font-weight: 600;
             text-align: center;
             line-height: 1.15;
             transition: background 0.22s var(--ease-spring), color 0.22s var(--ease-spring), transform 0.18s var(--ease-spring);
         }
 
-        .group .ico { width: clamp(20px, 1.8vw, 24px); height: clamp(20px, 1.8vw, 24px); }
+        .group .ico { width: clamp(26px, 2.4vw, 32px); height: clamp(26px, 2.4vw, 32px); }
 
         .group:hover { background: var(--bg-hover); color: var(--text-primary); }
         .group.active { background: var(--bg-tertiary); color: var(--accent-color); }
@@ -1133,7 +1141,7 @@
             -webkit-user-drag: none;
         }
 
-        #groups { touch-action: pan-y; }
+        #groups { touch-action: none; }
 
         .group:active,
         .scale-option:active,
@@ -1179,7 +1187,7 @@
             .channel img { width: 38px; height: 38px; border-radius: 8px; }
             .dock-nav { height: 96px; width: 56px; border-radius: 18px; }
             #dockScrim { height: 240px; }
-            .group { min-height: 44px; flex: 1 0 44px; }
+            .group { min-height: 60px; flex: 1 0 60px; }
             #lookPanel, #videoScalePanel { max-height: calc(100vh - 28px); overflow-y: auto; }
         }
 
@@ -1313,7 +1321,7 @@
                 overflow-y: hidden;
                 border-right: 0;
                 border-top: 1px solid var(--border-color);
-                touch-action: pan-x;
+                touch-action: none;
             }
             #groups::before { display: none; }
             .group { flex: 0 0 72px; width: 72px; min-height: 58px; font-size: 11px; }
@@ -2105,21 +2113,35 @@
             if (hlsInstance) hlsInstance.destroy();
         }
 
-        /* --- ARAÇ EKRANI / DOKUNMATİK / FARE İÇİN YATAY SÜRÜKLEME (İVMELİ) --- */
-        function enableChannelsDragScroll() {
-            const el = G_UI.channels;
+        /* --- ARAÇ EKRANI / DOKUNMATİK / FARE İÇİN SÜRÜKLEME (İVMELİ, YATAY & DİKEY) --- */
+        function enableDragScroll(el, axisMode = 'x') {
             if (!el || el.dataset.dragInit) return;
             el.dataset.dragInit = '1';
 
             let active = false;
             let hasDragged = false;
-            let startX = 0;
-            let lastX = 0;
+            let currentAxis = 'x';
+            let startPos = 0;
+            let lastPos = 0;
             let lastTime = 0;
             let velocity = 0;
             let rafId = null;
             let suppressClickUntil = 0;
             let lastTouchTime = 0;
+
+            const resolveAxis = () => {
+                if (axisMode === 'auto') {
+                    return getComputedStyle(el).flexDirection === 'row' ? 'x' : 'y';
+                }
+                return axisMode;
+            };
+
+            const getScroll = () => (currentAxis === 'x' ? el.scrollLeft : el.scrollTop);
+            const setScroll = (val) => {
+                if (currentAxis === 'x') el.scrollLeft = val;
+                else el.scrollTop = val;
+            };
+            const getPoint = (pt) => (currentAxis === 'x' ? pt.clientX : pt.clientY);
 
             const stopMomentum = () => {
                 if (rafId) {
@@ -2135,9 +2157,9 @@
                         rafId = null;
                         return;
                     }
-                    const prev = el.scrollLeft;
-                    el.scrollLeft += velocity;
-                    if (el.scrollLeft === prev) {
+                    const prev = getScroll();
+                    setScroll(prev + velocity);
+                    if (getScroll() === prev) {
                         rafId = null;
                         return;
                     }
@@ -2147,21 +2169,24 @@
                 rafId = requestAnimationFrame(step);
             };
 
-            const beginDrag = (clientX) => {
+            const beginDrag = (pt) => {
                 stopMomentum();
+                currentAxis = resolveAxis();
+                const pos = getPoint(pt);
                 active = true;
                 hasDragged = false;
-                startX = clientX;
-                lastX = clientX;
+                startPos = pos;
+                lastPos = pos;
                 lastTime = performance.now();
                 velocity = 0;
             };
 
-            const moveDrag = (clientX, e) => {
+            const moveDrag = (pt, e) => {
                 if (!active) return;
+                const pos = getPoint(pt);
                 const zoom = currentZoom || 1;
-                const totalDx = Math.abs(clientX - startX);
-                if (!hasDragged && totalDx > 6) {
+                const totalDelta = Math.abs(pos - startPos);
+                if (!hasDragged && totalDelta > 6) {
                     hasDragged = true;
                     el.classList.add('is-dragging');
                 }
@@ -2169,10 +2194,10 @@
                     if (e && e.cancelable) e.preventDefault();
                     const now = performance.now();
                     const dt = Math.max(now - lastTime, 1);
-                    const dx = (lastX - clientX) / zoom;
-                    el.scrollLeft += dx;
-                    velocity = (dx / dt) * 16;
-                    lastX = clientX;
+                    const delta = (lastPos - pos) / zoom;
+                    setScroll(getScroll() + delta);
+                    velocity = (delta / dt) * 16;
+                    lastPos = pos;
                     lastTime = now;
                 }
             };
@@ -2191,13 +2216,13 @@
             el.addEventListener('touchstart', (e) => {
                 if (e.touches.length !== 1) return;
                 lastTouchTime = Date.now();
-                beginDrag(e.touches[0].clientX);
+                beginDrag(e.touches[0]);
             }, { passive: true });
 
             el.addEventListener('touchmove', (e) => {
                 if (!active || e.touches.length !== 1) return;
                 lastTouchTime = Date.now();
-                moveDrag(e.touches[0].clientX, e);
+                moveDrag(e.touches[0], e);
             }, { passive: false });
 
             el.addEventListener('touchend', () => {
@@ -2214,13 +2239,13 @@
             el.addEventListener('mousedown', (e) => {
                 if (e.button !== 0) return;
                 if (Date.now() - lastTouchTime < 600) return;
-                beginDrag(e.clientX);
+                beginDrag(e);
             });
 
             window.addEventListener('mousemove', (e) => {
                 if (!active) return;
                 if (Date.now() - lastTouchTime < 600) return;
-                moveDrag(e.clientX, e);
+                moveDrag(e, e);
             });
 
             window.addEventListener('mouseup', () => {
@@ -2230,15 +2255,18 @@
 
             // Tekerlek / döner kumanda desteği
             el.addEventListener('wheel', (e) => {
-                const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+                currentAxis = resolveAxis();
+                const delta = currentAxis === 'x'
+                    ? (Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY)
+                    : e.deltaY;
                 if (delta !== 0) {
                     stopMomentum();
-                    el.scrollLeft += delta;
+                    setScroll(getScroll() + delta);
                     e.preventDefault();
                 }
             }, { passive: false });
 
-            // Sürükleme sonrası yanlışlıkla kanal açılmasını engelle
+            // Sürükleme sonrası yanlışlıkla öğe seçilmesini engelle
             el.addEventListener('click', (e) => {
                 if (Date.now() < suppressClickUntil) {
                     e.preventDefault();
@@ -2253,7 +2281,8 @@
             loadSavedZoom();
             loadSavedScale();
             loadSavedAutoFullscreen();
-            enableChannelsDragScroll();
+            enableDragScroll(G_UI.channels, 'x');
+            enableDragScroll(G_UI.groups, 'auto');
 
             try {
                 const response = await fetch('channels.json?v=' + new Date().getTime());
