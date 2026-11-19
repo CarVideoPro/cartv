@@ -5,6 +5,8 @@
     <meta http-equiv="Content-Security-Policy" content="upgrade-insecure-requests">
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <title>Car Video Pro TV</title>
     <script src="https://cdn.jsdelivr.net/npm/hls.js@latest"></script>
     <script src="https://www.youtube.com/iframe_api"></script>
@@ -107,8 +109,13 @@
             --accent-color-darker: #0056b3;
             --text-primary: #ffffff;
             --text-secondary: #a1a1a1;
-            --epg-color: #64b5f6;
+            --epg-color: #7cc4ff;
             --favorite-color: #ffd700;
+            --card-glass: linear-gradient(155deg, rgba(255, 255, 255, 0.14) 0%, rgba(20, 24, 34, 0.18) 48%, rgba(8, 10, 16, 0.42) 100%);
+            --card-glass-hover: linear-gradient(155deg, rgba(255, 255, 255, 0.22) 0%, rgba(36, 42, 56, 0.28) 48%, rgba(14, 18, 26, 0.52) 100%);
+            --card-glass-border: rgba(255, 255, 255, 0.24);
+            --card-glass-highlight: rgba(255, 255, 255, 0.36);
+            --card-text-shadow: 0 1px 3px rgba(0, 0, 0, 0.88), 0 0 10px rgba(0, 0, 0, 0.55);
         }
 
         /* 2. Kutup Beyazı (Açık Tema - Beğendiğin) */
@@ -124,6 +131,11 @@
             --text-secondary: #5e6b7c;
             --epg-color: #2980b9;
             --favorite-color: #f39c12;
+            --card-glass: linear-gradient(155deg, rgba(255, 255, 255, 0.58) 0%, rgba(240, 245, 252, 0.42) 55%, rgba(232, 239, 248, 0.62) 100%);
+            --card-glass-hover: linear-gradient(155deg, rgba(255, 255, 255, 0.74) 0%, rgba(244, 248, 255, 0.58) 55%, rgba(236, 243, 252, 0.76) 100%);
+            --card-glass-border: rgba(255, 255, 255, 0.78);
+            --card-glass-highlight: rgba(255, 255, 255, 0.92);
+            --card-text-shadow: 0 1px 2px rgba(255, 255, 255, 0.75);
         }
 
         /* 3. Yarış Yeşili (Racing Green - Neon Vurgulu) */
@@ -139,6 +151,11 @@
             --text-secondary: #a5d6a7;
             --epg-color: #69f0ae;
             --favorite-color: #ffeb3b;
+            --card-glass: linear-gradient(155deg, rgba(0, 230, 118, 0.14) 0%, rgba(10, 34, 20, 0.20) 48%, rgba(5, 20, 10, 0.44) 100%);
+            --card-glass-hover: linear-gradient(155deg, rgba(0, 230, 118, 0.22) 0%, rgba(18, 52, 32, 0.30) 48%, rgba(8, 28, 16, 0.54) 100%);
+            --card-glass-border: rgba(105, 240, 174, 0.28);
+            --card-glass-highlight: rgba(200, 255, 224, 0.34);
+            --card-text-shadow: 0 1px 3px rgba(0, 0, 0, 0.88), 0 0 10px rgba(0, 0, 0, 0.55);
         }
 
         /* 4. Gece Moru (Cyberpunk - Neon Mor) */
@@ -154,6 +171,11 @@
             --text-secondary: #e1bee7;
             --epg-color: #ea80fc;
             --favorite-color: #fdd835;
+            --card-glass: linear-gradient(155deg, rgba(224, 64, 251, 0.14) 0%, rgba(30, 12, 48, 0.20) 48%, rgba(15, 5, 24, 0.44) 100%);
+            --card-glass-hover: linear-gradient(155deg, rgba(224, 64, 251, 0.22) 0%, rgba(48, 20, 76, 0.30) 48%, rgba(22, 8, 36, 0.54) 100%);
+            --card-glass-border: rgba(234, 128, 252, 0.28);
+            --card-glass-highlight: rgba(246, 206, 255, 0.34);
+            --card-text-shadow: 0 1px 3px rgba(0, 0, 0, 0.88), 0 0 10px rgba(0, 0, 0, 0.55);
         }
 
         /* 5. Güneş Turuncusu (Sportif - Karbon Fiber Hissi) */
@@ -169,6 +191,11 @@
             --text-secondary: #ffccbc;
             --epg-color: #ff9e80;
             --favorite-color: #ffc107;
+            --card-glass: linear-gradient(155deg, rgba(255, 109, 0, 0.15) 0%, rgba(48, 20, 4, 0.20) 48%, rgba(24, 10, 0, 0.44) 100%);
+            --card-glass-hover: linear-gradient(155deg, rgba(255, 109, 0, 0.24) 0%, rgba(74, 32, 6, 0.30) 48%, rgba(36, 14, 2, 0.54) 100%);
+            --card-glass-border: rgba(255, 158, 128, 0.30);
+            --card-glass-highlight: rgba(255, 224, 196, 0.34);
+            --card-text-shadow: 0 1px 3px rgba(0, 0, 0, 0.88), 0 0 10px rgba(0, 0, 0, 0.55);
         }
 
         /* 6. Titanyum Gri (Metalik - Soğuk ve Teknolojik) */
@@ -184,6 +211,11 @@
             --text-secondary: #b0bec5;
             --epg-color: #80deea;
             --favorite-color: #ffffff;
+            --card-glass: linear-gradient(155deg, rgba(180, 225, 235, 0.15) 0%, rgba(28, 32, 38, 0.20) 48%, rgba(14, 16, 20, 0.44) 100%);
+            --card-glass-hover: linear-gradient(155deg, rgba(180, 225, 235, 0.24) 0%, rgba(44, 50, 58, 0.30) 48%, rgba(20, 24, 30, 0.54) 100%);
+            --card-glass-border: rgba(128, 222, 234, 0.26);
+            --card-glass-highlight: rgba(224, 247, 250, 0.34);
+            --card-text-shadow: 0 1px 3px rgba(0, 0, 0, 0.88), 0 0 10px rgba(0, 0, 0, 0.55);
         }
 
         /* 7. Derin Mavi (Okyanus - MBUX Tarzı) */
@@ -199,6 +231,11 @@
             --text-secondary: #81d4fa;
             --epg-color: #40c4ff;
             --favorite-color: #ffeb3b;
+            --card-glass: linear-gradient(155deg, rgba(0, 176, 255, 0.15) 0%, rgba(4, 26, 44, 0.20) 48%, rgba(0, 12, 22, 0.44) 100%);
+            --card-glass-hover: linear-gradient(155deg, rgba(0, 176, 255, 0.24) 0%, rgba(8, 42, 70, 0.30) 48%, rgba(2, 18, 34, 0.54) 100%);
+            --card-glass-border: rgba(129, 212, 250, 0.28);
+            --card-glass-highlight: rgba(204, 238, 255, 0.34);
+            --card-text-shadow: 0 1px 3px rgba(0, 0, 0, 0.88), 0 0 10px rgba(0, 0, 0, 0.55);
         }
 
         /* 8. Ferrari Kırmızı (Magma - Agresif Spor Modu) */
@@ -212,8 +249,13 @@
             --accent-color-darker: #D50000;
             --text-primary: #ffebee;
             --text-secondary: #ffcdd2;
-            --epg-color: #ff5252;
+            --epg-color: #ff6e7f;
             --favorite-color: #ffff00;
+            --card-glass: linear-gradient(155deg, rgba(255, 23, 68, 0.15) 0%, rgba(48, 6, 8, 0.20) 48%, rgba(24, 2, 4, 0.44) 100%);
+            --card-glass-hover: linear-gradient(155deg, rgba(255, 23, 68, 0.24) 0%, rgba(74, 10, 14, 0.30) 48%, rgba(36, 4, 6, 0.54) 100%);
+            --card-glass-border: rgba(255, 138, 154, 0.28);
+            --card-glass-highlight: rgba(255, 212, 218, 0.34);
+            --card-text-shadow: 0 1px 3px rgba(0, 0, 0, 0.88), 0 0 10px rgba(0, 0, 0, 0.55);
         }
 
         /* 9. Lavanta (Soft - Modern Elektrikli Araç Modu) */
@@ -229,191 +271,71 @@
             --text-secondary: #d1c4e9;
             --epg-color: #b388ff;
             --favorite-color: #ffd700;
+            --card-glass: linear-gradient(155deg, rgba(160, 128, 255, 0.16) 0%, rgba(34, 30, 52, 0.20) 48%, rgba(16, 14, 26, 0.44) 100%);
+            --card-glass-hover: linear-gradient(155deg, rgba(160, 128, 255, 0.24) 0%, rgba(52, 46, 78, 0.30) 48%, rgba(24, 20, 40, 0.54) 100%);
+            --card-glass-border: rgba(179, 136, 255, 0.28);
+            --card-glass-highlight: rgba(226, 214, 255, 0.34);
+            --card-text-shadow: 0 1px 3px rgba(0, 0, 0, 0.88), 0 0 10px rgba(0, 0, 0, 0.55);
         }
 
-        * {
-            box-sizing: border-box;
+        /* --- VURGU ÜZERİ YAZI RENGİ (yeni, sadece okunabilirlik için) --- */
+        [data-theme='default'], [data-theme='polar'], [data-theme='magma'], [data-theme='lavender'] { --accent-contrast: #ffffff; }
+        [data-theme='forest'] { --accent-contrast: #00170a; }
+        [data-theme='royal'] { --accent-contrast: #1a0024; }
+        [data-theme='sunset'] { --accent-contrast: #1a0a00; }
+        [data-theme='steel'] { --accent-contrast: #001a1e; }
+        [data-theme='ocean'] { --accent-contrast: #001424; }
+
+        :root {
+            --rail-width: 88px;
+            --rail-footer-h: 76px;
+            --ticker-height: 30px;
+            --glass: rgba(14, 16, 20, 0.72);
+            --glass-hover: rgba(30, 34, 42, 0.88);
+            --glass-border: rgba(255, 255, 255, 0.12);
+            --on-video: #f5f6f8;
+            --on-video-muted: #b4bac3;
+            --ease-spring: cubic-bezier(0.22, 1, 0.36, 1);
         }
+
+        * { box-sizing: border-box; }
 
         html,
         body {
             margin: 0;
             height: 100%;
             background: var(--bg-primary);
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Inter', 'Segoe UI', Roboto, Arial, sans-serif;
             overflow: hidden;
             color: var(--text-primary);
             font-size: 15px;
-            transition: transform 0.2s ease, background-color 0.4s ease, color 0.4s ease;
+            -webkit-font-smoothing: antialiased;
+            transition: background-color 0.4s ease, color 0.4s ease;
             transform-origin: top left;
         }
 
-        #app {
-            display: flex;
-            flex-direction: column;
-            height: 100%;
-            padding-bottom: calc(var(--player-height) + var(--category-bar-height));
-        }
+        button { font-family: inherit; }
 
-        #main {
-            display: flex;
-            flex: 1;
-            overflow: hidden;
-        }
+        .ico { width: 20px; height: 20px; flex-shrink: 0; fill: none; stroke: currentColor; stroke-width: 2; stroke-linecap: round; stroke-linejoin: round; }
 
-        /* --- KANAL LİSTESİ --- */
-        #channels {
-            flex: 0 0 300px;
-            background: var(--bg-secondary);
-            border-right: 1px solid var(--border-color);
-            overflow-y: auto;
-            padding: 12px;
-            display: flex;
-            flex-direction: column;
-            gap: 10px;
-            z-index: 50;
-        }
+        /* #app ve #main bilerek konumlandırılmaz: aksi halde .virtual-fullscreen kategori rayının altında kalır */
+        #app, #main { position: static; height: 100%; }
 
-        .channel {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-            background: var(--bg-tertiary);
-            border-radius: 8px;
-            padding: 12px 15px;
-            border: none;
-            border-left: 5px solid transparent;
-            transition: background-color 0.2s, transform 0.1s;
-            cursor: pointer;
-        }
-
-        .channel:hover {
-            background: var(--bg-hover);
-            transform: translateX(2px);
-        }
-
-        .channel.active {
-            background: var(--bg-hover);
-            border-left-color: var(--accent-color);
-        }
-
-        .channel.playing-active {
-            background: var(--accent-color-darker);
-            border-left-color: #fff;
-        }
-
-        [data-theme='polar'] .channel.playing-active {
-            color: #fff;
-        }
-
-        [data-theme='polar'] .channel.playing-active .channel-name-text {
-            color: #fff;
-        }
-
-        .channel img {
-            width: 45px;
-            height: 45px;
-            object-fit: contain;
-            flex-shrink: 0;
-        }
-
-        .channel-info {
-            flex-grow: 1;
-            cursor: pointer;
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            min-width: 0;
-        }
-
-        .channel-info>div {
-            display: flex;
-            flex-direction: column;
-            justify-content: center;
-            min-width: 0;
-        }
-
-        .channel-name-text {
-            font-weight: 600;
-            font-size: 1.1em;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-            color: var(--text-primary);
-        }
-
-        .channel-stop-text {
-            display: none;
-            color: #fff;
-            font-weight: bold;
-            font-size: 1.1em;
-            letter-spacing: 0.5px;
-        }
-
-        .channel.playing-active .channel-name-text {
-            display: none;
-        }
-
-        .channel.playing-active .channel-stop-text {
-            display: flex;
-            align-items: center;
-            gap: 5px;
-        }
-
-        .channel.playing-active .epg-title {
-            display: none;
-        }
-
-        .epg-title {
-            color: var(--epg-color);
-            font-size: 0.9em;
-            margin-top: 4px;
-            opacity: 0.9;
-        }
-
-        .fav-btn {
-            font-size: 24px;
-            cursor: pointer;
-            padding: 5px;
-            color: var(--text-secondary);
-            transition: 0.2s;
-        }
-
-        .fav-btn:hover {
-            transform: scale(1.2);
-            color: var(--favorite-color);
-        }
-
-        .fav-btn.favorited {
-            color: var(--favorite-color);
-        }
-
-        .youtube-icon {
-            width: 22px;
-            height: 22px;
-            flex-shrink: 0;
-            margin-left: 5px;
-        }
-
-        /* --- VİDEO ALANI --- */
+        /* ================= VİDEO (tam ekran zemin) ================= */
         #previewArea {
-            flex: 1;
-            display: flex;
-            flex-direction: column;
-            background: var(--bg-primary);
-            position: relative;
+            position: absolute;
+            inset: 0;
+            background: #000;
             overflow: hidden;
         }
 
         #videoContainer {
-            flex: 1;
-            position: relative;
+            position: absolute;
+            inset: 0;
             background: #000;
             display: flex;
             align-items: center;
             justify-content: center;
-            width: 100%;
-            height: 100%;
             overflow: hidden;
             z-index: 10;
         }
@@ -425,604 +347,1043 @@
             object-fit: fill;
         }
 
-        #videoContainer:-webkit-full-screen {
-            width: 100vw !important;
-            height: 100vh !important;
-        }
+        #youtubePlayer { display: none; }
 
-        #videoContainer:fullscreen {
-            width: 100vw !important;
-            height: 100vh !important;
-        }
-
+        #videoContainer:-webkit-full-screen { inset: 0 !important; width: 100% !important; height: 100% !important; }
+        #videoContainer:fullscreen { inset: 0 !important; width: 100% !important; height: 100% !important; }
         #videoContainer:fullscreen #previewVideo,
-        #videoContainer:-webkit-full-screen #previewVideo {
-            width: 100% !important;
-            height: 100% !important;
-            object-fit: fill;
-        }
-
-        #youtubePlayer {
-            display: none;
-        }
+        #videoContainer:-webkit-full-screen #previewVideo { width: 100% !important; height: 100% !important; }
 
         #previewPlaceholder {
-            padding: 20px;
+            position: absolute;
+            inset: 0;
+            z-index: 10;
             display: flex;
             flex-direction: column;
-            align-items: center;
-            justify-content: center;
-            text-align: center;
-            gap: 20px;
-            color: var(--text-secondary);
-            width: 100%;
-            height: 100%;
-            position: absolute;
-            top: 0;
-            left: 0;
-            z-index: 10;
-            background: var(--bg-primary);
-        }
-
-        #previewPlaceholder h1 {
-            font-size: 2.2em;
-            color: var(--text-primary);
-            margin-bottom: 10px;
-        }
-
-        #previewPlaceholder p {
-            font-size: 1.1em;
-        }
-
-        /* --- SABİT KONTROL BARI --- */
-        #videoControlsBar {
-            height: var(--video-controls-height);
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-color);
-            display: flex;
             align-items: center;
             justify-content: center;
             gap: 12px;
-            padding: 0 10px;
-            flex-shrink: 0;
-            z-index: 20;
-            box-shadow: 0 -5px 20px rgba(0, 0, 0, 0.3);
-            overflow: visible;
-        }
-
-        .player-nav-btn {
-            background: var(--bg-tertiary);
-            color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            padding: 8px 18px;
-            border-radius: 8px;
-            cursor: pointer;
-            font-weight: bold;
-            font-size: 14px;
-            display: flex;
-            align-items: center;
-            gap: 7px;
-            transition: all 0.2s;
-            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            white-space: nowrap;
-            flex-shrink: 0;
-        }
-
-        .player-nav-btn:hover {
-            background: var(--bg-hover);
-            color: var(--text-primary);
-            border-color: var(--border-color);
-            transform: translateY(-2px);
-        }
-
-        .player-nav-btn:active {
-            transform: translateY(1px);
-        }
-
-        /* --- ZOOM NAV BUTONLARI (Yeşil Cam) --- */
-        .zoom-nav-btn {
-            padding: 8px 12px;
-            font-size: 16px;
-            min-width: 44px;
-            justify-content: center;
-            background: rgba(0, 210, 150, 0.18);
-            border: 1px solid rgba(0, 210, 150, 0.45);
-            color: #00e6a0;
-            box-shadow: 0 4px 16px rgba(0, 210, 150, 0.15), inset 0 1px 0 rgba(255,255,255,0.1);
-            backdrop-filter: blur(8px);
-            text-shadow: 0 0 8px rgba(0, 230, 160, 0.6);
-        }
-        .zoom-nav-btn:hover {
-            background: rgba(0, 210, 150, 0.32);
-            border-color: rgba(0, 210, 150, 0.7);
-            box-shadow: 0 4px 24px rgba(0, 210, 150, 0.4);
-            transform: scale(1.08) translateY(-2px);
-            color: #00ffbb;
-        }
-
-        /* --- PROFESYONEL TAM EKRAN BUTONU (Mavi Cam) --- */
-        #fullscreenBtn {
-            background: rgba(30, 120, 255, 0.2);
-            border: 1px solid rgba(80, 160, 255, 0.5);
-            color: #70b8ff;
-            padding: 10px 24px;
-            font-size: 15px;
-            letter-spacing: 0.5px;
-            box-shadow: 0 4px 18px rgba(30, 120, 255, 0.2), inset 0 1px 0 rgba(255,255,255,0.1);
-            backdrop-filter: blur(8px);
-            text-shadow: 0 0 10px rgba(100, 180, 255, 0.7);
-        }
-
-        #fullscreenBtn:hover {
-            background: rgba(30, 120, 255, 0.38);
-            border-color: rgba(80, 160, 255, 0.8);
-            box-shadow: 0 4px 28px rgba(30, 120, 255, 0.5);
-            transform: scale(1.05) translateY(-2px);
-            color: #a8d4ff;
-        }
-
-        [data-theme='polar'] #fullscreenBtn {
-            color: #1e78ff;
-        }
-
-        /* --- OTOMATİK TAM EKRAN TOGGLE BUTONU (Mor Cam) --- */
-        #autoFullscreenBtn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-            padding: 6px 12px;
-            font-size: 11px;
-            min-width: 72px;
-            background: rgba(150, 60, 255, 0.18);
-            border: 1px solid rgba(180, 100, 255, 0.45);
-            color: #c488ff;
-            box-shadow: 0 4px 16px rgba(150, 60, 255, 0.18), inset 0 1px 0 rgba(255,255,255,0.08);
-            backdrop-filter: blur(8px);
-            text-shadow: 0 0 8px rgba(180, 100, 255, 0.6);
-        }
-
-        #autoFullscreenBtn:hover {
-            background: rgba(150, 60, 255, 0.32);
-            border-color: rgba(180, 100, 255, 0.75);
-            box-shadow: 0 4px 24px rgba(150, 60, 255, 0.4);
-            transform: scale(1.05) translateY(-2px);
-            color: #da9fff;
-        }
-
-        #autoFullscreenBtn .auto-fs-label {
-            font-size: 10px;
-            opacity: 0.9;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            color: #c488ff;
-        }
-
-        .toggle-switch {
-            width: 44px;
-            height: 22px;
-            background: rgba(255, 255, 255, 0.15);
-            border-radius: 11px;
-            position: relative;
-            transition: background 0.3s;
-            border: 1px solid rgba(180, 100, 255, 0.4);
-            cursor: pointer;
-        }
-
-        .toggle-switch::after {
-            content: '';
-            position: absolute;
-            width: 16px;
-            height: 16px;
-            background: rgba(196, 136, 255, 0.7);
-            border-radius: 50%;
-            top: 2px;
-            left: 3px;
-            transition: all 0.3s;
-        }
-
-        .toggle-switch.active {
-            background: rgba(180, 100, 255, 0.5);
-            border-color: rgba(220, 160, 255, 0.8);
-        }
-
-        .toggle-switch.active::after {
-            left: 24px;
-            background: #fff;
-            box-shadow: 0 0 8px rgba(200, 130, 255, 0.8);
-        }
-
-        #autoFullscreenBtn .toggle-status {
-            font-size: 10px;
-            font-weight: bold;
-            color: var(--text-secondary);
-            transition: color 0.3s;
-        }
-
-        #autoFullscreenBtn.enabled .toggle-status {
-            color: var(--accent-color);
-        }
-
-        /* --- VİDEO ÖLÇEK BUTONU VE PANELİ (Turuncu Cam) --- */
-        #videoScaleWrapper {
-            position: relative;
-        }
-
-        #videoScaleBtn {
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 3px;
-            padding: 6px 12px;
-            font-size: 11px;
-            min-width: 72px;
-            background: rgba(255, 140, 0, 0.18);
-            border: 1px solid rgba(255, 170, 50, 0.45);
-            color: #ffb347;
-            box-shadow: 0 4px 16px rgba(255, 140, 0, 0.18), inset 0 1px 0 rgba(255,255,255,0.08);
-            backdrop-filter: blur(8px);
-            text-shadow: 0 0 8px rgba(255, 160, 30, 0.6);
-        }
-
-        #videoScaleBtn:hover {
-            background: rgba(255, 140, 0, 0.32);
-            border-color: rgba(255, 170, 50, 0.75);
-            box-shadow: 0 4px 24px rgba(255, 140, 0, 0.4);
-            transform: scale(1.05) translateY(-2px);
-            color: #ffd580;
-        }
-
-        #videoScaleBtn .scale-label {
-            font-size: 9px;
-            opacity: 0.9;
-            letter-spacing: 0.5px;
-            text-transform: uppercase;
-            color: #ffb347;
-        }
-
-        #videoScaleBtn .scale-current {
-            font-size: 11px;
-            font-weight: bold;
-            color: #ffd580;
-            max-width: 70px;
-            white-space: nowrap;
-            overflow: hidden;
-            text-overflow: ellipsis;
-        }
-
-        #videoScalePanel {
-            display: none;
-            position: absolute;
-            bottom: calc(100% + 10px);
-            left: 50%;
-            transform: translateX(-50%);
-            background: var(--bg-secondary);
-            border: 1px solid var(--border-color);
-            border-radius: 10px;
-            padding: 8px;
-            z-index: 9999;
-            min-width: 160px;
-            box-shadow: 0 -8px 30px rgba(0,0,0,0.5);
-            backdrop-filter: blur(10px);
-            animation: scalePopIn 0.2s ease;
-        }
-
-        @keyframes scalePopIn {
-            from { opacity: 0; transform: translateX(-50%) translateY(8px); }
-            to   { opacity: 1; transform: translateX(-50%) translateY(0); }
-        }
-
-        #videoScalePanel.open {
-            display: block;
-        }
-
-        #videoScalePanel::after {
-            content: '';
-            position: absolute;
-            bottom: -7px;
-            left: 50%;
-            transform: translateX(-50%);
-            border-width: 7px 7px 0;
-            border-style: solid;
-            border-color: var(--border-color) transparent transparent;
-        }
-
-        .scale-option {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            padding: 9px 14px;
-            border-radius: 7px;
-            cursor: pointer;
-            transition: background 0.18s, color 0.18s;
-            font-size: 13px;
-            font-weight: 500;
-            color: var(--text-primary);
-            white-space: nowrap;
-        }
-
-        .scale-option:hover {
-            background: var(--bg-hover);
-        }
-
-        .scale-option.active {
-            background: var(--accent-color);
-            color: #fff;
-        }
-
-        .scale-option .scale-icon {
-            font-size: 16px;
-            width: 22px;
+            padding: 0 24px 160px calc(var(--rail-width) + 24px);
             text-align: center;
-            flex-shrink: 0;
-        }
-
-        /* --- KATEGORİLER --- */
-        #groups {
-            position: fixed;
-            bottom: var(--player-height);
-            left: 0;
-            width: 100%;
-            height: var(--category-bar-height);
-            background: var(--bg-secondary);
-            border-top: 1px solid var(--border-color);
-            display: flex;
-            overflow-x: auto;
-            z-index: 1000;
-            scrollbar-width: thin;
-            scrollbar-color: var(--accent-color) var(--bg-secondary);
-        }
-
-        .group {
-            padding: 0 25px;
-            cursor: pointer;
-            background: transparent;
-            border-right: 1px solid var(--border-color);
-            line-height: var(--category-bar-height);
-            white-space: nowrap;
-            flex-shrink: 0;
-            transition: 0.2s;
-            font-weight: 600;
-            font-size: 15px;
+            background: var(--bg-primary);
             color: var(--text-secondary);
         }
 
-        .group:hover {
-            background: var(--bg-hover);
-            color: var(--text-primary);
-        }
-
-        .group.active {
-            background: var(--accent-color);
-            color: #fff;
-        }
-
-        /* --- FOOTER --- */
-        #playerContainer {
-            position: fixed;
-            bottom: 0;
-            left: 0;
-            width: 100%;
-            height: var(--player-height);
-            background: var(--bg-secondary);
-            display: flex;
-            z-index: 999;
-            align-items: center;
-            border-top: 1px solid rgba(255, 255, 255, 0.1);
-            justify-content: space-between;
-            padding-right: 15px;
-        }
-
-        .marquee-container {
-            flex-grow: 1;
-            overflow: hidden;
-            position: relative;
-            height: 100%;
-            display: flex;
-            align-items: center;
-            margin-right: 15px;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.1), rgba(0, 0, 0, 0.3));
-            border-top: 2px solid var(--accent-color);
-            border-bottom: 2px solid var(--accent-color);
-        }
-
-        .marquee-text {
-            position: absolute;
-            white-space: nowrap;
-            will-change: transform;
-            animation: marquee 25s linear infinite;
-            font-size: 1.5em;
+        #previewPlaceholder h1 {
+            margin: 0;
+            font-size: 40px;
             font-weight: 700;
-            color: rgba(255, 255, 255, 0.9);
-            text-shadow:
-                0 1px 2px rgba(0, 0, 0, 0.8),
-                0 0 6px var(--accent-color);
-        }
-
-        @keyframes marquee {
-            from {
-                left: 100%;
-                transform: translateX(0);
-            }
-
-            to {
-                left: 0;
-                transform: translateX(-100%);
-            }
-        }
-
-        .footer-controls {
-            display: flex;
-            align-items: center;
-            gap: 15px;
-        }
-
-        .zoom-controls {
-            display: flex;
-            align-items: center;
-            gap: 10px;
-            background: var(--bg-primary);
-            padding: 5px 10px;
-            border-radius: 5px;
-            border: 1px solid var(--border-color);
-        }
-
-        .zoom-btn {
-            background: var(--bg-tertiary);
+            letter-spacing: -0.8px;
             color: var(--text-primary);
-            border: 1px solid var(--border-color);
-            width: 32px;
-            height: 32px;
-            border-radius: 4px;
-            display: flex;
-            align-items: center;
-            justify-content: center;
-            cursor: pointer;
-            font-weight: bold;
-            transition: 0.2s;
-            font-size: 18px;
         }
 
-        .zoom-btn:hover {
-            background: var(--accent-color);
-            border-color: var(--accent-color);
-            color: #fff;
-        }
-
-        #themeSelector {
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            padding-left: 10px;
-            border-left: 1px solid var(--border-color);
-        }
-
-        .theme-swatch {
-            width: 22px;
-            height: 22px;
-            border-radius: 50%;
-            cursor: pointer;
-            border: 2px solid var(--border-color);
-            transition: 0.2s;
-        }
-
-        .theme-swatch:hover {
-            transform: scale(1.2);
-            border-color: #fff;
-        }
-
-        .theme-swatch.active {
-            border-color: #fff;
-            box-shadow: 0 0 0 2px var(--accent-color);
-            transform: scale(1.1);
-        }
-
-        @media (max-width: 600px) {
-            #channels {
-                flex: 0 0 220px;
-            }
-
-            .player-nav-btn {
-                padding: 10px 15px;
-                font-size: 13px;
-            }
-
-            .marquee-text {
-                font-size: 1.2em;
-            }
-        }
+        #previewPlaceholder p { margin: 0; font-size: 16px; }
+        #previewPlaceholder .contact { font-size: 13px; opacity: 0.85; }
 
         .virtual-fullscreen {
             position: fixed !important;
             top: 0 !important;
             left: 0 !important;
-            width: 100vw !important;
-            height: 100vh !important;
+            right: 0 !important;
+            bottom: 0 !important;
+            width: auto !important;
+            height: auto !important;
             z-index: 99999 !important;
         }
+
+        /* ================= ÜST: şu an oynatılan + ayarlar ================= */
+        #topScrim {
+            position: fixed;
+            top: 0;
+            left: var(--rail-width);
+            right: 0;
+            height: 150px;
+            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0));
+            pointer-events: none;
+            z-index: 40;
+            opacity: 0;
+            transition: opacity 0.35s var(--ease-spring);
+        }
+
+        body.is-playing #topScrim { opacity: 1; }
+
+        #nowPlaying {
+            position: fixed;
+            top: 22px;
+            left: calc(var(--rail-width) + 24px);
+            z-index: 50;
+            display: flex;
+            align-items: center;
+            max-width: 44%;
+            color: var(--on-video);
+            opacity: 0;
+            visibility: hidden;
+            transform: translateY(-8px);
+            pointer-events: none;
+            transition: opacity 0.32s var(--ease-spring), transform 0.32s var(--ease-spring), visibility 0.32s;
+        }
+
+        body.is-playing #nowPlaying {
+            opacity: 1;
+            visibility: visible;
+            transform: translateY(0);
+        }
+
+        #npName {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: -0.6px;
+            line-height: 1.15;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-shadow: 0 2px 12px rgba(0, 0, 0, 0.55);
+        }
+
+        #npName.np-swap {
+            animation: npSwap 0.32s var(--ease-spring) both;
+        }
+
+        @keyframes npSwap {
+            from { opacity: 0; transform: translateY(8px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* Kontrol kümesi (sağ üst) */
+        #videoControlsBar {
+            position: fixed;
+            top: 20px;
+            right: 24px;
+            z-index: 1002;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .player-nav-btn {
+            height: 48px;
+            padding: 0 14px;
+            border-radius: 14px;
+            border: 1px solid var(--glass-border);
+            background: var(--glass);
+            color: var(--on-video);
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            font-size: 14px;
+            font-weight: 600;
+            white-space: nowrap;
+            cursor: pointer;
+            flex-shrink: 0;
+            -webkit-backdrop-filter: blur(14px) saturate(140%);
+            backdrop-filter: blur(14px) saturate(140%);
+            transition: background 0.22s var(--ease-spring), transform 0.18s var(--ease-spring), border-color 0.22s var(--ease-spring), box-shadow 0.22s var(--ease-spring);
+        }
+
+        .player-nav-btn:hover { background: var(--glass-hover); border-color: rgba(255, 255, 255, 0.20); }
+        .player-nav-btn:active { transform: scale(0.95); }
+
+        .icon-only { width: 48px; padding: 0; justify-content: center; }
+
+        /* Tam ekran: tek vurgulu buton */
+        #fullscreenBtn {
+            background: var(--accent-color);
+            border-color: var(--accent-color);
+            color: var(--accent-contrast);
+            font-weight: 700;
+            padding: 0 18px;
+            box-shadow: 0 4px 16px rgba(0, 0, 0, 0.25);
+        }
+
+        #fullscreenBtn:hover { background: var(--accent-color-darker); border-color: var(--accent-color-darker); }
+
+        /* Oto tam ekran anahtarı */
+        #autoFullscreenBtn { gap: 10px; }
+        #autoFullscreenBtn .auto-fs-label { order: 1; }
+        #autoFullscreenBtn .toggle-switch { order: 2; }
+
+        .toggle-switch {
+            width: 38px;
+            height: 22px;
+            border-radius: 11px;
+            background: #3a3f48;
+            position: relative;
+            transition: background 0.28s var(--ease-spring);
+            flex-shrink: 0;
+        }
+
+        .toggle-switch::after {
+            content: '';
+            position: absolute;
+            top: 3px;
+            left: 3px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: #fff;
+            transition: transform 0.28s var(--ease-spring), background 0.28s var(--ease-spring);
+        }
+
+        .toggle-switch.active { background: var(--accent-color); }
+        .toggle-switch.active::after { transform: translateX(16px); background: var(--accent-contrast); }
+
+        /* Ölçek ve Görünüm açılır panelleri */
+        #videoScaleWrapper { position: relative; }
+
+        #videoScaleBtn .scale-label { display: none; }
+        #videoScaleBtn .chev { width: 14px; height: 14px; opacity: 0.7; transition: transform 0.22s var(--ease-spring); }
+
+        #videoScalePanel,
+        #lookPanel {
+            display: none;
+            position: absolute;
+            top: calc(100% + 8px);
+            right: 0;
+            padding: 6px;
+            border-radius: 16px;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 44px rgba(0, 0, 0, 0.55);
+            z-index: 9999;
+            animation: panelIn 0.22s var(--ease-spring) both;
+        }
+
+        @keyframes panelIn {
+            from { opacity: 0; transform: translateY(-8px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        @keyframes panelInUp {
+            from { opacity: 0; transform: translate(-6px, 8px) scale(0.96); }
+            to { opacity: 1; transform: translate(0, 0) scale(1); }
+        }
+
+        #videoScalePanel { min-width: 220px; }
+        #videoScalePanel.open,
+        #lookPanel.open { display: block; }
+
+        /* Görünüm tuşu: sol aşağıda sabit */
+        #lookWrapper {
+            position: fixed;
+            left: 0;
+            bottom: 0;
+            width: var(--rail-width);
+            height: var(--rail-footer-h);
+            z-index: 1002;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            border-top: 1px solid var(--border-color);
+            transition: background-color 0.35s ease, border-color 0.35s ease;
+        }
+
+        #lookBtn {
+            width: 74px;
+            height: 58px;
+            padding: 6px 4px;
+            border-radius: 14px;
+            border: 1px solid transparent;
+            background: transparent;
+            color: var(--text-secondary);
+            flex-direction: column;
+            justify-content: center;
+            gap: 4px;
+            font-size: 11px;
+            font-weight: 600;
+            line-height: 1.15;
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+            transition: background 0.22s var(--ease-spring), color 0.22s var(--ease-spring), transform 0.18s var(--ease-spring);
+        }
+
+        #lookBtn:hover { background: var(--bg-hover); color: var(--text-primary); border-color: transparent; }
+        #lookBtn:active { transform: scale(0.94); }
+        #lookWrapper.panel-open #lookBtn { background: var(--bg-tertiary); color: var(--accent-color); }
+
+        #lookPanel {
+            position: fixed;
+            top: auto;
+            right: auto;
+            left: calc(var(--rail-width) + 12px);
+            bottom: 14px;
+            width: 300px;
+            padding: 16px;
+            animation: panelInUp 0.24s var(--ease-spring) both;
+        }
+
+        .scale-option {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 10px;
+            min-height: 46px;
+            padding: 0 12px;
+            border-radius: 10px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: 600;
+            color: var(--text-primary);
+            white-space: nowrap;
+            transition: background 0.18s var(--ease-spring), color 0.18s var(--ease-spring), transform 0.15s var(--ease-spring);
+        }
+
+        .scale-option:hover { background: var(--bg-hover); }
+        .scale-option.active { background: var(--bg-tertiary); color: var(--accent-color); }
+        .scale-option.active::after {
+            content: '';
+            width: 6px;
+            height: 11px;
+            border: solid currentColor;
+            border-width: 0 2.5px 2.5px 0;
+            transform: rotate(45deg) translate(-2px, -2px);
+        }
+
+        .panel-label {
+            display: block;
+            margin: 0 0 10px;
+            font-size: 12px;
+            font-weight: 600;
+            letter-spacing: 0.8px;
+            text-transform: uppercase;
+            color: var(--text-secondary);
+        }
+
+        #themeSelector {
+            display: grid;
+            grid-template-columns: repeat(5, minmax(0, 1fr));
+            gap: 10px;
+            justify-items: center;
+            margin-bottom: 18px;
+        }
+
+        .theme-swatch {
+            width: 38px;
+            height: 38px;
+            border-radius: 50%;
+            cursor: pointer;
+            box-shadow: inset 0 0 0 1px rgba(128, 128, 128, 0.45);
+            transition: transform 0.22s var(--ease-spring), box-shadow 0.22s var(--ease-spring);
+        }
+
+        .theme-swatch:hover { transform: scale(1.1); }
+        .theme-swatch.active { box-shadow: 0 0 0 3px var(--bg-secondary), 0 0 0 5px var(--accent-color); }
+
+        .zoom-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 8px;
+            padding: 4px;
+            border-radius: 12px;
+            background: var(--bg-tertiary);
+        }
+
+        .zoom-row span { font-size: 14px; font-weight: 600; color: var(--text-primary); }
+
+        .zoom-nav-btn {
+            width: 52px;
+            height: 44px;
+            padding: 0;
+            justify-content: center;
+            border: 0;
+            border-radius: 9px;
+            background: var(--bg-hover);
+            color: var(--text-primary);
+            font-size: 22px;
+            -webkit-backdrop-filter: none;
+            backdrop-filter: none;
+        }
+
+        .zoom-nav-btn:hover { background: var(--accent-color); color: var(--accent-contrast); }
+
+        /* ================= SOL RAY: kategoriler ================= */
+        #groups {
+            position: fixed;
+            top: 0;
+            left: 0;
+            bottom: var(--rail-footer-h);
+            width: var(--rail-width);
+            z-index: 1000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 2px;
+            padding: 14px 0 12px;
+            overflow-y: auto;
+            background: var(--bg-secondary);
+            border-right: 1px solid var(--border-color);
+            scrollbar-width: none;
+            transition: background-color 0.35s ease, border-color 0.35s ease;
+        }
+
+        #groups::-webkit-scrollbar { display: none; }
+
+        #groups::before {
+            content: '';
+            flex-shrink: 0;
+            width: 44px;
+            height: 44px;
+            margin-bottom: 10px;
+            border-radius: 12px;
+            background: var(--accent-color) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'%3E%3Crect x='2' y='5' width='20' height='14' rx='3'/%3E%3Cpath d='M10 9.5l4.5 2.5-4.5 2.5z' fill='white'/%3E%3C/svg%3E") center / 24px no-repeat;
+            transition: background-color 0.35s ease;
+        }
+
+        .group {
+            flex-shrink: 0;
+            width: 76px;
+            min-height: 56px;
+            padding: 6px 2px;
+            border-radius: 14px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 4px;
+            cursor: pointer;
+            color: var(--text-secondary);
+            font-size: 11px;
+            font-weight: 600;
+            text-align: center;
+            line-height: 1.15;
+            transition: background 0.22s var(--ease-spring), color 0.22s var(--ease-spring), transform 0.18s var(--ease-spring);
+        }
+
+        .group:hover { background: var(--bg-hover); color: var(--text-primary); }
+        .group.active { background: var(--bg-tertiary); color: var(--accent-color); }
+
+        /* ================= ALT ŞERİT: kanallar ================= */
+        #dockScrim {
+            position: fixed;
+            left: var(--rail-width);
+            right: 0;
+            bottom: 0;
+            height: 240px;
+            background: linear-gradient(to top, rgba(0, 0, 0, 0.30) 0%, rgba(0, 0, 0, 0.12) 55%, rgba(0, 0, 0, 0) 100%);
+            pointer-events: none;
+            z-index: 40;
+        }
+
+        #dock {
+            position: fixed;
+            left: var(--rail-width);
+            right: 0;
+            bottom: var(--ticker-height);
+            z-index: 50;
+            padding: 0 24px 14px;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+        }
+
+        .dock-head {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            color: var(--on-video);
+        }
+
+        .dock-head.head-animate {
+            animation: dockHeadIn 0.3s var(--ease-spring) both;
+        }
+
+        @keyframes dockHeadIn {
+            from { opacity: 0; transform: translateX(-10px); }
+            to { opacity: 1; transform: translateX(0); }
+        }
+
+        #dockTitle { font-size: 20px; font-weight: 700; text-shadow: 0 2px 10px rgba(0, 0, 0, 0.78), 0 1px 3px rgba(0, 0, 0, 0.85); }
+        .dock-hint { font-size: 13px; color: var(--on-video-muted); text-shadow: 0 1px 8px rgba(0, 0, 0, 0.78), 0 1px 2px rgba(0, 0, 0, 0.85); }
+
+        .dock-row { display: flex; align-items: center; gap: 12px; }
+
+        .dock-nav {
+            position: relative;
+            overflow: hidden;
+            width: 64px;
+            height: 124px;
+            padding: 0;
+            flex-direction: column;
+            justify-content: center;
+            gap: 6px;
+            border-radius: 22px;
+            font-size: 12px;
+            background: var(--card-glass);
+            border: 1px solid var(--card-glass-border);
+            color: var(--text-primary);
+            text-shadow: var(--card-text-shadow);
+            -webkit-backdrop-filter: blur(22px) saturate(185%) brightness(1.06);
+            backdrop-filter: blur(22px) saturate(185%) brightness(1.06);
+            box-shadow: inset 0 1px 1px var(--card-glass-highlight), inset 0 -1px 0 rgba(255, 255, 255, 0.08), 0 10px 28px rgba(0, 0, 0, 0.28);
+        }
+
+        .dock-nav:hover { background: var(--card-glass-hover); border-color: var(--card-glass-highlight); }
+        .dock-nav .ico { width: 24px; height: 24px; position: relative; z-index: 1; }
+        .dock-nav .ico .fillp { fill: currentColor; }
+
+        #channels {
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            gap: 10px;
+            padding: 4px 0;
+            overflow-x: auto;
+            overflow-y: hidden;
+            scroll-behavior: smooth;
+            scrollbar-width: none;
+        }
+
+        #channels::-webkit-scrollbar { display: none; }
+        #channels > p { color: var(--on-video-muted); }
+
+        @keyframes channelIn {
+            from {
+                opacity: 0;
+                transform: translateY(16px) scale(0.95);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0) scale(1);
+            }
+        }
+
+        .channel {
+            position: relative;
+            overflow: hidden;
+            flex: 0 0 184px;
+            height: 124px;
+            padding: 12px;
+            border-radius: 22px;
+            background: var(--card-glass);
+            border: 1px solid var(--card-glass-border);
+            -webkit-backdrop-filter: blur(22px) saturate(185%) brightness(1.06);
+            backdrop-filter: blur(22px) saturate(185%) brightness(1.06);
+            box-shadow: inset 0 1px 1px var(--card-glass-highlight), inset 0 -1px 0 rgba(255, 255, 255, 0.08), 0 10px 28px rgba(0, 0, 0, 0.28);
+            cursor: pointer;
+            display: flex;
+            transition: background 0.24s var(--ease-spring), border-color 0.24s var(--ease-spring), transform 0.22s var(--ease-spring), box-shadow 0.24s var(--ease-spring);
+        }
+
+        .channel::before,
+        .dock-nav::before {
+            content: '';
+            position: absolute;
+            inset: 0;
+            border-radius: inherit;
+            background: linear-gradient(145deg, rgba(255, 255, 255, 0.20) 0%, rgba(255, 255, 255, 0.04) 38%, rgba(255, 255, 255, 0) 62%);
+            pointer-events: none;
+            z-index: 0;
+        }
+
+        .channel.channel-enter {
+            animation: channelIn 0.34s var(--ease-spring) var(--enter-delay, 0ms) both;
+        }
+
+        .channel:hover {
+            background: var(--card-glass-hover);
+            border-color: var(--card-glass-highlight);
+            transform: translateY(-2px);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.45), inset 0 -1px 0 rgba(255, 255, 255, 0.12), 0 14px 32px rgba(0, 0, 0, 0.34);
+        }
+        .channel:active { transform: scale(0.97); }
+        .channel.active { border-color: var(--accent-color); }
+
+        .channel.playing-active {
+            background: var(--accent-color);
+            border-color: rgba(255, 255, 255, 0.32);
+            box-shadow: inset 0 1px 1px rgba(255, 255, 255, 0.42), 0 12px 28px rgba(0, 0, 0, 0.36);
+        }
+
+        .channel-info {
+            position: relative;
+            z-index: 1;
+            flex: 1;
+            min-width: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: flex-start;
+            justify-content: space-between;
+            gap: 8px;
+        }
+
+        .channel-info > div {
+            width: 100%;
+            min-width: 0;
+            margin-top: auto;
+            display: flex;
+            flex-direction: column;
+            gap: 3px;
+        }
+
+        /* Kanal ikonu köşe yuvarlaklığı: 22px (kart) - 12px (padding) = 10px (eş merkezli) */
+        .channel img {
+            width: 46px;
+            height: 46px;
+            object-fit: contain;
+            padding: 5px;
+            border-radius: 10px;
+            background: rgba(255, 255, 255, 0.94);
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.16);
+            flex-shrink: 0;
+            transition: transform 0.22s var(--ease-spring);
+        }
+
+        .channel-name-text {
+            font-size: 15px;
+            font-weight: 700;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            color: var(--text-primary);
+            text-shadow: var(--card-text-shadow);
+        }
+
+        .epg-title {
+            font-size: 12px;
+            color: var(--epg-color);
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            text-shadow: var(--card-text-shadow);
+        }
+
+        .channel-stop-text {
+            display: none;
+            align-items: center;
+            gap: 6px;
+            font-size: 12px;
+            font-weight: 700;
+            letter-spacing: 0.4px;
+            color: var(--accent-contrast);
+        }
+
+        .channel-stop-text span { font-size: 0; }
+        .channel-stop-text span::before {
+            content: '';
+            display: inline-block;
+            width: 10px;
+            height: 10px;
+            border-radius: 2px;
+            background: currentColor;
+        }
+
+        .channel.playing-active .channel-name-text { display: block; color: var(--accent-contrast); text-shadow: none; }
+        .channel.playing-active .channel-stop-text { display: flex; }
+        .channel.playing-active .epg-title { display: none; }
+
+        .fav-btn {
+            position: absolute;
+            z-index: 2;
+            top: 4px;
+            right: 4px;
+            width: 44px;
+            height: 44px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 22px;
+            line-height: 1;
+            cursor: pointer;
+            color: var(--text-secondary);
+            opacity: 0.78;
+            text-shadow: var(--card-text-shadow);
+            transition: transform 0.2s var(--ease-spring), color 0.2s var(--ease-spring), opacity 0.2s var(--ease-spring);
+        }
+
+        .fav-btn:hover { transform: scale(1.18); opacity: 1; }
+        .fav-btn.favorited { color: var(--favorite-color); opacity: 1; }
+        .channel.playing-active .fav-btn { color: var(--accent-contrast); text-shadow: none; }
+
+        .youtube-icon {
+            position: absolute;
+            z-index: 2;
+            top: 16px;
+            right: 48px;
+            width: 22px;
+            height: 22px;
+        }
+
+        /* ================= EN ALT: kayan duyuru ================= */
+        #playerContainer {
+            position: fixed;
+            left: var(--rail-width);
+            right: 0;
+            bottom: 0;
+            height: var(--ticker-height);
+            z-index: 999;
+            display: flex;
+            align-items: center;
+            background: #000;
+            border-top: 1px solid rgba(255, 255, 255, 0.06);
+        }
+
+        .marquee-container {
+            flex: 1;
+            position: relative;
+            height: 100%;
+            overflow: hidden;
+        }
+
+        .marquee-text {
+            position: absolute;
+            top: 50%;
+            white-space: nowrap;
+            will-change: transform;
+            animation: marquee 30s linear infinite;
+            font-size: 12px;
+            font-weight: 500;
+            color: #8d95a1;
+        }
+
+        @keyframes marquee {
+            from { left: 100%; transform: translate(0, -50%); }
+            to { left: 0; transform: translate(-100%, -50%); }
+        }
+
+        /* ================= DOKUNMATİK ================= */
+        html {
+            -webkit-tap-highlight-color: transparent;
+            touch-action: manipulation;          /* çift dokunma yakınlaştırmasını ve 300ms gecikmeyi kaldırır */
+            overscroll-behavior: none;           /* aşağı çekince sayfa yenilenmesin */
+            -webkit-text-size-adjust: 100%;
+        }
+
+        body {
+            overscroll-behavior: none;
+            -webkit-user-select: none;
+            user-select: none;
+            -webkit-touch-callout: none;
+        }
+
+        #channels,
+        #groups,
+        #lookPanel,
+        #videoScalePanel {
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior: contain;        /* iç kaydırma sayfayı sürüklemesin */
+        }
+
+        #channels {
+            touch-action: pan-x;
+            scroll-snap-type: x proximity;
+            scroll-padding: 0 4px;
+        }
+
+        .channel { scroll-snap-align: start; }
+        #groups { touch-action: pan-y; }
+
+        .group:active,
+        .scale-option:active,
+        .theme-swatch:active { transform: scale(0.95); }
+
+        /* Dokunmatikte "takılı kalan" hover efektlerini kapat */
+        @media (hover: none) {
+            .player-nav-btn:hover { background: var(--glass); border-color: var(--glass-border); }
+            #fullscreenBtn:hover { background: var(--accent-color); border-color: var(--accent-color); }
+            #lookBtn:hover { background: transparent; color: var(--text-secondary); }
+            #lookWrapper.panel-open #lookBtn:hover { background: var(--bg-tertiary); color: var(--accent-color); }
+            .dock-nav:hover { background: var(--card-glass); border-color: var(--card-glass-border); }
+            .zoom-nav-btn:hover { background: var(--bg-hover); color: var(--text-primary); }
+            .group:hover { background: transparent; color: var(--text-secondary); }
+            .group.active:hover { background: var(--bg-tertiary); color: var(--accent-color); }
+            .channel:hover { background: var(--card-glass); border-color: var(--card-glass-border); transform: none; box-shadow: inset 0 1px 1px var(--card-glass-highlight), inset 0 -1px 0 rgba(255, 255, 255, 0.08), 0 10px 28px rgba(0, 0, 0, 0.28); }
+            .channel.playing-active:hover { background: var(--accent-color); border-color: var(--accent-color); transform: none; }
+            .fav-btn:hover { transform: none; }
+            .scale-option:hover { background: transparent; }
+            .scale-option.active:hover { background: var(--bg-tertiary); }
+            .theme-swatch:hover { transform: none; }
+        }
+
+        /* ================= DAR EKRAN ================= */
+        @media (max-width: 900px) {
+            #npName { font-size: 24px; }
+            #autoFullscreenBtn .auto-fs-label,
+            #fullscreenBtn .btn-text { display: none; }
+            .channel { flex-basis: 150px; }
+        }
+
+        /* ================= ALÇAK EKRAN (telefon yatay) ================= */
+        @media (max-height: 500px) and (orientation: landscape) {
+            :root { --rail-footer-h: 62px; }
+            #nowPlaying, #videoControlsBar { top: 12px; }
+            #npName { font-size: 20px; }
+            #topScrim { height: 100px; }
+            #dock { gap: 8px; padding-bottom: 8px; }
+            #dockTitle { font-size: 16px; }
+            .dock-hint { display: none; }
+            .channel { height: 96px; padding: 10px; border-radius: 18px; flex-basis: 140px; }
+            .channel img { width: 38px; height: 38px; border-radius: 8px; }
+            .dock-nav { height: 96px; width: 56px; border-radius: 18px; }
+            #dockScrim { height: 200px; }
+            .group { min-height: 50px; }
+            #lookBtn { height: 48px; }
+            #lookPanel, #videoScalePanel { max-height: calc(100vh - 28px); overflow-y: auto; }
+        }
+
+        /* ================= TELEFON DİKEY ================= */
+        @media (orientation: portrait) and (max-width: 820px) {
+            :root { --video-h: 56.25vw; --groups-h: 72px; }
+
+            /* Video üstte 16:9 */
+            #previewArea { inset: auto; top: 0; left: 0; right: 0; height: var(--video-h); }
+            #previewPlaceholder { padding: 16px; }
+            #previewPlaceholder h1 { font-size: 24px; letter-spacing: -0.3px; }
+            #previewPlaceholder p { font-size: 14px; }
+
+            #topScrim, #dockScrim { display: none; }
+
+            /* Şu an oynatılan: videonun altında */
+            #nowPlaying {
+                top: calc(var(--video-h) + 14px);
+                left: 16px;
+                right: 16px;
+                max-width: none;
+                color: var(--text-primary);
+            }
+            #npName { font-size: 22px; text-shadow: none; }
+
+            /* Ayar butonları: tam genişlik satır */
+            #videoControlsBar {
+                top: calc(var(--video-h) + 14px);
+                left: 16px;
+                right: 16px;
+                gap: 6px;
+                transition: top 0.28s var(--ease-spring);
+            }
+            #videoControlsBar .player-nav-btn { padding: 0 12px; }
+            #videoControlsBar .icon-only { padding: 0; }
+            #videoScaleBtn .chev { display: none; }
+            body.is-playing #videoControlsBar { top: calc(var(--video-h) + 52px); }
+            #fullscreenBtn { margin-left: auto; width: 48px; padding: 0; justify-content: center; }
+
+            .player-nav-btn { background: var(--bg-tertiary); border-color: var(--border-color); color: var(--text-primary); -webkit-backdrop-filter: none; backdrop-filter: none; }
+            #fullscreenBtn { color: var(--accent-contrast); background: var(--accent-color); border-color: var(--accent-color); }
+
+            /* Görünüm tuşu: sol altta sabit */
+            #lookWrapper {
+                left: 0;
+                bottom: var(--ticker-height);
+                width: 72px;
+                height: var(--groups-h);
+                border-top: 1px solid var(--border-color);
+                border-right: 1px solid var(--border-color);
+            }
+            #lookBtn { width: 62px; height: 56px; }
+
+            /* Ölçek / Görünüm: alttan açılan panel */
+            #videoScalePanel,
+            #lookPanel {
+                position: fixed;
+                top: auto;
+                left: 0;
+                right: 0;
+                bottom: 0;
+                width: auto;
+                min-width: 0;
+                max-height: 75vh;
+                overflow-y: auto;
+                border-radius: 18px 18px 0 0;
+                padding: 18px 16px calc(18px + env(safe-area-inset-bottom, 0px));
+                box-shadow: 0 -12px 40px rgba(0, 0, 0, 0.5);
+                animation: sheetIn 0.26s var(--ease-spring) both;
+            }
+            #videoScalePanel::before,
+            #lookPanel::before {
+                content: '';
+                display: block;
+                width: 40px;
+                height: 4px;
+                margin: -6px auto 12px;
+                border-radius: 2px;
+                background: var(--border-color);
+            }
+            .scale-option { min-height: 52px; font-size: 16px; }
+            #themeSelector { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
+            .theme-swatch { width: 44px; height: 44px; }
+
+            /* Kanallar: dikey kaydırılan 2 sütunlu ızgara */
+            #dock {
+                top: calc(var(--video-h) + 76px);
+                left: 0;
+                right: 0;
+                bottom: calc(var(--ticker-height) + var(--groups-h));
+                padding: 0 16px 12px;
+                gap: 10px;
+                transition: top 0.28s var(--ease-spring);
+            }
+            body.is-playing #dock { top: calc(var(--video-h) + 114px); }
+            .dock-head { color: var(--text-primary); min-width: 0; }
+            #dockTitle { font-size: 18px; flex-shrink: 0; text-shadow: none; }
+            .dock-hint { color: var(--text-secondary); text-shadow: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+
+            .dock-row {
+                flex: 1;
+                min-height: 0;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                grid-template-rows: minmax(0, 1fr) auto;
+                align-items: stretch;
+                gap: 10px;
+            }
+            #channels {
+                grid-column: 1 / -1;
+                grid-row: 1;
+                min-height: 0;
+                display: grid;
+                grid-template-columns: repeat(2, minmax(0, 1fr));
+                grid-auto-rows: 108px;
+                align-content: start;
+                gap: 10px;
+                padding: 2px 0;
+                overflow-x: hidden;
+                overflow-y: auto;
+                touch-action: pan-y;
+                scroll-snap-type: y proximity;
+            }
+            .channel { flex-basis: auto; height: auto; padding: 10px; border-radius: 18px; }
+            .channel img { width: 40px; height: 40px; border-radius: 8px; }
+            .dock-nav { grid-row: 2; width: auto; height: 52px; flex-direction: row; font-size: 15px; border-radius: 14px; }
+            .dock-nav .ico { width: 20px; height: 20px; }
+
+            /* Kategoriler: altta yatay kaydırılan şerit */
+            #groups {
+                top: auto;
+                left: 72px;
+                right: 0;
+                bottom: var(--ticker-height);
+                width: auto;
+                height: var(--groups-h);
+                flex-direction: row;
+                align-items: center;
+                gap: 4px;
+                padding: 0 10px;
+                overflow-x: auto;
+                overflow-y: hidden;
+                border-right: 0;
+                border-top: 1px solid var(--border-color);
+                touch-action: pan-x;
+            }
+            #groups::before { display: none; }
+            .group { width: 72px; min-height: 58px; }
+
+            #playerContainer { left: 0; }
+        }
+
+        @keyframes sheetIn {
+            from { opacity: 0.6; transform: translateY(100%); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        /* ================= BAĞLANTI YOK EKRANI ================= */
+        #offline-overlay h2 { font-size: 32px; letter-spacing: 0; }
+        #offline-retry-btn { border-radius: 12px; color: var(--accent-contrast); font-size: 15px; padding: 14px 32px; }
+        #offline-retry-btn:hover { transform: none; box-shadow: none; background: var(--accent-color-darker); color: var(--accent-contrast); }
+        .offline-icon { font-size: 0; filter: none; }
+        .offline-icon svg { width: 72px; height: 72px; stroke: var(--accent-color); }
     </style>
 </head>
 
 <body data-theme="default">
     <div id="app">
         <div id="main">
-            <div id="channels"></div>
-
+            <!-- VİDEO: ekranın tamamı -->
             <div id="previewArea">
                 <div id="videoContainer">
                     <div id="previewPlaceholder">
-                        <h1> 📺 Car Video Pro TV 📺</h1>
-                        <h2> 📞 İletişim : Telegram : t.me/car_video_pro 📞</h2>
-                        <p>✔️ Lütfen bir kategori seçip kanala tıklayınız. ✔️</p>
+                        <h1>Ne izlemek istersiniz?</h1>
+                        <p>Soldan bir kategori, alttan bir kanal seçin.</p>
+                        <p class="contact">İletişim · Telegram: t.me/car_video_pro</p>
                     </div>
                     <video id="previewVideo" autoplay playsinline style="display:none;"></video>
                     <div id="youtubePlayer"></div>
                 </div>
+            </div>
 
-                <div id="videoControlsBar">
-                    <button class="player-nav-btn zoom-nav-btn" onclick="updateZoom(-0.1)" title="Sayfayı Küçült">
-                        🔍⁻
+            <div id="topScrim"></div>
+
+            <!-- ŞU AN OYNATILAN -->
+            <div id="nowPlaying">
+                <div id="npName"></div>
+            </div>
+
+            <!-- OYNATICI AYARLARI (sağ üst) -->
+            <div id="videoControlsBar">
+                <button class="player-nav-btn" id="autoFullscreenBtn" onclick="toggleAutoFullscreen()" title="Otomatik Tam Ekran">
+                    <div class="toggle-switch" id="autoFsToggle"></div>
+                    <span class="auto-fs-label">Oto tam ekran</span>
+                </button>
+
+                <div id="videoScaleWrapper">
+                    <button class="player-nav-btn" id="videoScaleBtn" onclick="toggleScalePanel()" title="Video Ölçeği">
+                        <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M7 10v4M17 10v4"></path></svg>
+                        <span class="scale-current" id="scaleCurrentLabel">Dolu</span>
+                        <span class="scale-label">Ölçek</span>
+                        <svg class="ico chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
                     </button>
-
-                    <button class="player-nav-btn" onclick="changeChannel(-1)">
-                        <span>⏮</span> Geri
-                    </button>
-
-                    <button class="player-nav-btn" id="fullscreenBtn" onclick="toggleFullscreen()">
-                        <span>⛶</span> Tam Ekran
-                    </button>
-
-                    <button class="player-nav-btn" id="autoFullscreenBtn" onclick="toggleAutoFullscreen()" title="Otomatik Tam Ekran">
-                        <div class="toggle-switch" id="autoFsToggle"></div>
-                        <span class="auto-fs-label">Oto Tam Ekran</span>
-                    </button>
-
-                    <div id="videoScaleWrapper">
-                        <button class="player-nav-btn" id="videoScaleBtn" onclick="toggleScalePanel()" title="Video Ölçeği">
-                            <span style="font-size:16px">📐</span>
-                            <span class="scale-current" id="scaleCurrentLabel">Dolu</span>
-                            <span class="scale-label">Ölçek</span>
-                        </button>
-                        <div id="videoScalePanel">
-                            <div class="scale-option" data-fit="fill" onclick="applyVideoScale('fill')">
-                                <span class="scale-icon">⬛</span> Dolu Doldur
-                            </div>
-                            <div class="scale-option" data-fit="contain" onclick="applyVideoScale('contain')">
-                                <span class="scale-icon">🔲</span> Sığdır (16:9)
-                            </div>
-                            <div class="scale-option" data-fit="cover" onclick="applyVideoScale('cover')">
-                                <span class="scale-icon">🔳</span> Kırp & Kap
-                            </div>
-                            <div class="scale-option" data-fit="none" onclick="applyVideoScale('none')">
-                                <span class="scale-icon">📏</span> Gerçek Boyut
-                            </div>
-                            <div class="scale-option" data-fit="scale-down" onclick="applyVideoScale('scale-down')">
-                                <span class="scale-icon">🔽</span> Küçük Tut
-                            </div>
-                        </div>
+                    <div id="videoScalePanel">
+                        <div class="scale-option" data-fit="fill" onclick="applyVideoScale('fill')">Dolu doldur</div>
+                        <div class="scale-option" data-fit="contain" onclick="applyVideoScale('contain')">Sığdır (16:9)</div>
+                        <div class="scale-option" data-fit="cover" onclick="applyVideoScale('cover')">Kırp ve kapla</div>
+                        <div class="scale-option" data-fit="none" onclick="applyVideoScale('none')">Gerçek boyut</div>
+                        <div class="scale-option" data-fit="scale-down" onclick="applyVideoScale('scale-down')">Küçük tut</div>
                     </div>
+                </div>
 
-                    <button class="player-nav-btn" onclick="changeChannel(1)">
-                        İleri <span>⏭</span>
+                <button class="player-nav-btn" id="fullscreenBtn" onclick="toggleFullscreen()">
+                    <svg class="ico" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                    <span class="btn-text">Tam ekran</span>
+                </button>
+            </div>
+
+            <!-- ALT ŞERİT: kanallar -->
+            <div id="dockScrim"></div>
+            <div id="dock">
+                <div class="dock-head">
+                    <span id="dockTitle"></span>
+                    <span class="dock-hint" id="dockCount"></span>
+                </div>
+                <div class="dock-row">
+                    <button class="player-nav-btn dock-nav" onclick="changeChannel(-1)" aria-label="Önceki kanal">
+                        <svg class="ico" viewBox="0 0 24 24"><path class="fillp" d="M19 20L9 12l10-8z"></path><path d="M5 19V5"></path></svg>
+                        Geri
                     </button>
-
-                    <button class="player-nav-btn zoom-nav-btn" onclick="updateZoom(0.1)" title="Sayfayı Büyüt">
-                        🔍⁺
+                    <div id="channels"></div>
+                    <button class="player-nav-btn dock-nav" onclick="changeChannel(1)" aria-label="Sonraki kanal">
+                        <svg class="ico" viewBox="0 0 24 24"><path class="fillp" d="M5 4l10 8-10 8z"></path><path d="M19 5v14"></path></svg>
+                        İleri
                     </button>
                 </div>
             </div>
         </div>
     </div>
 
+    <!-- SOL RAY: kategoriler -->
     <div id="groups"></div>
 
+    <!-- SOL ALT: görünüm ayarları -->
+    <div id="lookWrapper">
+        <button class="player-nav-btn" id="lookBtn" onclick="toggleLookPanel()" title="Görünüm" aria-label="Görünüm ayarları">
+            <svg class="ico" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9"></circle><path d="M12 3a9 9 0 0 0 0 18z" fill="currentColor"></path></svg>
+            <span>Görünüm</span>
+        </button>
+        <div id="lookPanel">
+            <span class="panel-label">Tema</span>
+            <div id="themeSelector"></div>
+            <span class="panel-label">Sayfa boyutu</span>
+            <div class="zoom-row">
+                <button class="player-nav-btn zoom-nav-btn" onclick="updateZoom(-0.1)" title="Sayfayı Küçült" aria-label="Sayfayı küçült">−</button>
+                <span>Küçült · Büyüt</span>
+                <button class="player-nav-btn zoom-nav-btn" onclick="updateZoom(0.1)" title="Sayfayı Büyüt" aria-label="Sayfayı büyüt">+</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- EN ALT: kayan duyuru -->
     <div id="playerContainer">
         <div class="marquee-container">
-            <div class="marquee-text">Car Video Pro - Eğlencenin Adresi - 📞 Telegram: t.me/car_video_pro 📞</div>
-        </div>
-
-        <div class="footer-controls">
-            <div id="themeSelector"></div>
+            <div class="marquee-text">Car Video Pro · Eğlencenin Adresi · Telegram: t.me/car_video_pro</div>
         </div>
     </div>
 
@@ -1051,6 +1412,25 @@
             'ocean': { name: 'Derin Mavi', color: '#00B0FF' },
             'magma': { name: 'Ferrari Kırmızı', color: '#FF1744' },
             'lavender': { name: 'Lavanta', color: '#7C4DFF' }
+        };
+
+        /* YENİ ARAYÜZ: kategori rayı için kısa ad + ikon (sadece görünüm) */
+        const GROUP_UI = {
+            'Favorilerim': { short: 'Favoriler', icon: 'M12 3.5l2.6 5.3 5.9.9-4.25 4.1 1 5.85L12 16.9l-5.25 2.75 1-5.85L3.5 9.7l5.9-.9z' },
+            'Tüm Kanallar': { short: 'Tümü', icon: 'M4 4h7v7H4zM13 4h7v7h-7zM4 13h7v7H4zM13 13h7v7h-7z' },
+            'Ulusal': { short: 'Ulusal', icon: 'M3 6h18v12H3zM8 21h8M12 18v3' },
+            'Spor': { short: 'Spor', icon: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M12 7.5l4 3-1.5 4.5h-5L8 10.5z' },
+            'Çocuk & Eğitim': { short: 'Çocuk', icon: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M8.5 14a4 4 0 0 0 7 0M9 9.5h.01M15 9.5h.01' },
+            'Belgesel': { short: 'Belgesel', icon: 'M12 3a9 9 0 1 0 0 18a9 9 0 1 0 0-18M3 12h18M12 3c3 3 3 15 0 18M12 3c-3 3-3 15 0 18' },
+            'Müzik': { short: 'Müzik', icon: 'M9 18V5l11-2v13M9 18a3 3 0 1 1-6 0a3 3 0 1 1 6 0M20 16a3 3 0 1 1-6 0a3 3 0 1 1 6 0' },
+            'Müzik Ekstra': { short: 'Müzik +', icon: 'M9 18V5l11-2v13M9 18a3 3 0 1 1-6 0a3 3 0 1 1 6 0M20 16a3 3 0 1 1-6 0a3 3 0 1 1 6 0' },
+            'Rahatlatıcı Müzikler': { short: 'Sakin', icon: 'M3 7c3-4 6-4 9 0s6 4 9 0M3 12c3-4 6-4 9 0s6 4 9 0M3 17c3-4 6-4 9 0s6 4 9 0' },
+            'Ulusal Haber': { short: 'Haber', icon: 'M4 5h13v14H6a2 2 0 0 1-2-2zM17 9h3v8a2 2 0 0 1-2 2M8 9h5M8 13h5' },
+            'Dini': { short: 'Dini', icon: 'M20 14.5A8 8 0 1 1 9.5 4a6.5 6.5 0 0 0 10.5 10.5z' },
+            'Filmler': { short: 'Filmler', icon: 'M4 4h16v16H4zM8 4v16M16 4v16M4 8h4M4 16h4M16 8h4M16 16h4M4 12h16' },
+            'Sinema ve Dizi': { short: 'Dizi', icon: 'M4 4h16v16H4zM8 4v16M16 4v16M4 8h4M4 16h4M16 8h4M16 16h4M4 12h16' },
+            'YouTube': { short: 'YouTube', icon: 'M2 7a3 3 0 0 1 3-3h14a3 3 0 0 1 3 3v10a3 3 0 0 1-3 3H5a3 3 0 0 1-3-3zM10 9l5 3-5 3z' },
+            'Yaşam & EğLence': { short: 'Yaşam', icon: 'M12 20s-7-4.4-7-10a4 4 0 0 1 7-2.6A4 4 0 0 1 19 10c0 5.6-7 10-7 10z' }
         };
 
         const YOUTUBE_ICON_SVG = `<svg class="youtube-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path fill="#FF0000" d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>`;
@@ -1084,6 +1464,9 @@
                 currentZoom = parseFloat(saved);
                 if (currentZoom < 0.5) currentZoom = 0.5;
                 if (currentZoom > 1.5) currentZoom = 1.5;
+            } else if (Math.min(screen.width, screen.height) < 600) {
+                // Kayıt yoksa ve cihaz telefon boyutundaysa: parmakla rahat dokunulsun diye %100
+                currentZoom = 1;
             }
             document.documentElement.style.zoom = currentZoom;
         }
@@ -1312,7 +1695,7 @@
         }
 
         function listGroups() {
-            const currentActiveGroup = document.querySelector('.group.active')?.textContent || 'Favorilerim';
+            const currentActiveGroup = document.querySelector('.group.active')?.dataset.group || 'Favorilerim';
             const desiredOrder = ['Favorilerim', 'Tüm Kanallar', 'Ulusal', 'Spor', 'Çocuk & Eğitim', 'Belgesel', 'Müzik', 'YouTube', 'Müzik Ekstra', 'Yaşam & EğLence', 'Sinema ve Dizi', 'Ulusal Haber'];
             let groups = [...new Set(allChannels.map(c => c.group))].filter(g => g && g !== 'Bilgilendirme');
             groups.unshift('Favorilerim'); groups = [...new Set(groups)];
@@ -1321,7 +1704,9 @@
 
             groups.forEach((g) => {
                 if (g === 'Favorilerim' && getFavorites().length === 0) return;
-                const el = document.createElement("div"); el.className = "group"; el.textContent = g;
+                const el = document.createElement("div"); el.className = "group"; el.dataset.group = g; el.title = g;
+                const ui = GROUP_UI[g] || { short: g, icon: GROUP_UI['Ulusal'].icon };
+                el.innerHTML = `<svg class="ico" viewBox="0 0 24 24"><path d="${ui.icon}"></path></svg><span class="group-label">${ui.short}</span>`;
                 el.onclick = () => { document.querySelectorAll(".group.active").forEach(e => e.classList.remove("active")); el.classList.add("active"); activeGroupName = g; listChannels(g); };
                 G_UI.groups.appendChild(el); if (g === currentActiveGroup) groupToActivate = el;
             });
@@ -1338,7 +1723,9 @@
 
             currentChannelList.forEach((c, idx) => {
                 const epgTitle = epgData[c.epgId] || "", isFavorited = favorites.includes(c.name);
-                const el = document.createElement("div"); el.className = "channel";
+                const el = document.createElement("div"); el.className = "channel channel-enter";
+                el.style.setProperty('--enter-delay', `${Math.min(idx, 10) * 26}ms`);
+                el.addEventListener('animationend', () => el.classList.remove('channel-enter'), { once: true });
 
                 el.innerHTML = `
             <div class="channel-info">
@@ -1368,10 +1755,56 @@
                 el.querySelector('.fav-btn').onclick = (e) => { e.stopPropagation(); toggleFavorite(c.name, el.querySelector('.fav-btn')); };
                 G_UI.channels.appendChild(el);
             });
+            const dockHead = document.querySelector('.dock-head');
+            const dockTitle = document.getElementById('dockTitle');
+            const dockCount = document.getElementById('dockCount');
+            if (dockTitle) dockTitle.textContent = group;
+            if (dockCount) dockCount.textContent = `${currentChannelList.length} kanal`;
+            if (dockHead) {
+                dockHead.classList.remove('head-animate');
+                void dockHead.offsetWidth;
+                dockHead.classList.add('head-animate');
+            }
+            G_UI.channels.scrollLeft = 0;
             updateActiveChannelVisuals();
         }
 
+        /* --- YENİ ARAYÜZ: şu an oynatılan bilgisi --- */
+        function updateNowPlaying() {
+            const playingNow = isPlaying && currentlyPlayingChannel;
+            document.body.classList.toggle('is-playing', !!playingNow);
+            if (!playingNow) return;
+            const nameEl = document.getElementById('npName');
+            if (nameEl && nameEl.textContent !== currentlyPlayingChannel.name) {
+                nameEl.textContent = currentlyPlayingChannel.name;
+                nameEl.classList.remove('np-swap');
+                void nameEl.offsetWidth;
+                nameEl.classList.add('np-swap');
+            }
+        }
+
+        /* --- YENİ ARAYÜZ: görünüm paneli --- */
+        function toggleLookPanel() {
+            const wrapper = document.getElementById('lookWrapper');
+            const panel = document.getElementById('lookPanel');
+            if (!panel) return;
+            const isOpen = panel.classList.toggle('open');
+            if (wrapper) wrapper.classList.toggle('panel-open', isOpen);
+            const scalePanel = document.getElementById('videoScalePanel');
+            if (scalePanel) scalePanel.classList.remove('open');
+        }
+
+        document.addEventListener('click', function (e) {
+            const wrapper = document.getElementById('lookWrapper');
+            const panel = document.getElementById('lookPanel');
+            if (wrapper && panel && !wrapper.contains(e.target)) {
+                panel.classList.remove('open');
+                wrapper.classList.remove('panel-open');
+            }
+        });
+
         function updateActiveChannelVisuals() {
+            updateNowPlaying();
             const channelElements = document.querySelectorAll('#channels .channel');
 
             channelElements.forEach((el, idx) => {
@@ -1418,13 +1851,13 @@
             }
             updateActiveChannelVisuals();
 
-            // Otomatik tam ekran açıksa yayın açıldıktan 2 saniye sonra tam ekran yap
+            // Otomatik tam ekran açıksa yayın açıldıktan 5 saniye sonra tam ekran yap
             if (autoFullscreenEnabled) {
                 fullscreenTimeout = setTimeout(() => {
                     if (isPlaying && currentlyPlayingChannel) {
                         enterFullscreen();
                     }
-                }, 2000);
+                }, 5000);
             }
         }
 
@@ -1442,7 +1875,7 @@
             const channelElements = G_UI.channels.querySelectorAll('.channel');
 
             if (channelElements[newIndex]) {
-                channelElements[newIndex].scrollIntoView({ behavior: 'smooth', block: 'center' });
+                channelElements[newIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
                 channelElements[newIndex].click();
             }
         }
@@ -1467,6 +1900,8 @@
 
             // Android WebView ve normal tarayıcı uyumluluğu için sanal tam ekran sınıfını ekle
             containerElement.classList.add('virtual-fullscreen');
+            requestAnimationFrame(adjustYouTubeSize);
+            setTimeout(adjustYouTubeSize, 100);
 
             // Tarayıcı destekliyorsa yerel tam ekranı da tetikle
             if (!document.fullscreenElement && !document.webkitFullscreenElement) {
@@ -1491,6 +1926,7 @@
                 // Tam ekrandan çık
                 containerElement.classList.remove('virtual-fullscreen');
                 isNativeFullscreenActive = false;
+                requestAnimationFrame(adjustYouTubeSize);
                 if (document.fullscreenElement || document.webkitFullscreenElement) {
                     if (document.exitFullscreen) document.exitFullscreen();
                     else if (document.webkitExitFullscreen) document.webkitExitFullscreen();
@@ -1499,6 +1935,17 @@
                 }
             }
         }
+
+        document.addEventListener('keydown', (e) => {
+            if (e.key === 'Escape') {
+                const containerElement = document.getElementById('videoContainer');
+                if (containerElement && containerElement.classList.contains('virtual-fullscreen')) {
+                    containerElement.classList.remove('virtual-fullscreen');
+                    isNativeFullscreenActive = false;
+                    requestAnimationFrame(adjustYouTubeSize);
+                }
+            }
+        });
 
         /* --- OTOMATİK TAM EKRAN TOGGLE --- */
         function toggleAutoFullscreen() {
@@ -1527,6 +1974,10 @@
             const panel = document.getElementById('videoScalePanel');
             if (!panel) return;
             panel.classList.toggle('open');
+            const lookPanel = document.getElementById('lookPanel');
+            const lookWrapper = document.getElementById('lookWrapper');
+            if (lookPanel) lookPanel.classList.remove('open');
+            if (lookWrapper) lookWrapper.classList.remove('panel-open');
         }
 
         function applyVideoScale(fit) {
@@ -1686,7 +2137,7 @@
         });
     </script>
     <div id="offline-overlay">
-        <div class="offline-icon">📡</div>
+        <div class="offline-icon"><svg viewBox="0 0 24 24" fill="none" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round"><path d="M3 3l18 18"></path><path d="M8.5 16.5a5 5 0 0 1 7 0M5 13a10 10 0 0 1 5.2-2.8M19 13a10 10 0 0 0-2.4-1.7M2 8.8a15 15 0 0 1 4.2-2.6M22 8.8A15 15 0 0 0 11 5"></path><path d="M12 20h.01"></path></svg></div>
         <h2>BAĞLANTI YOK</h2>
         <p>TV yayınına devam etmek için lütfen internet bağlantınızı kontrol edin.</p>
         <button id="offline-retry-btn" onclick="window.location.reload()">TEKRAR DENE</button>
