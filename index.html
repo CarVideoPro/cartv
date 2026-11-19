@@ -287,8 +287,8 @@
         [data-theme='ocean'] { --accent-contrast: #001424; }
 
         :root {
-            --rail-width: 88px;
-            --rail-footer-h: 76px;
+            --rail-width: clamp(86px, 7.2vw, 112px);
+            --rail-footer-h: clamp(66px, 9vh, 84px);
             --ticker-height: 30px;
             --glass: rgba(14, 16, 20, 0.72);
             --glass-hover: rgba(30, 34, 42, 0.88);
@@ -412,8 +412,14 @@
             top: 0;
             left: var(--rail-width);
             right: 0;
-            height: 150px;
-            background: linear-gradient(to bottom, rgba(0, 0, 0, 0.80), rgba(0, 0, 0, 0));
+            height: 160px;
+            background: linear-gradient(
+                to bottom,
+                rgba(0, 0, 0, 0.88) 0%,
+                rgba(0, 0, 0, 0.52) 45%,
+                rgba(0, 0, 0, 0.16) 75%,
+                rgba(0, 0, 0, 0) 100%
+            );
             pointer-events: none;
             z-index: 40;
             opacity: 0;
@@ -464,15 +470,15 @@
             to { opacity: 1; transform: translateY(0); }
         }
 
-        /* Kontrol kümesi (sağ üst) */
+        /* Kontrol kümesi (sağ alt, kanal kartlarının üstü) */
         #videoControlsBar {
-            position: fixed;
-            top: 20px;
-            right: 24px;
+            position: relative;
+            margin-left: auto;
             z-index: 1002;
             display: flex;
             align-items: center;
             gap: 8px;
+            flex-shrink: 0;
         }
 
         .player-nav-btn {
@@ -573,7 +579,18 @@
             to { opacity: 1; transform: translate(0, 0) scale(1); }
         }
 
-        #videoScalePanel { min-width: 220px; }
+        @keyframes panelInUpRight {
+            from { opacity: 0; transform: translateY(8px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+
+        #videoScalePanel {
+            min-width: 220px;
+            top: auto;
+            bottom: calc(100% + 8px);
+            right: 0;
+            animation: panelInUpRight 0.22s var(--ease-spring) both;
+        }
         #videoScalePanel.open,
         #lookPanel.open { display: block; }
 
@@ -584,6 +601,7 @@
             bottom: 0;
             width: var(--rail-width);
             height: var(--rail-footer-h);
+            padding: 6px;
             z-index: 1002;
             display: flex;
             align-items: center;
@@ -595,8 +613,8 @@
         }
 
         #lookBtn {
-            width: 74px;
-            height: 58px;
+            width: 100%;
+            height: 100%;
             padding: 6px 4px;
             border-radius: 14px;
             border: 1px solid transparent;
@@ -605,13 +623,15 @@
             flex-direction: column;
             justify-content: center;
             gap: 4px;
-            font-size: 11px;
+            font-size: clamp(11px, 1.05vw, 13px);
             font-weight: 600;
             line-height: 1.15;
             -webkit-backdrop-filter: none;
             backdrop-filter: none;
             transition: background 0.22s var(--ease-spring), color 0.22s var(--ease-spring), transform 0.18s var(--ease-spring);
         }
+
+        #lookBtn .ico { width: clamp(20px, 1.8vw, 24px); height: clamp(20px, 1.8vw, 24px); }
 
         #lookBtn:hover { background: var(--bg-hover); color: var(--text-primary); border-color: transparent; }
         #lookBtn:active { transform: scale(0.94); }
@@ -724,8 +744,8 @@
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 2px;
-            padding: 14px 0 12px;
+            gap: 4px;
+            padding: 10px 6px;
             overflow-y: auto;
             background: var(--bg-secondary);
             border-right: 1px solid var(--border-color);
@@ -738,19 +758,19 @@
         #groups::before {
             content: '';
             flex-shrink: 0;
-            width: 44px;
-            height: 44px;
-            margin-bottom: 10px;
-            border-radius: 12px;
-            background: var(--accent-color) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'%3E%3Crect x='2' y='5' width='20' height='14' rx='3'/%3E%3Cpath d='M10 9.5l4.5 2.5-4.5 2.5z' fill='white'/%3E%3C/svg%3E") center / 24px no-repeat;
+            width: clamp(42px, 4vw, 52px);
+            height: clamp(42px, 4vw, 52px);
+            margin-bottom: 6px;
+            border-radius: 14px;
+            background: var(--accent-color) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='white' stroke-width='2' stroke-linejoin='round'%3E%3Crect x='2' y='5' width='20' height='14' rx='3'/%3E%3Cpath d='M10 9.5l4.5 2.5-4.5 2.5z' fill='white'/%3E%3C/svg%3E") center / 55% no-repeat;
             transition: background-color 0.35s ease;
         }
 
         .group {
-            flex-shrink: 0;
-            width: 76px;
-            min-height: 56px;
-            padding: 6px 2px;
+            flex: 1 0 48px;
+            width: 100%;
+            min-height: 48px;
+            padding: 6px 4px;
             border-radius: 14px;
             display: flex;
             flex-direction: column;
@@ -759,12 +779,14 @@
             gap: 4px;
             cursor: pointer;
             color: var(--text-secondary);
-            font-size: 11px;
+            font-size: clamp(11px, 1.05vw, 13px);
             font-weight: 600;
             text-align: center;
             line-height: 1.15;
             transition: background 0.22s var(--ease-spring), color 0.22s var(--ease-spring), transform 0.18s var(--ease-spring);
         }
+
+        .group .ico { width: clamp(20px, 1.8vw, 24px); height: clamp(20px, 1.8vw, 24px); }
 
         .group:hover { background: var(--bg-hover); color: var(--text-primary); }
         .group.active { background: var(--bg-tertiary); color: var(--accent-color); }
@@ -786,21 +808,29 @@
             left: var(--rail-width);
             right: 0;
             bottom: var(--ticker-height);
-            z-index: 50;
+            z-index: 1001;
             padding: 0 24px 14px;
             display: flex;
             flex-direction: column;
-            gap: 12px;
+            gap: 10px;
         }
 
         .dock-head {
             display: flex;
-            align-items: baseline;
+            align-items: center;
+            justify-content: space-between;
             gap: 12px;
             color: var(--on-video);
         }
 
-        .dock-head.head-animate {
+        .dock-head-info {
+            display: flex;
+            align-items: baseline;
+            gap: 12px;
+            min-width: 0;
+        }
+
+        .dock-head-info.head-animate {
             animation: dockHeadIn 0.3s var(--ease-spring) both;
         }
 
@@ -829,8 +859,8 @@
             border: 1px solid var(--card-glass-border);
             color: var(--text-primary);
             text-shadow: var(--card-text-shadow);
-            -webkit-backdrop-filter: blur(22px) saturate(185%) brightness(1.06);
-            backdrop-filter: blur(22px) saturate(185%) brightness(1.06);
+            -webkit-backdrop-filter: blur(16px) saturate(185%) brightness(1.06);
+            backdrop-filter: blur(16px) saturate(185%) brightness(1.06);
             box-shadow: inset 0 1px 1px var(--card-glass-highlight), inset 0 -1px 0 rgba(255, 255, 255, 0.08), 0 10px 28px rgba(0, 0, 0, 0.28);
         }
 
@@ -842,11 +872,14 @@
             flex: 1;
             min-width: 0;
             display: flex;
+            flex-wrap: nowrap;
             gap: 10px;
             padding: 4px 0;
             overflow-x: auto;
             overflow-y: hidden;
-            scroll-behavior: smooth;
+            -webkit-overflow-scrolling: touch;
+            overscroll-behavior-x: contain;
+            touch-action: pan-x;
             scrollbar-width: none;
         }
 
@@ -867,14 +900,16 @@
         .channel {
             position: relative;
             overflow: hidden;
+            contain: layout style;
+            touch-action: pan-x;
             flex: 0 0 184px;
             height: 124px;
             padding: 12px;
             border-radius: 22px;
             background: var(--card-glass);
             border: 1px solid var(--card-glass-border);
-            -webkit-backdrop-filter: blur(22px) saturate(185%) brightness(1.06);
-            backdrop-filter: blur(22px) saturate(185%) brightness(1.06);
+            -webkit-backdrop-filter: blur(16px) saturate(185%) brightness(1.06);
+            backdrop-filter: blur(16px) saturate(185%) brightness(1.06);
             box-shadow: inset 0 1px 1px var(--card-glass-highlight), inset 0 -1px 0 rgba(255, 255, 255, 0.08), 0 10px 28px rgba(0, 0, 0, 0.28);
             cursor: pointer;
             display: flex;
@@ -1082,11 +1117,8 @@
 
         #channels {
             touch-action: pan-x;
-            scroll-snap-type: x proximity;
-            scroll-padding: 0 4px;
         }
 
-        .channel { scroll-snap-align: start; }
         #groups { touch-action: pan-y; }
 
         .group:active,
@@ -1121,19 +1153,19 @@
 
         /* ================= ALÇAK EKRAN (telefon yatay) ================= */
         @media (max-height: 500px) and (orientation: landscape) {
-            :root { --rail-footer-h: 62px; }
-            #nowPlaying, #videoControlsBar { top: 12px; }
+            :root { --rail-footer-h: 60px; }
+            #nowPlaying { top: 12px; }
             #npName { font-size: 20px; }
             #topScrim { height: 100px; }
             #dock { gap: 8px; padding-bottom: 8px; }
             #dockTitle { font-size: 16px; }
             .dock-hint { display: none; }
+            #videoControlsBar .player-nav-btn { height: 40px; padding: 0 12px; }
             .channel { height: 96px; padding: 10px; border-radius: 18px; flex-basis: 140px; }
             .channel img { width: 38px; height: 38px; border-radius: 8px; }
             .dock-nav { height: 96px; width: 56px; border-radius: 18px; }
             #dockScrim { height: 200px; }
-            .group { min-height: 50px; }
-            #lookBtn { height: 48px; }
+            .group { min-height: 44px; flex: 1 0 44px; }
             #lookPanel, #videoScalePanel { max-height: calc(100vh - 28px); overflow-y: auto; }
         }
 
@@ -1151,7 +1183,7 @@
 
             /* Şu an oynatılan: videonun altında */
             #nowPlaying {
-                top: calc(var(--video-h) + 14px);
+                top: calc(var(--video-h) + 12px);
                 left: 16px;
                 right: 16px;
                 max-width: none;
@@ -1159,19 +1191,14 @@
             }
             #npName { font-size: 22px; text-shadow: none; }
 
-            /* Ayar butonları: tam genişlik satır */
+            /* Ayar butonları: dock başlığının sağında */
             #videoControlsBar {
-                top: calc(var(--video-h) + 14px);
-                left: 16px;
-                right: 16px;
                 gap: 6px;
-                transition: top 0.28s var(--ease-spring);
             }
-            #videoControlsBar .player-nav-btn { padding: 0 12px; }
+            #videoControlsBar .player-nav-btn { height: 42px; padding: 0 10px; }
             #videoControlsBar .icon-only { padding: 0; }
             #videoScaleBtn .chev { display: none; }
-            body.is-playing #videoControlsBar { top: calc(var(--video-h) + 52px); }
-            #fullscreenBtn { margin-left: auto; width: 48px; padding: 0; justify-content: center; }
+            #fullscreenBtn { width: 42px; padding: 0; justify-content: center; }
 
             .player-nav-btn { background: var(--bg-tertiary); border-color: var(--border-color); color: var(--text-primary); -webkit-backdrop-filter: none; backdrop-filter: none; }
             #fullscreenBtn { color: var(--accent-contrast); background: var(--accent-color); border-color: var(--accent-color); }
@@ -1182,10 +1209,12 @@
                 bottom: var(--ticker-height);
                 width: 72px;
                 height: var(--groups-h);
+                padding: 4px;
                 border-top: 1px solid var(--border-color);
                 border-right: 1px solid var(--border-color);
             }
-            #lookBtn { width: 62px; height: 56px; }
+            #lookBtn { width: 100%; height: 100%; font-size: 11px; }
+            #lookBtn .ico { width: 20px; height: 20px; }
 
             /* Ölçek / Görünüm: alttan açılan panel */
             #videoScalePanel,
@@ -1218,48 +1247,40 @@
             #themeSelector { grid-template-columns: repeat(5, minmax(0, 1fr)); gap: 14px; }
             .theme-swatch { width: 44px; height: 44px; }
 
-            /* Kanallar: dikey kaydırılan 2 sütunlu ızgara */
+            /* Kanallar: yatay parmakla kaydırılan şerit */
             #dock {
-                top: calc(var(--video-h) + 76px);
+                top: auto;
                 left: 0;
                 right: 0;
                 bottom: calc(var(--ticker-height) + var(--groups-h));
-                padding: 0 16px 12px;
+                padding: 12px 16px;
                 gap: 10px;
-                transition: top 0.28s var(--ease-spring);
             }
-            body.is-playing #dock { top: calc(var(--video-h) + 114px); }
-            .dock-head { color: var(--text-primary); min-width: 0; }
-            #dockTitle { font-size: 18px; flex-shrink: 0; text-shadow: none; }
+            .dock-head { color: var(--text-primary); min-width: 0; flex-wrap: nowrap; }
+            .dock-head-info { flex-direction: column; gap: 2px; }
+            #dockTitle { font-size: 17px; flex-shrink: 0; text-shadow: none; }
             .dock-hint { color: var(--text-secondary); text-shadow: none; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
             .dock-row {
-                flex: 1;
-                min-height: 0;
-                display: grid;
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                grid-template-rows: minmax(0, 1fr) auto;
-                align-items: stretch;
-                gap: 10px;
+                display: flex;
+                align-items: center;
+                gap: 8px;
             }
             #channels {
-                grid-column: 1 / -1;
-                grid-row: 1;
-                min-height: 0;
-                display: grid;
-                grid-template-columns: repeat(2, minmax(0, 1fr));
-                grid-auto-rows: 108px;
-                align-content: start;
+                flex: 1;
+                min-width: 0;
+                display: flex;
+                flex-wrap: nowrap;
                 gap: 10px;
-                padding: 2px 0;
-                overflow-x: hidden;
-                overflow-y: auto;
-                touch-action: pan-y;
-                scroll-snap-type: y proximity;
+                padding: 4px 0;
+                overflow-x: auto;
+                overflow-y: hidden;
+                -webkit-overflow-scrolling: touch;
+                touch-action: pan-x;
             }
-            .channel { flex-basis: auto; height: auto; padding: 10px; border-radius: 18px; }
+            .channel { flex: 0 0 156px; height: 112px; padding: 10px; border-radius: 18px; }
             .channel img { width: 40px; height: 40px; border-radius: 8px; }
-            .dock-nav { grid-row: 2; width: auto; height: 52px; flex-direction: row; font-size: 15px; border-radius: 14px; }
+            .dock-nav { width: 48px; height: 112px; flex-direction: column; font-size: 11px; border-radius: 18px; }
             .dock-nav .ico { width: 20px; height: 20px; }
 
             /* Kategoriler: altta yatay kaydırılan şerit */
@@ -1281,7 +1302,8 @@
                 touch-action: pan-x;
             }
             #groups::before { display: none; }
-            .group { width: 72px; min-height: 58px; }
+            .group { flex: 0 0 72px; width: 72px; min-height: 58px; font-size: 11px; }
+            .group .ico { width: 20px; height: 20px; }
 
             #playerContainer { left: 0; }
         }
@@ -1324,41 +1346,43 @@
                 <div id="npName"></div>
             </div>
 
-            <!-- OYNATICI AYARLARI (sağ üst) -->
-            <div id="videoControlsBar">
-                <button class="player-nav-btn" id="autoFullscreenBtn" onclick="toggleAutoFullscreen()" title="Otomatik Tam Ekran">
-                    <div class="toggle-switch" id="autoFsToggle"></div>
-                    <span class="auto-fs-label">Oto tam ekran</span>
-                </button>
-
-                <div id="videoScaleWrapper">
-                    <button class="player-nav-btn" id="videoScaleBtn" onclick="toggleScalePanel()" title="Video Ölçeği">
-                        <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M7 10v4M17 10v4"></path></svg>
-                        <span class="scale-current" id="scaleCurrentLabel">Dolu</span>
-                        <span class="scale-label">Ölçek</span>
-                        <svg class="ico chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
-                    </button>
-                    <div id="videoScalePanel">
-                        <div class="scale-option" data-fit="fill" onclick="applyVideoScale('fill')">Dolu doldur</div>
-                        <div class="scale-option" data-fit="contain" onclick="applyVideoScale('contain')">Sığdır (16:9)</div>
-                        <div class="scale-option" data-fit="cover" onclick="applyVideoScale('cover')">Kırp ve kapla</div>
-                        <div class="scale-option" data-fit="none" onclick="applyVideoScale('none')">Gerçek boyut</div>
-                        <div class="scale-option" data-fit="scale-down" onclick="applyVideoScale('scale-down')">Küçük tut</div>
-                    </div>
-                </div>
-
-                <button class="player-nav-btn" id="fullscreenBtn" onclick="toggleFullscreen()">
-                    <svg class="ico" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
-                    <span class="btn-text">Tam ekran</span>
-                </button>
-            </div>
-
             <!-- ALT ŞERİT: kanallar -->
             <div id="dockScrim"></div>
             <div id="dock">
                 <div class="dock-head">
-                    <span id="dockTitle"></span>
-                    <span class="dock-hint" id="dockCount"></span>
+                    <div class="dock-head-info">
+                        <span id="dockTitle"></span>
+                        <span class="dock-hint" id="dockCount"></span>
+                    </div>
+
+                    <!-- OYNATICI AYARLARI (sağ alt, kanal kartlarının üstü) -->
+                    <div id="videoControlsBar">
+                        <button class="player-nav-btn" id="autoFullscreenBtn" onclick="toggleAutoFullscreen()" title="Otomatik Tam Ekran">
+                            <div class="toggle-switch" id="autoFsToggle"></div>
+                            <span class="auto-fs-label">Oto tam ekran</span>
+                        </button>
+
+                        <div id="videoScaleWrapper">
+                            <button class="player-nav-btn" id="videoScaleBtn" onclick="toggleScalePanel()" title="Video Ölçeği">
+                                <svg class="ico" viewBox="0 0 24 24"><rect x="3" y="6" width="18" height="12" rx="2"></rect><path d="M7 10v4M17 10v4"></path></svg>
+                                <span class="scale-current" id="scaleCurrentLabel">Dolu</span>
+                                <span class="scale-label">Ölçek</span>
+                                <svg class="ico chev" viewBox="0 0 24 24"><path d="M6 9l6 6 6-6"></path></svg>
+                            </button>
+                            <div id="videoScalePanel">
+                                <div class="scale-option" data-fit="fill" onclick="applyVideoScale('fill')">Dolu doldur</div>
+                                <div class="scale-option" data-fit="contain" onclick="applyVideoScale('contain')">Sığdır (16:9)</div>
+                                <div class="scale-option" data-fit="cover" onclick="applyVideoScale('cover')">Kırp ve kapla</div>
+                                <div class="scale-option" data-fit="none" onclick="applyVideoScale('none')">Gerçek boyut</div>
+                                <div class="scale-option" data-fit="scale-down" onclick="applyVideoScale('scale-down')">Küçük tut</div>
+                            </div>
+                        </div>
+
+                        <button class="player-nav-btn" id="fullscreenBtn" onclick="toggleFullscreen()">
+                            <svg class="ico" viewBox="0 0 24 24"><path d="M8 3H5a2 2 0 0 0-2 2v3M21 8V5a2 2 0 0 0-2-2h-3M3 16v3a2 2 0 0 0 2 2h3M16 21h3a2 2 0 0 0 2-2v-3"></path></svg>
+                            <span class="btn-text">Tam ekran</span>
+                        </button>
+                    </div>
                 </div>
                 <div class="dock-row">
                     <button class="player-nav-btn dock-nav" onclick="changeChannel(-1)" aria-label="Önceki kanal">
@@ -1771,7 +1795,7 @@
                 el.querySelector('.fav-btn').onclick = (e) => { e.stopPropagation(); toggleFavorite(c.name, el.querySelector('.fav-btn')); };
                 G_UI.channels.appendChild(el);
             });
-            const dockHead = document.querySelector('.dock-head');
+            const dockHead = document.querySelector('.dock-head-info');
             const dockTitle = document.getElementById('dockTitle');
             const dockCount = document.getElementById('dockCount');
             if (dockTitle) dockTitle.textContent = group;
