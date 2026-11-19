@@ -797,8 +797,15 @@
             left: var(--rail-width);
             right: 0;
             bottom: 0;
-            height: 240px;
-            background: linear-gradient(to top, rgba(0, 0, 0, 0.30) 0%, rgba(0, 0, 0, 0.12) 55%, rgba(0, 0, 0, 0) 100%);
+            height: clamp(290px, 42vh, 380px);
+            background: linear-gradient(
+                to top,
+                rgba(0, 0, 0, 0.96) 0%,
+                rgba(0, 0, 0, 0.82) 28%,
+                rgba(0, 0, 0, 0.56) 55%,
+                rgba(0, 0, 0, 0.24) 78%,
+                rgba(0, 0, 0, 0) 100%
+            );
             pointer-events: none;
             z-index: 40;
         }
@@ -879,10 +886,12 @@
             overflow-y: hidden;
             -webkit-overflow-scrolling: touch;
             overscroll-behavior-x: contain;
-            touch-action: pan-x;
+            touch-action: none;
+            cursor: grab;
             scrollbar-width: none;
         }
 
+        #channels.is-dragging { cursor: grabbing; }
         #channels::-webkit-scrollbar { display: none; }
         #channels > p { color: var(--on-video-muted); }
 
@@ -901,7 +910,8 @@
             position: relative;
             overflow: hidden;
             contain: layout style;
-            touch-action: pan-x;
+            touch-action: none;
+            -webkit-user-drag: none;
             flex: 0 0 184px;
             height: 124px;
             padding: 12px;
@@ -1116,7 +1126,11 @@
         }
 
         #channels {
-            touch-action: pan-x;
+            touch-action: none;
+        }
+
+        .channel img {
+            -webkit-user-drag: none;
         }
 
         #groups { touch-action: pan-y; }
@@ -1164,7 +1178,7 @@
             .channel { height: 96px; padding: 10px; border-radius: 18px; flex-basis: 140px; }
             .channel img { width: 38px; height: 38px; border-radius: 8px; }
             .dock-nav { height: 96px; width: 56px; border-radius: 18px; }
-            #dockScrim { height: 200px; }
+            #dockScrim { height: 240px; }
             .group { min-height: 44px; flex: 1 0 44px; }
             #lookPanel, #videoScalePanel { max-height: calc(100vh - 28px); overflow-y: auto; }
         }
@@ -1276,7 +1290,7 @@
                 overflow-x: auto;
                 overflow-y: hidden;
                 -webkit-overflow-scrolling: touch;
-                touch-action: pan-x;
+                touch-action: none;
             }
             .channel { flex: 0 0 156px; height: 112px; padding: 10px; border-radius: 18px; }
             .channel img { width: 40px; height: 40px; border-radius: 8px; }
@@ -1769,7 +1783,7 @@
 
                 el.innerHTML = `
             <div class="channel-info">
-                <img src="${c.logo || ''}" onerror="this.style.display='none'" alt="logo">
+                <img src="${c.logo || ''}" draggable="false" onerror="this.style.display='none'" alt="logo">
                 <div>
                     <div class="channel-name-text">${c.name}</div>
                     <div class="channel-stop-text"><span>⏹</span>DURDUR</div>
@@ -2091,12 +2105,155 @@
             if (hlsInstance) hlsInstance.destroy();
         }
 
+        /* --- ARAÇ EKRANI / DOKUNMATİK / FARE İÇİN YATAY SÜRÜKLEME (İVMELİ) --- */
+        function enableChannelsDragScroll() {
+            const el = G_UI.channels;
+            if (!el || el.dataset.dragInit) return;
+            el.dataset.dragInit = '1';
+
+            let active = false;
+            let hasDragged = false;
+            let startX = 0;
+            let lastX = 0;
+            let lastTime = 0;
+            let velocity = 0;
+            let rafId = null;
+            let suppressClickUntil = 0;
+            let lastTouchTime = 0;
+
+            const stopMomentum = () => {
+                if (rafId) {
+                    cancelAnimationFrame(rafId);
+                    rafId = null;
+                }
+            };
+
+            const startMomentum = () => {
+                stopMomentum();
+                const step = () => {
+                    if (Math.abs(velocity) < 0.4) {
+                        rafId = null;
+                        return;
+                    }
+                    const prev = el.scrollLeft;
+                    el.scrollLeft += velocity;
+                    if (el.scrollLeft === prev) {
+                        rafId = null;
+                        return;
+                    }
+                    velocity *= 0.92;
+                    rafId = requestAnimationFrame(step);
+                };
+                rafId = requestAnimationFrame(step);
+            };
+
+            const beginDrag = (clientX) => {
+                stopMomentum();
+                active = true;
+                hasDragged = false;
+                startX = clientX;
+                lastX = clientX;
+                lastTime = performance.now();
+                velocity = 0;
+            };
+
+            const moveDrag = (clientX, e) => {
+                if (!active) return;
+                const zoom = currentZoom || 1;
+                const totalDx = Math.abs(clientX - startX);
+                if (!hasDragged && totalDx > 6) {
+                    hasDragged = true;
+                    el.classList.add('is-dragging');
+                }
+                if (hasDragged) {
+                    if (e && e.cancelable) e.preventDefault();
+                    const now = performance.now();
+                    const dt = Math.max(now - lastTime, 1);
+                    const dx = (lastX - clientX) / zoom;
+                    el.scrollLeft += dx;
+                    velocity = (dx / dt) * 16;
+                    lastX = clientX;
+                    lastTime = now;
+                }
+            };
+
+            const endDrag = () => {
+                if (!active) return;
+                active = false;
+                el.classList.remove('is-dragging');
+                if (hasDragged) {
+                    suppressClickUntil = Date.now() + 300;
+                    if (Math.abs(velocity) > 1.2) startMomentum();
+                }
+            };
+
+            // Dokunmatik (araç ekranı / Android WebView / mobil)
+            el.addEventListener('touchstart', (e) => {
+                if (e.touches.length !== 1) return;
+                lastTouchTime = Date.now();
+                beginDrag(e.touches[0].clientX);
+            }, { passive: true });
+
+            el.addEventListener('touchmove', (e) => {
+                if (!active || e.touches.length !== 1) return;
+                lastTouchTime = Date.now();
+                moveDrag(e.touches[0].clientX, e);
+            }, { passive: false });
+
+            el.addEventListener('touchend', () => {
+                lastTouchTime = Date.now();
+                endDrag();
+            }, { passive: true });
+
+            el.addEventListener('touchcancel', () => {
+                lastTouchTime = Date.now();
+                endDrag();
+            }, { passive: true });
+
+            // Fare / dokunmatiği fare gibi gönderen araç ekranları
+            el.addEventListener('mousedown', (e) => {
+                if (e.button !== 0) return;
+                if (Date.now() - lastTouchTime < 600) return;
+                beginDrag(e.clientX);
+            });
+
+            window.addEventListener('mousemove', (e) => {
+                if (!active) return;
+                if (Date.now() - lastTouchTime < 600) return;
+                moveDrag(e.clientX, e);
+            });
+
+            window.addEventListener('mouseup', () => {
+                if (Date.now() - lastTouchTime < 600) return;
+                endDrag();
+            });
+
+            // Tekerlek / döner kumanda desteği
+            el.addEventListener('wheel', (e) => {
+                const delta = Math.abs(e.deltaX) > Math.abs(e.deltaY) ? e.deltaX : e.deltaY;
+                if (delta !== 0) {
+                    stopMomentum();
+                    el.scrollLeft += delta;
+                    e.preventDefault();
+                }
+            }, { passive: false });
+
+            // Sürükleme sonrası yanlışlıkla kanal açılmasını engelle
+            el.addEventListener('click', (e) => {
+                if (Date.now() < suppressClickUntil) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                }
+            }, true);
+        }
+
         window.addEventListener("load", async () => {
             createThemeSelector();
             applyTheme(localStorage.getItem('iptvTheme') || 'default');
             loadSavedZoom();
             loadSavedScale();
             loadSavedAutoFullscreen();
+            enableChannelsDragScroll();
 
             try {
                 const response = await fetch('channels.json?v=' + new Date().getTime());
